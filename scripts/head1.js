@@ -71,12 +71,12 @@ function function2_buttonimg() {
 //     });
 //   });
 
-
-
-
+let image = new Image();
+let image_original2 = new Image();
+let image_original1 = new Image();
 
 ////way 2
-//very StackOverFlow-y, don't know what is going on there lmao
+//too foreign, don't know what is going on there lmao
 window.addEventListener('load', function() 
 {
     // document.querySelector('input[type="file"]').addEventListener('change', function()
@@ -84,29 +84,30 @@ window.addEventListener('load', function()
     {
         if (this.files && this.files[0]) 
         {
+            let canvas = document.getElementById('cv2'); 
+            let ctx = canvas.getContext('2d');
+            image = new Image();
 
-            let ctx = document.getElementById('cv2');
-            
-            let base_image = new Image();
-            
-            base_image.onload = () => {
-                ctx.height = base_image.height;
-                ctx.width = base_image.width;
+
+            image.onload = () => {
+                canvas.height = image.height;
+                canvas.width = image.width;
                 
                 //not working here?
-                // if (base_image.src !== null) {
+                // if (image.src !== null) {
                 //     URL.revokeObjectURL(img.src);  // no longer needed, free memory
                 // }
                 
                 //put an image and its left, top location
-                ctx.getContext('2d').drawImage(base_image, 0, 0);
+                ctx.drawImage(image, 0, 0);
 
+                
                 //draw a box over the top (useful for 2d spheres?)
                 // ctx.getContext('2d').fillStyle = "rgba(200, 0, 0, 0.33)";
                 // ctx.getContext('2d').fillRect(12, 12, 80, 80);
                 
                 //moved to invert function
-                // const imageData = ctx.getContext('2d').getImageData(0, 0, base_image.width, base_image.height);
+                // const imageData = ctx.getContext('2d').getImageData(0, 0, image.width, image.height);
                 // const data = imageData.data;
                 // for (var i = 0; i < data.length; i += 4) {
                 //     data[i]     = 255 - data[i];     // red
@@ -115,16 +116,21 @@ window.addEventListener('load', function()
                 // }
                 // ctx.getContext('2d').putImageData(imageData, 0, 0);
 
+
+                
                 
             }           
-            base_image.src = URL.createObjectURL(this.files[0]).toString(); // set src to blob 
+
+            image.src = URL.createObjectURL(this.files[0]).toString(); // set src to blob 
+            image_original2.src = image.src;
+            image_original1.src = image.src;
 
             let paragraph1 = document.getElementById('pow1');
-            paragraph1.innerHTML = base_image.src;
+            paragraph1.innerHTML = image.src + "\n" + image_original2.src + "\n" + image_original1.src;
             
 
-            ctx.style.height = "50%"; //should be done by css for now? 
-            //ctx.style.width = auto;
+            canvas.style.height = "50%"; //should be done by css for now? 
+            //canvas.style.width = auto;
 
 
             
@@ -147,11 +153,12 @@ function vnun2() {
 
 //works
 function invert() {
-    let base_image = new Image();
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
+    image = new Image();
+    ctx.drawImage(image, 0, 0);
 
-    ctx.drawImage(base_image, 0, 0);
+
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
     for (var i = 0; i < data.length; i += 4) {
@@ -166,11 +173,12 @@ function invert() {
 
 //works
 function filter1() {
-    let base_image = new Image();
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
+    image = new Image();
+    ctx.drawImage(image, 0, 0);
 
-    ctx.drawImage(base_image, 0, 0);
+    
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     console.log(canvas.width + " " + canvas.height);
     const data = imageData.data;
@@ -182,4 +190,27 @@ function filter1() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
+}
+
+function original() {
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    image = new Image();
+
+
+    image.onload = () => {
+        canvas.height = image.height;
+        canvas.width = image.width;
+        canvas.getContext('2d').drawImage(image, 0, 0);
+    }           
+
+    image.src = image_original1.src;
+    image_original2.src = image_original1.src;
+
+    let paragraph1 = document.getElementById('pow1');
+    paragraph1.innerHTML = image.src + "\n" + image_original2.src + "\n" + image_original1.src;
+    
+
+    ctx.style.height = "50%"; //should be done by css for now? 
+    //ctx.style.width = auto;
 }

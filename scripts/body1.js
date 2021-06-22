@@ -55,24 +55,28 @@
 
 
 
-//put image in canvas (id='cv2')
-let ctx = document.getElementById('cv2');
-let img1 = new Image();
+let canvas = document.getElementById('cv2');
+let ctx = canvas.getContext('2d');
 
-//drawing of the test image
-img1.onload = function () {
-    //draw background image
-    ctx.getContext('2d').drawImage(img1, 0, 0);
-};
+image = new Image();
 
-//add image
-img1.src =  'images/wlop1.jpg';
+image.onload = () => {
+    canvas.height = image.height;
+    canvas.width = image.width;
+    
+    //put an image and its left, top location
+    canvas.getContext('2d').drawImage(image, 0, 0);
+    
+    
+}           
 
-//resize canvas only, image stays same and fixed
-ctx.height = img1.height;
-ctx.width = img1.width;
+image.src = 'images/wlop1.jpg'; // set src to blob 
+image_original2.src = image.src;
+image_original1.src = image.src;
 
-//scale canvas and image
-//"--px" or "%" or "auto" (not working)
-ctx.style.height = "60%"; 
-ctx.style.width = "60%";
+let paragraph1 = document.getElementById('pow1');
+paragraph1.innerHTML = image.src + "\n" + image_original2.src + "\n" + image_original1.src;
+
+
+canvas.style.width = "50%"; //should be done by css for now? 
+//ctx.style.width = auto;
