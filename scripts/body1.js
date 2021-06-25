@@ -32,8 +32,6 @@
 // paragraph1.innerHTML = '34';
 
 
-
-
 // //changing image
 // let myImage = document.querySelector('img');
 // myImage.src = "images/wlop1.jpg";
@@ -57,26 +55,34 @@
 
 let canvas = document.getElementById('cv2');
 let ctx = canvas.getContext('2d');
+        
 
-image = new Image();
+image.src = 'images/wlop1.jpg'; // set src to blob 
+image_original2.src = image.src;
+image_original1.src = image.src;
+
+
 
 image.onload = () => {
     canvas.height = image.height;
     canvas.width = image.width;
     
     //put an image and its left, top location
-    canvas.getContext('2d').drawImage(image, 0, 0);
+    ctx.drawImage(image, 0, 0);
     
-    
-}           
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+    imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
+}
 
-image.src = 'images/wlop1.jpg'; // set src to blob 
-image_original2.src = image.src;
-image_original1.src = image.src;
 
 let paragraph1 = document.getElementById('pow1');
 paragraph1.innerHTML = image.src + "\n" + image_original2.src + "\n" + image_original1.src;
 
 
-canvas.style.width = "50%"; //should be done by css for now? 
-//ctx.style.width = auto;
+
+
+
+
+canvas.style.width = "50%";
+//canvas.style.height = auto;
