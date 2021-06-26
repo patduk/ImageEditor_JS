@@ -302,9 +302,9 @@ function filter2() {
     //set up
     let height = image.height -1;
     let width = image.width -1;
+    let stride = (image.width -1)*4;
 
     let val_Alpha = 0;
-
     let val_Blue = 0;
     let val_Green = 0;
     let val_Red = 0;
@@ -330,76 +330,149 @@ function filter2() {
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     const data = imageData.data;
 
-    //3.0.2
+    //3.0 editing
+    //3.0 editing
+    //multiply by 4 if using image.width
     let x = 0; 
     let y = 0;
-    // 4 = multiply by 4 if using image.width
     //for (var i = 0; i < (data.length); i += 4) {
     // OR
     for (var i = 0; i < (image.height * (image.width*4)); i += 4) 
     {    
-        //keeps x 0 to image.width*4 - 1;
-        //keeps y 0 to image.height-1;
-        //occurs X times (X = image.height-1)
-        //if (x > (image.width*4) - 1) {
-        if (x > (image.width*4) - 4) {
-            //console.log(i / (image.height-1) / 4) // 1186 (image.width);
-            //console.log("x " + x); //x673;
-            x = 0;
-            y++;
-        }
-
         Gx_sum_Blue = 0;
         Gx_sum_Green = 0;
         Gx_sum_Red = 0;
 
         Gy_sum_Blue = 0;
-        Gy_sum_Green = 0;
+        Gy_sum_Green = 60;
         Gy_sum_Red = 0;
 
         Gxy_sum_final_Blue = 0;
         Gxy_sum_final_Green = 0;
         Gxy_sum_final_Red = 0;
 
+        //testing x and y
+        // if (i > 1170*4 && i < 1190 * 4) {
+        //     console.log("testing site2:  x:" + x/4 + "  y:" + y);
+        //     console.log(width);
+        // }
+
+        // finding Gx and Gy - attempt 1
+        // finding Gx and Gy - attempt 1
         ///problem
         for (let r = 0; r < 3; r++)
         {
-            
             for (let c = 0; c < 3; c++)
             {
-                if (r === 1 && c === 1) {counter++;} //799364
+                //if (r === 1 && c === 1) {counter++;} //799364
                 
-                //if inside
+                ////if outside (shorter)
+                val_Blue = 0;
+                val_Green = 0;
+                val_Red = 0;
+
+                ////if inside
                 if (
-                ((y + (r - 1) >= 0) && (x + (c - 1) >= 0)) && 
-                ((y + (r - 1) <= height) && (x + (c - 1) <= width*4))
+                ((y + (r - 1) >= 0) && (x/4 + (c - 1) >= 0)) && 
+                ((y + (r - 1) <= height) && (x/4 + (c - 1) <= width))
                 )
                 {
-                    // let he = y + (r - 1);
-                    // let we = x + (c - 1);
-                    // val_Blue = imageData.data[i];
+                    //if (r===1 && c===1) {console.log(x/4 + " " + y);}
+                    //not working??
+                    let he = y + (r - 1);
+                    let we = x/4 + (c - 1);
+                    // val_Red = imageData.data[(i/image.height)];
                     // val_Green = imageData.data[i+1];
-                    // val_Red = imageData.data[i+2];
-                    
+                    // val_Blue = imageData.data[i+2];
+                    val_Red = imageData.data[(he)*((we)*4)+0];
+                    val_Green = imageData.data[(he)*((we)*4)+1];
+                    val_Blue = imageData.data[(he)*((we)*4)+2];
+
+
+                    // //testing
+                    // if (i < 40) {
+                    //     console.log("\n");
+                    //     console.log("he*we: " + ((he)*((we)*1)+0) + " i: " + (i));
+                    //     console.log("he*we: " + ((he)*((we)*1)+1) + " i: " + (i+1));
+                    //     console.log("he*we: " + ((he)*((we)*1)+2) + " i: " + (i+2));
+                    // }
+
+                    // if (r === 0 && c === 0) 
+                    // {
+                    //     val_Red = imageData.data[(height-1)*((width-1)*4)];
+                    //     val_Green = imageData.data[(height-1)*((width-1)*4)+1];
+                    //     val_Blue = imageData.data[(height-1)*((width-1)*4)+2];
+                    // }
+                    // if (r===0 && c === 1)
+                    // {
+                    //     val_Red = imageData.data[(height-1)*((width-0)*4)];
+                    //     val_Green = imageData.data[(height-1)*((width-0)*4)+1];
+                    //     val_Blue = imageData.data[(height-1)*((width-0)*4)+2];
+                    // }
+                    // if (r===0 && c===2)
+                    // {
+                    //     val_Red = imageData.data[(height-1)*((width+1)*4)];
+                    //     val_Green = imageData.data[(height-1)*((width+1)*4)+1];
+                    //     val_Blue = imageData.data[(height-1)*((width+1)*4)+2];
+                    // }
+                    // if (r===1 && c===0)
+                    // {
+                    //     val_Red = imageData.data[(height-0)*((width-1)*4)];
+                    //     val_Green = imageData.data[(height-0)*((width-1)*4)+1];
+                    //     val_Blue = imageData.data[(height-0)*((width-1)*4)+2];
+                    // }
+                    // if (r===1 && c===1)
+                    // {
+                    //     val_Red = imageData.data[(height-0)*((width-0)*4)];
+                    //     val_Green = imageData.data[(height-0)*((width-0)*4)+1];
+                    //     val_Blue = imageData.data[(height-0)*((width-0)*4)+2];
+                    // }
+                    // if (r===1 && c===2)
+                    // {
+                    //     val_Red = imageData.data[(height-0)*((width+1)*4)];
+                    //     val_Green = imageData.data[(height-0)*((width+1)*4)+1];
+                    //     val_Blue = imageData.data[(height-0)*((width+1)*4)+2];
+                    // }
+                    // if (r===2 && c===0)
+                    // {
+                    //     val_Red = imageData.data[(height+1)*((width-1)*4)];
+                    //     val_Green = imageData.data[(height+1)*((width-1)*4)+1];
+                    //     val_Blue = imageData.data[(height+1)*((width-1)*4)+2];
+                    // }
+                    // if (r===2 && c===1)
+                    // {
+                    //     val_Red = imageData.data[(height+1)*((width-0)*4)];
+                    //     val_Green = imageData.data[(height+1)*((width-0)*4)+1];
+                    //     val_Blue = imageData.data[(height+1)*((width-0)*4)+2];
+                    // }
+                    // if (r===2 && c===2)
+                    // {
+                    //     val_Red = imageData.data[(height+1)*((width+1)*4)];
+                    //     val_Green = imageData.data[(height+1)*((width+1)*4)+1];
+                    //     val_Blue = imageData.data[(height+1)*((width+1)*4)+2];
+                    // }
+
                     // if (r === 1 && c === 1) {counter++;} //799364
 
                 }
 
 
-                // //if outside
-                // if ((y + (r - 1) < 0) || (y + (r - 1) > (height - 1)))
+                // //if outside (original)
+                // if ((y + (r - 1) < 0) || (y + (r - 1) > (height)))
                 // {
                 //     val_Blue = 0;
                 //     val_Green = 0;
                 //     val_Red = 0;
+                    
                 // }
                 
-                // //if outside
-                // else if ((x + (c - 1) < 0) || (x + (c - 1) > (width*4)))
+                // //if outside (original)
+                // else if ((x + (c - 1) < 0) || (x + (c - 1) > (width)))
                 // {
                 //     val_Blue = 0;
                 //     val_Green = 0;
                 //     val_Red = 0;
+                    
                 // }
 
                 Gx_sum_Blue += val_Blue * array_gx[r][c];
@@ -410,7 +483,10 @@ function filter2() {
                 Gy_sum_Green += val_Green * array_gy[r][c];
                 Gy_sum_Red += val_Red * array_gy[r][c];
             }
+            
         }
+        // finding Gx and Gy - attempt 1
+        // finding Gx and Gy - attempt 1
         ///problem
 
 
@@ -450,15 +526,29 @@ function filter2() {
         // imageData.data[i + 2] = 144;             // blue
         // imageData.data[i + 3] =imageData.data[i+3];             // alpha
 
+
+
         x += 4;
-        
+        //keeps x 0 to image.width*4 - 1;
+        //keeps y 0 to image.height-1;
+        //occurs X times (X = image.height-1)
+        //if (x > (image.width-1) * 4) {
+        if (x > (image.width-1) * 4) {
+            //console.log(i / (image.height-1) / 4) // 1186 (image.width);
+            //console.log("x " + x); //x673;
+            //console.log(x/4 + " " + y);
+            x = 0;
+            y++;
+        }
         
     }
     ctx.putImageData(imageData, 0, 0);
 
     console.log("y " + y);
-    console.log(counter);
+    console.log(counter1);
     console.log((image.width) * (image.height));
+    console.log(image.width + " " + image.height);
+    console.log(x + " " + y);
 }
 
 
