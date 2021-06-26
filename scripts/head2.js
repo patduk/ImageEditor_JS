@@ -2,9 +2,20 @@ let image = new Image();
 let image_undolist = [];
 let image_redolist = [];
 
+//some imageData before making 1d/2d array
 let imageData;
 let imageData_original2;
 let imageData_original1;
+
+//1d array
+let imageData_data_1d = [];
+let imageData_original2_data_1d = [];
+let imageData_original1_data_1d = []; 
+
+//2d array
+// let imageData_data_2d = [];
+// let imageData_original2_data_2d = [];
+// let imageData_original1_data_2d = [];
 
 let DictV = {};
 
@@ -18,6 +29,17 @@ function logprint() {
 
     // let pow1 = document.getElementById('pow1');
     // pow1.innerHTML = image.src + "\n";
+
+    ////only use this if usng imageData_data_2d
+    // console.log("\nchecking 2d array 'borders'");
+    // console.log("ideal format: imageData_data_2d[h][w]")
+    // console.log("working format: imageData_data_2d[h-1][w*4-1]")
+    // console.log("topleft: " + imageData_data_2d[0][0]);
+    // console.log("topright: " + imageData_data_2d[0][image.width*4-1]);
+    // console.log("bottomleft: " + imageData_data_2d[image.height-1][0]);
+    // console.log("bottomright: " + imageData_data_2d[image.height-1][image.width*4-1]);
+
+    
 }
 
 
@@ -33,58 +55,126 @@ window.addEventListener('load', function()
             let ctx = canvas.getContext('2d');
             //image = new Image();
 
-
+            // set src to blob 
+            image.src = URL.createObjectURL(this.files[0]).toString(); 
+            canvas.style.width = "50%";
+            
+            //reset
+            image_undolist = [];
+            image_redolist = [];
+            
+            logprint();
+            
             image.onload = () => {
                 URL.revokeObjectURL(image.src);
-
 
                 //adjust canvas dimension
                 canvas.height = image.height;
                 canvas.width = image.width;
-                
-                
-                
+                                
                 //put an image and its left, top location
                 ctx.drawImage(image, 0, 0);
 
-                
                 //draw a box over the top (useful for 2d spheres?)
                 // ctx.fillStyle = "rgba(200, 0, 0, 0.33)";
                 // ctx.fillRect(12, 12, 80, 80);
                 
-                //moved to invert function
-                //moved to invert function
 
-                //get array
-                //let imageData = ctx.getImageData(0, 0, image.width, image.height);
-                //let data = imageData.data;
-                //OR
+                //get imageData
                 imageData = ctx.getImageData(0, 0, image.width, image.height);
                 imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
                 imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
 
+                //write 1d array
+                imageData_data_1d = imageData.data; ///v
+                imageData_original2_data_1d = imageData_original2.data; ///v
+                imageData_original1_data_1d = imageData_original1.data; ///v
+
+                // //write 2d array //no needed?
+                // let x = 0; let y = 0;
+                // let subarray = [];
+                // for (let i = 0; i < image.height * (image.width * 4); i +=4) 
+                // {
+                //     subarray.push(imageData_data_1d[i]);
+                //     subarray.push(imageData_data_1d[i+1]);
+                //     subarray.push(imageData_data_1d[i+2]);
+                //     subarray.push(imageData_data_1d[i+3]);
+                    
+                //     x += 4;
+
+                //     if (x > (image.width * 4) - 1) {
+                //         imageData_data_2d.push(subarray); ///v
+                //         imageData_original2_data_2d.push(subarray); ///v
+                //         imageData_original1_data_2d.push(subarray); ///v
+                //         subarray = [];
+                //         x = 0;
+                //         y++;
+                //     }
+                // }
                 logprint();
 
-
-                
-                
             }           
-
-            image.src = URL.createObjectURL(this.files[0]).toString(); // set src to blob 
-
-
-            // canvas.style.width = "50%"; //should be done by css for now? 
-            // //canvas.style.height = auto;
-
-            //reset
-            image_undolist = [];
-            image_redolist = [];
         }
     });
 
     
     
 });
+
+
+function loadsampleimage() {
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d');        
+
+    image.src = 'images/wlop1.jpg'; // set src to blob 
+    canvas.style.width = "50%";
+    
+    
+    image.onload = () => {
+        URL.revokeObjectURL(image.src);
+
+        //adjust canvas dimension
+        canvas.height = image.height;
+        canvas.width = image.width;
+        
+        //put an image and its left, top location
+        ctx.drawImage(image, 0, 0);
+        
+        //get imageData
+        imageData = ctx.getImageData(0, 0, image.width, image.height);
+        imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+        imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
+
+        //write 1d array (ditch it? just use 2d array on all image filters?)
+        imageData_data_1d = imageData.data; ///v
+        imageData_original2_data_1d = imageData_original2.data; ///v
+        imageData_original1_data_1d = imageData_original1.data; ///v
+
+        // //write 2d array //no needed?
+        // let x = 0; let y = 0;
+        // let subarray = [];
+        // for (let i = 0; i < image.height * (image.width * 4); i +=4) 
+        // {
+        //     subarray.push(imageData_data_1d[i]);
+        //     subarray.push(imageData_data_1d[i+1]);
+        //     subarray.push(imageData_data_1d[i+2]);
+        //     subarray.push(imageData_data_1d[i+3]);
+            
+        //     x += 4;
+
+        //     if (x > (image.width * 4) - 1) {
+        //         imageData_data_2d.push(subarray); ///v
+        //         imageData_original2_data_2d.push(subarray); ///v
+        //         imageData_original1_data_2d.push(subarray); ///v
+        //         subarray = [];
+        //         x = 0;
+        //         y++;
+        //     }
+        // }
+        logprint();
+
+    }
+}
 
 
 
@@ -113,14 +203,15 @@ function invert() {
     
     //ctx.getImageData(starting left, starting top, capture w, capture h)
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
+    imageData_data_1d = imageData.data;
 
     //3.0
-    for (var i = 0; i < data.length; i += 4) {
-        data[i]     = 255 - data[i];        // red
-        data[i + 1] = 255 - data[i + 1];    // green
-        data[i + 2] = 255 - data[i + 2];    // blue
-        data[i + 3] = data[i + 3];          // alpha
+    
+    for (var i = 0; i < imageData_data_1d.length; i += 4) {
+        imageData_data_1d[i]     = 255 - imageData_data_1d[i];        // red
+        imageData_data_1d[i + 1] = 255 - imageData_data_1d[i + 1];    // green
+        imageData_data_1d[i + 2] = 255 - imageData_data_1d[i + 2];    // blue
+        imageData_data_1d[i + 3] = imageData_data_1d[i + 3];          // alpha
     }
     ctx.putImageData(imageData, 0, 0);
 }
@@ -141,19 +232,42 @@ function filter1() {
     image_undolist.push(imageData);
     logprint();
 
-
     //??
     //ctx.getImageData(starting left, starting top, capture w, capture h)
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     const data = imageData.data;
 
-    //3.0
-    for (var i = 0; i < data.length; i += 4) {
-        if (data[i] > 128 && data[i + 1] > 128 && data[i + 2] > 128) {
-            imageData.data[i]     += 20;      // red
-            imageData.data[i + 1] -= 20;      // green
-            imageData.data[i + 2] -= 20;      // blue
-            imageData.data[i + 3] -= 20;      // alpha  
+    //3.0.2
+    let x = 0; 
+    let y = 0;
+    // 4 = multiply by 4 if using image.width
+    //for (var i = 0; i < (data.length); i += 4) {
+    // OR
+    for (var i = 0; i < (image.height * (image.width*4)); i += 4) 
+    {
+        //do custom logic here
+
+        //custom logic example: draw red right border 
+        if (x > (image.width*4 - 1) - 1*4) {
+            imageData.data[i]     += 40;                    // red
+            imageData.data[i + 1] += 0;                    // green
+            imageData.data[i + 2] += 0;                    // blue
+            imageData.data[i + 3] = imageData.data[i + 3];  // alpha
+
+        } 
+        //custom logic example: draw red bottom border
+        if (y > (image.height - 1) - 1) {
+            imageData.data[i]     += 40;                    // red
+            imageData.data[i + 1] += 0;                    // green
+            imageData.data[i + 2] += 0;                    // blue
+            imageData.data[i + 3] = imageData.data[i + 3];  // alpha
+        }
+
+        //counter/reset x and y
+        x += 4;
+        if (x > (image.width*4) - 1) {
+            x = 0;
+            y++;
         }
     }
     ctx.putImageData(imageData, 0, 0);
@@ -161,18 +275,207 @@ function filter1() {
 
 }
 
+let array_gx = [];
+let array_gy = [];
+array_gx.push([-1,0,1]);
+array_gx.push([-2,0,2]);
+array_gx.push([-1,0,1]);
+array_gy.push([-1,-2,-1]);
+array_gy.push([0,0,0]);
+array_gy.push([1,2,1]);
+
+
+function filter2() {
+    
+    //prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    //image = new Image();
+    //ctx.drawImage(image, 0, 0);
+
+    image_redolist = [];
+
+    //1.0 store to undolist
+    image_undolist.push(imageData);
+    logprint();
+
+    //set up
+    let height = image.height -1;
+    let width = image.width -1;
+
+    let val_Alpha = 0;
+
+    let val_Blue = 0;
+    let val_Green = 0;
+    let val_Red = 0;
+
+    let Gx_sum_Blue = 0;
+    let Gx_sum_Green = 0;
+    let Gx_sum_Red = 0;
+
+    let Gy_sum_Blue = 0;
+    let Gy_sum_Green = 0;
+    let Gy_sum_Red = 0;
+
+    let Gxy_sum_final_Blue = 0;
+    let Gxy_sum_final_Green = 0;
+    let Gxy_sum_final_Red = 0;
+
+    let counter = 0;
+    let counter1 = 0;
+    let counter2 = 0;
+
+    //??
+    //ctx.getImageData(starting left, starting top, capture w, capture h)
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    const data = imageData.data;
+
+    //3.0.2
+    let x = 0; 
+    let y = 0;
+    // 4 = multiply by 4 if using image.width
+    //for (var i = 0; i < (data.length); i += 4) {
+    // OR
+    for (var i = 0; i < (image.height * (image.width*4)); i += 4) 
+    {    
+        //keeps x 0 to image.width*4 - 1;
+        //keeps y 0 to image.height-1;
+        //occurs X times (X = image.height-1)
+        //if (x > (image.width*4) - 1) {
+        if (x > (image.width*4) - 4) {
+            //console.log(i / (image.height-1) / 4) // 1186 (image.width);
+            //console.log("x " + x); //x673;
+            x = 0;
+            y++;
+        }
+
+        Gx_sum_Blue = 0;
+        Gx_sum_Green = 0;
+        Gx_sum_Red = 0;
+
+        Gy_sum_Blue = 0;
+        Gy_sum_Green = 0;
+        Gy_sum_Red = 0;
+
+        Gxy_sum_final_Blue = 0;
+        Gxy_sum_final_Green = 0;
+        Gxy_sum_final_Red = 0;
+
+        ///problem
+        for (let r = 0; r < 3; r++)
+        {
+            
+            for (let c = 0; c < 3; c++)
+            {
+                if (r === 1 && c === 1) {counter++;} //799364
+                
+                //if inside
+                if (
+                ((y + (r - 1) >= 0) && (x + (c - 1) >= 0)) && 
+                ((y + (r - 1) <= height) && (x + (c - 1) <= width*4))
+                )
+                {
+                    // let he = y + (r - 1);
+                    // let we = x + (c - 1);
+                    // val_Blue = imageData.data[i];
+                    // val_Green = imageData.data[i+1];
+                    // val_Red = imageData.data[i+2];
+                    
+                    // if (r === 1 && c === 1) {counter++;} //799364
+
+                }
+
+
+                // //if outside
+                // if ((y + (r - 1) < 0) || (y + (r - 1) > (height - 1)))
+                // {
+                //     val_Blue = 0;
+                //     val_Green = 0;
+                //     val_Red = 0;
+                // }
+                
+                // //if outside
+                // else if ((x + (c - 1) < 0) || (x + (c - 1) > (width*4)))
+                // {
+                //     val_Blue = 0;
+                //     val_Green = 0;
+                //     val_Red = 0;
+                // }
+
+                Gx_sum_Blue += val_Blue * array_gx[r][c];
+                Gx_sum_Green += val_Green * array_gx[r][c];
+                Gx_sum_Red += val_Red * array_gx[r][c];
+
+                Gy_sum_Blue += val_Blue * array_gy[r][c];
+                Gy_sum_Green += val_Green * array_gy[r][c];
+                Gy_sum_Red += val_Red * array_gy[r][c];
+            }
+        }
+        ///problem
+
+
+        
+        
+        val_Alpha = imageData.data[i+3];
+
+        
+        //gxy_sum = ((gx_sum_blue)^2)^1/2 + ((gy_sum_blue)^2)^1/2
+        Gxy_sum_final_Red = Math.pow((Math.pow(Gx_sum_Red, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Red, 2)),0.5);
+        Gxy_sum_final_Green = Math.pow((Math.pow(Gx_sum_Green, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Green, 2)),0.5);
+        Gxy_sum_final_Blue = Math.pow((Math.pow(Gx_sum_Blue, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Blue, 2)),0.5);
+
+
+        let max = 255;
+        let min = 0;
+        if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
+        if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
+        if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
+        if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
+        if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
+        if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
+
+
+        //do custom logic here example, apply filter
+        imageData.data[i]     = Gxy_sum_final_Red;              // red
+        imageData.data[i + 1] = Gxy_sum_final_Green;            // green
+        imageData.data[i + 2] = Gxy_sum_final_Blue;             // blue
+        imageData.data[i + 3] =imageData.data[i+3];             // alpha
+
+        
+
+        
+        // ////do custom logic here example, apply filter
+        // imageData.data[i]     = 44;              // red
+        // imageData.data[i + 1] = 99;            // green
+        // imageData.data[i + 2] = 144;             // blue
+        // imageData.data[i + 3] =imageData.data[i+3];             // alpha
+
+        x += 4;
+        
+        
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    console.log("y " + y);
+    console.log(counter);
+    console.log((image.width) * (image.height));
+}
+
+
+
+
+
 function original() {
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-    
     image_redolist = [];
+    
 
     //1.0 store to undolist
     image_undolist.push(imageData);
-    logprint();
     
 
     //??
@@ -189,6 +492,8 @@ function original() {
     }
     ctx.putImageData(imageData, 0, 0);
 
+    logprint();
+
 }
 
 
@@ -200,7 +505,7 @@ function undo() {
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
 
-        //store old imageData/attributes to redolist
+        //1 store old imageData/attributes to redolist
         image_redolist.push(imageData);
         //pulling & deleting from undo list
         let imageData_undo = image_undolist[image_undolist.length-1];
@@ -211,11 +516,6 @@ function undo() {
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
 
-
-        
-        logprint();
-
-
         let data = imageData.data;
         for (var i = 0; i < data.length; i += 4) {
                 data[i]     = imageData_undo.data[i];      // red
@@ -224,6 +524,8 @@ function undo() {
                 data[i + 3] = imageData_undo.data[i + 3];      // alpha  
         }
         ctx.putImageData(imageData, 0, 0);
+
+        logprint();
     }
     
 }
@@ -236,7 +538,7 @@ function redo() {
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
         
-        //store old imageData/attributes to undolist
+        //1store old imageData/attributes to undolist
         image_undolist.push(imageData);
         //pulling & deleting from redo list
         let imageData_redo = image_redolist[image_redolist.length-1];
@@ -247,11 +549,6 @@ function redo() {
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
 
-        //prep an imageData (idk why it's needed)
-        
-        logprint();
-
-
         let data = imageData.data;
         for (var i = 0; i < data.length; i += 4) {
                 data[i]     = imageData_redo.data[i];      // red
@@ -260,6 +557,8 @@ function redo() {
                 data[i + 3] = imageData_redo.data[i + 3];      // alpha  
         }
         ctx.putImageData(imageData, 0, 0);
+
+        logprint();
     }
     
 }
