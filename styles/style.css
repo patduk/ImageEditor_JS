@@ -1,3 +1,16 @@
+
+.image_display {
+  /* position: relative;
+  max-width: 100%;
+  
+  max-height: 1200px; */
+  /*height: auto;*/
+  /*margin:auto;*/
+  background-color: yellowgreen;
+  /*border: 1px solid grey;*/
+}
+
+
 /* html {
   font-size: 10px;
   font-family: 'Open Sans', sans-serif;

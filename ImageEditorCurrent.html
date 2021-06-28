@@ -1,7 +1,10 @@
 <head>
     <script src="scripts/head2.js"></script>
 
-    <link href="styles/NavMenu.css" rel="stylesheet" type="text/css">
+    <link href="styles/NavMenu.css"> 
+    <link href="styles/style.css" >
+
+    <!-- <rel="stylesheet" type="text/css"> -->
 </head>
 
 
@@ -27,7 +30,11 @@
     <h1>Image Editor</h1>
     <!-- <canvas id="cv1" style="background-color:rgb(141, 70, 70); width: 30px; height: 40px"></canvas> 
     </br> -->
-    <canvas id="cv2" style="background-color:white"></canvas>
+
+    <!--style="background-color:"white"""-->
+    <canvas class="image_display" style="background-color: yellowgreen;" id="cv2" >
+        
+    </canvas>
     </br>
 
     
@@ -37,6 +44,7 @@
       <!-- <input type='file' id='diamondx2' /> has function -->
       </br></br>
       <button onclick="invert()" id="button3">invert</button>
+      <button onclick="lighten()" id="button3">lighten</button>
       <button onclick="filter1()" id="button3">filter 1</button>
       <button onclick="filter2()" id="button3">filter 2</button>
       </br>
