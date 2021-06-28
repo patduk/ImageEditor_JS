@@ -57,7 +57,7 @@ window.addEventListener('load', function()
 
             // set src to blob 
             image.src = URL.createObjectURL(this.files[0]).toString(); 
-            canvas.style.width = "50%";
+            //canvas.style.width = "50%";
             
             //reset
             image_undolist = [];
@@ -128,7 +128,9 @@ function loadsampleimage() {
     image.src = 'images/wlop1.jpg'; // set src to blob 
     //image.class = "image_display";
     
-    canvas.style.width = "50%";
+    
+    canvas.style.width = "40%";
+    if (canvas.style.width > 1200) { canvas.style.width = 1200;}
     
     
     image.onload = () => {
@@ -137,6 +139,7 @@ function loadsampleimage() {
         //adjust canvas dimension
         canvas.height = image.height;
         canvas.width = image.width;
+        
         
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
@@ -275,285 +278,6 @@ function filter1() {
 
 
 }
-
-
-
-
-// function filter2() {
-//     ///////////////////////////////////////////
-    
-//     //prep canvas and ctx (idk why its needed)
-//     let canvas = document.getElementById('cv2'); 
-//     let ctx = canvas.getContext('2d');
-//     //image = new Image();
-//     //ctx.drawImage(image, 0, 0);
-//     let counter = 0;
-//     let counter1 = 0;
-//     let counter2 = 0;
-
-//     ///////////////////////////////////////////
-
-//     image_redolist = [];
-
-//     //1.0 store to undolist
-//     image_undolist.push(imageData);
-//     logprint();
-
-//     ///////////////////////////////////////////
-
-//     //set up
-//     let height = image.height -1;
-//     let width = image.width -1;
-//     let stride = (image.width -1)*4;
-
-//     let array_gx = [];
-//     let array_gy = [];
-//     array_gx.push([-1,0,1]);
-//     array_gx.push([-2,0,2]);
-//     array_gx.push([-1,0,1]);
-//     array_gy.push([-1,-2,-1]);
-//     array_gy.push([0,0,0]);
-//     array_gy.push([1,2,1]);
-
-//     let val_Alpha = 0;
-//     let val_Blue = 0;
-//     let val_Green = 0;
-//     let val_Red = 0;
-
-//     let Gx_sum_Blue = 0;
-//     let Gx_sum_Green = 0;
-//     let Gx_sum_Red = 0;
-
-//     let Gy_sum_Blue = 0;
-//     let Gy_sum_Green = 0;
-//     let Gy_sum_Red = 0;
-
-//     let Gxy_sum_final_Blue = 0;
-//     let Gxy_sum_final_Green = 0;
-//     let Gxy_sum_final_Red = 0;
-
-//     ///////////////////////////////////////////
-
-//     //ctx.getImageData(starting left, starting top, capture w, capture h)
-//     imageData = ctx.getImageData(0, 0, image.width, image.height);
-//     let data = imageData.data;
-
-//     ///////////////////////////////////////////
-//     ///////////////////////////////////////////
-//     ///////////////////////////////////////////
-    
-//     //3.0 editing
-//     //3.0 editing
-//     //multiply by 4 if using image.width
-//     let x = 0; 
-//     let y = 0;
-//     //for (var i = 0; i < (data.length); i += 4) {
-//     // OR
-//     for (var i = 0; i < (image.height * (image.width*4)); i += 4) 
-//     {    
-//         ////custom logic 1
-//         data[i]     = 44;              // red
-//         data[i + 1] = 99;            // green
-//         data[i + 2] = 144;             // blue
-//         data[i + 3] =imageData.data[i+3];             // alpha
-
-//         ////custom logic 2
-//         Gx_sum_Blue = 0;
-//         Gx_sum_Green = 0;
-//         Gx_sum_Red = 0;
-
-//         Gy_sum_Blue = 0;
-//         Gy_sum_Green = 0;
-//         Gy_sum_Red = 0;
-
-//         Gxy_sum_final_Blue = 0;
-//         Gxy_sum_final_Green = 0;
-//         Gxy_sum_final_Red = 0;
-
-//         // finding Gx and Gy - attempt 1
-//         // finding Gx and Gy - attempt 1
-//         ///problem
-//         for (let r = 0; r < 3; r++)
-//         {
-//             for (let c = 0; c < 3; c++)
-//             {
-//                 //if (r === 1 && c === 1) {counter++;} //799364
-                
-//                 ////if outside (shorter)
-
-                
-
-//                 ////if inside
-//                 if (
-//                 ((y + (r - 1) >= 0) && (x + (c - 1)*4 >= 0)) && 
-//                 ((y + (r - 1) <= height) && (x + (c - 1)*4 <= width*4))
-//                 )
-//                 {
-//                     //if (r===1 && c===1) {console.log(x/4 + " " + y);}
-//                     //not working??
-//                     let he = y + (r - 1);
-//                     let we = x + (c - 1)*4;
-//                     // val_Red = imageData.data[(i/image.height)];
-//                     // val_Green = imageData.data[i+1];
-//                     // val_Blue = imageData.data[i+2];
-//                     // val_Red = imageData.data[(he)*((we))+0];
-//                     // val_Green = imageData.data[(he)*((we))+1];
-//                     // val_Blue = imageData.data[(he)*((we))+2];
-
-//                     // val_Red = imageData_original2_data_1d[(image.height-1)*(image.width)*4+x+0];
-//                     // val_Green = imageData_original2_data_1d[(image.height-1)*(image.width)*4+x+1];
-//                     // val_Blue = imageData_original2_data_1d[(image.height-1)*(image.width)*4+x+2];
-
-
-//                     // val_Red = 222;
-//                     // val_Green = 22;
-//                     // val_Blue = 22;
-                    
-
-//                     if (r === 0 && c === 0)
-//                     {
-//                         val_Red = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(-4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(-4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(-4)+2];
-//                     }
-//                     if (r === 0 && c === 1) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(0)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(0)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(0)+2];
-//                     }
-//                     if (r === 0 && c === 2) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(2))*(image.width)*4+x+(4)+2];
-//                     }
-//                     if (r === 1 && c === 0) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(-4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(-4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(-4)+2];
-//                     }
-//                     if (r === 1 && c === 1) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(0)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(0)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(0)+2];
-//                     }
-//                     if (r === 1 && c === 2) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(1))*(image.width)*4+x+(4)+2];
-//                     }
-//                     if (r === 2 && c === 0) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(-4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(-4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(-4)+2];
-//                     }
-//                     if (r === 2 && c === 1) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(0)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(0)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(0)+2];
-//                     }
-//                     if (r === 2 && c === 2) {
-//                         val_Red = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(4)+0];
-//                         val_Green = imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(4)+1];
-//                         val_Blue= imageData_original2_data_1d[(image.height-(0))*(image.width)*4+x+(4)+2];
-//                     }
-
-
-//                     // if (r === 1 && c === 1) {counter++;} //799364
-
-
-//                 }
-
-//                 // //if outside (original)
-//                 // if ((y + (r - 1) < 0) || (y + (r - 1) > (height)))
-//                 // {
-//                 //     val_Blue = 0;
-//                 //     val_Green = 0;
-//                 //     val_Red = 0;
-                    
-//                 // }
-                
-//                 // //if outside (original)
-//                 // else if ((x + (c - 1) < 0) || (x + (c - 1)*4 > (width*4)))
-//                 // {
-//                 //     val_Blue = 0;
-//                 //     val_Green = 0;
-//                 //     val_Red = 0;
-                    
-//                 // }
-
-//                 Gx_sum_Blue += val_Blue * array_gx[r][c];
-//                 Gx_sum_Green += val_Green * array_gx[r][c];
-//                 Gx_sum_Red += val_Red * array_gx[r][c];
-
-//                 Gy_sum_Blue += val_Blue * array_gy[r][c];
-//                 Gy_sum_Green += val_Green * array_gy[r][c];
-//                 Gy_sum_Red += val_Red * array_gy[r][c];
-//             }
-            
-//         }
-//         // finding Gx and Gy - attempt 1
-//         // finding Gx and Gy - attempt 1
-//         ///problem
-
-
-        
-        
-//         val_Alpha = imageData_original2_data_1d[i+3];
-        
-//         //gxy_sum = ((gx_sum_blue)^2)^1/2 + ((gy_sum_blue)^2)^1/2
-//         Gxy_sum_final_Red = Math.pow((Math.pow(Gx_sum_Red, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Red, 2)),0.5);
-//         Gxy_sum_final_Green = Math.pow((Math.pow(Gx_sum_Green, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Green, 2)),0.5);
-//         Gxy_sum_final_Blue = Math.pow((Math.pow(Gx_sum_Blue, 2)),0.5) + Math.pow((Math.pow(Gy_sum_Blue, 2)),0.5);
-
-        
-
-//         let max = 255;
-//         let min = 0;
-//         if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
-//         if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
-//         if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
-//         if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
-//         if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
-//         if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
-
-
-//         //do custom logic here example, apply filter
-//         data[i]     = Gxy_sum_final_Red;              // red
-//         data[i + 1] = Gxy_sum_final_Green;            // green
-//         data[i + 2] = Gxy_sum_final_Blue;             // blue
-//         data[i + 3] = val_Alpha;             // alpha
-
-        
-//         // if (i < 200)
-//         //     console.log(image.Data[i]);
-        
-        
-
-
-//         x += 4;
-//         //keeps x 0 to image.width*4 - 1;
-//         //keeps y 0 to image.height-1;
-//         //occurs X times (X = image.height-1)
-//         //if (x > (image.width-1) * 4) {
-//         if (x > (image.width-1) * 4) {
-//             //console.log(i / (image.height-1) / 4) // 1186 (image.width);
-//             //console.log("x " + x); //x673;
-//             //console.log(x/4 + " " + y);
-//             x = 0;
-//             y++;
-//         }
-        
-//     }
-//     ctx.putImageData(imageData, 0, 0);
-
-//     console.log("y " + y);
-//     console.log(counter1);
-//     console.log((image.width) * (image.height));
-//     console.log(image.width + " " + image.height);
-//     console.log(x + " " + y);
-// }
-
-
 
 
 
@@ -740,9 +464,10 @@ function filter2() {
             //line 1 - possible ideal: transparent/custom line* > invert* > bw*____
 
 
-            //transparent/custom line background - line 1 (optional)__
+            //transparent/custom background + darkener/lightener - line 1 (optional)__
             //notes:
             //this option can act as line darkener/lightener
+            //use of transparent/custom bacckground makes poorer quality line
             //ideal: (220, 128/cutoff), (220, 80/cutoff), (200, 0.2), (217, 0.25), (230 (90), 45/cutoff), (218 (85.5% of 255), 64/cutoff), (230 (90%), 128/cutoff)
             //ideal: (.83-.90), (.83-.855) & >96, (.9) & 128
 
@@ -761,41 +486,25 @@ function filter2() {
             {
                 val_Alpha = 0; //slider 0-255
                 // //OR
-                // Gxy_sum_final_Red = 255; //slider 0-255
-                // Gxy_sum_final_Green = 255; //slider 0-255
-                // Gxy_sum_final_Blue = 255; //slider 0-255
+                // let x1 = cutoff; //
+                // Gxy_sum_final_Red = x1; //slider 0-255
+                // Gxy_sum_final_Green = x1; //slider 0-255
+                // Gxy_sum_final_Blue = x1; //slider 0-255
                 // //OR
-                // Gxy_sum_final_Red = 245;
-                // Gxy_sum_final_Green = 233;
-                // Gxy_sum_final_Blue = 233;
-                // //OR
-                // Gxy_sum_final_Red = 192;
-                // Gxy_sum_final_Green = 192;
-                // Gxy_sum_final_Blue = 192;
-                // //OR
-                // Gxy_sum_final_Red = 128;
-                // Gxy_sum_final_Green = 128;
-                // Gxy_sum_final_Blue = 128;
-                // //OR
-                // Gxy_sum_final_Red = 64;
-                // Gxy_sum_final_Green = 64;
-                // Gxy_sum_final_Blue = 64;
-                // //OR
-                // Gxy_sum_final_Red = 0;
-                // Gxy_sum_final_Green = 0;
-                // Gxy_sum_final_Blue = 0;
+                // Gxy_sum_final_Red = 255-128; //<128 is too dark
+                
                 // //OR DO NOTHING (in this if-statement)
 
               
-
-
                 
             }
             else
             {
                 //darkner/lightener
                 //boldness_nontransparentlines suggestions:
-                //note: darker lines may be crispier and uglier
+                //note: 
+                //darker lines = nicer for dark background
+                //normal/light lines = nicer for light background
                 //ideal: 80,96,112,128
                 //.. 064/cutoff to have dark-colored lines && black lines
                 //.. 0-96/cutoff to have dark-colored lines && black lines
@@ -803,22 +512,25 @@ function filter2() {
                 //.. 191/cutoff to have light-colored lines && black lines
                 //.. 0.25       to have dark-colored lines && black lines
                 
-                // //darkner:
-                // let nontransparentlines__boldness__slider = 128/cutoff;
-                // Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
-                // Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
-                // Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
+                // //eliminate rgb value of 0 that can't be darkened/lightened by multiplication
+                let too_dark = 5;
+                if (Gxy_sum_final_Red <= too_dark) {Gxy_sum_final_Red = too_dark; }
+                if (Gxy_sum_final_Green <= too_dark) {Gxy_sum_final_Green = too_dark; }
+                if (Gxy_sum_final_Blue <= too_dark) {Gxy_sum_final_Blue = too_dark; }
+
+                // //darkener:
+                let nontransparentlines__boldness__slider = 0.855; //up to 1 (0.1-0.25 or 0.8-1 for dark background), (0.75-0.90 for light background), (0.4-0.6 for medium '128' background)
+                Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
+                Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
+                Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
                 
                 // //PLUS
                 
-                // //lightener:
-                if (Gxy_sum_final_Red <= 5) {Gxy_sum_final_Red = 5; }
-                if (Gxy_sum_final_Green <= 5) {Gxy_sum_final_Green = 5; }
-                if (Gxy_sum_final_Blue <= 5) {Gxy_sum_final_Blue = 5; }
-                let boldnessreducer = 64;
-                if (Gxy_sum_final_Red <= boldnessreducer) {Gxy_sum_final_Red *= boldnessreducer/Gxy_sum_final_Red};
-                if (Gxy_sum_final_Green <= boldnessreducer) {Gxy_sum_final_Green *= boldnessreducer/Gxy_sum_final_Green};
-                if (Gxy_sum_final_Blue <= boldnessreducer) {Gxy_sum_final_Blue *= boldnessreducer/Gxy_sum_final_Blue};
+                // //dark spot reducer:
+                let dark_spot_reducer = 64; //slider
+                if (Gxy_sum_final_Red <= dark_spot_reducer) {Gxy_sum_final_Red *= dark_spot_reducer/Gxy_sum_final_Red};
+                if (Gxy_sum_final_Green <= dark_spot_reducer) {Gxy_sum_final_Green *= dark_spot_reducer/Gxy_sum_final_Green};
+                if (Gxy_sum_final_Blue <= dark_spot_reducer) {Gxy_sum_final_Blue *= dark_spot_reducer/Gxy_sum_final_Blue};
 
                 // //OR
                 
@@ -826,7 +538,7 @@ function filter2() {
             }
             
 
-            ////invert - line 1 (optional)__
+            //(re)invert - line 1 (optional)__
             // Gxy_sum_final_Red = 255- Gxy_sum_final_Red;
             // Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
             // Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue;
