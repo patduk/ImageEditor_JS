@@ -1,3 +1,6 @@
+
+
+
 let image = new Image();
 let image_undolist = [];
 let image_redolist = [];
@@ -94,7 +97,7 @@ window.addEventListener('load', function()
 function loadsampleimage() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');        
-    image.src = 'images/wlop1.jpg'; // set src to blob 
+    image.src = 'images/demonslayer1.jpg'; // set src to blob 
     //image.class = "image_display";
     
     
@@ -127,6 +130,19 @@ function loadsampleimage() {
 
     }
 }
+// var c = document.getElementById("cv2");
+// var ctx = c.getContext("2d");
+
+// // Create gradient
+// var grd = ctx.createLinearGradient(0,0,200,0);
+// grd.addColorStop(0,"red");
+// grd.addColorStop(1,"white");
+
+// // Fill with gradient
+// ctx.fillStyle = grd;
+// ctx.fillRect(10,10,150,80);
+
+
 
 
 
@@ -391,7 +407,9 @@ function edge_normal () {
 let num2 = 0;
 function filter2() {
     ///////////////////////////////////////////
-    oilPaintEffect(1,10)
+
+    
+
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
@@ -407,6 +425,12 @@ function filter2() {
     image_undolist.push(imageData);
     logprint();
     
+    if (canvas.width <= 800 && canvas.height <= 800)
+        oilPaintEffect(1,8);
+    else {
+        oilPaintEffect(2,15);
+    }
+
     //"initialize" imageData
     //ctx.getImageData(starting left, starting top, capture w, capture h)
     imageData = ctx.getImageData(0, 0, image.width, image.height);
@@ -442,13 +466,45 @@ function filter2() {
     let Gxy_sum_final_Green = 0;
     let Gxy_sum_final_Blue = 0;
   
+    let customBGcolor_R = 255-45;
+    let customBGcolor_G = 255-45;
+    let customBGcolor_B = 255-45;
+
+    let customBGcolor_R_max1 = customBGcolor_R*1.05;
+    let customBGcolor_G_max1 = customBGcolor_G*1.05;
+    let customBGcolor_B_max1 = customBGcolor_B*1.05;
+    if (customBGcolor_R_max1 > 255) {customBGcolor_R_max1 = 255; }
+    if (customBGcolor_G_max1 > 255) {customBGcolor_G_max1 = 255; }
+    if (customBGcolor_B_max1 > 255) {customBGcolor_B_max1 = 255; }
+
+    let customBGcolor_R_max2 = customBGcolor_R*1.2;
+    let customBGcolor_G_max2 = customBGcolor_G*1.2;
+    let customBGcolor_B_max2 = customBGcolor_B*1.2;
+    if (customBGcolor_R_max2 > 255) {customBGcolor_R_max2 = 255; }
+    if (customBGcolor_G_max2 > 255) {customBGcolor_G_max2 = 255; }
+    if (customBGcolor_B_max2 > 255) {customBGcolor_B_max2 = 255; }
+
     //edit
     for (let y = 0; y < image.height; y ++)
     {
         for (let x = 0; x < image.width; x ++) 
         {
+            
             let formula = (y*image.width*4)+x*4;
 
+            let trio5 = (imageData_original2_data_1d[formula+0]+imageData_original2_data_1d[formula+1]+imageData_original2_data_1d[formula+2])/3;
+            if (trio5 >= 230) {
+                data[formula+0] = customBGcolor_R_max2;
+                data[formula+1] = customBGcolor_G_max2;
+                data[formula+2] = customBGcolor_B_max2;
+                continue;
+            }
+            else if (trio5 >= 200) {
+                data[formula+0] = customBGcolor_R_max1;
+                data[formula+1] = customBGcolor_G_max1;
+                data[formula+2] = customBGcolor_B_max1;
+                continue;
+            }
             Gx_sum_Red = 0;
             Gx_sum_Green = 0;
             Gx_sum_Blue = 0;
@@ -549,10 +605,10 @@ function filter2() {
 
 
             ////grayscale - line 1 (optional)__
-            let bwcolor1 = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3;
-            Gxy_sum_final_Red = bwcolor1;
-            Gxy_sum_final_Green = bwcolor1;
-            Gxy_sum_final_Blue = bwcolor1;
+            // let bwcolor1 = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3;
+            // Gxy_sum_final_Red = bwcolor1;
+            // Gxy_sum_final_Green = bwcolor1;
+            // Gxy_sum_final_Blue = bwcolor1;
 
 
             // //transparent/custom background + darkener/lightener - line 1 (optional)__
@@ -566,9 +622,9 @@ function filter2() {
 
             
             // //user options:
-            // let custombackgroundcolor_Red = 33;
-            // let custombackgroundcolor_Green = 255;
-            // let custombackgroundcolor_Blue = 255;
+            // let customBGcolor_R = 33;
+            // let customBGcolor_G = 255;
+            // let customBGcolor_B = 255;
             // let use_whiteline = false; //disable this A-1 (false)
             // let cutoff = 200; //0,32,48,64 (0-64) //?? enable this A0 (255)
 
@@ -593,9 +649,9 @@ function filter2() {
             // //if (Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff)
             // {
             //     //set custom background color or/and opacity //disable this A3
-            //     // Gxy_sum_final_Red = custombackgroundcolor_Red;
-            //     // Gxy_sum_final_Green =custombackgroundcolor_Green; 
-            //     // Gxy_sum_final_Blue = custombackgroundcolor_Blue; 
+            //     // Gxy_sum_final_Red = customBGcolor_R;
+            //     // Gxy_sum_final_Green =customBGcolor_G; 
+            //     // Gxy_sum_final_Blue = customBGcolor_B; 
             //     // val_Alpha = 255; //slider 0-255 
             // }
             // else
@@ -605,15 +661,15 @@ function filter2() {
             //     let linecolor_tomatch_bgcolor_Blue;
             //     // // colored matching line (dark back ground, white line)
             //     if (use_whiteline === true) {     
-            //         linecolor_tomatch_bgcolor_Red = 255/(255-custombackgroundcolor_Red);
-            //         linecolor_tomatch_bgcolor_Green = 255/(255-custombackgroundcolor_Green);
-            //         linecolor_tomatch_bgcolor_Blue = 255/(255-custombackgroundcolor_Blue);
+            //         linecolor_tomatch_bgcolor_Red = 255/(255-customBGcolor_R);
+            //         linecolor_tomatch_bgcolor_Green = 255/(255-customBGcolor_G);
+            //         linecolor_tomatch_bgcolor_Blue = 255/(255-customBGcolor_B);
             //     }
             //     // // colored matching line (light back ground, dark line)
             //     if (use_whiteline === false) {
-            //         linecolor_tomatch_bgcolor_Red = custombackgroundcolor_Red/255;
-            //         linecolor_tomatch_bgcolor_Green = custombackgroundcolor_Green/255;
-            //         linecolor_tomatch_bgcolor_Blue = custombackgroundcolor_Blue/255;   
+            //         linecolor_tomatch_bgcolor_Red = customBGcolor_R/255;
+            //         linecolor_tomatch_bgcolor_Green = customBGcolor_G/255;
+            //         linecolor_tomatch_bgcolor_Blue = customBGcolor_B/255;   
             //     }
 
 
@@ -721,202 +777,70 @@ function filter2() {
 
 
 
-            // //transparent/custom background + darkener/lightener - line 1.3(optional)__
-            // //notes:
-            // //solid colored background with black lines
-            // //
 
 
+
+            // // // //transparent/custom background + darkener/lightener - line 1.3(optional)__
+            // // // //notes:
+            // // // //solid colored background with black lines
+            // // // // possible to bolden/soften black lines?
             
-            //user options:
-            let custombackgroundcolor_Red = 127;
-            let custombackgroundcolor_Green = 127;
-            let custombackgroundcolor_Blue = 200;
-            let custombackgroundcolor_Alpha = 255;
-            let use_whiteline = false; //128 this A-1 (false)
-            let cutoff = 25; //0,32,48,64 (0-64) //?? enable this A0 (255)
-            
-            //black background and colored lines without, use_whiteline = false
-            //colored background and black lines with, use_whiteline = false
-            Gxy_sum_final_Red = 255-Gxy_sum_final_Red;
-            Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
-            Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue;            
-
-            let customlinecolor_Red = 0;
-            let customlinecolor_Green = 0;
-            let customlinecolor_Blue = 0; //128-30
-            
-
-
-            // //colored back ground, black line
-            // //light back ground, black line
-             if (Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff) //?? enable this A2
-            // 
-            //if (Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff)
-            {
-                //set custom background color or/and opacity //disable this A3
-                // Gxy_sum_final_Red = custombackgroundcolor_Red;
-                // Gxy_sum_final_Green =custombackgroundcolor_Green; 
-                // Gxy_sum_final_Blue = custombackgroundcolor_Blue; 
-                // val_Alpha = 255; //slider 0-255 
-                // Gxy_sum_final_Red *= 0.2;
-                // Gxy_sum_final_Green *= 0.2;
-                // Gxy_sum_final_Blue *= 0.2;
-                val_Alpha = custombackgroundcolor_Alpha;
-               
-            }
-            else if (Gxy_sum_final_Blue > cutoff && Gxy_sum_final_Blue > cutoff && Gxy_sum_final_Blue > cutoff)
-            {    
-                let linecolor_tomatch_bgcolor_Red;
-                let linecolor_tomatch_bgcolor_Green;
-                let linecolor_tomatch_bgcolor_Blue;
-                // // colored matching line (dark back ground, white line)
-                if (use_whiteline === true) {     
-                    linecolor_tomatch_bgcolor_Red = 255/(255-custombackgroundcolor_Red);
-                    linecolor_tomatch_bgcolor_Green = 255/(255-custombackgroundcolor_Green);
-                    linecolor_tomatch_bgcolor_Blue = 255/(255-custombackgroundcolor_Blue);
-                }
-                // // colored matching line (light back ground, dark line)
-                if (use_whiteline === false) {
-                    linecolor_tomatch_bgcolor_Red = custombackgroundcolor_Red/255;
-                    linecolor_tomatch_bgcolor_Green = custombackgroundcolor_Green/255;
-                    linecolor_tomatch_bgcolor_Blue = custombackgroundcolor_Blue/255;   
-                }
-
-
-                // // //eliminate rgb value of 0 that can't be darkened/lightened by multiplication
-                let too_dark = 1;
-                if (Gxy_sum_final_Red <= too_dark) 
-                {Gxy_sum_final_Red = too_dark; }
-                if (Gxy_sum_final_Green <= too_dark) 
-                {Gxy_sum_final_Green = too_dark; }
-                if (Gxy_sum_final_Blue <= too_dark) 
-                {Gxy_sum_final_Blue = too_dark; }
-
-
-
-                // // //boldener (dark back ground, white line) - (1-2) ex: 1.2
-                // // //boldener (light back ground, dark line) - (0-1) ex: 0.8
-                // let nontransparentlines__boldness__slider = 1;
-                // if (use_whiteline === true) {
-                //     nontransparentlines__boldness__slider = 1.2; }
-                // if (use_whiteline === false) {
-                //     nontransparentlines__boldness__slider = 0.8; }
-
-                // Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
-                // Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
-                // Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
-
-                // // with correction
-                // if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
-                // if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
-                // if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
-                // if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
-                // if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
-                // if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
-
-
-
-                //  // //soft spot increaser (dark back ground, white line) - (0-1)
-                //  if (use_whiteline === true) {
-                //     //let soft_spot_increaser = 85; //slider (0-128)
-                //     let soft_spot_increaser = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode (very nice to have) (1-2) or 2 only slider
-                //     if (Gxy_sum_final_Red <= soft_spot_increaser) 
-                //     {Gxy_sum_final_Red = soft_spot_increaser};
-                //     if (Gxy_sum_final_Green <= soft_spot_increaser) 
-                //     {Gxy_sum_final_Green = soft_spot_increaser};
-                //     if (Gxy_sum_final_Blue <= soft_spot_increaser) 
-                //     {Gxy_sum_final_Blue = soft_spot_increaser};
-                // }
-                // // //soft spot increaser (light back ground, dark line) - (0-1)
-                // if (use_whiteline === false) {
-                //     //let soft_spot_increaser = 128; //slider (128-255)
-                //     let soft_spot_increaser = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (0.2); //auto mode (testing) (0-1) or .75 only slider
-                //     if (Gxy_sum_final_Red >= soft_spot_increaser) 
-                //     {Gxy_sum_final_Red = soft_spot_increaser};
-                //     if (Gxy_sum_final_Green >= soft_spot_increaser) 
-                //     {Gxy_sum_final_Green = soft_spot_increaser};
-                //     if (Gxy_sum_final_Blue >= soft_spot_increaser) 
-                //     {Gxy_sum_final_Blue = soft_spot_increaser};
-                // }
-
-
-
-                
-                // //bold spot reducer (dark background, white line)
-                // if (use_whiteline === true) {
-                //     //let bold_spot_reducer = 255; //slider (128-255)
-                //     let bold_spot_reducer = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode
-                //     if (Gxy_sum_final_Red >= bold_spot_reducer) 
-                //     {Gxy_sum_final_Red = bold_spot_reducer};
-                //     if (Gxy_sum_final_Green >= bold_spot_reducer) 
-                //     {Gxy_sum_final_Green = bold_spot_reducer};
-                //     if (Gxy_sum_final_Blue >= bold_spot_reducer) 
-                //     {Gxy_sum_final_Blue = bold_spot_reducer};
-                // }
-                // if (use_whiteline === false) {
-                //     //bold spot reducer (light background, dark line)
-                //     //let bold_spot_reducer = 64; //slider (0-128)
-                //     let bold_spot_reducer = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (.75); //auto mode
-                //     if (Gxy_sum_final_Red <= bold_spot_reducer) 
-                //     {Gxy_sum_final_Red = bold_spot_reducer};
-                //     if (Gxy_sum_final_Green <= bold_spot_reducer)
-                //     {Gxy_sum_final_Green  = bold_spot_reducer};
-                //     if (Gxy_sum_final_Blue <= bold_spot_reducer)
-                //     {Gxy_sum_final_Blue  = bold_spot_reducer};
-                // }
-
-
-
-                // line and background color matching
-                Gxy_sum_final_Red *= linecolor_tomatch_bgcolor_Red; 
-                Gxy_sum_final_Green *= linecolor_tomatch_bgcolor_Green; 
-                Gxy_sum_final_Blue *= linecolor_tomatch_bgcolor_Blue;
-
-                // val_Alpha =0 ;
-
-                //correction
-                if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
-                if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
-                if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
-                if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
-                if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
-                if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
-                
-
-            }
-            
-
-            // // fix line 1.3 to be as good as line 1.4
-            // //transparent/custom background + darkener/lightener - line 1.4(optional)__
-            // //notes:
-            // //white lines = works with dark/light/transparent background
-            
-
             // //user options:
-            // let custombackgroundcolor_Red = 127;
-            // let custombackgroundcolor_Green = 127;
-            // let custombackgroundcolor_Blue = 127;
-            // let custombackgroundcolor_Alpha = 255;
+            // let customBGcolor_R = 255;
+            // let customBGcolor_G = 255;
+            // let customBGcolor_B = 255;
+            // let customBGcolor_A = 255;
             // let use_whiteline = false; //128 this A-1 (false)
-            // let cutoff = 25; //10-20% of 255 recommended         
+            // let cutoff = 25; //0,32,48,64 (0-64) //?? enable this A0 (255)
+            
+            // //black background and colored lines without, use_whiteline = false
+            // //colored background and black lines with, use_whiteline = false
+            // Gxy_sum_final_Red = 255-Gxy_sum_final_Red;
+            // Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
+            // Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue;            
 
-            // let customlinecolor_Red = 0;
-            // let customlinecolor_Green = 0;
-            // let customlinecolor_Blue = 0; //128-30
+            // let customlineshadowcolor_R = 0;
+            // let customlineshadowcolor_G = 0;
+            // let customlineshadowcolor_B = 0; //128-30
+            
+
 
             // // //colored back ground, black line
             // // //light back ground, black line
-            //  if (Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff)
+            //  if (Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff && Gxy_sum_final_Blue <= cutoff) //?? enable this A2
+            // // 
+            // //if (Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff && Gxy_sum_final_Blue >= cutoff)
             // {
             //     //set custom background color or/and opacity //disable this A3
-            //     Gxy_sum_final_Red = custombackgroundcolor_Red;
-            //     Gxy_sum_final_Green = custombackgroundcolor_Green;
-            //     Gxy_sum_final_Blue = custombackgroundcolor_Blue;
-            //     val_Alpha = custombackgroundcolor_Alpha;
+            //     // Gxy_sum_final_Red = customBGcolor_R;
+            //     // Gxy_sum_final_Green =customBGcolor_G; 
+            //     // Gxy_sum_final_Blue = customBGcolor_B; 
+            //     // val_Alpha = 255; //slider 0-255 
+            //     Gxy_sum_final_Red *= 10;
+            //     Gxy_sum_final_Green *= 10;
+            //     Gxy_sum_final_Blue *= 10;
+            //     val_Alpha = customBGcolor_A;
+               
             // }
             // else if (Gxy_sum_final_Blue > cutoff && Gxy_sum_final_Blue > cutoff && Gxy_sum_final_Blue > cutoff)
             // {    
+            //     let linecolor_tomatch_bgcolor_Red;
+            //     let linecolor_tomatch_bgcolor_Green;
+            //     let linecolor_tomatch_bgcolor_Blue;
+            //     // // colored matching line (dark back ground, white line)
+            //     if (use_whiteline === true) {     
+            //         linecolor_tomatch_bgcolor_Red = 255/(255-customBGcolor_R);
+            //         linecolor_tomatch_bgcolor_Green = 255/(255-customBGcolor_G);
+            //         linecolor_tomatch_bgcolor_Blue = 255/(255-customBGcolor_B);
+            //     }
+            //     // // colored matching line (light back ground, dark line)
+            //     if (use_whiteline === false) {
+            //         linecolor_tomatch_bgcolor_Red = customBGcolor_R/255;
+            //         linecolor_tomatch_bgcolor_Green = customBGcolor_G/255;
+            //         linecolor_tomatch_bgcolor_Blue = customBGcolor_B/255;   
+            //     }
+
+
             //     // // //eliminate rgb value of 0 that can't be darkened/lightened by multiplication
             //     let too_dark = 1;
             //     if (Gxy_sum_final_Red <= too_dark) 
@@ -925,59 +849,6 @@ function filter2() {
             //     {Gxy_sum_final_Green = too_dark; }
             //     if (Gxy_sum_final_Blue <= too_dark) 
             //     {Gxy_sum_final_Blue = too_dark; }
-
-            //     // make custom line color the same brightness value as custom background color__
-            //     //step 1: increase low line color(s) to same brightness level as background color(s)
-            //     if (customlinecolor_Red < custombackgroundcolor_Red) 
-            //     {customlinecolor_Red += custombackgroundcolor_Red; }
-            //     if (customlinecolor_Green < custombackgroundcolor_Green) 
-            //     {customlinecolor_Green += custombackgroundcolor_Green; }
-            //     if (customlinecolor_Blue < custombackgroundcolor_Blue) 
-            //     {customlinecolor_Blue += custombackgroundcolor_Blue; }
-
-
-            //     //step 2: decrease high line color(s) to same brightness level as background color(s) without lowering brightness excessively
-            //     let highestlimit = 48;
-            //     let trio2 = (custombackgroundcolor_Red+custombackgroundcolor_Green+custombackgroundcolor_Blue)/3;
-            //     let avgbrightness_decreaser_Red =  (custombackgroundcolor_Red-trio2);
-            //     let avgbrightness_decreaser_Green =  (custombackgroundcolor_Green-trio2);
-            //     let avgbrightness_decreaser_Blue =  (custombackgroundcolor_Blue-trio2);
-            //     // way1
-            //     if (customlinecolor_Red > custombackgroundcolor_Red + highestlimit) 
-            //     {customlinecolor_Red = custombackgroundcolor_Red + highestlimit - avgbrightness_decreaser_Red; }
-            //     if (customlinecolor_Green > custombackgroundcolor_Green + highestlimit) 
-            //     {customlinecolor_Green = custombackgroundcolor_Green + highestlimit - avgbrightness_decreaser_Green; }
-            //     if (customlinecolor_Blue > custombackgroundcolor_Blue + highestlimit) 
-            //     {customlinecolor_Blue = custombackgroundcolor_Blue + highestlimit - avgbrightness_decreaser_Blue; }
-
-            //     //correction
-            //     if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
-            //     if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
-            //     if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
-            //     if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
-            //     if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
-            //     if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
-
-                
-            //     let linecolor_tomatch_bgcolor_Red;
-            //     let linecolor_tomatch_bgcolor_Green;
-            //     let linecolor_tomatch_bgcolor_Blue;
-
-            //     // // colored matching line (dark back ground, white line)
-            //     if (use_whiteline === true) {     
-            //         linecolor_tomatch_bgcolor_Red = 255/(255-customlinecolor_Red);
-            //         linecolor_tomatch_bgcolor_Green = 255/(255-customlinecolor_Green);
-            //         linecolor_tomatch_bgcolor_Blue = 255/(255-customlinecolor_Blue);
-            //     }
-            //     // // colored matching line (light back ground, dark line)
-            //     if (use_whiteline === false) {
-            //         linecolor_tomatch_bgcolor_Red = customlinecolor_Red/255;
-            //         linecolor_tomatch_bgcolor_Green = customlinecolor_Green/255;
-            //         linecolor_tomatch_bgcolor_Blue = customlinecolor_Blue/255;   
-            //     }
-
-
-                
 
 
 
@@ -988,7 +859,7 @@ function filter2() {
             //     //     nontransparentlines__boldness__slider = 1.2; }
             //     // if (use_whiteline === false) {
             //     //     nontransparentlines__boldness__slider = 0.8; }
-                
+
             //     // Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
             //     // Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
             //     // Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
@@ -1003,7 +874,7 @@ function filter2() {
 
 
 
-            //     //  // //soft spot increaser (dark back ground, white line) - (0-1)
+            //      // //soft spot increaser (dark back ground, white line) - (0-1)
             //      if (use_whiteline === true) {
             //         //let soft_spot_increaser = 85; //slider (0-128)
             //         let soft_spot_increaser = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode (very nice to have) (1-2) or 2 only slider
@@ -1059,7 +930,7 @@ function filter2() {
             //     Gxy_sum_final_Green *= linecolor_tomatch_bgcolor_Green; 
             //     Gxy_sum_final_Blue *= linecolor_tomatch_bgcolor_Blue;
 
-
+            //     // val_Alpha =0 ;
 
             //     //correction
             //     if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
@@ -1068,34 +939,188 @@ function filter2() {
             //     if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
             //     if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
             //     if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
-
+                
 
             // }
+            
+
+
+
+            //add custom/transparent background, modify underlying white lines' boldness, soft/hard spots, and shadow colors - line 1.4(optional)__
+            //notes:
+            //white lines = works with dark/light/transparent background
+            //black lines = works with dark/light/transparent background (testing)
+            // fix line 1.3 to be as good as line 1.4?? = forget it?
+
+            //user options:
+            customBGcolor_R = 255-45;
+            customBGcolor_G = 255-45;
+            customBGcolor_B = 255-45;
+            let customBGcolor_A = 255;
+            let use_blackline = true;
+            let cutoff = 20; //10-20% of 255 recommended         
+
+            let customlineshadowcolor_R = 0;
+            let customlineshadowcolor_G = 0;
+            let customlineshadowcolor_B = 0;
+            
+            let trio0 = (Gxy_sum_final_Red+Gxy_sum_final_Green + Gxy_sum_final_Blue)/3;
+
+            if (trio0 <= cutoff)
+            {
+                // set desired background color/opacity
+                    Gxy_sum_final_Red = customBGcolor_R;
+                    Gxy_sum_final_Green = customBGcolor_G;
+                    Gxy_sum_final_Blue = customBGcolor_B;
+                
+                val_Alpha = customBGcolor_A;
+
+            }
+
+            else if (trio0 > cutoff)
+            {    
+
+                ////////modifications for underlying white lines - modify overall boldness, soft spots, and hard spots of underying white lines
+                
+                ////step 1: replace underlying white lines' RGB colors of 0 with new number that can be easily manipulating by multiplication/division necessary for modifying overall boldness, soft spots, and hard spots
+                let too_dark = 1;
+                if (Gxy_sum_final_Red <= too_dark) 
+                {Gxy_sum_final_Red = too_dark; }
+                if (Gxy_sum_final_Green <= too_dark) 
+                {Gxy_sum_final_Green = too_dark; }
+                if (Gxy_sum_final_Blue <= too_dark) 
+                {Gxy_sum_final_Blue = too_dark; }
+                
+                ////step 2: modify boldness of white lines (to bring up low RGB color spots)
+                let nontransparentlines__boldness__slider = 1;
+                Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
+                Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
+                Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
+                
+
+
+
+                ////step 2.1: "0-255" correction
+                if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
+                if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
+                if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
+                if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
+                if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
+                if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
+
+                ////step 3: increase soft spots
+                let soft_spot_increaser = 85; //slider (0-128)
+                soft_spot_increaser = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode (very nice to have) (1-2) or 2 only slider
+                if (Gxy_sum_final_Red <= soft_spot_increaser) 
+                {Gxy_sum_final_Red = soft_spot_increaser};
+                if (Gxy_sum_final_Green <= soft_spot_increaser) 
+                {Gxy_sum_final_Green = soft_spot_increaser};
+                if (Gxy_sum_final_Blue <= soft_spot_increaser) 
+                {Gxy_sum_final_Blue = soft_spot_increaser};
+                
+                ////step 4: decrease hard spots
+                let hard_spot_reducer = 255; //slider (128-255)
+                hard_spot_reducer = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode
+                if (Gxy_sum_final_Red > hard_spot_reducer) 
+                {Gxy_sum_final_Red = hard_spot_reducer};
+                if (Gxy_sum_final_Green > hard_spot_reducer) 
+                {Gxy_sum_final_Green = hard_spot_reducer};
+                if (Gxy_sum_final_Blue > hard_spot_reducer) 
+                {Gxy_sum_final_Blue = hard_spot_reducer};
 
 
 
 
+                ////////corrections for custom RGB BG and shadow line colors submitted by users, then apply custom RGB shadow line colors, including black line mode, to underlying white lines
+
+                ////step 0: opacity adjuster (increase or decrease RGB background colors in proportion with custom Alpha background color)
+                customBGcolor_R = customBGcolor_R * (customBGcolor_A/255);
+                customBGcolor_G = customBGcolor_G * (customBGcolor_A/255);
+                customBGcolor_B = customBGcolor_B * (customBGcolor_A/255);
+
+                ////step 1: increase low [custom RGB line colors] to match brightness level as [custom RGB background colors]
+                if (customlineshadowcolor_R < customBGcolor_R) 
+                {customlineshadowcolor_R += customBGcolor_R; }
+                if (customlineshadowcolor_G < customBGcolor_G) 
+                {customlineshadowcolor_G += customBGcolor_G; }
+                if (customlineshadowcolor_B < customBGcolor_B) 
+                {customlineshadowcolor_B += customBGcolor_B; }
+
+                ////step 2: limit high [custom RGB line colors] to prevent from making white lines looking too bright. then, decrease all [custom RGB line colors] to balance  brightness while keeping desired custom RGB line colors' appearance 
+                let highestlimit = 50 * (customBGcolor_A/255);
+                let overbrightline_count = 0;
+
+                if (customlineshadowcolor_R > customBGcolor_R + highestlimit) 
+                {customlineshadowcolor_R = customBGcolor_R + highestlimit; }
+                if (customlineshadowcolor_G > customBGcolor_G + highestlimit) 
+                {customlineshadowcolor_G = customBGcolor_G + highestlimit; }
+                if (customlineshadowcolor_B > customBGcolor_B + highestlimit) 
+                {customlineshadowcolor_B = customBGcolor_B + highestlimit; }
+
+                overbrightline_count += customlineshadowcolor_R - customBGcolor_R;
+                overbrightline_count += customlineshadowcolor_G - customBGcolor_G;
+                overbrightline_count += customlineshadowcolor_B - customBGcolor_B;
+                overbrightline_count += highestlimit;
+
+                let brightnessreducer = overbrightline_count/3;
+                customlineshadowcolor_R = customlineshadowcolor_R - brightnessreducer;
+                customlineshadowcolor_G = customlineshadowcolor_G - brightnessreducer;
+                customlineshadowcolor_B = customlineshadowcolor_B - brightnessreducer;
+                
 
 
+                ////step 3: prepare variables that modify white (or soon-to-be black) underlying lines' original shadow colors, so they'll blend in with the [custom RGB background colors]
+                let linecolor_tomatch_bgcolor_Red;
+                let linecolor_tomatch_bgcolor_Green;
+                let linecolor_tomatch_bgcolor_Blue;
+                if (use_blackline === false) {     
+                    linecolor_tomatch_bgcolor_Red = 255/(255-customlineshadowcolor_R);
+                    linecolor_tomatch_bgcolor_Green = 255/(255-customlineshadowcolor_G);
+                    linecolor_tomatch_bgcolor_Blue = 255/(255-customlineshadowcolor_B);
+                }
+                else if (use_blackline === true) {
+                   linecolor_tomatch_bgcolor_Red = 255/(customlineshadowcolor_R);
+                   linecolor_tomatch_bgcolor_Green = 255/(customlineshadowcolor_G);
+                   linecolor_tomatch_bgcolor_Blue = 255/(customlineshadowcolor_B);   
+                }
+
+                ////step 4: Apply [custom RGB line colors] to white (or soon-to-be black) underlying lines, which will have shadow RGB colors that match [custom RGB background colors]
+                Gxy_sum_final_Red *= linecolor_tomatch_bgcolor_Red; 
+                Gxy_sum_final_Green *= linecolor_tomatch_bgcolor_Green; 
+                Gxy_sum_final_Blue *= linecolor_tomatch_bgcolor_Blue;
 
 
-            //if val_Alpha = 0 or x1 < 128 .. && boldness > 0.855 do invert
-            //(re)invert - line 1 (optional)__
-            // Gxy_sum_final_Red = 255- Gxy_sum_final_Red;
-            // Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
-            // Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue;
+                
 
-            //custom background color after?
-            //dark background ? 
-            // if (Gxy_sum_final_Red < custombackgroundcolor_Red) { Gxy_sum_final_Red = custombackgroundcolor_Red; }
-            // if (Gxy_sum_final_Green < custombackgroundcolor_Green) { Gxy_sum_final_Green = custombackgroundcolor_Green; }
-            // if (Gxy_sum_final_Blue < custombackgroundcolor_Blue) { Gxy_sum_final_Blue = custombackgroundcolor_Blue; }
-            // //light background ? probably not needed
-            // if (Gxy_sum_final_Red > custombackgroundcolor_Red) { Gxy_sum_final_Red = custombackgroundcolor_Red; }
-            // if (Gxy_sum_final_Green > custombackgroundcolor_Green) { Gxy_sum_final_Green = custombackgroundcolor_Green; }
-            // if (Gxy_sum_final_Blue > custombackgroundcolor_Blue) { Gxy_sum_final_Blue = custombackgroundcolor_Blue; }
+                ////step 4.1: "0-255" correction
+                if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
+                if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
+                if (Gxy_sum_final_Red > max) { Gxy_sum_final_Red = 255; }
+                if (Gxy_sum_final_Blue < min) { Gxy_sum_final_Blue = 0; }
+                if (Gxy_sum_final_Green < min) { Gxy_sum_final_Green = 0; }
+                if (Gxy_sum_final_Red < min) { Gxy_sum_final_Red = 0; }
 
+                ////step 5: remove bad spots that result from setting cutoff at low value
+                //WAY 1 
+                if (use_blackline === false) {
+                    if (Gxy_sum_final_Red < customBGcolor_R) { Gxy_sum_final_Red = customBGcolor_R; }
+                    if (Gxy_sum_final_Green < customBGcolor_G) { Gxy_sum_final_Green = customBGcolor_G; }
+                    if (Gxy_sum_final_Blue < customBGcolor_B) { Gxy_sum_final_Blue = customBGcolor_B; }
+                }
+                
+                ////step 6: Instead of white lines (w/ desired highlight colors), generate black lines (by inverting underlying white lines w/ pre-inverted highlight colors into black lines w/ desired highlight colors))
+                if (use_blackline === true) {  
+                    Gxy_sum_final_Red = 255-Gxy_sum_final_Red;
+                    Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
+                    Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue;
+                }
 
+            }
+            // if (use_blackline === true) {
+            //     Gxy_sum_final_Red = 255-Gxy_sum_final_Red;
+            //     Gxy_sum_final_Green = 255-Gxy_sum_final_Green;
+            //     Gxy_sum_final_Blue = 255-Gxy_sum_final_Blue; 
+            // }
 
 
             // //line 2 - grayscale with color lines____
