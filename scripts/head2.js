@@ -462,9 +462,9 @@ function filter2() {
     let Gxy_sum_final_Green = 0;
     let Gxy_sum_final_Blue = 0;
   
-    let customBGcolor_R = 127;
-    let customBGcolor_G = 127;
-    let customBGcolor_B = 127;
+    let customBGcolor_R = 255;
+    let customBGcolor_G = 255;
+    let customBGcolor_B = 255;
     let customBGcolor_A = 255; 
     let trio6 =(customBGcolor_R + customBGcolor_G + customBGcolor_B )/3;  
 
@@ -576,7 +576,7 @@ function filter2() {
             
             let customlineshadowcolor_R = 255;
             let customlineshadowcolor_G = 0;
-            let customlineshadowcolor_B = 255;
+            let customlineshadowcolor_B = 0;
 
 
             //bw_avg_2 = after normal edge detection, before line/background customization
@@ -664,12 +664,17 @@ function filter2() {
                 customBGcolor_B = customBGcolor_B * (customBGcolor_A/255);
 
                 ////step 1: increase low [custom RGB line colors] to match brightness level as [custom RGB background colors]
-                if (customlineshadowcolor_R < customBGcolor_R) 
-                {customlineshadowcolor_R += customBGcolor_R; }
-                if (customlineshadowcolor_G < customBGcolor_G) 
-                {customlineshadowcolor_G += customBGcolor_G; }
-                if (customlineshadowcolor_B < customBGcolor_B) 
-                {customlineshadowcolor_B += customBGcolor_B; }
+                // if (customlineshadowcolor_R < customBGcolor_R) 
+                // {customlineshadowcolor_R += customBGcolor_R; }
+                // if (customlineshadowcolor_G < customBGcolor_G) 
+                // {customlineshadowcolor_G += customBGcolor_G; }
+                // if (customlineshadowcolor_B < customBGcolor_B) 
+                // {customlineshadowcolor_B += customBGcolor_B; }
+                //OR
+                customlineshadowcolor_R += customBGcolor_R; 
+                customlineshadowcolor_G += customBGcolor_G; 
+                customlineshadowcolor_B += customBGcolor_B; 
+                
 
                 ////step 2: limit high [custom RGB line colors] to prevent from making white lines looking too bright. then, decrease all [custom RGB line colors] to balance  brightness while keeping desired custom RGB line colors' appearance 
                 // highestlimit = 50 * (customBGcolor_A/255);
@@ -691,7 +696,14 @@ function filter2() {
                 customlineshadowcolor_R = customlineshadowcolor_R - brightnessreducer;
                 customlineshadowcolor_G = customlineshadowcolor_G - brightnessreducer;
                 customlineshadowcolor_B = customlineshadowcolor_B - brightnessreducer;
-                
+
+                //correction = needed
+                if (customlineshadowcolor_R > max) { customlineshadowcolor_R = 255; }
+                if (customlineshadowcolor_G > max) { customlineshadowcolor_G = 255; }
+                if (customlineshadowcolor_B > max) { customlineshadowcolor_B = 255; }
+                if (customlineshadowcolor_R < min) { customlineshadowcolor_R = 0; }
+                if (customlineshadowcolor_G < min) { customlineshadowcolor_G = 0; }
+                if (customlineshadowcolor_B < min) { customlineshadowcolor_B = 0; }
 
 
                 ////step 3: prepare variables that modify white (or soon-to-be black) underlying lines' original shadow colors, so they'll blend in with the [custom RGB background colors]
@@ -710,7 +722,7 @@ function filter2() {
                 }
 
                 // NEW STEP
-                let soft_spot_increaser = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * ((255-trio6)/255); //0.5 for whiteline, //0.33 for black line?
+                let soft_spot_increaser = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * ((255-trio6*.8)/255); //0.5 for whiteline, //0.33 for black line?
                 if (Gxy_sum_final_Red < soft_spot_increaser) 
                 {Gxy_sum_final_Red = soft_spot_increaser};
                 if (Gxy_sum_final_Green < soft_spot_increaser) 
@@ -727,9 +739,6 @@ function filter2() {
 
                 
               
-
-
-
                 ////step 4.1: "0-255" correction
                 if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
                 if (Gxy_sum_final_Green > max) { Gxy_sum_final_Green = 255; }
