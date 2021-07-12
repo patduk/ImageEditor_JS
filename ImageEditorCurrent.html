@@ -1,5 +1,7 @@
 <head>
-    <script src="scripts/head2.js"></script>
+    <script src="scripts/functions.js"></script>
+    <script src="scripts/edge_normal.js"></script>
+    <script src="scripts/edge_custom.js"></script>
 
     <link href="styles/NavMenu.css"> 
     <link href="styles/style.css" >
@@ -37,61 +39,68 @@
     </canvas>
     </br>
 
-    
     <div>
-      <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' onchange="vnun2()" /> <!--has function-->
-      </br>
-      <!-- <input type='file' id='diamondx2' /> has function -->
-      </br></br>
-      <button onclick="invert()" id="button3">invert</button>
-      <button onclick="lighten()" id="button3">lighten</button>
-      <button onclick="oilPaintEffect(1,10)" id="button3">oil paint</button>
-      <button onclick="edge_normal()" id="button3">line (normal)</button>
-      <button onclick="filter1()" id="button3">filter 1</button>
-      <button onclick="filter2()" id="button3">filter 2</button>
-      </br>
-      <button onclick="original()" id="button3">original</button>
-      <button onclick="undo()" id="button3">undo</button>
-      <button onclick="redo()" id="button3">redo</button>
-      <button onclick="reset()" id="button3">reset</button>
-      </br>
-      <button onclick="function1_buttonimg()">button img1</button>
-      <button onclick="function2_buttonimg()">button img2</button>
-      <div class="slidecontainer">
-        <!--using javascript function to change input values-->
-        
-        Contrast<br />
-        <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.0025" value="0" onchange="Onchange_Slider_Contrast()">
-        <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Slider_Contrast()">
-        <br />
-    
-        Brightness<br />
-        <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
-        <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
-        <br />
-    
-        Opacity<br />
-        <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
-        <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Slider_Opacity()">
-        <br />
-    
-    
-        Red<br />
-        <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
-        <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Slider_Red()">
-        <br />
-    
-        Green<br />
-        <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
-        <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
-        <br />
-    
-        Blue<br />
-        <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
-        <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Slider_Blue()">
-        <br />
-    
-      </div>
+        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' onchange="vnun2()" /> 
+        </br>
+        </br>
+        <button onclick="filter1()" >filter 1</button>
+        <button onclick="filter2()" >filter 2</button>
+        <button onclick="invert()" >invert</button>
+        <button onclick="lighten()" >lighten</button>
+        </br>
+        <button onclick="edge_normal()" >line (normal)</button>
+        <button onclick="edge_custom()" >line (custom)</button>
+        </br>
+        <button onclick="grayscale()" >grayscale</button>
+        <button onclick="gaussianblur()" >Gaussian Blur</button>
+        <button onclick="oilpaint(1,10)" >oil paint</button>
+        </br>
+        <button onclick="undo()" >undo</button>
+        <button onclick="redo()" >redo</button>
+        <button onclick="reset()" >reset</button>
+        <button onclick="flatten()" >flatten</button>
+        </br></br>
+        <button onclick="function1_buttonimg()">button img1</button>
+        <button onclick="function2_buttonimg()">button img2</button>
+
+
+        <div class="slidecontainer">
+            Contrast<br />
+            <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.0025" value="0" onchange="Onchange_Slider_Contrast()">
+            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Slider_Contrast()">
+            <br />
+
+            Brightness<br />
+            <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
+            <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
+            <br />
+
+            Opacity<br />
+            <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
+            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Slider_Opacity()">
+            <br />
+
+            Red<br />
+            <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
+            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Slider_Red()">
+            <br />
+
+            Green<br />
+            <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
+            <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
+            <br />
+
+            Blue<br />
+            <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
+            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Slider_Blue()">
+            <br />
+
+        </div> 
+
+
+
+
+
     </div>
     <div id="pow1">baka1</div>
     <div id="pow2">baka2</div>
