@@ -420,12 +420,15 @@ function filter2() {
     logprint();
     
     // 3.0
-    if (canvas.width <= 1200 && canvas.height <= 1800)
+    if (canvas.width <= 1200 && canvas.height <= 1800) {
         oilPaintEffect(1,8);
-    else if (canvas.width <= 1800 && canvas.height <= 1200)    
-        oilPaintEffect(1,8);
-    else
+    }
+    else if (canvas.width <= 1800 && canvas.height <= 1200) {
+        oilPaintEffect(1,8); 
+    }
+    else {
         oilPaintEffect(2,15)
+    }
 
     // 3.0
     imageData = ctx.getImageData(0, 0, image.width, image.height); 
@@ -462,57 +465,57 @@ function filter2() {
 
     //////
     //////
-    let cutoff = 20; //10-20% of 255 recommended 20-50
+    //UX:
+    let customBGcolor_R = 46; //0-255
+    let customBGcolor_G = 45; //0-255
+    let customBGcolor_B = 64; //0-255
+    let customBGcolor_A = 255; // only 255 or 0 / on or off
 
-    let customBGcolor_R = 55; 
-    let customBGcolor_G = 51; 
-    let customBGcolor_B = 51; 
-    let customBGcolor_A = 255; 
-
-    let customlineshadowcolor_R_m = 0;
-    let customlineshadowcolor_G_m = 22;
-    let customlineshadowcolor_B_m = 66;
+    let hard_spot_reducer = 84; //intensity of white/black lines // 84-255
+    let customlineshadowcolor_R_m = 0; //0-limit
+    let customlineshadowcolor_G_m = 0; //0-limit
+    let customlineshadowcolor_B_m = 0; //0-limit
 
     let use_blackline = false;
+    let cutoff = 18; //10-20% of 255 recommended 20-50
     //////
     //////
 
 
-    // adjsut customlineshadowcolor: limit excessive bright colors, rebalance other line colors
-    let max1_R = 96;
-    let max1_G = 96;
-    let max1_B = 96;
-    if (customlineshadowcolor_R_m > max1_R) {customlineshadowcolor_R_m = max1_R; }
-    if (customlineshadowcolor_G_m > max1_G) {customlineshadowcolor_G_m = max1_G; }
-    if (customlineshadowcolor_B_m > max1_B) {customlineshadowcolor_B_m = max1_B; }
-    let helper_R = customlineshadowcolor_R_m;
-    let helper_G = customlineshadowcolor_G_m;
-    let helper_B = customlineshadowcolor_B_m;
-    customlineshadowcolor_R_m -= helper_G/2;
+    //auto mode for use_blackline (for better user experinece):
+    let trio7 = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3;
+    if (trio7 >= 106) {use_blackline = true;} //.41 of 255 (106)
+    
+    //if use_blackline === true, "pre-invert" custom BG and line colors:
+    if (use_blackline === true) {  
+        customBGcolor_R = 255 - customBGcolor_R;
+        customBGcolor_G = 255 - customBGcolor_G;
+        customBGcolor_B = 255 - customBGcolor_B;
+        customlineshadowcolor_R_m *= -1;
+        customlineshadowcolor_G_m *= -1;
+        customlineshadowcolor_B_m *= -1;
+    }
+
+    // adjsut customlineshadowcolor - limit excessive bright colors, rebalance other line colors:
+    //limit excessive bright colors
+    let max1 = 84;
+    if (customlineshadowcolor_R_m > max1) {customlineshadowcolor_R_m = max1; }
+    if (customlineshadowcolor_G_m > max1) {customlineshadowcolor_G_m = max1; }
+    if (customlineshadowcolor_B_m > max1) {customlineshadowcolor_B_m = max1; }
+    //hold constant vars
+    const helper_R = customlineshadowcolor_R_m; 
+    const helper_G = customlineshadowcolor_G_m;
+    const helper_B = customlineshadowcolor_B_m;
+    //rebalance other line colors
+    customlineshadowcolor_R_m -= helper_G/2; 
     customlineshadowcolor_R_m -= helper_B/2;
     customlineshadowcolor_G_m -= helper_R/2;
     customlineshadowcolor_G_m -= helper_B/2;
     customlineshadowcolor_B_m -= helper_R/2;
     customlineshadowcolor_B_m -= helper_G/2;
 
-    //auto mode for use_blackline (for better user experinece ):
-    let trio7 = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3;
-    if (trio7 >= 106) {use_blackline = true;} //.41 of 255
-    
 
-    if (use_blackline === true) {  
-        customBGcolor_R = 255 - customBGcolor_R;
-        customBGcolor_G = 255 - customBGcolor_G;
-        customBGcolor_B = 255 - customBGcolor_B;
-
-        customlineshadowcolor_R_m *= -1;
-        customlineshadowcolor_G_m *= -1;
-        customlineshadowcolor_B_m *= -1;
-    }
-
-        
-
-
+            
     for (let y = 0; y < image.height; y ++) {
         for (let x = 0; x < image.width; x ++) {
 
@@ -525,15 +528,15 @@ function filter2() {
 
             if (bw_avg_1 >= highestlimit1) {
                 if (use_blackline === false) {
-                    data[formula+0] = customBGcolor_R * (bw_avg_1/highestlimit1) * (customBGcolor_A/255);
-                    data[formula+1] = customBGcolor_G * (bw_avg_1/highestlimit1) * (customBGcolor_A/255);
-                    data[formula+2] = customBGcolor_B * (bw_avg_1/highestlimit1) * (customBGcolor_A/255);
+                    data[formula+0] = customBGcolor_R * (bw_avg_1/highestlimit1);
+                    data[formula+1] = customBGcolor_G * (bw_avg_1/highestlimit1);
+                    data[formula+2] = customBGcolor_B * (bw_avg_1/highestlimit1);
                     data[formula+3] = customBGcolor_A;
                 }
                 else if(use_blackline === true) { 
-                    data[formula+0] = ((255-customBGcolor_R) * (bw_avg_1/highestlimit1)) * (customBGcolor_A/255);
-                    data[formula+1] = ((255-customBGcolor_G) * (bw_avg_1/highestlimit1)) * (customBGcolor_A/255);
-                    data[formula+2] = ((255-customBGcolor_B) * (bw_avg_1/highestlimit1)) * (customBGcolor_A/255);
+                    data[formula+0] = ((255-customBGcolor_R) * (bw_avg_1/highestlimit1));
+                    data[formula+1] = ((255-customBGcolor_G) * (bw_avg_1/highestlimit1));
+                    data[formula+2] = ((255-customBGcolor_B) * (bw_avg_1/highestlimit1));
                     data[formula+3] = customBGcolor_A;
                 }
                 continue;
@@ -908,37 +911,30 @@ function filter2() {
 
 
             
-
-
-
-            // //line 1.4 (optional): add custom/transparent background, modify underlying white lines' boldness, soft/hard spots, and shadow colors
-            // //notes: white/black lines = works with dark/light/transparent background
-            
-
             //bw_avg_2 = after normal edge detection, before line/background customization
-            let bw_avg_2;
-            bw_avg_2 = (Gxy_sum_final_Red+Gxy_sum_final_Green + Gxy_sum_final_Blue)/3;
+            let bw_avg_2 = (Gxy_sum_final_Red+Gxy_sum_final_Green + Gxy_sum_final_Blue)/3;
 
             // bw
             Gxy_sum_final_Red = bw_avg_2;
             Gxy_sum_final_Green = bw_avg_2;
             Gxy_sum_final_Blue = bw_avg_2;
 
+
+            // //line 1.4 (optional): add custom/transparent background, modify underlying white lines' boldness, soft/hard spots, and shadow colors
+            // //notes: white/black lines = works with dark/light/transparent background
+            
             // //user options (moved up)
             // //only works of here, instead of up there
             let customlineshadowcolor_R = customlineshadowcolor_R_m;
             let customlineshadowcolor_G = customlineshadowcolor_G_m;
             let customlineshadowcolor_B = customlineshadowcolor_B_m;
             
-
-
-
             if (bw_avg_2 <= cutoff)
             {
                 // set desired background color/opacity
-                Gxy_sum_final_Red = customBGcolor_R;
-                Gxy_sum_final_Green = customBGcolor_G;
-                Gxy_sum_final_Blue = customBGcolor_B;
+                Gxy_sum_final_Red = customBGcolor_R*(customBGcolor_A/255);
+                Gxy_sum_final_Green = customBGcolor_G*(customBGcolor_A/255);
+                Gxy_sum_final_Blue = customBGcolor_B*(customBGcolor_A/255);
                 val_Alpha = customBGcolor_A;
             }
 
@@ -957,7 +953,7 @@ function filter2() {
                 {Gxy_sum_final_Blue = too_dark; }
                 
                 // ////step 2: modify boldness of white lines (to bring up low RGB color spots)
-                // let nontransparentlines__boldness__slider = 1; //(1-2) //rec: 1 or 1.2
+                // let nontransparentlines__boldness__slider = 1.2; //(1-2) //rec: 1 or 1.2
                 // Gxy_sum_final_Red *= nontransparentlines__boldness__slider;
                 // Gxy_sum_final_Green *= nontransparentlines__boldness__slider;
                 // Gxy_sum_final_Blue *= nontransparentlines__boldness__slider;
@@ -972,8 +968,10 @@ function filter2() {
 
                 // ////step 3: increase soft spots
                 let soft_spot_increaser = .275*255; //slider (0-128)
-                if (soft_spot_increaser < (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4)
-                   soft_spot_increaser = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4;
+                // if (soft_spot_increaser < (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4) {
+                //    soft_spot_increaser = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4;
+                //    console.log("used1")
+                // }
                 if (Gxy_sum_final_Red < soft_spot_increaser) 
                 {Gxy_sum_final_Red = soft_spot_increaser};
                 if (Gxy_sum_final_Green < soft_spot_increaser) 
@@ -982,16 +980,15 @@ function filter2() {
                 {Gxy_sum_final_Blue = soft_spot_increaser};
 
                 
-                ////step 4: decrease hard spots - need fix?
-                // let hard_spot_reducer = 255; //slider (128-255)
-                // hard_spot_reducer = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (2); //auto mode
-                // if (Gxy_sum_final_Red > hard_spot_reducer) 
-                // {Gxy_sum_final_Red = hard_spot_reducer};
-                // if (Gxy_sum_final_Green > hard_spot_reducer) 
-                // {Gxy_sum_final_Green = hard_spot_reducer};
-                // if (Gxy_sum_final_Blue > hard_spot_reducer) 
-                // {Gxy_sum_final_Blue = hard_spot_reducer};
-
+                //step 4: decrease hard spots - need fix?
+                //let hard_spot_reducer = 160; //slider (128-255)
+                //hard_spot_reducer = (Gxy_sum_final_Red + Gxy_sum_final_Green + Gxy_sum_final_Blue)/3 * (1.5); //auto mode
+                if (Gxy_sum_final_Red > hard_spot_reducer) 
+                {Gxy_sum_final_Red = hard_spot_reducer};
+                if (Gxy_sum_final_Green > hard_spot_reducer) 
+                {Gxy_sum_final_Green = hard_spot_reducer};
+                if (Gxy_sum_final_Blue > hard_spot_reducer) 
+                {Gxy_sum_final_Blue = hard_spot_reducer};
 
 
 
@@ -999,29 +996,11 @@ function filter2() {
 
                 // // ////////corrections for custom RGB BG and shadow line colors submitted by users, then apply custom RGB shadow line colors, including black line mode, to underlying white lines
 
-                // // ////step 0: opacity adjuster (increase or decrease RGB background colors in proportion with custom Alpha background color) - no need?
-                
-
                 // // ////step 1: increase low [custom RGB line colors] to match brightness level as [custom RGB background colors]
-                // WAY1
-                // if (customlineshadowcolor_R < customBGcolor_R) 
-                // {customlineshadowcolor_R = customBGcolor_R; }
-                // if (customlineshadowcolor_G < customBGcolor_G) 
-                // {customlineshadowcolor_G = customBGcolor_G; }
-                // if (customlineshadowcolor_B < customBGcolor_B) 
-                // {customlineshadowcolor_B = customBGcolor_B; }
-                //OR
-                // WAY2
                 //toggle on/off (background color matching: on/off)
-                let add_R = customBGcolor_R;
-                let add_G = customBGcolor_G;
-                let add_B = customBGcolor_B;
-                // if (add_R > 165) {add_R = 165;}
-                // if (add_G > 165) {add_G = 165;}
-                // if (add_B > 165) {add_B = 165;}
-                customlineshadowcolor_R += add_R; 
-                customlineshadowcolor_G += add_G; 
-                customlineshadowcolor_B += add_B; 
+                customlineshadowcolor_R += customBGcolor_R; 
+                customlineshadowcolor_G += customBGcolor_G; 
+                customlineshadowcolor_B += customBGcolor_B;
 
                 
 
@@ -1110,25 +1089,27 @@ function filter2() {
 
 
             // // //Restore black lines = not perfect, need to get rid of leftover light spots while keeping visible edges
-            let highestlimit2 = 64;
-            let darkshadeintensity = 0.33; //0-2
+            // let highestlimit2 = 64;
+            // let darkshadeintensity = 0.33; //0-2
             
-            if (bw_avg_1 <= highestlimit2 && bw_avg_1 >= 0)// && bw_avg_1 > bw_avg_2 && ) 
-            {
-                if ((bw_avg_1 >= bw_avg_2)) {
-                    if (use_blackline === false) {  
-                        data[formula+0] = customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
-                        data[formula+1] = customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                        data[formula+2] = customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                    }
-                    else if (use_blackline === true) {
-                        data[formula+0] = 255-customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
-                        data[formula+1] = 255-customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                        data[formula+2] = 255-customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;   
-                    }
-                    continue;
-                }
-            }
+            // if (bw_avg_1 <= highestlimit2 && bw_avg_1 >= 0)// && bw_avg_1 > bw_avg_2 && ) 
+            // {
+            //     if ((bw_avg_1 >= bw_avg_2)) {
+            //         if (use_blackline === false) {  
+            //             data[formula+0] = customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
+            //             data[formula+1] = customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
+            //             data[formula+2] = customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;
+            //         }
+            //         else if (use_blackline === true) {
+            //             data[formula+0] = 255-customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
+            //             data[formula+1] = 255-customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
+            //             data[formula+2] = 255-customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;   
+            //         }
+            //         continue;
+            //     }
+            // }
+
+
 
             // if (bw_avg_1 <= highestlimit2 && bw_avg_1 > bw_avg_2 && bw_avg_1 >= 1)  {
             //     // data[formula+0] = customBGcolor_R * ((255)-trio5)/(255);
