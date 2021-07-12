@@ -20,6 +20,7 @@ let imageData_original1_data_1d = [];
 let DictV = {};
 
 
+
 function logprint() {
     let pow3 = document.getElementById('pow3');
     pow3.innerHTML = "image_undolist: " + image_undolist.length + "</br>image_redolist: " + image_redolist.length + "</br>";
@@ -85,10 +86,8 @@ window.addEventListener('load', function()
             }           
         }
     });
-
-    
-    
 });
+
 
 
 function loadsampleimage() {
@@ -96,7 +95,7 @@ function loadsampleimage() {
     let ctx = canvas.getContext('2d');        
     image.src = 'images/wlop2.jpg'; // set src to blob 
     //image.class = "image_display";
-    
+
     
     canvas.style.width = "100%";
     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
@@ -140,15 +139,6 @@ function loadsampleimage() {
 // ctx.fillRect(10,10,150,80);
 
 
-
-
-
-let num1 = 0;
-//works when using onchange in input element
-function vnun2() {
-    num1 += 1;
-    console.log('image uploaded ' + num1 + " ");
-}
 
 
 //works
@@ -511,46 +501,25 @@ function reset() {
 
 
 
+///Onchange
 
 function Onchange_Slider_Brightness()
 {
-     // ClearRedo();                   //0.8
-    // is_FilterIncremental = true;   //0.9
-    // SaveAttributesToUndoLists();   //1-1.4
-
-    ////2
-    logprint();
     let input_value = document.getElementById('slider_Brightness').value;
     document.getElementById('text_Brightness').value = input_value;
-    // DictV["IncV"] = 1;
-    // DictV["BrightnessV"] = input_value;
-
-
-    // ////3 edit image
-    // ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-
-
 }
 
-function Onchange_Text_Brightness() 
-{
-    // ClearRedo();                   //0.8
-    // is_FilterIncremental = true;   //0.9
-    // SaveAttributesToUndoLists();   //1-1.4
 
-    ///2
-    logprint();
+function Onchange_Text_Brightness() {
     let input_value = document.getElementById('text_Brightness').value;
-    if (input_value > 255) {input_value = 255;}
-    if (input_value < -255) {input_value = -255;}
-    document.getElementById('text_Brightness').value = input_value;
+
+    if (input_value > 255) {
+        input_value = 255;
+        document.getElementById('text_Brightness').value = input_value;
+    }
+    if (input_value < -255) {
+        input_value = -255;
+        document.getElementById('text_Brightness').value = input_value; 
+    }
     document.getElementById('slider_Brightness').value = input_value;
-    // DictV["IncV"] = 1;
-    // DictV["BrightnessV"] = input_value;
-
-
-    // ////3 edit image
-    // ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-
-
 }

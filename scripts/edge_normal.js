@@ -1,6 +1,6 @@
 
 // uses image original 1
-function edge_normal () {
+function edge_normal() {
     ///////////////////////////////////////////
 
    //prep canvas and ctx (idk why its needed)
