@@ -35,108 +35,108 @@ function logprint() {
 
 
 
-window.addEventListener('load', function() 
-{
-    // document.querySelector('input[type="file"]').addEventListener('change', function()
-    document.getElementById('diamondx1').addEventListener('change', function() 
-    {
-        if (this.files && this.files[0]) 
-        {
-            let canvas = document.getElementById('cv2'); 
-            let ctx = canvas.getContext('2d');
-            //image = new Image();
+// window.addEventListener('load', function() 
+// {
+//     // document.querySelector('input[type="file"]').addEventListener('change', function()
+//     document.getElementById('diamondx1').addEventListener('change', function() 
+//     {
+//         if (this.files && this.files[0]) 
+//         {
+//             let canvas = document.getElementById('cv2'); 
+//             let ctx = canvas.getContext('2d');
+//             //image = new Image();
 
-            // set src to blob e
-            image.src = URL.createObjectURL(this.files[0]).toString(); 
-            //canvas.style.width = "50%";
+//             // set src to blob e
+//             image.src = URL.createObjectURL(this.files[0]).toString(); 
+//             //canvas.style.width = "50%";
             
-            //reset
-            image_undolist = [];
-            image_redolist = [];
+//             //reset
+//             image_undolist = [];
+//             image_redolist = [];
             
-            logprint();
+//             logprint();
             
-            image.onload = () => {
-                URL.revokeObjectURL(image.src);
+//             image.onload = () => {
+//                 URL.revokeObjectURL(image.src);
 
-                //adjust canvas dimension
-                canvas.height = image.height;
-                canvas.width = image.width;
+//                 //adjust canvas dimension
+//                 canvas.height = image.height;
+//                 canvas.width = image.width;
                                 
-                //put an image and its left, top location
-                ctx.drawImage(image, 0, 0);
+//                 //put an image and its left, top location
+//                 ctx.drawImage(image, 0, 0);
 
-                //draw a box over the top (useful for 2d spheres?)
-                // ctx.fillStyle = "rgba(200, 0, 0, 0.33)";
-                // ctx.fillRect(12, 12, 80, 80);
+//                 //draw a box over the top (useful for 2d spheres?)
+//                 // ctx.fillStyle = "rgba(200, 0, 0, 0.33)";
+//                 // ctx.fillRect(12, 12, 80, 80);
                 
 
-                //get imageData
-                imageData = ctx.getImageData(0, 0, image.width, image.height);
-                imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-                imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
+//                 //get imageData
+//                 imageData = ctx.getImageData(0, 0, image.width, image.height);
+//                 imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+//                 imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
 
-                //write 1d array
-                imageData_data_1d = imageData.data; ///v
-                imageData_original2_data_1d = imageData_original2.data; ///v
-                imageData_original1_data_1d = imageData_original1.data; ///v
+//                 //write 1d array
+//                 imageData_data_1d = imageData.data; ///v
+//                 imageData_original2_data_1d = imageData_original2.data; ///v
+//                 imageData_original1_data_1d = imageData_original1.data; ///v
 
-                logprint();
+//                 logprint();
 
-            }           
-        }
-    });
-});
+//             }           
+//         }
+//     });
+// });
 
 
 
-function loadsampleimage() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');        
-    image.src = 'images/wlop2.jpg'; // set src to blob 
-    //image.class = "image_display";
+// function loadsampleimage() {
+//     let canvas = document.getElementById('cv2');
+//     let ctx = canvas.getContext('2d');        
+//     image.src = 'images/wlop2.jpg'; // set src to blob 
+//     //image.class = "image_display";
 
     
-    canvas.style.width = "100%";
-    // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
+//     canvas.style.width = "100%";
+//     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
     
     
-    image.onload = () => {
-        URL.revokeObjectURL(image.src);
+//     image.onload = () => {
+//         URL.revokeObjectURL(image.src);
         
-        //adjust canvas dimension
-        canvas.height = image.height;
-        canvas.width = image.width;
+//         //adjust canvas dimension
+//         canvas.height = image.height;
+//         canvas.width = image.width;
         
         
-        //put an image and its left, top location
-        ctx.drawImage(image, 0, 0);
+//         //put an image and its left, top location
+//         ctx.drawImage(image, 0, 0);
         
-        //get imageData
-        imageData = ctx.getImageData(0, 0, image.width, image.height);
-        imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-        imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
+//         //get imageData
+//         imageData = ctx.getImageData(0, 0, image.width, image.height);
+//         imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+//         imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
 
-        //write 1d array (ditch it? just use 2d array on all image filters?)
-        imageData_data_1d = imageData.data; ///v
-        imageData_original2_data_1d = imageData_original2.data; ///v
-        imageData_original1_data_1d = imageData_original1.data; ///v
+//         //write 1d array (ditch it? just use 2d array on all image filters?)
+//         imageData_data_1d = imageData.data; ///v
+//         imageData_original2_data_1d = imageData_original2.data; ///v
+//         imageData_original1_data_1d = imageData_original1.data; ///v
 
-        logprint();
+//         logprint();
 
-    }
-}
-// var c = document.getElementById("cv2");
-// var ctx = c.getContext("2d");
+//     }
+// }
+// // var c = document.getElementById("cv2");
+// // var ctx = c.getContext("2d");
 
-// // Create gradient
-// var grd = ctx.createLinearGradient(0,0,200,0);
-// grd.addColorStop(0,"red");
-// grd.addColorStop(1,"white");
+// // // Create gradient
+// // var grd = ctx.createLinearGradient(0,0,200,0);
+// // grd.addColorStop(0,"red");
+// // grd.addColorStop(1,"white");
 
-// // Fill with gradient
-// ctx.fillStyle = grd;
-// ctx.fillRect(10,10,150,80);
+// // // Fill with gradient
+// // ctx.fillStyle = grd;
+// // ctx.fillRect(10,10,150,80);
 
 
 
