@@ -86,8 +86,10 @@ window.addEventListener('load', function()
             }           
         }
     });
-});
 
+    
+    
+});
 
 
 function loadsampleimage() {
@@ -95,7 +97,7 @@ function loadsampleimage() {
     let ctx = canvas.getContext('2d');        
     image.src = 'images/wlop2.jpg'; // set src to blob 
     //image.class = "image_display";
-
+    
     
     canvas.style.width = "100%";
     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
@@ -139,6 +141,15 @@ function loadsampleimage() {
 // ctx.fillRect(10,10,150,80);
 
 
+
+
+
+let num1 = 0;
+//works when using onchange in input element
+function vnun2() {
+    num1 += 1;
+    console.log('image uploaded ' + num1 + " ");
+}
 
 
 //works
@@ -501,15 +512,12 @@ function reset() {
 
 
 
-///Onchange
-
 function Onchange_Slider_Brightness()
 {
     let input_value = document.getElementById('slider_Brightness').value;
     document.getElementById('text_Brightness').value = input_value;
+
 }
-
-
 function Onchange_Text_Brightness() {
     let input_value = document.getElementById('text_Brightness').value;
 
