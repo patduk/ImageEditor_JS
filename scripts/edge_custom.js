@@ -8,8 +8,8 @@ function edge_custom() {
     let counter2 = 0;
 
     //0 - 1.0 store to undolist
-    image_redolist = [];
-    image_undolist.push(imageData);
+    Image_redo = [];
+    Image_undo.push(imageData);
     logprint();
     
     // 3.0

@@ -13,9 +13,9 @@ function edge_normal() {
    let counter1 = 0;
    let counter2 = 0;
 
-   image_redolist = [];
+   Image_undo = [];
    //1.0 store to undolist
-   image_undolist.push(imageData);
+   Image_redo.push(imageData);
    logprint();
    
    //"initialize" imageData
