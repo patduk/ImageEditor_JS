@@ -13,10 +13,11 @@ function edge_normal() {
    let counter1 = 0;
    let counter2 = 0;
 
-   Image_undo = [];
+   Image_redo = [];
    //1.0 store to undolist
-   Image_redo.push(imageData);
+   Image_undo.push(imageData);
    logprint();
+   
    
    //"initialize" imageData
    //ctx.getImageData(starting left, starting top, capture w, capture h)

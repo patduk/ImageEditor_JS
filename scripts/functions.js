@@ -27,6 +27,7 @@ let DictV = {};
 DictV['IncV'] = 0; //0 = false, 1 = true
 DictV['ContrastV'] = 0;
 DictV['BrightnessV'] = 0;
+DictV['OpacityV'] = 0;
 DictV['RedV'] = 0;
 DictV['GreenV'] = 0;
 DictV['BlueV'] = 0;
@@ -60,15 +61,37 @@ let BlueV_redo = [];
 
 
 function logprint() {
-    let pow3 = document.getElementById('pow3');
-    pow3.innerHTML = "Image_undo: " + Image_undo.length + "</br>Image_redo: " + Image_redo.length + "</br>";
+    
+    let pow1 = document.getElementById('pow1');
+    pow1.innerHTML = 
+    "undo/redo lists:" + "</br>" +
+    "Image_undo " + Image_undo.length + "</br>" +
+    IncV_undo + "</br>" +
+    ContrastV_undo + "</br>" +
+    BrightnessV_undo + "</br>" +
+    OpacityV_undo + "</br>" +
+    RedV_undo + "</br>" +
+    GreenV_undo + "</br>" +
+    BlueV_undo + "</br>" + 
+    "Image_redo " + Image_redo.length + "</br>" +
+    IncV_redo + "</br>" +
+    ContrastV_redo + "</br>" +
+    BrightnessV_redo + "</br>" +
+    OpacityV_redo + "</br>" +
+    RedV_redo + "</br>" +
+    GreenV_redo + "</br>" +
+    BlueV_redo + "</br>"
+
 
     let pow2 = document.getElementById('pow2');
-    pow2.innerHTML = imageData.data.length/4 +  "*4 (data.length) </br> " + image.width*image.height +  " (w*h) </br> " + image.width + " (width) </br> " + image.height + " (height) </br>";
+    pow2.innerHTML = 
+    imageData.data.length/4 + "*4 (data.length) </br> " + 
+    image.width*image.height +  " (w*h) </br> " + image.width + " (width) </br> " + 
+    image.height + " (height) </br>";
 
-    // let pow1 = document.getElementById('pow1');
-    // pow1.innerHTML = image.src + "\n";
-    
+    let pow3 = document.getElementById('pow3');
+    pow3.innerHTML = "Baka";
+
 }
 
 
@@ -451,26 +474,44 @@ function undo() {
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
 
-        //1 store old imageData/attributes to redolist
-        Image_redo.push(imageData);
-        //pulling & deleting from undo list
-        let imageData_undo = Image_undo[Image_undo.length-1];
-        Image_undo.splice(Image_undo.length-1);
-        
-        
+
+        //1-1.2 store old imageData/attributes to redolist
+        Image_redo.push(imageData_original2);
+        IncV_redo.push(DictV["IncV"]);
+        ContrastV_redo.push(DictV["ContrastV"]);
+        BrightnessV_redo.push(DictV["BrightnessV"]);
+        OpacityV_redo.push(DictV["OpacityV"]);
+        RedV_redo.push(DictV["RedV"]);
+        GreenV_redo.push(DictV["GreenV"]);
+        BlueV_redo.push(DictV["BlueV"]);
+
+        //1.3, 1.4 (no need trim undo/redo lists' count to 3, no need to flatten)
+
         //prep an imageData (idk why it's needed)
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        
 
-        let data = imageData.data;
-        for (var i = 0; i < data.length; i += 4) {
-                data[i]     = imageData_undo.data[i];      // red
-                data[i + 1] = imageData_undo.data[i + 1];      // green
-                data[i + 2] = imageData_undo.data[i + 2];      // blue
-                data[i + 3] = imageData_undo.data[i + 3];      // alpha  
+        ////2 image - pulling & deleting from undo list
+        //// pop = get last element and delete it off from an array
+        let imageData_undo = Image_undo[Image_undo.length - 1]; 
+        for (var i = 0; i < imageData.data.length; i += 4) {
+            imageData.data[i]     = imageData_undo.data[i];      // red
+            imageData.data[i + 1] = imageData_undo.data[i + 1];      // green
+            imageData.data[i + 2] = imageData_undo.data[i + 2];      // blue
+            imageData.data[i + 3] = imageData_undo.data[i + 3];      // alpha  
         }
-        ctx.putImageData(imageData, 0, 0);
+        Image_undo.pop(); //delete last element
 
+        DictV["IncV"] = IncV_undo.pop(); //delete last element + set as new variable
+        DictV["ContrastV"] = ContrastV_undo.pop();
+        DictV["BrightnessV"] = BrightnessV_undo.pop();
+        DictV["OpacityV"] = OpacityV_undo.pop();
+        DictV["RedV"] = RedV_undo.pop();
+        DictV["GreenV"] = GreenV_undo.pop();
+        DictV["BlueV"] = BlueV_undo.pop();
+
+
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+        
         logprint();
     }
     
@@ -484,25 +525,43 @@ function redo() {
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
         
-        //1store old imageData/attributes to undolist
-        Image_undo.push(imageData);
-        //pulling & deleting from redo list
-        let imageData_redo = Image_redo[Image_redo.length-1];
-        Image_redo.splice(Image_redo.length-1);
+        
+        //1-1.2 store old imageData/attributes to undolist
+        Image_undo.push(imageData_original2);
+        IncV_undo.push(DictV["IncV"]);
+        ContrastV_undo.push(DictV["ContrastV"]);
+        BrightnessV_undo.push(DictV["BrightnessV"]);
+        OpacityV_undo.push(DictV["OpacityV"]);
+        RedV_undo.push(DictV["RedV"]);
+        GreenV_undo.push(DictV["GreenV"]);
+        BlueV_undo.push(DictV["BlueV"]);
 
+
+        ////1.3, 1.4 none (no need trim undo/redo lists' count to 3, no need to flatten)
 
         //prep an imageData (idk why it's needed)
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
 
-        let data = imageData.data;
-        for (var i = 0; i < data.length; i += 4) {
-                data[i]     = imageData_redo.data[i];      // red
-                data[i + 1] = imageData_redo.data[i + 1];      // green
-                data[i + 2] = imageData_redo.data[i + 2];      // blue
-                data[i + 3] = imageData_redo.data[i + 3];      // alpha  
+        ////2 imgsharp - pulling & deleting from redo list
+        let imageData_redo = Image_redo[Image_redo.length-1];
+        for (var i = 0; i < imageData.length; i += 4) {
+            imageData.data[i]     = imageData_redo.data[i];      // red
+            imageData.data[i + 1] = imageData_redo.data[i + 1];      // green
+            imageData.data[i + 2] = imageData_redo.data[i + 2];      // blue
+            imageData.data[i + 3] = imageData_redo.data[i + 3];      // alpha  
         }
-        ctx.putImageData(imageData, 0, 0);
+        Image_redo.pop(); //delete last element
+
+        DictV["IncV"] = IncV_redo.pop(); //delete last element + set as new variable
+        DictV["ContrastV"] = ContrastV_redo.pop();
+        DictV["BrightnessV"] = BrightnessV_redo.pop();
+        DictV["OpacityV"] = OpacityV_redo.pop();
+        DictV["RedV"] = RedV_redo.pop();
+        DictV["GreenV"] = GreenV_redo.pop();
+        DictV["BlueV"] = BlueV_redo.pop();
+
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
 
         logprint();
     }
