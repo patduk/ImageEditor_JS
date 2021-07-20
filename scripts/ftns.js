@@ -5,7 +5,6 @@ let showprocessing = false;
 let showerror = false;
 let is_FilterIncremental = false;
 
-
 let image = new Image();
 
 //some imageData
@@ -14,9 +13,9 @@ let imageData_original2;
 let imageData_original1;
 
 //1d array - working data
-let imageData_data_1d = [];
-let imageData_original2_data_1d = [];
-let imageData_original1_data_1d = []; 
+// let imageData_data_1d = [];
+// let imageData_original2_data_1d = [];
+// let imageData_original1_data_1d = []; 
 
 //2d array
 // let imageData_data_2d = [];
@@ -24,22 +23,19 @@ let imageData_original1_data_1d = [];
 // let imageData_original1_data_2d = [];
 
 let DictV = {};
-DictV['IncV'] = 0; //0 = false, 1 = true
-DictV['ContrastV'] = 0;
-DictV['BrightnessV'] = 0;
-DictV['OpacityV'] = 0;
-DictV['RedV'] = 0;
-DictV['GreenV'] = 0;
-DictV['BlueV'] = 0;
-// for (var key in DictV) {
-//     if (DictV.hasOwnProperty(key)) {
-//         console.log(key + " -> " + DictV[key]);
-//     }
-// }
+DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0};
+// DictV["IncV"] = 0; //0 = false, 1 = true
+// DictV["ContrastV"] = 0;
+// DictV["BrightnessV"] = 0;
+// DictV["OpacityV"] = 0;
+// DictV["RedV"] = 0;
+// DictV["GreenV"] = 0;
+// DictV["BlueV"] = 0;
+console.log(DictV);
 
 
 //undo lists
-let Image_undo = []; //store imageData or imageData.data?
+let Image_undo = []; //store imageData or imageData.data? imageData fornow
 let IncV_undo = [];
 let ContrastV_undo = [];
 let BrightnessV_undo = [];
@@ -65,7 +61,7 @@ function logprint() {
     let pow1 = document.getElementById('pow1');
     pow1.innerHTML = 
     "undo/redo lists:" + "</br>" +
-    "Image_undo " + Image_undo.length + "</br>" +
+    "Image_undo " + Image_undo + "</br>" +
     IncV_undo + "</br>" +
     ContrastV_undo + "</br>" +
     BrightnessV_undo + "</br>" +
@@ -73,14 +69,22 @@ function logprint() {
     RedV_undo + "</br>" +
     GreenV_undo + "</br>" +
     BlueV_undo + "</br>" + 
-    "Image_redo " + Image_redo.length + "</br>" +
+    "Image_redo " + Image_redo + "</br>" +
     IncV_redo + "</br>" +
     ContrastV_redo + "</br>" +
     BrightnessV_redo + "</br>" +
     OpacityV_redo + "</br>" +
     RedV_redo + "</br>" +
     GreenV_redo + "</br>" +
-    BlueV_redo + "</br>"
+    BlueV_redo + "</br>" +
+    "DictV: </br>" +
+    DictV["IncV"] + "</br>" +
+    DictV["ContrastV"] + "</br>" +
+    DictV["BrightnessV"] + "</br>" +
+    DictV["OpacityV"] + "</br>" +
+    DictV["RedV"] + "</br>" +
+    DictV["GreenV"] + "</br>" +
+    DictV["BlueV"] + "</br>";
 
 
     let pow2 = document.getElementById('pow2');
@@ -112,10 +116,7 @@ window.addEventListener('load', function()
             //canvas.style.width = "50%";
             
             //reset
-            Image_undo = [];
-            Image_redo = [];
-            
-            logprint();
+            ResetAllAttributes();
             
             image.onload = () => {
                 URL.revokeObjectURL(image.src);
@@ -126,25 +127,22 @@ window.addEventListener('load', function()
                                 
                 //put an image and its left, top location
                 ctx.drawImage(image, 0, 0);
-
-                //draw a box over the top (useful for 2d spheres?)
-                // ctx.fillStyle = "rgba(200, 0, 0, 0.33)";
-                // ctx.fillRect(12, 12, 80, 80);
                 
+                //draw a box over the top (useful for 2d spheres?)
+                // 
 
-                //get imageData
+                // //get imageData
                 imageData = ctx.getImageData(0, 0, image.width, image.height);
                 imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
                 imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
 
-                //write 1d array
-                imageData_data_1d = imageData.data; ///v
-                imageData_original2_data_1d = imageData_original2.data; ///v
-                imageData_original1_data_1d = imageData_original1.data; ///v
+                // //write 1d array (ditch it? just use 2d array on all image filters?)
+                // imageData_data_1d = imageData.data; ///v
+                // imageData_original2_data_1d = imageData_original2.data; ///v
+                // imageData_original1_data_1d = imageData_original1.data; ///v
 
                 logprint();
-
-            }           
+            }
         }
     });
 
@@ -156,12 +154,14 @@ window.addEventListener('load', function()
 function loadsampleimage() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');        
-    image.src = 'images/wlop2.jpg'; // set src to blob 
-    //image.class = "image_display";
-    
+
+    // set src to blob e
+    image.src = 'images/wlop2.jpg';   
+
     canvas.style.width = "100%";
     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
     
+    ResetAllAttributes();
     
     image.onload = () => {
         URL.revokeObjectURL(image.src);
@@ -170,313 +170,194 @@ function loadsampleimage() {
         canvas.height = image.height;
         canvas.width = image.width;
         
-        
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
-        
-        //get imageData
+
+        //draw a box over the top (useful for 2d spheres?)
+        //
+
+        // //get imageData
         imageData = ctx.getImageData(0, 0, image.width, image.height);
         imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
         imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
 
-        //write 1d array (ditch it? just use 2d array on all image filters?)
-        imageData_data_1d = imageData.data; ///v
-        imageData_original2_data_1d = imageData_original2.data; ///v
-        imageData_original1_data_1d = imageData_original1.data; ///v
+        // //write 1d array (ditch it? just use 2d array on all image filters?)
+        // imageData_data_1d = imageData.data; ///v
+        // imageData_original2_data_1d = imageData_original2.data; ///v
+        // imageData_original1_data_1d = imageData_original1.data; ///v
 
         logprint();
-
-    }
-}
-// var c = document.getElementById("cv2");
-// var ctx = c.getContext("2d");
-
-// // Create gradient
-// var grd = ctx.createLinearGradient(0,0,200,0);
-// grd.addColorStop(0,"red");
-// grd.addColorStop(1,"white");
-
-// // Fill with gradient
-// ctx.fillStyle = grd;
-// ctx.fillRect(10,10,150,80);
-
-
-
-
-
-let num1 = 0;
-//works when using onchange in input element
-function vnun2() {
-    num1 += 1;
-    console.log('image uploaded ' + num1 + " ");
-}
-
-
-//works
-function invert() {
-    //prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-
-    Image_redo = [];
-    
-    //1.0 store to undolist
-    Image_undo.push(imageData);
-    logprint();
-
-    
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    imageData_data_1d = imageData.data;
-
-    //3.0
-    
-    for (var i = 0; i < imageData_data_1d.length; i += 4) {
-        imageData_data_1d[i]     = 255 - imageData_data_1d[i];        // red
-        imageData_data_1d[i + 1] = 255 - imageData_data_1d[i + 1];    // green
-        imageData_data_1d[i + 2] = 255 - imageData_data_1d[i + 2];    // blue
-        imageData_data_1d[i + 3] = imageData_data_1d[i + 3];          // alpha
-    }
-    ctx.putImageData(imageData, 0, 0);
+    }   
 }
 
 
 
-//works
-function filter1() {
-    //prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-
-    Image_redo = [];
-
-    //1.0 store to undolist
-    Image_undo.push(imageData);
-    logprint();
-
-    //??
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    const data = imageData.data;
-
-    //3.0.2
-    let x = 0; 
-    let y = 0;
-    // 4 = multiply by 4 if using image.width
-    //for (var i = 0; i < (data.length); i += 4) {
-    // OR
-    for (var i = 0; i < (image.height * (image.width*4)); i += 4) 
-    {
-        //do custom logic here
-
-        //custom logic example: draw red right border 
-        if (x > (image.width*4 - 1) - 1*4) {
-            imageData.data[i]     += 40;                    // red
-            imageData.data[i + 1] += 0;                    // green
-            imageData.data[i + 2] += 0;                    // blue
-            imageData.data[i + 3] = imageData.data[i + 3];  // alpha
-
-        } 
-        //custom logic example: draw red bottom border
-        if (y > (image.height - 1) - 1) {
-            imageData.data[i]     += 40;                    // red
-            imageData.data[i + 1] += 0;                    // green
-            imageData.data[i + 2] += 0;                    // blue
-            imageData.data[i + 3] = imageData.data[i + 3];  // alpha
-        }
-
-        //counter/reset x and y
-        x += 4;
-        if (x > (image.width*4) - 1) {
-            x = 0;
-            y++;
-        }
-    }
-    ctx.putImageData(imageData, 0, 0);
 
 
-}
+
 
 //normal edge detection function here - moved to separate js file
 //custom edge detection function here - moved
+//oil paint function here - moved
 
 
-//stolen from stackoverflow https://stackoverflow.com/questions/24222556/apply-a-oil-paint-sketch-effect-to-a-photo-using-javascript 
-function oilpaint(radius, intensity) {
-    //prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-    // Image_redo = [];
-    // //1.0 store to undolist
-    // Image_undo.push(imageData);
-    // logprint();
 
-
-    let width = canvas.width,
-        height = canvas.height,
-        imgData = ctx.getImageData(0, 0, width, height),
-        pixData = imgData.data,
-        destCanvas = document.createElement("canvas"),
-        dCtx = destCanvas.getContext("2d"),
-        pixelIntensityCount = [];
-
-    destCanvas.width = width;
-    destCanvas.height = height;
-
-    // for demo purposes, remove this to modify the original canvas
-    //document.body.appendChild(destCanvas);
-
-    var destImageData = dCtx.createImageData(width, height),
-        destPixData = destImageData.data,
-        intensityLUT = [],
-        rgbLUT = [];
-
-    for (var y = 0; y < height; y++) {
-        intensityLUT[y] = [];
-        rgbLUT[y] = [];
-        for (var x = 0; x < width; x++) {
-            var idx = (y * width + x) * 4,
-                r = pixData[idx],
-                g = pixData[idx + 1],
-                b = pixData[idx + 2],
-                avg = (r + g + b) / 3;
-
-            intensityLUT[y][x] = Math.round((avg * intensity) / 255);
-            rgbLUT[y][x] = {
-                r: r,
-                g: g,
-                b: b
-            };
-        }
-    }
-
-
-    for (y = 0; y < height; y++) {
-        for (x = 0; x < width; x++) {
-
-            pixelIntensityCount = [];
-
-            // Find intensities of nearest pixels within radius.
-            for (var yy = -radius; yy <= radius; yy++) {
-                for (var xx = -radius; xx <= radius; xx++) {
-                    if (y + yy > 0 && y + yy < height && x + xx > 0 && x + xx < width) {
-                        var intensityVal = intensityLUT[y + yy][x + xx];
-
-                        if (!pixelIntensityCount[intensityVal]) {
-                            pixelIntensityCount[intensityVal] = {
-                                val: 1,
-                                r: rgbLUT[y + yy][x + xx].r,
-                                g: rgbLUT[y + yy][x + xx].g,
-                                b: rgbLUT[y + yy][x + xx].b
-                            }
-                        } else {
-                            pixelIntensityCount[intensityVal].val++;
-                            pixelIntensityCount[intensityVal].r += rgbLUT[y + yy][x + xx].r;
-                            pixelIntensityCount[intensityVal].g += rgbLUT[y + yy][x + xx].g;
-                            pixelIntensityCount[intensityVal].b += rgbLUT[y + yy][x + xx].b;
-                        }
-                    }
-                }
-            }
-
-            pixelIntensityCount.sort(function (a, b) {
-                return b.val - a.val;
-            });
-
-            var curMax = pixelIntensityCount[0].val,
-                dIdx = (y * width + x) * 4;
-
-            destPixData[dIdx] = ~~ (pixelIntensityCount[0].r / curMax);
-            destPixData[dIdx + 1] = ~~ (pixelIntensityCount[0].g / curMax);
-            destPixData[dIdx + 2] = ~~ (pixelIntensityCount[0].b / curMax);
-            destPixData[dIdx + 3] = 255;
-        }
-    }
-
-    // change this to ctx to instead put the data on the original canvas
-    //dCtx.putImageData(destImageData, 0, 0);
-    imageData = destImageData;
-    ctx.putImageData(destImageData, 0, 0);
-    
-}
-
-
-//psuedo 2d array way
+//psuedo 2d array way - testing
 function lighten() {
-    ///////////////////////////////////////////
-    
-    //prep canvas and ctx (idk why its needed)
+    ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-
-    Image_redo = [];
-    //1.0 store to undolist
-    Image_undo.push(imageData);
-    logprint();
-
-    //set up
-    let height = image.height -1;
-    let width = image.width -1;
-
-    //////////////////////////////////////////
-
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
     imageData = ctx.getImageData(0, 0, image.width, image.height);
-    let data = imageData.data;   
+    
+    ////1.0-1.4
+    ClearRedo();                   //0.8
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
+        DictV[key] = 0;
+    }
+    //logprint();
 
-    //edit 2
-    for (let y = 0; y < image.height; y ++)
-    {
-        for (let x = 0; x < image.width; x ++) 
-        {
+
+    ////3.0 edit    
+    for (let y = 0; y < image.height; y ++) {
+        for (let x = 0; x < image.width; x ++) {
             //use formula (y * image.width * 4) + x + 0/1/2 for data[i+0/1/2] to use double for-loops of x and y on imagedata 1d array
             
             ////logic example 1
             let formula = (y*image.width*4)+x*4;
-            data[formula+0] += 10;
-            data[formula+1] += 0;
-            data[formula+2] += 0;
-            
-            ////logic example 2
-            //if (y > image.height-2) {   
-            if (y > height-1) {    
-                data[formula+0] += 244;
-                data[formula+1] += 10;
-                data[formula+2] += 244;
-            }
-            //if (x > image.width-2) {
-            if (x > width-1) {
-                data[formula+0] += 244;
-                data[formula+1] += 10;
-                data[formula+2] += 244
-            }
+            imageData.data[formula+0] += 10;
+            imageData.data[formula+1] += 0;
+            imageData.data[formula+2] += 0;
         }
     }
     
+    ////4 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+
     ctx.putImageData(imageData, 0, 0);
+
 }
 
 
+////////////
+///////////
 
 
+function undo2() {
+    if (Image_undo.length > 0) {
+
+        let canvas = document.getElementById('cv2'); 
+        let ctx = canvas.getContext('2d');
+        imageData = ctx.getImageData(0, 0, image.width, image.height); 
+        
+        ////push to redo lists
+        
+        Image_redo.push(imageData);
+        IncV_redo.push(DictV["IncV"]);
+        ContrastV_redo.push(DictV["ContrastV"]);
+        BrightnessV_redo.push(DictV["BrightnessV"]);
+        OpacityV_redo.push(DictV["OpacityV"]);
+        RedV_redo.push(DictV["RedV"]);
+        GreenV_redo.push(DictV["GreenV"]);
+        BlueV_redo.push(DictV["BlueV"]);
+
+        ////pull and delete from undo lists
+        
+        imageData = Image_undo.pop();
+        DictV["IncV"] = IncV_undo.pop(); //delete last element + set as new variable
+        DictV["ContrastV"] = ContrastV_undo.pop();
+        DictV["BrightnessV"] = BrightnessV_undo.pop();
+        DictV["OpacityV"] = OpacityV_undo.pop();
+        DictV["RedV"] = RedV_undo.pop();
+        DictV["GreenV"] = GreenV_undo.pop();
+        DictV["BlueV"] = BlueV_undo.pop();
+
+        ////update image display
+        ctx.putImageData(imageData, 0, 0);
+        
+
+        // ////3
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+        
+        ////5
+        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
+
+        logprint();
+    }
+
+}
+
+function redo2() {
+    if (Image_redo.length > 0) {
+        
+        let canvas = document.getElementById('cv2'); 
+        let ctx = canvas.getContext('2d');
+        imageData = ctx.getImageData(0, 0, image.width, image.height); 
+
+        ////push to undo lists
+        
+        Image_undo.push(imageData);
+        IncV_undo.push(DictV["IncV"]);
+        ContrastV_undo.push(DictV["ContrastV"]);
+        BrightnessV_undo.push(DictV["BrightnessV"]);
+        OpacityV_undo.push(DictV["OpacityV"]);
+        RedV_undo.push(DictV["RedV"]);
+        GreenV_undo.push(DictV["GreenV"]);
+        BlueV_undo.push(DictV["BlueV"]);
+        
+        ////pull and delete from undo lists
+                
+        imageData = Image_redo.pop();
+        DictV["IncV"] = IncV_redo.pop(); //delete last element + set as new variable
+        DictV["ContrastV"] = ContrastV_redo.pop();
+        DictV["BrightnessV"] = BrightnessV_redo.pop();
+        DictV["OpacityV"] = OpacityV_redo.pop();
+        DictV["RedV"] = RedV_redo.pop();
+        DictV["GreenV"] = GreenV_redo.pop();
+        DictV["BlueV"] = BlueV_redo.pop();
+
+        ////update image display 
+        ctx.putImageData(imageData, 0, 0);
+        
+        ////3
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+        
+        ////5
+        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
+
+        logprint();
+    }
+
+}
 
 function undo() {
     if (Image_undo.length > 0) {
         //prep canvas and ctx (idk why its needed)
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
-
-
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
         //1-1.2 store old imageData/attributes to redolist
+        ////way1
+        // let imageData_temporary = ctx.getImageData(0, 0, image.width, image.height);
+        // for (let y = 0; y < image.height; y++) {
+        //     for (let x = 0; x < image.width; x++) {
+        //         let formula = (y*image.width*4)+x*4;
+        //         imageData_temporary.data[formula+0] = imageData_original2.data[formula+0];
+        //         imageData_temporary.data[formula+1] = imageData_original2.data[formula+1];
+        //         imageData_temporary.data[formula+2] = imageData_original2.data[formula+2];
+        //         imageData_temporary.data[formula+3] = imageData_original2.data[formula+3];
+        //     }
+        // }
+        // Image_redo.push(imageData_temporary);
+        ////way2
         Image_redo.push(imageData_original2);
+       
         IncV_redo.push(DictV["IncV"]);
         ContrastV_redo.push(DictV["ContrastV"]);
         BrightnessV_redo.push(DictV["BrightnessV"]);
@@ -488,19 +369,24 @@ function undo() {
         //1.3, 1.4 (no need trim undo/redo lists' count to 3, no need to flatten)
 
         //prep an imageData (idk why it's needed)
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        //
 
         ////2 image - pulling & deleting from undo list
         //// pop = get last element and delete it off from an array
-        let imageData_undo = Image_undo[Image_undo.length - 1]; 
-        for (var i = 0; i < imageData.data.length; i += 4) {
-            imageData.data[i]     = imageData_undo.data[i];      // red
-            imageData.data[i + 1] = imageData_undo.data[i + 1];      // green
-            imageData.data[i + 2] = imageData_undo.data[i + 2];      // blue
-            imageData.data[i + 3] = imageData_undo.data[i + 3];      // alpha  
-        }
-        Image_undo.pop(); //delete last element
+        
+        let imageData_undo = Image_undo[Image_undo.length -1];
+        Image_undo.pop(); 
 
+        for (let y = 0; y < image.height; y ++) {
+            for (let x = 0; x < image.width; x ++) {
+                let formula = (y*image.width*4)+x*4;
+                imageData.data[formula]     = imageData_undo.data[formula];      // red
+                imageData.data[formula + 1] = imageData_undo.data[formula + 1];      // green
+                imageData.data[formula + 2] = imageData_undo.data[formula + 2];      // blue
+                imageData.data[formula + 3] = imageData_undo.data[formula + 3];      // 
+            }
+        }
+        
         DictV["IncV"] = IncV_undo.pop(); //delete last element + set as new variable
         DictV["ContrastV"] = ContrastV_undo.pop();
         DictV["BrightnessV"] = BrightnessV_undo.pop();
@@ -509,9 +395,13 @@ function undo() {
         DictV["GreenV"] = GreenV_undo.pop();
         DictV["BlueV"] = BlueV_undo.pop();
 
-
+        ////3
         ApplyBaseImageAndIncrementalFiltersToCurrentImage();
         
+        ////5
+        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
+
+        ctx.putImageData(imageData, 0, 0);
         logprint();
     }
     
@@ -540,18 +430,20 @@ function redo() {
         ////1.3, 1.4 none (no need trim undo/redo lists' count to 3, no need to flatten)
 
         //prep an imageData (idk why it's needed)
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        //imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
 
         ////2 imgsharp - pulling & deleting from redo list
-        let imageData_redo = Image_redo[Image_redo.length-1];
+        //let imageData_redo = Image_redo[Image_redo.length-1];
+        let imageData_redo = Image_redo.pop();
+
         for (var i = 0; i < imageData.length; i += 4) {
             imageData.data[i]     = imageData_redo.data[i];      // red
             imageData.data[i + 1] = imageData_redo.data[i + 1];      // green
             imageData.data[i + 2] = imageData_redo.data[i + 2];      // blue
             imageData.data[i + 3] = imageData_redo.data[i + 3];      // alpha  
         }
-        Image_redo.pop(); //delete last element
+        //Image_redo.pop(); //delete last element
 
         DictV["IncV"] = IncV_redo.pop(); //delete last element + set as new variable
         DictV["ContrastV"] = ContrastV_redo.pop();
@@ -562,6 +454,8 @@ function redo() {
         DictV["BlueV"] = BlueV_redo.pop();
 
         ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+
+        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
 
         logprint();
     }
@@ -576,8 +470,10 @@ function reset() {
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-    Image_redo = [];
+    
 
+    ClearRedo();
+    
     //1.0 store to undolist
     Image_undo.push(imageData);
     
@@ -599,20 +495,29 @@ function reset() {
     logprint();
 }
 
-function save() {
-
-}
-
-
-
-
+//////////
+//////////
 
 
 
 function SaveAttributesToUndoLists() //1-1.4
 {
-    ////1
-    ////saving imgSharp_original2 to Image undo list:
+    //1-1.2 store old imageData/attributes to redolist
+
+    ////way1
+    // let imageData_temporary = ctx.getImageData(0, 0, image.width, image.height);
+    // for (let y = 0; y < image.height; y++) {
+    //     for (let x = 0; x < image.width; x++) {
+    //         let formula = (y*image.width*4)+x*4;
+    //         imageData_temporary.data[formula+0] = imageData_original2.data[formula+0];
+    //         imageData_temporary.data[formula+1] = imageData_original2.data[formula+1];
+    //         imageData_temporary.data[formula+2] = imageData_original2.data[formula+2];
+    //         imageData_temporary.data[formula+3] = imageData_original2.data[formula+3];
+    //     }
+    // }
+    // Image_undo.push(imageData_temporary);
+    
+    ////OR way2
     Image_undo.push(imageData_original2);
 
     ////1.2
@@ -637,8 +542,9 @@ function SaveAttributesToUndoLists() //1-1.4
     // if (BlueV_undo.length > num_limit) { BlueV_undo.shift(); }
 
     ////1.4 (put this on undo/redo? no)
-    // if (DictV["IncV"] == 1 && is_FilterIncremental == false)
-    //     Flatten();
+
+    if (DictV["IncV"] === 1 && is_FilterIncremental === false)
+        flatten();
 
 }
 
@@ -654,19 +560,46 @@ function ClearRedo() //ok
     BlueV_redo = [];
 }
 
-function flatten() //looks good
+function ResetAllAttributes() //ok
+{
+    Image_undo = [];
+    IncV_undo = [];
+    ContrastV_undo = [];
+    BrightnessV_undo = [];
+    OpacityV_undo = [];
+    RedV_undo = [];
+    GreenV_undo = [];
+    BlueV_undo = [];
+
+    Image_redo = [];
+    IncV_redo = [];
+    ContrastV_redo = [];
+    BrightnessV_redo = [];
+    OpacityV_redo = [];
+    RedV_redo = [];
+    GreenV_redo = [];
+    BlueV_redo = [];
+
+    for (key in DictV) {
+        DictV[key] = 0;
+    }
+}
+
+
+
+function flatten() //need fix
 {
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    // let imageData_data_1d = imageData.data;
-
+    
+    //imageData = ctx.getImageData(0, 0, image.width, image.height);
     ClearRedo();                   //0.8
     is_FilterIncremental = true;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
+    logprint();
 
     ////2 reset all incremental filter attributes to 0
     for (key in DictV)
@@ -674,6 +607,13 @@ function flatten() //looks good
         DictV[key] = 0;
     }
     
+    
+    // let imageData_data_1d = imageData.data;
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+    //let data = imageData.data;   
+    
+
     ////2.5 (imgSharp_original2 = imgSharp)
     for (let y = 0; y < image.height; y++)
     {
@@ -683,34 +623,46 @@ function flatten() //looks good
             imageData_original2.data[formula+0] = imageData.data[formula+0];
             imageData_original2.data[formula+1] = imageData.data[formula+1];
             imageData_original2.data[formula+2] = imageData.data[formula+2]; 
+            imageData_original2.data[formula+3] = imageData.data[formula+3];
         }
     }
-
+    //ctx.putImageData(imageData_original2, 0, 0);
+    
     ////3 no action needed (imgSharp = imgSharp_original2
 
     ////way1 - call javascript function invokevoidasync, reset slider position and text value
     JS_resetsliderpositionandtextvalue_Brightness();
+
+    
 }
 
 function Flatten_nosavingtoundo() //looks good
 {
-    ////2 reset all incremental filter attributes to 0
-    for (a in DictV)
+    ////canvas and ctx for 2.5 WAY 1 - no needed
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    //imageData = ctx.getImageData(0, 0, image.width, image.height);      
+
+    ////2 reset all incremental filter attributes to 0 - no needed?
+    for (key in DictV)
     {
-        DictV[a] = 0;
+        DictV[key] = 0;
     }
 
     ////2.5 (imgSharp_original2 = imgSharp)
-    for (let y = 0; y < imgSharp_original2.Height; y++)
-    {
-        for (let x = 0; x < imgSharp_original2.Width; x++)
-        {
-            let formula = (y*image.width*4)+x*4;
-            imageData_original2.data[formula+0] = imageData.data[formula+0];
-            imageData_original2.data[formula+1] = imageData.data[formula+1];
-            imageData_original2.data[formula+2] = imageData.data[formula+2];  
-        }
-    }
+    //WAY 1 - no working
+    // for (let y = 0; y < image.height; y++)
+    // {
+    //     for (let x = 0; x < image.idth; x++)
+    //     {
+    //         let formula = (y*image.width*4)+x*4;
+    //         imageData_original2.data[formula+0] = imageData.data[formula+0];
+    //         imageData_original2.data[formula+1] = imageData.data[formula+1];
+    //         imageData_original2.data[formula+2] = imageData.data[formula+2];  
+    //     }
+    // }
+    ////WAY 2 - works
+    imageData_original2 = imageData;
 
     ////3 no action needed (imgSharp = imgSharp_original2
 
@@ -720,6 +672,34 @@ function Flatten_nosavingtoundo() //looks good
 
 
 
+
+
+function Brightness(input_value)
+{
+    if (true) //displayimage
+    {           
+        for (let y = 0; y < image.height; y++) {
+            for (let x = 0; x < image.width; x++) {
+                let formula = (y*image.width*4)+x*4;
+
+                let red = imageData.data[formula+0] + input_value;
+                let green = imageData.data[formula+1] + input_value;
+                let blue = imageData.data[formula+2] + input_value;
+                
+                if (red > 255) { red = 255; }
+                else if (red < 0) { red = 0; }
+                if (green > 255) { green = 255; }
+                else if (green < 0) { green = 0; }
+                if (blue > 255) { blue = 255; }
+                else if (blue < 0) { blue = 0; }
+
+                imageData.data[formula+0] = red;
+                imageData.data[formula+1] = green;
+                imageData.data[formula+2] = blue;   
+            }
+        }
+    }
+}
 
 
 function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
@@ -727,16 +707,15 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
     ////3 edit image
     ////3 edit image
     
-
     //prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    // let imageData_data_1d = imageData.data;
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d');   
+    //imageData = ctx.getImageData(0,0,image.width,image.height); //- already done?
+    //imageData_original2  = ctx.getImageData(0,0,image.width,image.height); //- already used in onchange?
+
 
     ////make imgSharp = imgSharp_original2 (base image) prior to adding incremental filters
+    ////WAY1
     for (let y = 0; y < image.height; y++)
     {
         for (let x = 0; x < image.width; x++)
@@ -748,6 +727,10 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
         }
     }
+    ////WAY2
+    //imageData = imageData_original2;
+
+
     ////adding incremental filters - try to make the codes shorter
     for (key in DictV)
     {
@@ -779,61 +762,27 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
     }
     //3 edit image
     //3 edit image
-    ctx.putImageData(imageData, 0, 0);
+    
+    //ctx.putImageData(imageData, 0, 0); //remove this cuz alreayd been used by undo and redo i guess
     
 }
 
-function Brightness(input_value)
-{
-    //prep canvas and ctx (idk why its needed)
-    //let canvas = document.getElementById('cv2'); 
-    //let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-
-    if (true) //displayimage
-    {
-        for (let y = 0; y < image.height; y++)
-        {
-            for (let x = 0; x < image.width; x++)
-            {
-                let formula = (y*image.width*4)+x*4;
-
-                let red = imageData.data[formula+0] + input_value;
-                let green = imageData.data[formula+1] + input_value;
-                let blue = imageData.data[formula+2] + input_value;
-
-                if (x < 40 && x > 20 && y === 3) {
-                    console.log(imageData.data[formula+0])
-                    console.log(red); 
-                }
-                
-                if (red > 255) { red = 255; }
-                else if (red < 0) { red = 0; }
-                if (green > 255) { green = 255; }
-                else if (green < 0) { green = 0; }
-                if (blue > 255) { blue = 255; }
-                else if (blue < 0) { blue = 0; }
-
-                imageData.data[formula+0] = red;
-                imageData.data[formula+1] = green;
-                imageData.data[formula+2] = blue;   
-            }
-        }
-        
-    }
-    
-}
 
 
 //onchange slider
 function Onchange_Slider_Brightness()
 {
+    ////999 prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    imageData = ctx.getImageData(0,0,image.width,image.height);
+    
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
     logprint();
     
+    ////2
     let input_value = parseInt(document.getElementById('slider_Brightness').value);
     document.getElementById('text_Brightness').value = input_value;
 
@@ -842,17 +791,23 @@ function Onchange_Slider_Brightness()
 
     ////3 edit image
     ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-
-    console.log("finished: Onchange_Slider_Brightness");
-
+    
+    ctx.putImageData(imageData, 0, 0);
 }
+
 function Onchange_Text_Brightness() 
 {
+    ////999 prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    imageData = ctx.getImageData(0,0,image.width,image.height);
+
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
     logprint();
 
+    ////2
     let input_value = parseInt(document.getElementById('text_Brightness').value);
     if (input_value > 255) {
         input_value = 255;
@@ -867,15 +822,20 @@ function Onchange_Text_Brightness()
     DictV["IncV"] = 1;
 	DictV["BrightnessV"] = input_value;
 
+
     ////3 edit image
     ApplyBaseImageAndIncrementalFiltersToCurrentImage();
 
-    console.log("finished: Onchange_Text_Brightness");
+    ctx.putImageData(imageData, 0, 0);
 }
-
 
 
 function JS_resetsliderpositionandtextvalue_Brightness() {
     document.getElementById('slider_Brightness').value = 0;
     document.getElementById('text_Brightness').value = 0;
+}
+
+function JS_changesliderpositionandtextvalue_Brightness(n) {
+    document.getElementById('slider_Brightness').value = n;
+	document.getElementById('text_Brightness').value = n;
 }

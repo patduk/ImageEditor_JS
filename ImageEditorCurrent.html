@@ -1,7 +1,8 @@
 <head>
-    <script src="scripts/functions.js"></script>
-    <script src="scripts/edge_normal.js"></script>
-    <script src="scripts/edge_custom.js"></script>
+    <script src="scripts/ftns.js"></script>
+    <script src="scripts/ftn_edge_normal.js"></script>
+    <script src="scripts/ftn_edge_custom.js"></script>
+    <script src="scripts/ftn_oilpaint.js"></script>
 
     <link href="styles/NavMenu.css"> 
     <link href="styles/style.css" >
@@ -40,9 +41,9 @@
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' onchange="vnun2()" /> 
         </br>
         </br>
-        <button onclick="filter1()" >filter 1</button>
+        <!-- <button onclick="filter1()" >filter 1</button>
         <button onclick="filter2()" >filter 2</button>
-        <button onclick="invert()" >invert</button>
+        <button onclick="invert()" >invert</button> -->
         <button onclick="lighten()" >lighten</button>
         </br>
         <button onclick="edge_normal()" >line (normal)</button>
@@ -52,8 +53,10 @@
         <button onclick="gaussianblur()" >Gaussian Blur</button>
         <button onclick="oilpaint(1,10)" >oil paint</button>
         </br>
-        <button onclick="undo()" >undo</button>
-        <button onclick="redo()" >redo</button>
+        <!-- <button onclick="undo()" >undo</button>
+        <button onclick="redo()" >redo</button> -->
+        <button onclick="undo2()" >undo2</button>
+        <button onclick="redo2()" >redo2</button>
         <button onclick="reset()" >reset</button>
         <button onclick="flatten()" >flatten</button>
         </br></br>
