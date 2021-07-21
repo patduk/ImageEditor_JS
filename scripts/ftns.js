@@ -587,7 +587,7 @@ function ResetAllAttributes() //ok
 
 
 
-function flatten() //need fix
+function flatten() //need fix!
 {
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
