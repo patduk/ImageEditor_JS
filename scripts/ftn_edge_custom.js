@@ -1,33 +1,29 @@
 function edge_custom() {
-
-    let counter = 0;
-    let counter1 = 0;
-    let counter2 = 0;
-
-    //0 - 1.0 store to undolist
-    // Image_redo = [];
-    // Image_undo.push(imageData);
-    // logprint();
-
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
     
 
+    let counter = 0;
+    let counter1 = 0;
+    let counter2 = 0;
+
+
+    ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
-
-    //2.0
-    for (key in DictV)
-    {
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
         DictV[key] = 0;
     }
 
-
-    // 3.0
+    ////3.0 edit
     if (canvas.width <= 1200 && canvas.height <= 1800) {
         oilpaint(1,8);
     }
@@ -37,12 +33,12 @@ function edge_custom() {
     else {
         oilpaint(2,15)
     }
-
-    // 3.0
-    imageData = ctx.getImageData(0, 0, image.width, image.height); //update image 
-    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height); //update image (to oil paint filtered image)
     
 
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height); //update image (to oil paint filtered image)
+
+    
+    ////3.0 edit (setup)
     let height = image.height -1;
     let width = image.width -1;
     
@@ -71,9 +67,8 @@ function edge_custom() {
     let Gxy_sum_final_Blue = 0;
 
 
-    //////
-    //////
-    //UX:
+    ////// 
+    ////// GUI
     let customBGcolor_R = 0; //0-255
     let customBGcolor_G = 0; //0-255
     let customBGcolor_B = 0; //0-255
@@ -87,10 +82,8 @@ function edge_custom() {
     let use_blackline = false;
     let cutoff = 20; //10-20% of 255 recommended 20-50
     let use_linecolorcorrection = true;
+    ////// GUI
     //////
-    //////
-
-    
 
 
     //auto mode for use_blackline (for better user experinece):
@@ -107,7 +100,8 @@ function edge_custom() {
         customlineshadowcolor_B_m *= -1;
     }
 
-    // adjsut customlineshadowcolor - limit excessive bright colors, rebalance other line colors:
+
+    // adjust customlineshadowcolor - limit excessive bright colors, rebalance other line colors:
     //limit excessive bright colors
     let max1 = 84;
     if (customlineshadowcolor_R_m > max1) {customlineshadowcolor_R_m = max1; }
@@ -126,7 +120,7 @@ function edge_custom() {
     customlineshadowcolor_B_m -= helper_G/2;
 
 
-            
+    ////3.0 edit 
     for (let y = 0; y < image.height; y ++) {
         for (let x = 0; x < image.width; x ++) {
 
@@ -385,6 +379,12 @@ function edge_custom() {
         } //x end
     } //y end
 
-    console.log("counter1: " + counter1);
+
+
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+
     ctx.putImageData(imageData, 0, 0);
 }

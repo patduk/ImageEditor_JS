@@ -6,22 +6,20 @@ function oilpaint(radius, intensity) {
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-    
+    //imageData = ctx.getImageData(0, 0, image.width, image.height);
 
+    ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    SaveAttributesToUndoLists();   //1-1.4
-    for (key in DictV)
-    {
+    //SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
         DictV[key] = 0;
     }
 
-    //??
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
-    //imageData = ctx.getImageData(0, 0, image.width, image.height);
-    //const data = imageData.data;
-
-
+    ////3.0 edit?
     let width = canvas.width,
         height = canvas.height,
         imgData = ctx.getImageData(0, 0, width, height),
@@ -103,9 +101,13 @@ function oilpaint(radius, intensity) {
         }
     }
 
-    // change this to ctx to instead put the data on the original canvas
-    //dCtx.putImageData(destImageData, 0, 0);
+
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+
     imageData = destImageData;
-    ctx.putImageData(destImageData, 0, 0);
+    ctx.putImageData(imageData, 0, 0);  
     
 }

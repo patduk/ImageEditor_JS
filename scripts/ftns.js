@@ -212,7 +212,7 @@ function lighten() {
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     
     
-    ////1.0-1.4
+    ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
@@ -237,10 +237,11 @@ function lighten() {
         }
     }
     
-    ////4 affix
+
+    ////4.0 affix
     //imageData_original2 = imageData;
     Flatten_nosavingtoundo();
-
+    
     
     ctx.putImageData(imageData, 0, 0);
 }
@@ -599,13 +600,7 @@ function flatten() //need fix!
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-    // let imageData_data_1d = imageData.data;
     imageData = ctx.getImageData(0, 0, image.width, image.height);
-    //imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    //let data = imageData.data;   
-
 
     ////1.0-1.4
     ClearRedo();                   //0.8
@@ -637,17 +632,16 @@ function flatten() //need fix!
     
     ////3 no action needed (imgSharp = imgSharp_original2)
 
-    ////way1 - call javascript function invokevoidasync, reset slider position and text value
+    ////reset slider position and text value
     JS_resetsliderpositionandtextvalue_Brightness();
 
     ctx.putImageData(imageData, 0, 0);
-
 }
 
 function Flatten_nosavingtoundo() //looks good
 {     
-
-    ////2 reset all incremental filter attributes to 0 - no needed?
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    // no need?
     for (key in DictV)
     {
         DictV[key] = 0;
@@ -670,14 +664,15 @@ function Flatten_nosavingtoundo() //looks good
 
     ////3 no action needed (imgSharp = imgSharp_original2)
 
-    ////way1 - call javascript function invokevoidasync, reset slider position and text value
+    ////reset slider position and text value
     JS_resetsliderpositionandtextvalue_Brightness();
 }
 
 
 
+function Contrast(input_value) {
 
-
+}
 function Brightness(input_value)
 {
     if (true) //displayimage
@@ -704,22 +699,26 @@ function Brightness(input_value)
         }
     }
 }
+function Opacity(input_value) {
 
+}
+function Red(input_value) {
+
+}
+function Green(input_value) {
+
+}
+function Blue(input_value) {
+
+}
 
 function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 {
     ////3 edit image
     ////3 edit image
     
-    //prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');   
-    //imageData = ctx.getImageData(0,0,image.width,image.height); //- already done?
-    //imageData_original2  = ctx.getImageData(0,0,image.width,image.height); //- already used in onchange?
-
-
     ////make imgSharp = imgSharp_original2 (base image) prior to adding incremental filters
-    ////WAY1
+    ////WAY1 - works
     for (let y = 0; y < image.height; y++)
     {
         for (let x = 0; x < image.width; x++)
@@ -731,44 +730,39 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
         }
     }
-    ////WAY2
+    ////WAY2 - not working
     //imageData = imageData_original2;
-
 
     ////adding incremental filters - try to make the codes shorter
     for (key in DictV)
     {
-        // if (key == "ContrastV")
-        // {
-        //     Contrast(DictV[key]); //0.0-3.0
-        // }
+        if (key == "ContrastV")
+        {
+            Contrast(DictV[key]); //0.0-3.0
+        }
         if (key == "BrightnessV")
         {
-            Brightness(DictV[key]);
-            
+            Brightness(DictV[key]);  
         }
-        // if (key == "OpacityV")
-        // {
-        //     Opacity(DictV[key]);
-        // }
-        // if (key == "RedV")
-        // {
-        //     Red(DictV[key]);
-        // }
-        // if (key == "GreenV")
-        // {
-        //     Green(DictV[key]);
-        // }
-        // if (key == "BlueV")
-        // {
-        //     Blue(DictV[key]);
-        // }
+        if (key == "OpacityV")
+        {
+            Opacity(DictV[key]);
+        }
+        if (key == "RedV")
+        {
+            Red(DictV[key]);
+        }
+        if (key == "GreenV")
+        {
+            Green(DictV[key]);
+        }
+        if (key == "BlueV")
+        {
+            Blue(DictV[key]);
+        }
     }
     //3 edit image
-    //3 edit image
-    
-    //ctx.putImageData(imageData, 0, 0); //remove this cuz alreayd been used by undo and redo i guess
-    
+    //3 edit image   
 }
 
 
