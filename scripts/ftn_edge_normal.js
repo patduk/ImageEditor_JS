@@ -9,6 +9,12 @@ function edge_normal() {
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
 
+    //"update" imageData
+    //ctx.getImageData(starting left, starting top, capture w, capture h)
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+    //let data = imageData.data;
+    
     let counter = 0;
     let counter1 = 0;
     let counter2 = 0;
@@ -29,11 +35,7 @@ function edge_normal() {
 
     ////3.0 edit
     
-    //"update" imageData
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    //let data = imageData.data;
+    
 
     ///////////////////////////////////////////
 

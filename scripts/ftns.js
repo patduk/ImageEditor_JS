@@ -207,7 +207,10 @@ function lighten() {
     ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
     imageData = ctx.getImageData(0, 0, image.width, image.height);
+    
     
     ////1.0-1.4
     ClearRedo();                   //0.8
@@ -219,8 +222,6 @@ function lighten() {
     for (key in DictV) { 
         DictV[key] = 0;
     }
-    //logprint();
-
 
     ////3.0 edit    
     for (let y = 0; y < image.height; y ++) {
@@ -229,9 +230,10 @@ function lighten() {
             
             ////logic example 1
             let formula = (y*image.width*4)+x*4;
-            imageData.data[formula+0] += 10;
-            imageData.data[formula+1] += 0;
+            imageData.data[formula+0] += 0;
+            imageData.data[formula+1] += 25;
             imageData.data[formula+2] += 0;
+            imageData.data[formula+3] += 0;
         }
     }
     
@@ -239,8 +241,8 @@ function lighten() {
     //imageData_original2 = imageData;
     Flatten_nosavingtoundo();
 
+    
     ctx.putImageData(imageData, 0, 0);
-
 }
 
 
@@ -257,7 +259,7 @@ function undo2() {
         
         ////push to redo lists
         
-        Image_redo.push(imageData);
+        Image_redo.push(imageData_original2); //ff
         IncV_redo.push(DictV["IncV"]);
         ContrastV_redo.push(DictV["ContrastV"]);
         BrightnessV_redo.push(DictV["BrightnessV"]);
@@ -268,7 +270,7 @@ function undo2() {
 
         ////pull and delete from undo lists
         
-        imageData = Image_undo.pop();
+        imageData_original2 = Image_undo.pop(); //ff
         DictV["IncV"] = IncV_undo.pop(); //delete last element + set as new variable
         DictV["ContrastV"] = ContrastV_undo.pop();
         DictV["BrightnessV"] = BrightnessV_undo.pop();
@@ -277,13 +279,14 @@ function undo2() {
         DictV["GreenV"] = GreenV_undo.pop();
         DictV["BlueV"] = BlueV_undo.pop();
 
+        
+        
+        // ////3
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage(); //make imageData => imageData_original2 + filters
+        
         ////update image display
         ctx.putImageData(imageData, 0, 0);
-        
 
-        // ////3
-        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-        
         ////5
         JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
 
@@ -299,9 +302,10 @@ function redo2() {
         let ctx = canvas.getContext('2d');
         imageData = ctx.getImageData(0, 0, image.width, image.height); 
 
+
         ////push to undo lists
-        
-        Image_undo.push(imageData);
+
+        Image_undo.push(imageData_original2); //ff
         IncV_undo.push(DictV["IncV"]);
         ContrastV_undo.push(DictV["ContrastV"]);
         BrightnessV_undo.push(DictV["BrightnessV"]);
@@ -311,9 +315,9 @@ function redo2() {
         BlueV_undo.push(DictV["BlueV"]);
         
         ////pull and delete from undo lists
-                
-        imageData = Image_redo.pop();
-        DictV["IncV"] = IncV_redo.pop(); //delete last element + set as new variable
+        //.pop() = delete last element + set as new variable
+        imageData_original2 = Image_redo.pop(); //ff       
+        DictV["IncV"] = IncV_redo.pop();
         DictV["ContrastV"] = ContrastV_redo.pop();
         DictV["BrightnessV"] = BrightnessV_redo.pop();
         DictV["OpacityV"] = OpacityV_redo.pop();
@@ -321,11 +325,11 @@ function redo2() {
         DictV["GreenV"] = GreenV_redo.pop();
         DictV["BlueV"] = BlueV_redo.pop();
 
-        ////update image display 
-        ctx.putImageData(imageData, 0, 0);
-        
-        ////3
+        / ////3
         ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+        
+        ////update image display
+        ctx.putImageData(imageData, 0, 0);
         
         ////5
         JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
@@ -502,7 +506,9 @@ function reset() {
 
 function SaveAttributesToUndoLists() //1-1.4
 {
+
     //1-1.2 store old imageData/attributes to redolist
+    
 
     ////way1
     // let imageData_temporary = ctx.getImageData(0, 0, image.width, image.height);
@@ -516,8 +522,7 @@ function SaveAttributesToUndoLists() //1-1.4
     //     }
     // }
     // Image_undo.push(imageData_temporary);
-    
-    ////OR way2
+    ////way2
     Image_undo.push(imageData_original2);
 
     ////1.2
@@ -544,7 +549,9 @@ function SaveAttributesToUndoLists() //1-1.4
     ////1.4 (put this on undo/redo? no)
 
     if (DictV["IncV"] === 1 && is_FilterIncremental === false)
-        flatten();
+        //flatten(); //?
+        Flatten_nosavingtoundo();
+
 
 }
 
@@ -594,54 +601,51 @@ function flatten() //need fix!
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-    
-    //imageData = ctx.getImageData(0, 0, image.width, image.height);
+    // let imageData_data_1d = imageData.data;
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    //imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+    //let data = imageData.data;   
+
+
+    ////1.0-1.4
     ClearRedo();                   //0.8
     is_FilterIncremental = true;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
     logprint();
 
-    ////2 reset all incremental filter attributes to 0
-    for (key in DictV)
-    {
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) {
         DictV[key] = 0;
     }
     
     
-    // let imageData_data_1d = imageData.data;
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    //let data = imageData.data;   
-    
-
     ////2.5 (imgSharp_original2 = imgSharp)
-    for (let y = 0; y < image.height; y++)
-    {
-        for (let x = 0; x < image.width; x++)
-        {
-            let formula = (y*image.width*4)+x*4;
-            imageData_original2.data[formula+0] = imageData.data[formula+0];
-            imageData_original2.data[formula+1] = imageData.data[formula+1];
-            imageData_original2.data[formula+2] = imageData.data[formula+2]; 
-            imageData_original2.data[formula+3] = imageData.data[formula+3];
-        }
-    }
-    //ctx.putImageData(imageData_original2, 0, 0);
+    ////WAY 1 - no working
+    // for (let y = 0; y < image.height; y++)
+    // {
+    //     for (let x = 0; x < image.width; x++)
+    //     {
+    //         let formula = (y*image.width*4)+x*4;
+    //         imageData_original2.data[formula+0] = imageData.data[formula+0];
+    //         imageData_original2.data[formula+1] = imageData.data[formula+1];
+    //         imageData_original2.data[formula+2] = imageData.data[formula+2]; 
+    //         imageData_original2.data[formula+3] = imageData.data[formula+3];
+    //     }
+    // }
+    ////WAY 2 - works
+    imageData_original2 = imageData;
     
-    ////3 no action needed (imgSharp = imgSharp_original2
+    ////3 no action needed (imgSharp = imgSharp_original2)
 
     ////way1 - call javascript function invokevoidasync, reset slider position and text value
     JS_resetsliderpositionandtextvalue_Brightness();
 
-    
+    ctx.putImageData(imageData, 0, 0);
+
 }
 
 function Flatten_nosavingtoundo() //looks good
-{
-    ////canvas and ctx for 2.5 WAY 1 - no needed
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    //imageData = ctx.getImageData(0, 0, image.width, image.height);      
+{     
 
     ////2 reset all incremental filter attributes to 0 - no needed?
     for (key in DictV)
@@ -664,7 +668,7 @@ function Flatten_nosavingtoundo() //looks good
     ////WAY 2 - works
     imageData_original2 = imageData;
 
-    ////3 no action needed (imgSharp = imgSharp_original2
+    ////3 no action needed (imgSharp = imgSharp_original2)
 
     ////way1 - call javascript function invokevoidasync, reset slider position and text value
     JS_resetsliderpositionandtextvalue_Brightness();
