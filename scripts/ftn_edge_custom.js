@@ -69,9 +69,9 @@ function edge_custom() {
 
     ////// 
     ////// GUI
-    let customBGcolor_R = 255; //0-255
-    let customBGcolor_G = 255; //0-255
-    let customBGcolor_B = 255; //0-255
+    let customBGcolor_R = 244; //0-255
+    let customBGcolor_G = 222; //0-255
+    let customBGcolor_B = 211; //0-255
     let customBGcolor_A = 255; // only 255 or 0 / on or off
 
     let hard_spot_reducer = 200; //intensity of white/black lines // 84-255
@@ -82,6 +82,8 @@ function edge_custom() {
     let use_blackline = false;
     let cutoff = 20; //10-20% of 255 recommended 20-50
     let use_linecolorcorrection = true;
+    let add_lighting = true;
+    let add_shading = true;
     ////// GUI
     //////
 
@@ -129,25 +131,27 @@ function edge_custom() {
             
 
             //turn bright part of original image into custom background color and skip edge detection
+
             let highestlimit1 = 205;
             let bw_avg_1 = (imageData_original2.data[formula+0]+imageData_original2.data[formula+1]+imageData_original2.data[formula+2])/3;
 
-            if (bw_avg_1 >= highestlimit1) {
-                if (use_blackline === false) {
-                    imageData.data[formula+0] = customBGcolor_R * (bw_avg_1/highestlimit1);
-                    imageData.data[formula+1] = customBGcolor_G * (bw_avg_1/highestlimit1);
-                    imageData.data[formula+2] = customBGcolor_B * (bw_avg_1/highestlimit1);
-                    imageData.data[formula+3] = customBGcolor_A;
+            if (add_lighting === true) {
+                if (bw_avg_1 >= highestlimit1) {
+                    if (use_blackline === false) {
+                        imageData.data[formula+0] = customBGcolor_R * (bw_avg_1/highestlimit1);
+                        imageData.data[formula+1] = customBGcolor_G * (bw_avg_1/highestlimit1);
+                        imageData.data[formula+2] = customBGcolor_B * (bw_avg_1/highestlimit1);
+                        imageData.data[formula+3] = customBGcolor_A;
+                    }
+                    else if(use_blackline === true) { 
+                        imageData.data[formula+0] = ((255-customBGcolor_R) * (bw_avg_1/highestlimit1));
+                        imageData.data[formula+1] = ((255-customBGcolor_G) * (bw_avg_1/highestlimit1));
+                        imageData.data[formula+2] = ((255-customBGcolor_B) * (bw_avg_1/highestlimit1));
+                        imageData.data[formula+3] = customBGcolor_A;
+                    }
+                    continue;
                 }
-                else if(use_blackline === true) { 
-                    imageData.data[formula+0] = ((255-customBGcolor_R) * (bw_avg_1/highestlimit1));
-                    imageData.data[formula+1] = ((255-customBGcolor_G) * (bw_avg_1/highestlimit1));
-                    imageData.data[formula+2] = ((255-customBGcolor_B) * (bw_avg_1/highestlimit1));
-                    imageData.data[formula+3] = customBGcolor_A;
-                }
-                continue;
             }
-            
 
             //turn other part of original image into edges
             Gx_sum_Red = 0; Gx_sum_Green = 0; Gx_sum_Blue = 0;
@@ -337,37 +341,39 @@ function edge_custom() {
 
 
                 
-
-                // // //Restore black lines = not perfect, need to get rid of leftover light spots while keeping visible edges
-                // let highestlimit2 = 64;
-                // let darkshadeintensity = 0.33; //0-2
+                if (add_shading === true) {
+                    // //Restore black lines = not perfect, need to get rid of leftover light spots while keeping visible edges
+                    let highestlimit2 = 64;
+                    let darkshadeintensity = 0.33; //0-2
+                    
+                    if (bw_avg_1 <= highestlimit2 && bw_avg_1 >= 0)// && bw_avg_1 > bw_avg_2 && ) 
+                    {
+                        if ((bw_avg_1 >= bw_avg_2)) {
+                            if (use_blackline === false) {  
+                                imageData.data[formula+0] = customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
+                                imageData.data[formula+1] = customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
+                                imageData.data[formula+2] = customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;
+                            }
+                            else if (use_blackline === true) {
+                                imageData.data[formula+0] = 255-customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
+                                imageData.data[formula+1] = 255-customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
+                                imageData.data[formula+2] = 255-customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;   
+                            }
+                            continue;
+                        }
+                    }
                 
-                // if (bw_avg_1 <= highestlimit2 && bw_avg_1 >= 0)// && bw_avg_1 > bw_avg_2 && ) 
-                // {
-                //     if ((bw_avg_1 >= bw_avg_2)) {
-                //         if (use_blackline === false) {  
-                //             data[formula+0] = customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
-                //             data[formula+1] = customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                //             data[formula+2] = customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                //         }
-                //         else if (use_blackline === true) {
-                //             data[formula+0] = 255-customBGcolor_R - (highestlimit2-bw_avg_1)*darkshadeintensity; 
-                //             data[formula+1] = 255-customBGcolor_G - (highestlimit2-bw_avg_1)*darkshadeintensity;
-                //             data[formula+2] = 255-customBGcolor_B - (highestlimit2-bw_avg_1)*darkshadeintensity;   
-                //         }
-                //         continue;
-                //     }
-                // }
-
-                // if (bw_avg_1 <= highestlimit2 && bw_avg_1 > bw_avg_2 && bw_avg_1 >= 1)  {
-                //     // data[formula+0] = customBGcolor_R * ((255)-trio5)/(255);
-                //     // data[formula+1] = customBGcolor_G * ((255)-trio5)/(255);
-                //     // data[formula+2] = customBGcolor_B * ((255)-trio5)/(255);
-                //     data[formula+0] = customBGcolor_R * 0.8;
-                //     data[formula+1] = customBGcolor_G * 0.8;
-                //     data[formula+2] = customBGcolor_B * 0.8;
-                //     continue;
-                // }
+                    ////???
+                    // if (bw_avg_1 <= highestlimit2 && bw_avg_1 > bw_avg_2 && bw_avg_1 >= 1)  {
+                    //     // data[formula+0] = customBGcolor_R * ((255)-trio5)/(255);
+                    //     // data[formula+1] = customBGcolor_G * ((255)-trio5)/(255);
+                    //     // data[formula+2] = customBGcolor_B * ((255)-trio5)/(255);
+                    //     imageData.data[formula+0] = customBGcolor_R * 0.9;
+                    //     imageData.data[formula+1] = customBGcolor_G * 0.9;
+                    //     imageData.data[formula+2] = customBGcolor_B * 0.9;
+                    //     continue;
+                    // }
+                }
 
                 
                 imageData.data[formula]     = Gxy_sum_final_Red;    // red
