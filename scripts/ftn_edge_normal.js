@@ -10,12 +10,12 @@ function edge_normal() {
     //ctx.drawImage(image, 0, 0);
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     //imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    
+    let imageData_copy = ctx.getImageData(0, 0, image.width, image.height);
+
+
     let counter = 0;
     let counter1 = 0;
-    let counter2 = 0;
-
-    let imageData_copy = ctx.getImageData(0, 0, image.width, image.height);
+    let counter2 = 0;    
 
     ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8

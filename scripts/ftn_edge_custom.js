@@ -25,13 +25,13 @@ function edge_custom() {
 
     ////3.0 edit
     if (canvas.width <= 1200 && canvas.height <= 1800) {
-        oilpaint(1,8);
+        oilpaint(1,8,false);
     }
     else if (canvas.width <= 1800 && canvas.height <= 1200) {
-        oilpaint(1,8); 
+        oilpaint(1,8,false); 
     }
     else {
-        oilpaint(2,15)
+        oilpaint(2,15,false)
     }
     
 
@@ -69,15 +69,15 @@ function edge_custom() {
 
     ////// 
     ////// GUI
-    let customBGcolor_R = 0; //0-255
-    let customBGcolor_G = 0; //0-255
-    let customBGcolor_B = 0; //0-255
+    let customBGcolor_R = 255; //0-255
+    let customBGcolor_G = 255; //0-255
+    let customBGcolor_B = 255; //0-255
     let customBGcolor_A = 255; // only 255 or 0 / on or off
 
-    let hard_spot_reducer = 255; //intensity of white/black lines // 84-255
+    let hard_spot_reducer = 200; //intensity of white/black lines // 84-255
     let customlineshadowcolor_R_m = 0; //0-limit
     let customlineshadowcolor_G_m = 0; //0-limit
-    let customlineshadowcolor_B_m = 96; //0-limit
+    let customlineshadowcolor_B_m = 0; //0-limit
 
     let use_blackline = false;
     let cutoff = 20; //10-20% of 255 recommended 20-50

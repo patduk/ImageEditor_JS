@@ -32,7 +32,9 @@
 
     <h1>Image Editor</h1>
 
-    <canvas class="image_display" style="background-color: rgb(255, 255, 255);"  id="cv2" >
+    <div class="image_display">
+        <canvas style="background-color: rgb(255, 255, 255);" id="cv2" >
+    </div>
         
     </canvas>
     </br>
@@ -42,17 +44,20 @@
         </br>
         </br>
         <!-- <button onclick="filter1()" >filter 1</button>
-        <button onclick="filter2()" >filter 2</button>
-        <button onclick="invert()" >invert</button> -->
+        <button onclick="filter2()" >filter 2</button>-->
+        <button onclick="invert()" >invert</button> 
         <button onclick="lighten()" >lighten</button>
+        <button onclick="grayscale()" >grayscale</button>
+        <button onclick="oilpaint(1,10,true)" >oil paint</button>
+        <button onclick="gaussianblur()" >Gaussian Blur</button>
         </br>
+        </br>
+
         <button onclick="edge_normal()" >line (normal)</button>
         <button onclick="edge_custom()" >line (custom)</button>
         </br>
-        <button onclick="grayscale()" >grayscale</button>
-        <button onclick="gaussianblur()" >Gaussian Blur</button>
-        <button onclick="oilpaint(1,10)" >oil paint</button>
         </br>
+        
         <!-- <button onclick="undo()" >undo</button>
         <button onclick="redo()" >redo</button> -->
         <button onclick="undo2()" >undo2</button>

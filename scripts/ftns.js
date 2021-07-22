@@ -158,7 +158,7 @@ function loadsampleimage() {
     // set src to blob e
     image.src = 'images/wlop2.jpg';   
 
-    canvas.style.width = "100%";
+    
     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
     
     ResetAllAttributes();
@@ -237,6 +237,83 @@ function lighten() {
         }
     }
     
+
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+    
+    ctx.putImageData(imageData, 0, 0);
+}
+
+
+
+function invert() {
+    ////999 prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    
+    
+    ////1.0-1.4 store to undolist
+    ClearRedo();                   //0.8
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
+        DictV[key] = 0;
+    }
+    
+    ////3.0
+    for (var i = 0; i < imageData.data.length; i += 4) {
+        imageData.data[i + 0] = 255-imageData.data[i+0];
+        imageData.data[i + 1] = 255-imageData.data[i+1];
+        imageData.data[i + 2] = 255-imageData.data[i+2];
+    }
+
+
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+    
+    ctx.putImageData(imageData, 0, 0);
+}
+
+
+function grayscale() {
+    ////999 prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    
+    
+    ////1.0-1.4 store to undolist
+    ClearRedo();                   //0.8
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
+        DictV[key] = 0;
+    }
+    
+
+    ////3.0 edit
+    for (var i = 0; i < imageData.data.length; i += 4) {
+        let bw = (imageData.data[i+0] + imageData.data[i+1] + imageData.data[i+2]) / 3;
+        imageData.data[i + 0] = bw;
+        imageData.data[i + 1] = bw;
+        imageData.data[i + 2] = bw;
+    }
+
 
     ////4.0 affix
     //imageData_original2 = imageData;
@@ -470,34 +547,39 @@ function redo() {
 
 
 function reset() {
-    //prep canvas and ctx (idk why its needed)
+    ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
-    //image = new Image();
-    //ctx.drawImage(image, 0, 0);
-    
-
-    ClearRedo();
-    
-    //1.0 store to undolist
-    Image_undo.push(imageData);
-    
-
-    //??
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
     imageData = ctx.getImageData(0, 0, image.width, image.height);
-    const data = imageData.data;
+    
 
-    //3.0
-    for (var i = 0; i < data.length; i += 4) {
+    ////1.0-1.4 store to undolist
+    ClearRedo();                   //0.8
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
+        DictV[key] = 0;
+    }
+
+    ////3.0
+    for (var i = 0; i < imageData.data.length; i += 4) {
         imageData.data[i]     = imageData_original1.data[i];        // r
         imageData.data[i + 1] = imageData_original1.data[i + 1];    // g
         imageData.data[i + 2] = imageData_original1.data[i + 2];    // b
         imageData.data[i + 3] = imageData_original1.data[i + 3];    // a  
     }
-    ctx.putImageData(imageData, 0, 0);
 
-    logprint();
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+    
+    ctx.putImageData(imageData, 0, 0);
 }
 
 //////////

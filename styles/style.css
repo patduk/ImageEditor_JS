@@ -1,15 +1,23 @@
 
-.image_display {
-  position: relative;
-  max-width: 100%;
-  
-  max-height: 1200px;
+canvas {
+  position: absolute;
+  height: auto;
+
+
+  /*max-height: 1200px; */
   /*height: auto;*/
   /*margin:auto;*/
   /* background-color: rgb(127, 127, 127, 1); */
   /* background-color: grey */
   /*border: 1px solid grey;*/
 }
+
+
+/* img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; 
+} */
 
 
 /* html {
