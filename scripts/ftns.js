@@ -113,7 +113,6 @@ window.addEventListener('load', function()
 
             // set src to blob e
             image.src = URL.createObjectURL(this.files[0]).toString(); 
-            //canvas.style.width = "50%";
             
             //reset
             ResetAllAttributes();
@@ -150,6 +149,40 @@ window.addEventListener('load', function()
     
 });
 
+function resizeCanvas() {
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d'); 
+    imageData = ctx.getImageData(0, 0, image.width, image.height)
+
+    canvas.height = window.innerWidth/canvas.width * canvas.height; 
+    canvas.width = window.innerWidth;
+    
+    image.height = canvas.height;
+    image.width = canvas.width;
+    ctx.drawImage(image, 0, 0);
+    ctx.putImageData(imageData, 0, 0);      
+}
+
+
+window.addEventListener("resize", resizeCanvas);
+
+// window.addEventListener('resize', function() 
+// //window.addEventListener('resize', resizeCanvas);
+// {
+//     // function resizeCanvas() {
+//      const canvas = document.getElementById('cv2');
+//      const ctx = canvas.getContext('2d');
+//      if (canvas.width > 1000) {canvas.width = 1000; }
+//      else if (canvas.height > 1000) {canvas.height = 1000;}
+//      else {
+//         // canvas.width = window.innerWidth;
+//         // canvas.height = window.innerHeight;
+//     }
+//      console.log("bring");
+//     // }
+// });
+
+
 
 function loadsampleimage() {
     let canvas = document.getElementById('cv2');
@@ -160,6 +193,8 @@ function loadsampleimage() {
 
     
     // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
+
+    //canvas.style.width = "auto";
     
     ResetAllAttributes();
     
@@ -188,6 +223,10 @@ function loadsampleimage() {
 
         logprint();
     }   
+}
+
+window.onload = () => {
+    loadsampleimage();
 }
 
 

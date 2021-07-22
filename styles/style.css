@@ -1,9 +1,10 @@
 
 canvas {
-  position: absolute;
-  height: auto;
-
-
+  /* position: relative;
+  /* max-height: 155;
+  max-width: 155; */
+  width: "50%";
+  height: "50%"; */
   /*max-height: 1200px; */
   /*height: auto;*/
   /*margin:auto;*/
