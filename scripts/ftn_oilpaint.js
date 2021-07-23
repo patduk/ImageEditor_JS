@@ -101,7 +101,7 @@ function oilpaint(radius, intensity, is_standalone_filter) {
             imageData.data[dIdx] = ~~ (pixelIntensityCount[0].r / curMax);
             imageData.data[dIdx + 1] = ~~ (pixelIntensityCount[0].g / curMax);
             imageData.data[dIdx + 2] = ~~ (pixelIntensityCount[0].b / curMax);
-            imageData.data[dIdx + 3] = 255;
+            //imageData.data[dIdx + 3] = 255;
         }
     }
 

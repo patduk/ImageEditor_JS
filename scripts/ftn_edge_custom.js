@@ -23,16 +23,16 @@ function edge_custom() {
         DictV[key] = 0;
     }
 
-    ////3.0 edit
-    if (canvas.width <= 1200 && canvas.height <= 1800) {
-        oilpaint(1,8,false);
-    }
-    else if (canvas.width <= 1800 && canvas.height <= 1200) {
-        oilpaint(1,8,false); 
-    }
-    else {
-        oilpaint(2,15,false)
-    }
+    // ////3.0 edit
+    // if (canvas.width <= 1200 && canvas.height <= 1800) {
+    //     oilpaint(1,8,false);
+    // }
+    // else if (canvas.width <= 1800 && canvas.height <= 1200) {
+    //     oilpaint(1,8,false); 
+    // }
+    // else {
+    //     oilpaint(2,15,false)
+    // }
     
 
     imageData_original2 = ctx.getImageData(0, 0, image.width, image.height); //update image (to oil paint filtered image)
@@ -80,10 +80,10 @@ function edge_custom() {
     let customlineshadowcolor_B_m = 0; //0-limit
 
     let use_blackline = false;
-    let cutoff = 20; //10-20% of 255 recommended 20-50
+    let cutoff = 25; //10-20% of 255 recommended 20-50 //20 for oilpainted //25 for normal?
     let use_linecolorcorrection = true;
-    let add_lighting = true;
-    let add_shading = true;
+    let add_lighting = false;
+    let add_shading = false;
     ////// GUI
     //////
 

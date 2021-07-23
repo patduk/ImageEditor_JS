@@ -120,10 +120,19 @@ window.addEventListener('load', function()
             image.onload = () => {
                 URL.revokeObjectURL(image.src);
 
-                //adjust canvas dimension
+                //new canvas dimensions
                 canvas.height = image.height;
                 canvas.width = image.width;
-                                
+                            
+                //adjust canvas (and image) dimensions proportionally based on window resize
+                if (window.innerWidth > image.width) {
+                    canvas.style.width = image.width;
+                }
+                else {
+                    canvas.style.width = "100%";
+                }
+
+
                 //put an image and its left, top location
                 ctx.drawImage(image, 0, 0);
                 
@@ -131,14 +140,9 @@ window.addEventListener('load', function()
                 // 
 
                 // //get imageData
-                imageData = ctx.getImageData(0, 0, image.width, image.height);
-                imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-                imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
-
-                // //write 1d array (ditch it? just use 2d array on all image filters?)
-                // imageData_data_1d = imageData.data; ///v
-                // imageData_original2_data_1d = imageData_original2.data; ///v
-                // imageData_original1_data_1d = imageData_original1.data; ///v
+                imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
                 logprint();
             }
@@ -149,61 +153,32 @@ window.addEventListener('load', function()
     
 });
 
-function resizeCanvas() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d'); 
-    imageData = ctx.getImageData(0, 0, image.width, image.height)
-
-    canvas.height = window.innerWidth/canvas.width * canvas.height; 
-    canvas.width = window.innerWidth;
-    
-    // image.height = canvas.height;
-    // image.width = canvas.width;
-    ctx.drawImage(image, 0, 0);
-    ctx.putImageData(imageData, 0, 0);      
-}
 
 
-window.addEventListener("resize", resizeCanvas);
-
-// window.addEventListener('resize', function() 
-// //window.addEventListener('resize', resizeCanvas);
-// {
-//     // function resizeCanvas() {
-//      const canvas = document.getElementById('cv2');
-//      const ctx = canvas.getContext('2d');
-//      if (canvas.width > 1000) {canvas.width = 1000; }
-//      else if (canvas.height > 1000) {canvas.height = 1000;}
-//      else {
-//         // canvas.width = window.innerWidth;
-//         // canvas.height = window.innerHeight;
-//     }
-//      console.log("bring");
-//     // }
-// });
-
-
-
-function loadsampleimage() {
+window.addEventListener('load', function() {
+    //function loadsampleimage() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');        
 
     // set src to blob e
     image.src = 'images/wlop2.jpg';   
-
-    
-    // if (canvas.style.width > 1200) { canvas.style.width = 1200;}
-
-    //canvas.style.width = "auto";
     
     ResetAllAttributes();
     
     image.onload = () => {
         URL.revokeObjectURL(image.src);
 
-        //adjust canvas dimension
+        //new canvas dimensions
         canvas.height = image.height;
         canvas.width = image.width;
+                    
+        //adjust canvas (and image) dimensions proportionally based on window resize
+        if (window.innerWidth > image.width) {
+            canvas.style.width = image.width;
+        }
+        else {
+            canvas.style.width = "100%";
+        }
         
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
@@ -212,26 +187,79 @@ function loadsampleimage() {
         //
 
         // //get imageData
-        imageData = ctx.getImageData(0, 0, image.width, image.height);
-        imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-        imageData_original1 = ctx.getImageData(0, 0, image.width, image.height);
-
-        // //write 1d array (ditch it? just use 2d array on all image filters?)
-        // imageData_data_1d = imageData.data; ///v
-        // imageData_original2_data_1d = imageData_original2.data; ///v
-        // imageData_original1_data_1d = imageData_original1.data; ///v
-
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
         logprint();
     }   
+});
+
+window.addEventListener("resize", resizeCanvas);
+function resizeCanvas() {
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d'); 
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+   //ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    //ctx.drawImage(image, 0, 0);
+    
+    if (window.innerWidth > image.width) {
+        canvas.style.width = image.width;
+    }
+    else {
+        canvas.style.width = "100%";
+    }
+
+
+    
+
+
+
+    //ctx.putImageData(0, 0, 0, canvas.width, canvas.height);
 }
 
-window.onload = () => {
-    loadsampleimage();
+
+
+function ellipse_test1() {
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d'); 
+    
+
+    ////1.0-1.4 store to undolist
+    ClearRedo();                   //0.8
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    SaveAttributesToUndoLists();   //1-1.4
+    logprint();
+    
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
+    for (key in DictV) { 
+        DictV[key] = 0;
+    }
+
+    ////3.0 edit?
+    //ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
+    //draw stroke ellipse
+    ctx.strokeStyle = "rgb(127, 0, 0)";
+    ctx.beginPath();
+    ctx.ellipse(image.width/2, image.height/2, image.width/2, image.height/2, 0, 0, Math.PI*2);
+    ctx.stroke();
+
+    //draw filled ellipse
+    ctx.fillStyle = 'green';
+    ctx.beginPath();
+    ctx.ellipse(image.width/2, image.height/2, image.width/4, image.height/4, 0, 0, Math.PI*2);
+    ctx.fill(); 
+    
+    ////4.0 update imageData to hold new ellipse shapes 
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+    ////4.0 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+    
+    ctx.putImageData(imageData, 0, 0);
 }
-
-
-
-
 
 
 
@@ -248,7 +276,7 @@ function lighten() {
     let ctx = canvas.getContext('2d');
     // image = new Image();
     // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     
     
     ////1.0-1.4 store to undolist
@@ -293,7 +321,7 @@ function invert() {
     let ctx = canvas.getContext('2d');
     // image = new Image();
     // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     
     
     ////1.0-1.4 store to undolist
@@ -330,7 +358,7 @@ function grayscale() {
     let ctx = canvas.getContext('2d');
     // image = new Image();
     // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     
     
     ////1.0-1.4 store to undolist
@@ -363,6 +391,60 @@ function grayscale() {
 }
 
 
+function gaussianblur() {
+
+    ////999 prep canvas and ctx (idk why its needed)
+    let canvas = document.getElementById('cv2'); 
+    let ctx = canvas.getContext('2d');
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
+  imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+
+
+  var tmpPx = new Uint8ClampedArray(imageData.data.length);
+  tmpPx.set(imageData.data);
+
+  for (var i = 0, len= imageData.data.length; i < len; i++) {
+     if (i % 4 === 3) {continue;}
+
+     imageData.data[i] = ( tmpPx[i] 
+        + (tmpPx[i - 4] || tmpPx[i])
+        + (tmpPx[i + 4] || tmpPx[i]) 
+        + (tmpPx[i - 4 * imageData.data.width] || tmpPx[i])
+        + (tmpPx[i + 4 * imageData.data.width] || tmpPx[i]) 
+        + (tmpPx[i - 4 * imageData.data.width - 4] || tmpPx[i])
+        + (tmpPx[i + 4 * imageData.data.width + 4] || tmpPx[i])
+        + (tmpPx[i + 4 * imageData.data.width - 4] || tmpPx[i])
+        + (tmpPx[i - 4 * imageData.data.width + 4] || tmpPx[i])
+        )/9;
+  };
+  // data.data = px;
+
+  ctx.putImageData(imageData,0,0);
+  //delete tmpPx;
+  //btnBlur.removeAttribute('disabled');
+  //btnBlur.textContent = 'Blur'; 
+}
+
+// source channel, target channel, width, height, radius
+function gaussBlur_1 (scl, tcl, w, h, r) {
+    var rs = Math.ceil(r * 2.57);     // significant radius
+    for(var i=0; i<h; i++)
+        for(var j=0; j<w; j++) {
+            var val = 0, wsum = 0;
+            for(var iy = i-rs; iy<i+rs+1; iy++)
+                for(var ix = j-rs; ix<j+rs+1; ix++) {
+                    var x = Math.min(w-1, Math.max(0, ix));
+                    var y = Math.min(h-1, Math.max(0, iy));
+                    var dsq = (ix-j)*(ix-j)+(iy-i)*(iy-i);
+                    var wght = Math.exp( -dsq / (2*r*r) ) / (Math.PI*2*r*r);
+                    val += scl[y*w+x] * wght;  wsum += wght;
+                }
+            tcl[i*w+j] = Math.round(val/wsum);            
+        }
+}
+
+
 ////////////
 ///////////
 
@@ -372,7 +454,7 @@ function undo2() {
 
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
-        imageData = ctx.getImageData(0, 0, image.width, image.height); 
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height); 
         
         ////push to redo lists
         
@@ -424,7 +506,7 @@ function redo2() {
         
         let canvas = document.getElementById('cv2'); 
         let ctx = canvas.getContext('2d');
-        imageData = ctx.getImageData(0, 0, image.width, image.height); 
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height); 
 
 
         ////push to undo lists
@@ -480,7 +562,7 @@ function reset() {
     let ctx = canvas.getContext('2d');
     // image = new Image();
     // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     
 
     ////1.0-1.4 store to undolist
@@ -610,7 +692,7 @@ function flatten() //need fix!
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     ////1.0-1.4
     ClearRedo();                   //0.8
