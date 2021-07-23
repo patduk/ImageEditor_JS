@@ -3,7 +3,7 @@ canvas {
   /* position: relative;
   /* max-height: 155;
   max-width: 155; */
-  width: "50%";
+  /* width: "50%";
   height: "50%"; */
   /*max-height: 1200px; */
   /*height: auto;*/
@@ -11,54 +11,5 @@ canvas {
   /* background-color: rgb(127, 127, 127, 1); */
   /* background-color: grey */
   /*border: 1px solid grey;*/
-}
+} 
 
-
-/* img {
-  max-width: 100%;
-  height: auto;
-  width: auto\9; 
-} */
-
-
-/* html {
-  font-size: 10px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-
-h1 {
-  font-size: 90px;
-  text-align: center;
-}
-
-p, li {
-  font-size: 16px;
-  line-height: 2;
-  letter-spacing: 1px;
-}
-
-
-html {
-  background-color: #00539F;
-}
-
-body {
-  width: 600px;
-  margin: 0 auto;
-  background-color: #FF9500;
-  padding: 0 20px 20px 20px;
-  border: 5px solid black;
-}
-
-h1 {
-  margin: 0;
-  padding: 20px 0;
-  color: #00539F;
-  text-shadow: 3px 3px 1px black;
-}
-
-img {
-  display: block;
-  margin: 0 auto;
-} */

@@ -1,64 +1,120 @@
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.top-row {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+body {
+  /* height: 10vh; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef0f5;
 }
 
-.navbar-brand {
-    font-size: 1.1rem;
+nav {
+  width: 700px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 25px -7px rgba(9, 136, 183, 0.2);
+}
+@media (max-width: 700px) {
+  nav {
+    width: 100vw;
+    height: 60px;
+    border-radius: 0px;
+  }
+}
+nav::before {
+  content: "";
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  position: absolute;
+}
+nav label {
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+  margin: 0 5px;
+  color: #0ebeff;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+@media (max-width: 480px) {
+  nav label {
+    font-size: 14px;
+  }
+}
+@media (max-width: 370px) {
+  nav label {
+    margin: 0 14px;
+  }
+}
+nav label:hover {
+  color: #444;
+}
+nav label i {
+  margin-right: 4px;
+}
+nav .slider {
+  position: absolute;
+  height: 100%;
+  width: 20%;
+  background: rgb(71, 29, 29);
+  left: 0;
+  top: 0;
+  transition: 0.15s ease;
+  z-index: -1;
 }
 
-.oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
+#home:checked ~ nav label.home {
+  color: #fff;
 }
 
-.nav-item {
-    font-size: 16px;
-    /*padding-bottom: 0.5rem;*/
+#blog:checked ~ nav label.blog {
+  color: #fff;
+}
+#blog:checked ~ nav .slider {
+  left: 20%;
 }
 
-.nav-item:first-of-type {
-    /*padding-top: 1rem;*/
-    padding-top: 8px;
+#code:checked ~ nav label.code {
+  color: #fff;
+}
+#code:checked ~ nav .slider {
+  left: 40%;
 }
 
-.nav-item:last-of-type {
-    /*padding-bottom: 1rem;*/
-    padding-bottom: 8px;
+#help:checked ~ nav label.help {
+  color: #fff;
+}
+#help:checked ~ nav .slider {
+  left: 60%;
 }
 
-.nav-item ::deep a {
-    color: #d7d7d7;
-    border-radius: 4px;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    line-height: 3rem;
+#about:checked ~ nav label.about {
+  color: #fff;
+}
+#about:checked ~ nav .slider {
+  left: 80%;
 }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
-
-.nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
-
-@media (min-width: 641px) {
-    .navbar-toggler {
-        display: none;
-    }
-
-    .collapse {
-        /* Never collapse the sidebar for wide screens */
-        display: block;
-    }
+input[type=radio] {
+  display: none;
 }
