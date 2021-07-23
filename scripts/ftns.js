@@ -157,8 +157,8 @@ function resizeCanvas() {
     canvas.height = window.innerWidth/canvas.width * canvas.height; 
     canvas.width = window.innerWidth;
     
-    image.height = canvas.height;
-    image.width = canvas.width;
+    // image.height = canvas.height;
+    // image.width = canvas.width;
     ctx.drawImage(image, 0, 0);
     ctx.putImageData(imageData, 0, 0);      
 }
