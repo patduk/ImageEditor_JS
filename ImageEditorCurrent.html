@@ -3,7 +3,14 @@
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
     <script src="scripts/ftn_oilpaint.js"></script>
-    
+
+    <script src="scripts/ftn1_contrast.js"></script>
+    <script src="scripts/ftn2_brightness.js"></script>
+    <script src="scripts/ftn3_opacity.js"></script>
+    <script src="scripts/ftn4_red.js"></script>
+    <script src="scripts/ftn5_green.js"></script>
+    <script src="scripts/ftn6_blue.js"></script>
+
     <link href="styles/NavMenu.css"> 
     <link href="styles/style.css" >
 
@@ -70,7 +77,7 @@
         <div class="slidecontainer">
             Contrast<br />
             <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.0025" value="0" onchange="Onchange_Slider_Contrast()">
-            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Slider_Contrast()">
+            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
             <br />
 
             Brightness<br />
@@ -80,12 +87,12 @@
 
             Opacity<br />
             <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
-            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Slider_Opacity()">
+            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
             <br />
 
             Red<br />
             <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
-            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Slider_Red()">
+            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
             <br />
 
             Green<br />
@@ -95,7 +102,7 @@
 
             Blue<br />
             <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
-            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Slider_Blue()">
+            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
             <br />
 
         </div> 

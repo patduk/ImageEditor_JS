@@ -1,5 +1,5 @@
 
-//stolen from stackoverflow https://stackoverflow.com/questions/24222556/apply-a-oil-paint-sketch-effect-to-a-photo-using-javascript 
+//took from stackoverflow https://stackoverflow.com/questions/24222556/apply-a-oil-paint-sketch-effect-to-a-photo-using-javascript 
 function oilpaint(radius, intensity, is_standalone_filter) {
 
     //prep canvas and ctx (idk why its needed)

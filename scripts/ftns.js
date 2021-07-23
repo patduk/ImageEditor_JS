@@ -200,7 +200,7 @@ function loadsampleimage() {
     
     image.onload = () => {
         URL.revokeObjectURL(image.src);
-        
+
         //adjust canvas dimension
         canvas.height = image.height;
         canvas.width = image.width;
@@ -405,7 +405,14 @@ function undo2() {
         ctx.putImageData(imageData, 0, 0);
 
         ////5
+        JS_changesliderpositionandtextvalue_Contrast(DictV["ContrastV"]);
         JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
+        JS_changesliderpositionandtextvalue_Opacity(DictV["OpacityV"]);
+        JS_changesliderpositionandtextvalue_Red(DictV["RedV"]);
+        JS_changesliderpositionandtextvalue_Green(DictV["GreenV"]);
+        JS_changesliderpositionandtextvalue_Blue(DictV["BlueV"]);
+        
+
 
         logprint();
     }
@@ -449,139 +456,21 @@ function redo2() {
         ctx.putImageData(imageData, 0, 0);
         
         ////5
-        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
-
-        logprint();
-    }
-
-}
-
-function undo() {
-    if (Image_undo.length > 0) {
-        //prep canvas and ctx (idk why its needed)
-        let canvas = document.getElementById('cv2'); 
-        let ctx = canvas.getContext('2d');
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        
-        //1-1.2 store old imageData/attributes to redolist
-        ////way1
-        // let imageData_temporary = ctx.getImageData(0, 0, image.width, image.height);
-        // for (let y = 0; y < image.height; y++) {
-        //     for (let x = 0; x < image.width; x++) {
-        //         let formula = (y*image.width*4)+x*4;
-        //         imageData_temporary.data[formula+0] = imageData_original2.data[formula+0];
-        //         imageData_temporary.data[formula+1] = imageData_original2.data[formula+1];
-        //         imageData_temporary.data[formula+2] = imageData_original2.data[formula+2];
-        //         imageData_temporary.data[formula+3] = imageData_original2.data[formula+3];
-        //     }
-        // }
-        // Image_redo.push(imageData_temporary);
-        ////way2
-        Image_redo.push(imageData_original2);
-       
-        IncV_redo.push(DictV["IncV"]);
-        ContrastV_redo.push(DictV["ContrastV"]);
-        BrightnessV_redo.push(DictV["BrightnessV"]);
-        OpacityV_redo.push(DictV["OpacityV"]);
-        RedV_redo.push(DictV["RedV"]);
-        GreenV_redo.push(DictV["GreenV"]);
-        BlueV_redo.push(DictV["BlueV"]);
-
-        //1.3, 1.4 (no need trim undo/redo lists' count to 3, no need to flatten)
-
-        //prep an imageData (idk why it's needed)
-        //
-
-        ////2 image - pulling & deleting from undo list
-        //// pop = get last element and delete it off from an array
-        
-        let imageData_undo = Image_undo[Image_undo.length -1];
-        Image_undo.pop(); 
-
-        for (let y = 0; y < image.height; y ++) {
-            for (let x = 0; x < image.width; x ++) {
-                let formula = (y*image.width*4)+x*4;
-                imageData.data[formula]     = imageData_undo.data[formula];      // red
-                imageData.data[formula + 1] = imageData_undo.data[formula + 1];      // green
-                imageData.data[formula + 2] = imageData_undo.data[formula + 2];      // blue
-                imageData.data[formula + 3] = imageData_undo.data[formula + 3];      // 
-            }
-        }
-        
-        DictV["IncV"] = IncV_undo.pop(); //delete last element + set as new variable
-        DictV["ContrastV"] = ContrastV_undo.pop();
-        DictV["BrightnessV"] = BrightnessV_undo.pop();
-        DictV["OpacityV"] = OpacityV_undo.pop();
-        DictV["RedV"] = RedV_undo.pop();
-        DictV["GreenV"] = GreenV_undo.pop();
-        DictV["BlueV"] = BlueV_undo.pop();
-
-        ////3
-        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-        
         ////5
+        JS_changesliderpositionandtextvalue_Contrast(DictV["ContrastV"]);
         JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
-
-        ctx.putImageData(imageData, 0, 0);
-        logprint();
-    }
-    
-}
-
-
-
-function redo() {
-    if (Image_redo.length > 0) {
-        //prep canvas and ctx (idk why its needed)
-        let canvas = document.getElementById('cv2'); 
-        let ctx = canvas.getContext('2d');
-        
-        
-        //1-1.2 store old imageData/attributes to undolist
-        Image_undo.push(imageData_original2);
-        IncV_undo.push(DictV["IncV"]);
-        ContrastV_undo.push(DictV["ContrastV"]);
-        BrightnessV_undo.push(DictV["BrightnessV"]);
-        OpacityV_undo.push(DictV["OpacityV"]);
-        RedV_undo.push(DictV["RedV"]);
-        GreenV_undo.push(DictV["GreenV"]);
-        BlueV_undo.push(DictV["BlueV"]);
-
-
-        ////1.3, 1.4 none (no need trim undo/redo lists' count to 3, no need to flatten)
-
-        //prep an imageData (idk why it's needed)
-        //imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        JS_changesliderpositionandtextvalue_Opacity(DictV["OpacityV"]);
+        JS_changesliderpositionandtextvalue_Red(DictV["RedV"]);
+        JS_changesliderpositionandtextvalue_Green(DictV["GreenV"]);
+        JS_changesliderpositionandtextvalue_Blue(DictV["BlueV"]);
         
 
-        ////2 imgsharp - pulling & deleting from redo list
-        //let imageData_redo = Image_redo[Image_redo.length-1];
-        let imageData_redo = Image_redo.pop();
-
-        for (var i = 0; i < imageData.length; i += 4) {
-            imageData.data[i]     = imageData_redo.data[i];      // red
-            imageData.data[i + 1] = imageData_redo.data[i + 1];      // green
-            imageData.data[i + 2] = imageData_redo.data[i + 2];      // blue
-            imageData.data[i + 3] = imageData_redo.data[i + 3];      // alpha  
-        }
-        //Image_redo.pop(); //delete last element
-
-        DictV["IncV"] = IncV_redo.pop(); //delete last element + set as new variable
-        DictV["ContrastV"] = ContrastV_redo.pop();
-        DictV["BrightnessV"] = BrightnessV_redo.pop();
-        DictV["OpacityV"] = OpacityV_redo.pop();
-        DictV["RedV"] = RedV_redo.pop();
-        DictV["GreenV"] = GreenV_redo.pop();
-        DictV["BlueV"] = BlueV_redo.pop();
-
-        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-
-        JS_changesliderpositionandtextvalue_Brightness(DictV["BrightnessV"]);
 
         logprint();
     }
-    
+
 }
+
 
 
 
@@ -658,15 +547,15 @@ function SaveAttributesToUndoLists() //1-1.4
     BlueV_undo.push(DictV["BlueV"]);
 
     ////1.3 (limit undo lists' count to num_limit) (unique code block)
-    // let num_limit = 3;
-    // if (Image_undo.length > num_limit) { Image_undo.shift(); }
-    // if (IncV_undo.length > num_limit) { IncV_undo.shift(); }
-    // if (ContrastV_undo.length > num_limit) { ContrastV_undo.shift(); }
-    // if (BrightnessV_undo.length > num_limit) { BrightnessV_undo.shift(); }
-    // if (OpacityV_undo.length > num_limit) { OpacityV_undo.shift(); }
-    // if (RedV_undo.length > num_limit) { RedV_undo.shift(); }
-    // if (GreenV_undo.length > num_limit) { GreenV_undo.shift(); }
-    // if (BlueV_undo.length > num_limit) { BlueV_undo.shift(); }
+    let num_limit = 8;
+    if (Image_undo.length > num_limit) { Image_undo.shift(); }
+    if (IncV_undo.length > num_limit) { IncV_undo.shift(); }
+    if (ContrastV_undo.length > num_limit) { ContrastV_undo.shift(); }
+    if (BrightnessV_undo.length > num_limit) { BrightnessV_undo.shift(); }
+    if (OpacityV_undo.length > num_limit) { OpacityV_undo.shift(); }
+    if (RedV_undo.length > num_limit) { RedV_undo.shift(); }
+    if (GreenV_undo.length > num_limit) { GreenV_undo.shift(); }
+    if (BlueV_undo.length > num_limit) { BlueV_undo.shift(); }
 
     ////1.4 (put this on undo/redo? no)
 
@@ -754,7 +643,13 @@ function flatten() //need fix!
     ////3 no action needed (imgSharp = imgSharp_original2)
 
     ////reset slider position and text value
-    JS_resetsliderpositionandtextvalue_Brightness();
+    JS_changesliderpositionandtextvalue_Contrast(0);
+    JS_changesliderpositionandtextvalue_Brightness(0);
+    JS_changesliderpositionandtextvalue_Opacity(0);
+    JS_changesliderpositionandtextvalue_Red(0);
+    JS_changesliderpositionandtextvalue_Green(0);
+    JS_changesliderpositionandtextvalue_Blue(0);
+
 
     ctx.putImageData(imageData, 0, 0);
 }
@@ -786,52 +681,20 @@ function Flatten_nosavingtoundo() //looks good
     ////3 no action needed (imgSharp = imgSharp_original2)
 
     ////reset slider position and text value
-    JS_resetsliderpositionandtextvalue_Brightness();
-}
-
-
-
-function Contrast(input_value) {
-
-}
-function Brightness(input_value)
-{
-    if (true) //displayimage
-    {           
-        for (let y = 0; y < image.height; y++) {
-            for (let x = 0; x < image.width; x++) {
-                let formula = (y*image.width*4)+x*4;
-
-                let red = imageData.data[formula+0] + input_value;
-                let green = imageData.data[formula+1] + input_value;
-                let blue = imageData.data[formula+2] + input_value;
-                
-                if (red > 255) { red = 255; }
-                else if (red < 0) { red = 0; }
-                if (green > 255) { green = 255; }
-                else if (green < 0) { green = 0; }
-                if (blue > 255) { blue = 255; }
-                else if (blue < 0) { blue = 0; }
-
-                imageData.data[formula+0] = red;
-                imageData.data[formula+1] = green;
-                imageData.data[formula+2] = blue;   
-            }
-        }
-    }
-}
-function Opacity(input_value) {
+    JS_changesliderpositionandtextvalue_Contrast(0);
+    JS_changesliderpositionandtextvalue_Brightness(0);
+    JS_changesliderpositionandtextvalue_Opacity(0);
+    JS_changesliderpositionandtextvalue_Red(0);
+    JS_changesliderpositionandtextvalue_Green(0);
+    JS_changesliderpositionandtextvalue_Blue(0);
+    
 
 }
-function Red(input_value) {
 
-}
-function Green(input_value) {
 
-}
-function Blue(input_value) {
 
-}
+
+
 
 function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 {
@@ -888,73 +751,33 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
 
 
-//onchange slider
-function Onchange_Slider_Brightness()
-{
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    imageData = ctx.getImageData(0,0,image.width,image.height);
-    
-    ClearRedo();                   //0.8
-	is_FilterIncremental = true;   //0.9
-	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-    
-    ////2
-    let input_value = parseInt(document.getElementById('slider_Brightness').value);
-    document.getElementById('text_Brightness').value = input_value;
 
-    DictV["IncV"] = 1;
-	DictV["BrightnessV"] = input_value;
-
-    ////3 edit image
-    ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-    
-    ctx.putImageData(imageData, 0, 0);
-}
-
-function Onchange_Text_Brightness() 
-{
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    imageData = ctx.getImageData(0,0,image.width,image.height);
-
-    ClearRedo();                   //0.8
-	is_FilterIncremental = true;   //0.9
-	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-
-    ////2
-    let input_value = parseInt(document.getElementById('text_Brightness').value);
-    if (input_value > 255) {
-        input_value = 255;
-        document.getElementById('text_Brightness').value = input_value;
-    }
-    if (input_value < -255) {
-        input_value = -255;
-        document.getElementById('text_Brightness').value = input_value; 
-    }
-    document.getElementById('slider_Brightness').value = input_value;
-
-    DictV["IncV"] = 1;
-	DictV["BrightnessV"] = input_value;
-
-
-    ////3 edit image
-    ApplyBaseImageAndIncrementalFiltersToCurrentImage();
-
-    ctx.putImageData(imageData, 0, 0);
-}
-
-
-function JS_resetsliderpositionandtextvalue_Brightness() {
-    document.getElementById('slider_Brightness').value = 0;
-    document.getElementById('text_Brightness').value = 0;
+function JS_changesliderpositionandtextvalue_Contrast(n) {
+    document.getElementById('slider_Contrast').value = n;
+	document.getElementById('text_Contrast').value = n;
 }
 
 function JS_changesliderpositionandtextvalue_Brightness(n) {
     document.getElementById('slider_Brightness').value = n;
 	document.getElementById('text_Brightness').value = n;
+}
+
+function JS_changesliderpositionandtextvalue_Opacity(n) {
+    document.getElementById('slider_Opacity').value = n;
+	document.getElementById('text_Opacity').value = n;
+}
+
+function JS_changesliderpositionandtextvalue_Red(n) {
+    document.getElementById('slider_Red').value = n;
+	document.getElementById('text_Red').value = n;
+}
+
+function JS_changesliderpositionandtextvalue_Green(n) {
+    document.getElementById('slider_Green').value = n;
+	document.getElementById('text_Green').value = n;
+}
+
+function JS_changesliderpositionandtextvalue_Blue(n) {
+    document.getElementById('slider_Blue').value = n;
+	document.getElementById('text_Blue').value = n;
 }
