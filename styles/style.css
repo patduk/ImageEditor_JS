@@ -1,15 +1,18 @@
+html {
+  font-family: Helvetica;
+  font-size: 16px;
+}
 
-canvas {
-  /* position: relative;
-  /* max-height: 155;
-  max-width: 155; */
-  /* width: "50%";
-  height: "50%"; */
-  /*max-height: 1200px; */
-  /*height: auto;*/
-  /*margin:auto;*/
-  /* background-color: rgb(127, 127, 127, 1); */
-  /* background-color: grey */
-  /*border: 1px solid grey;*/
-} 
+.center1 {
+  margin: auto;
+  text-align: center;
+}
 
+.center2 {
+  margin: auto;
+  width: 75%;
+  border: 2px solid darkcyan;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
