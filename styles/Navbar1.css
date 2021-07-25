@@ -2,15 +2,17 @@
     position: relative; 
 
     /*not doing anything: */
-    /* top:0px;  */
+    top:0px; 
+    left:0px;
 
+    
     width:100vw; /*keep it centered exactly within viewport width*/
     display: flex; /*flex = have breaklines after*/
     justify-content: center;
     list-style-type: none;
 
     
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 
