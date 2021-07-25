@@ -1,14 +1,14 @@
-html, body, div, ul{
+html, body, div, img[src]{
   font-family: Helvetica;
   font-size: 16px;
 
   margin: 0;
     padding: 0;
-    border: 0;
+    /* border: 0;
     outline: 0;
     font-size: 100%;
     vertical-align: baseline;
-    background: transparent;
+    background: transparent; */
 }
 
 .center1 {
