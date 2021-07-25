@@ -109,7 +109,7 @@ window.addEventListener('load', function()
         {
             let canvas = document.getElementById('cv2'); 
             let ctx = canvas.getContext('2d');
-            //image = new Image();
+            image = new Image();
 
             // set src to blob e
             image.src = URL.createObjectURL(this.files[0]).toString(); 
@@ -159,9 +159,10 @@ window.addEventListener('load', function() {
     //function loadsampleimage() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');        
-
+    image = new Image();
+    
     // set src to blob e
-    image.src = 'images/wlop2.jpg';   
+    image.src = 'images/wlop2.jpg';
     
     ResetAllAttributes();
     
@@ -210,12 +211,6 @@ function resizeCanvas() {
     else {
         canvas.style.width = "100%";
     }
-
-
-    
-
-
-
     //ctx.putImageData(0, 0, 0, canvas.width, canvas.height);
 }
 
