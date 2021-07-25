@@ -1,5 +1,9 @@
 .navbar1 {
     position: relative; 
+
+    /*not doing anything: */
+    /* top:0px;  */
+
     width:100vw; /*keep it centered exactly within viewport width*/
     display: flex; /*flex = have breaklines after*/
     justify-content: center;
@@ -11,6 +15,8 @@
 }
 
 li {
+    /*display: inline;*/ /*removes line breaks on li elements*/
+    /*OR*/
     float: left; /*Use float to get block elements to float next to each other*/
 
 }
