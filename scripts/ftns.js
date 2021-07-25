@@ -592,15 +592,23 @@ function reset() {
     ctx.putImageData(imageData, 0, 0);
 }
 
-
+//not perfect:
 function download() {
     let canvas = document.getElementById("cv2");
-    let img    = canvas.toDataURL("image/png");
+    let ctx = canvas.getContext('2d');
 
+    ///?
+    image = new Image();
+    ctx.drawImage(image, 0, 0);
+    ////
+
+
+    let img    = canvas.toDataURL("image/png");
     let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
     // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
     let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
     let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
+
 
 
     let element = document.createElement('a');
@@ -608,6 +616,9 @@ function download() {
     element.setAttribute('href', img);
     element.setAttribute('download', filename);
     element.click();
+
+    
+                
 }
 //////////
 //////////
