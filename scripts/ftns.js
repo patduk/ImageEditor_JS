@@ -598,8 +598,8 @@ function download() {
     let ctx = canvas.getContext('2d');
 
     ///?
-    image = new Image();
-    ctx.drawImage(image, 0, 0);
+    // image = new Image();
+    // ctx.drawImage(image, 0, 0);
     ////
 
 
@@ -615,9 +615,7 @@ function download() {
     let filename = 'untitled.png';
     element.setAttribute('href', img);
     element.setAttribute('download', filename);
-    element.click();
-
-    
+    element.click();  
                 
 }
 //////////
