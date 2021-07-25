@@ -19,22 +19,22 @@ li {
     /*OR*/
     float: left; /*Use float to get block elements to float next to each other*/
 
-  }
+}
 
-  li a {
+li a {
     display: block;
     color: black;
     padding: 16px 16px; /*h w*/
     background-color: #78c5e9;
-  }
+ }
 
-  li a:hover {
-      background-color: rgb(64,0,0);
-      color: rgb(255,0,0);
-  }
-
-  .active {
+li a:hover {
     background-color: rgb(64,0,0);
     color: rgb(255,0,0);
-  }
+}
+
+.active {
+    background-color: rgb(64,0,0);
+    color: rgb(255,0,0);
+}
 
