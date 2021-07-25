@@ -1,7 +1,14 @@
-html {
+html, body, div, ul{
   font-family: Helvetica;
   font-size: 16px;
 
+  margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
 
 .center1 {

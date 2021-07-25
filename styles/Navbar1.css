@@ -5,14 +5,14 @@
     top:0px; 
     left:0px;
 
-    
+
     width:100vw; /*keep it centered exactly within viewport width*/
     display: flex; /*flex = have breaklines after*/
     justify-content: center;
     list-style-type: none;
 
     
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
 }
 
