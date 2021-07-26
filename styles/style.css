@@ -13,9 +13,10 @@ body {
   color: #ffffff;
   text-shadow: 3px 3px 5px rgba(0,0,0);
   
-  /* margin: 0;
-  padding: 0; */
-  padding: 22; /*does nothing if using HTML declaration tag*/
+  margin: 0;
+  padding: 0;
+  /*padding: 22*/ 
+  /* does nothing if using HTML declaration tag*/
 
 
   background-color: #3a3a3a;
@@ -23,7 +24,8 @@ body {
 
 img[src]{    
   /**/
-  
+  margin: 0;
+  padding: 0;
 }
 
 
