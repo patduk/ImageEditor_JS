@@ -1,22 +1,19 @@
 .navbar1 {
     position: relative; 
+    width: 100vw; /*keep it centered exactly within viewport width*/
+    margin: 0 auto;
+    padding: 0;
+
 
     /*not doing anything: */
-    top:0px; 
-    left:0px;
+    /* top:0px; 
+    left:0px; */
 
 
-    width:100vw; /*keep it centered exactly within viewport width*/
     display: flex; /*flex = have breaklines after*/
     justify-content: center;
     list-style-type: none;
-
-    
-    margin: 0;
-    padding: 0;
 }
-
-
 
 li {
     /*display: inline;*/ /*removes line breaks on li elements*/
@@ -46,21 +43,4 @@ li a:hover {
 
 
 @media (max-width: 500px) {
-    .navbar1 {
-        position: fixed; 
-    
-        /*not doing anything: */
-        top:11px; 
-        left:0px;
-    
-    
-        width:100%; /*keep it centered exactly within viewport width*/
-        display: flex; /*flex = have breaklines after*/
-        justify-content: center;
-        list-style-type: none;
-    
-        
-        margin: 0;
-        padding: 0;
-    }
 }
