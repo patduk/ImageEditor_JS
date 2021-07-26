@@ -16,11 +16,14 @@
     padding: 0;
 }
 
+
+
 li {
     /*display: inline;*/ /*removes line breaks on li elements*/
     /*OR*/
     float: left; /*Use float to get block elements to float next to each other*/
-
+    padding: 0;
+    margin: 0;
 }
 
 li a {
@@ -28,7 +31,8 @@ li a {
     color: black;
     padding: 16px 16px; /*h w*/
     background-color: #78c5e9;
- }
+}
+
 
 li a:hover {
     background-color: rgb(64,0,0);
@@ -40,3 +44,23 @@ li a:hover {
     color: rgb(255,0,0);
 }
 
+
+@media (max-width: 500px) {
+    .navbar1 {
+        position: fixed; 
+    
+        /*not doing anything: */
+        top:11px; 
+        left:0px;
+    
+    
+        width:100%; /*keep it centered exactly within viewport width*/
+        display: flex; /*flex = have breaklines after*/
+        justify-content: center;
+        list-style-type: none;
+    
+        
+        margin: 0;
+        padding: 0;
+    }
+}
