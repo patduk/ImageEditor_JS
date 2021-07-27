@@ -9,7 +9,6 @@
     /* top:0px; 
     left:0px; */
 
-
     display: flex; /*flex = have breaklines after*/
     justify-content: center;
     list-style-type: none;
@@ -43,4 +42,22 @@ li a:hover {
 
 
 @media (max-width: 500px) {
+    
+    li {
+        /*display: inline;*/ /*removes line breaks on li elements*/
+        /*OR*/
+        float: left; /*Use float to get block elements to float next to each other*/
+        padding: 0;
+        margin: 0;
+    }
+    li a {
+        display: block;
+        color: black;
+        padding: 0px 32px; /*h w*/
+        background-color: #7555e9;
+    }
+
+
+
+
 }
