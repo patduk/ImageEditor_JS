@@ -1,0 +1,24 @@
+
+
+.center1 {
+    margin: auto;
+    text-align: center;
+    letter-spacing: 24px;
+    text-shadow: 0px;
+    
+  }
+  
+  .center2 {
+    margin: auto;
+    width: 75%;
+    border: 2px solid darkcyan;
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+
+  @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+    /* CSS overrides for mobile here */
+    
+ }

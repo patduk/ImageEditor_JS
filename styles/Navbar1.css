@@ -43,6 +43,14 @@ li a:hover {
 
 @media (max-width: 500px) {
     
-
-
 }
+
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+    /* CSS overrides for mobile here */
+    li a {
+        display: block;
+        color: black;
+        padding: 16px 16px; /*h w*/
+        background-color: #6ad6ad;
+    }
+ }

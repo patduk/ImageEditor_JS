@@ -29,21 +29,3 @@ img[src]{
 }
 
 
-
-
-.center1 {
-  margin: auto;
-  text-align: center;
-  letter-spacing: 24px;
-  text-shadow: 0px;
-  
-}
-
-.center2 {
-  margin: auto;
-  width: 75%;
-  border: 2px solid darkcyan;
-  padding: 20px;
-  font-size: 20px;
-  text-align: center;
-}
