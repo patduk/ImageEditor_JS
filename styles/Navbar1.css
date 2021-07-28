@@ -55,7 +55,7 @@ li a:hover {
   }
   
   /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
+  .dropbtn:hover {
     background-color: rgb(64,0,0);
     color: rgb(255,0,0);
   }
