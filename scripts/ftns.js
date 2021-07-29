@@ -202,11 +202,12 @@ function resizeCanvas() {
     let ctx = canvas.getContext('2d'); 
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
-   //ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    //ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     //ctx.drawImage(image, 0, 0);
     
+   //adjust canvas (and image) dimensions proportionally based on window resize
     if (window.innerWidth > image.width) {
-        canvas.style.width = image.width;
+    canvas.style.width = image.width;
     }
     else {
         canvas.style.width = "100%";

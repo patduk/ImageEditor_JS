@@ -21,15 +21,14 @@
     
 }
 
-
 .navbar1 li { 
     /*display: inline;*/ /*removes line breaks on li elements*/
     /*OR*/
-    float: left; /*Use float to get block elements to float next to each other*/
+     /*Use float to get block elements to float next to each other*/
 }
 
 .navbar1 li a {
-    
+    float: left;
     display: block;
     color: black;
     background-color: #78c5e9;
@@ -43,10 +42,6 @@
     color: rgb(255,0,0);
 }
 
-.navbar1 .active {
-    background-color: rgb(64,0,0);
-    color: rgb(255,0,0);
-}
 
 /*media custom background here*/
 
@@ -62,7 +57,7 @@
     color: black;
     padding: 16px 16px; /*h w*/
     background-color: #78c5e9;
-    
+
 
   }
   
