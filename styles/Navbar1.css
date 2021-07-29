@@ -4,18 +4,18 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    
 
     /*not doing anything: */
     /* top:0px; 
     left:0px; */
 
-    display: block; /*flex = have breaklines after*/
+    display: flex; /*flex = have breaklines after*/
     justify-content: center;
 
 
     color: black;
-    padding: 16px 16px; /*h w*/
-    background-color: #78c5e9;
+    background-color: #d278e936;
 
     border: none; /*hide border thats usually shows in buttons*/
     
@@ -31,9 +31,8 @@
     float: left;
     display: block;
     color: black;
-    background-color: #78c5e9;
+    background-color: rgb(153, 218, 198);
     padding: 16px 16px;
-    
 }
 
 
@@ -70,14 +69,19 @@
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
-    position: relative; 
+    position: absolute;
+    width: 50vw; 
     
+    margin: 0;
+    padding: 0;
+
     /* margin: 50px; */
-    background-color: #f1f1f1;
+    background-color: #eedcdc;
     min-width: 160px;
-    max-width: 50vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+
+    left: inherit;
 
     
 }
