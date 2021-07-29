@@ -806,16 +806,23 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
     
     ////make imgSharp = imgSharp_original2 (base image) prior to adding incremental filters
     ////WAY1 - works
-    for (let y = 0; y < image.height; y++)
-    {
-        for (let x = 0; x < image.width; x++)
-        {
-            let formula = (y*image.width*4)+x*4;
-            imageData.data[formula+0] = imageData_original2.data[formula+0];
-            imageData.data[formula+1] = imageData_original2.data[formula+1];
-            imageData.data[formula+2] = imageData_original2.data[formula+2];  
+    // for (let y = 0; y < image.height; y++)
+    // {
+    //     for (let x = 0; x < image.width; x++)
+    //     {
+    //         let formula = (y*image.width*4)+x*4;
+    //         imageData.data[formula+0] = imageData_original2.data[formula+0];
+    //         imageData.data[formula+1] = imageData_original2.data[formula+1];
+    //         imageData.data[formula+2] = imageData_original2.data[formula+2];  
 
-        }
+    //     }
+    // }
+    ////WAY1.1
+    for (var i = 0; i < imageData.data.length; i += 4) {
+            imageData.data[i+0] = imageData_original2.data[i+0];
+            imageData.data[i+1] = imageData_original2.data[i+1];
+            imageData.data[i+2] = imageData_original2.data[i+2];  
+            imageData.data[i+3] = imageData_original2.data[i+3];  //remove this and use opacity 20 to 255 to "posterize the image"
     }
     ////WAY2 - not working
     //imageData = imageData_original2;
