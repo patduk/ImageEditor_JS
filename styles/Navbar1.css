@@ -21,13 +21,13 @@
     
 }
 
-.navbar1 li { 
+.navbar1 > li { 
     /*display: inline;*/ /*removes line breaks on li elements*/
     /*OR*/
      /*Use float to get block elements to float next to each other*/
 }
 
-.navbar1 li a {
+.navbar1 > li a {
     float: left;
     display: block;
     color: black;
@@ -36,7 +36,7 @@
 }
 
 
-.navbar1 li a:hover {
+.navbar1 > li a:hover {
     background-color: rgb(64,0,0);
     color: rgb(255,0,0);
 }
@@ -52,12 +52,15 @@
     
     cursor: pointer;
 
-    display: block;
+    /* display: block; */
     color: black;
     padding: 16px 16px; /*h w*/
     background-color: #78c5e9;
 
-
+    
+    /*put button to right?*/
+    /* position: absolute;
+    right: 0px; */
   }
   
   /* Dropdown button on hover & focus */
@@ -66,11 +69,14 @@
     color: rgb(255,0,0);
   }
   
+
+
+
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
-    position: absolute;
-    width: 50vw; 
+    position: relative;
+    /* width: 50vw;  */
     
     margin: 0;
     padding: 0;
@@ -81,9 +87,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 
-    left: inherit;
 
-    
 }
   
   /* Links inside the dropdown */
@@ -98,7 +102,7 @@
   .dropdown-content a:hover {background-color: #ddd}
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
+  .show {display:flex;}
 
   
 

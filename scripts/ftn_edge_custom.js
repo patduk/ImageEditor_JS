@@ -1,4 +1,9 @@
 function edge_custom() {
+
+    showprocessing = true;
+    ftn_showprocessing();
+
+
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
@@ -393,4 +398,8 @@ function edge_custom() {
     
 
     ctx.putImageData(imageData, 0, 0);
+
+
+    showprocessing = false;
+    ftn_showprocessing();
 }

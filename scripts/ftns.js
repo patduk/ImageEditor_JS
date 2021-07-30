@@ -55,6 +55,13 @@ let GreenV_redo = [];
 let BlueV_redo = [];
 
 
+function ftn_showprocessing() {
+    let imagestatus = document.getElementById('imagestatus');
+    
+    if (showprocessing === true) {imagestatus.innerHTML = "Processing";}
+    else {imagestatus.innerHTML = "Ready";}
+        
+}
 
 function logprint() {
     
@@ -802,6 +809,7 @@ function Flatten_nosavingtoundo() //looks good
 
 function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 {
+    
     ////3 edit image
     ////3 edit image
     
