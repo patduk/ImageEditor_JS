@@ -63,6 +63,17 @@ function ftn_showprocessing() {
         
 }
 
+
+// document.addEventListener("click", event => {});
+document.addEventListener("touchstart", event => {
+    if(event.touches.length > 1) {
+        console.log("zoom plz stahp");
+        event.preventDefault();
+        event.stopPropagation(); // maybe useless
+    }
+}, {passive: false});
+
+
 function logprint() {
     
     let pow1 = document.getElementById('pow1');

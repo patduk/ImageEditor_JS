@@ -122,7 +122,12 @@
 }
   
 
-* {
+body, html {
     touch-action: manipulation;
     -ms-touch-action: manipulation;
+    /* touch-action: pan-y; */
 }
+
+/* body {
+    
+} */
