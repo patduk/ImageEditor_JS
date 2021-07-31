@@ -9,8 +9,8 @@
 
 <script src="scripts/ftn_navbar1.js"></script>
 
-<!-- <link href="styles/Navbar1.css" rel="stylesheet" type="text/css"> -->
 <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+<link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
 <link href="styles/normalize.css" rel="stylesheet" type="text/css">
 <link href="styles/style1.css" rel="stylesheet" type="text/css">
 
@@ -24,28 +24,37 @@
 
     <ul class="navbar1">
         <li><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="imageedit.html">Image Edit</a></li>
-        <!-- <button onclick="myFunction()" class="dropbtn">Dropdown</button> -->
-      
-          
-        <!-- <li><a onclick="myFunction()" class="dropbtn">Dropdown1</a></li>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div> -->
-        <!--OR-->
-      
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-      
-    </ul>
-
-    <div id="myDropdown" class="dropdown-content">
-        <a href="imageedit.html">Image Edit</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-    </div>
+        
+        
+        <!--   
+        <button onclick="myFunction()" class="dropbtn" id="dropbtn1">Dropdown1</button>
+        <button onclick="myFunction()" class="dropbtn" id="dropbtn2">Dropdown2</button> -->
+    
+        <label class="dropdown">
+    
+          <div class="dropbtn">
+            Dropdown
+          </div>
+        
+          <input type="checkbox" class="dd-input" id="test">
+    
+          <ul class="dd-menu">
+            <li>Apps</li>
+            <li class="divider"></li>
+            <li><a href="imageedit.html">Image Edit</a></li>
+            
+            
+            <li>Artworks</li>
+            <li class="divider"></li>
+            <li><a href="#">None</a></li>
+            
+            <li>Other</li>
+            <li class="divider"></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </label>
+    
+      </ul>
 
 
 

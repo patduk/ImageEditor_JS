@@ -2,11 +2,16 @@
 /* Dropdown */
 
 
-/* 
+
 .dropdown {
-  display: inline-block;
-  position: relative;
-} */
+  /* display: block; */
+  /* position: relative; */
+
+  /*put button to right?*/
+  /* position: absolute;
+  right: 0px; */
+
+}
 
 /* .dd-button {
   display: inline-block;
@@ -37,21 +42,30 @@
 
 
 .dd-input {
-  display: none;
+  display: none; /*hide input box */
 }
 
 .dd-menu {
   position: absolute;
   top: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /*or*/
+  /* position: relative;
+  top: 0%; */
+
+
+  border-radius: 12px; /* round corner? */
   
-  padding: 0;
-  margin: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+
 
   box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
   background-color: #ffffff;
   list-style-type: none;
+
+
 }
 
 .dd-input + .dd-menu {
@@ -61,25 +75,58 @@
 .dd-input:checked + .dd-menu {
   display: block;
 } 
-
+ 
 .dd-menu li {
-  padding: 10px 20px;
-  /* cursor: pointer; */
-  /* white-space: nowrap; */
+  
+  margin-top: 8px;
+  margin-bottom: 0px;
+  margin-left: 12px;
+  margin-right: 4px;
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  align-self: flex-end;
+  /* cursor: pointer;  */
+  /* white-space: nowrap; */ /*nowrap = prevent text wrapping*/
+
+  /* background-color:rgb(200,120,120); */
 }
 
-.dd-menu li:hover {
+.dd-menu > li a {
+  display: block;
+
+  /* -8 px to make selection box bigger*/
+  /* margin: -8px -4px -8px; */
+  /* padding: 16px 48px; */
+  
+
+  margin-top: -8px;
+  margin-bottom: 0px;
+  margin-left: -12px;
+  margin-right: -4px; 
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 48px;
+  padding-right: 48px; 
+
+  
+  text-align: center;
+}
+
+.dd-menu li a:hover {
+  border-radius: 12px; /*round corner?*/
   background-color:rgb(64,0,0);
   color: rgb(255,0,0);
 }
 
-/* .dd-menu li a {
-  display: block;
-  margin: -10px -20px;
-  padding: 10px 20px;
-} */
+
 
 .dd-menu li.divider{
-  padding: 0;
-  border-bottom: 1px solid #cccccc;
+  padding: 0px;
+  margin: 0px 12px;
+  border-bottom: 1px solid rgba(124, 124, 124, 0.5);
 }
