@@ -66,6 +66,7 @@
     /*put button to right?*/
     /* position: absolute;
     right: 0px; */
+    
   }
   
   /* Dropdown button on hover & focus */
@@ -121,3 +122,6 @@
 }
   
 
+.disable-dbl-tap-zoom {
+    touch-action: manipulation;
+}
