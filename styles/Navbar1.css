@@ -19,12 +19,14 @@
 
     border: none; /*hide border thats usually shows in buttons*/
     
+    
 }
 
 .navbar1 > li { 
     /*display: inline;*/ /*removes line breaks on li elements*/
     /*OR*/
      /*Use float to get block elements to float next to each other*/
+     
 }
 
 .navbar1 > li a {
@@ -33,6 +35,9 @@
     color: black;
     background-color: rgb(153, 218, 198);
     padding: 16px 18px;
+
+    color: #000000;
+    text-decoration: none;
 }
 
 
@@ -104,5 +109,15 @@
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:flex;}
 
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
   
 
