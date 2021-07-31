@@ -122,6 +122,7 @@
 }
   
 
-.disable-dbl-tap-zoom {
+* {
     touch-action: manipulation;
+    -ms-touch-action: manipulation;
 }
