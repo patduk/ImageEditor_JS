@@ -2,45 +2,6 @@
 /* Dropdown */
 
 
-
-.dropdown {
-  /* display: block; */
-  /* position: relative; */
-
-  /*put button to right?*/
-  /* position: absolute;
-  right: 0px; */
-
-}
-
-/* .dd-button {
-  display: inline-block;
-  border: 1px solid gray;
-  border-radius: 4px;
-  padding: 10px 30px 10px 20px;
-  background-color: #ffffff;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.dd-button:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  width: 0; 
-  height: 0; 
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
-}
-
-.dd-button:hover {
-  background-color: #eeeeee;
-} */
-
-
 .dd-input {
   display: none; /*hide input box */
 }
@@ -77,8 +38,11 @@
 } 
 
  
+
+
 .dd-menu li {
-  
+  color: #000000;
+
   margin-top: 8px;
   margin-bottom: 4px;
   margin-left: 12px;
@@ -89,7 +53,7 @@
   padding-left: 0px;
   padding-right: 0px;
 
-  /* cursor: pointer;  */
+  cursor: pointer; 
   /* white-space: nowrap; */ /*nowrap = prevent text wrapping*/
 
   /* background-color:rgb(200,120,120); */

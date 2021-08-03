@@ -27,6 +27,7 @@
 
     <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
     <link href="styles/inputtext1.css" rel="stylesheet" type="text/css">
+    <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css">
 
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -38,43 +39,54 @@
 <body>
 
     <ul class="navbar1">
+        <li class="titlenavbar1">Image Editor</li>
+        
         <li><a href="index.html">Home</a></li>
-        
-        
-        <!--   
-        <button onclick="myFunction()" class="dropbtn" id="dropbtn1">Dropdown1</button>
-        <button onclick="myFunction()" class="dropbtn" id="dropbtn2">Dropdown2</button> -->
     
-        <label class="dropdown">
+        <!-- <label>
           
           <div class="dropbtn noselect">
             Dropdown
           </div>
+
           <input type="checkbox" class="dd-input">
-    
-    
     
           <ul class="dd-menu">
             <li>Apps</li>
             <li class="divider"></li>
-            <li><a href="imageedit.html">Image Edit</a></li>
-            
-            
+            <li><a href="imageedit1.html">Image Edit</a></li>  
             <li>Art</li>
             <li class="divider"></li>
             <li><a href="#">None</a></li>
-            
             <li>Other</li>
             <li class="divider"></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
-        </label>
-    
+        </label> -->
+
+
+        <!-- <button class="rightmenubutton1"></button> -->
+        <button class="menubutton">
+            <div class="menuiconbar"></div>
+            <div class="menuiconbar"></div>
+            <div class="menuiconbar"></div>
+
+            <ul class="dropdown_x1">
+                <li><a href="imageedit1.html">Image Edit</a></li>  
+                <li><a href="#">Upload Image</a></li>
+                <li><a href="#">Save Image</a></li>
+                <li><a href="#">Log Print</a></li>
+                <li><a href="#">Dark Mode</a></li>
+            </ul>
+
+          </button>
+
+        
+
+            
       </ul>
 
 
-
-    <h1>Image Edit</h1>
 
     <div class="image_display">
         <canvas style="background-color: rgb(255, 255, 255);" id="cv2" >
@@ -125,14 +137,6 @@
             Contrast<br />
             <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
             <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
-
-            <div class="box-container">
-                <div class="box">
-                    <input type="text" placeholder="Animated TEXT">
-                    <span></span>
-                </div>
-            </div>
-
             <br />
 
             Brightness<br />

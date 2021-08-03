@@ -1,7 +1,7 @@
 function edge_custom() {
 
-    showprocessing = true;
-    ftn_showprocessing();
+    // showprocessing = true;
+    // ftn_showprocessing();
 
 
     //prep canvas and ctx (idk why its needed)
@@ -28,16 +28,16 @@ function edge_custom() {
         DictV[key] = 0;
     }
 
-    // ////3.0 edit
-    // if (canvas.width <= 1200 && canvas.height <= 1800) {
-    //     oilpaint(1,8,false);
-    // }
-    // else if (canvas.width <= 1800 && canvas.height <= 1200) {
-    //     oilpaint(1,8,false); 
-    // }
-    // else {
-    //     oilpaint(2,15,false)
-    // }
+    ////3.0 edit
+    if (canvas.width <= 1200 && canvas.height <= 1800) {
+        oilpaint(1,8,false);
+    }
+    else if (canvas.width <= 1800 && canvas.height <= 1200) {
+        oilpaint(1,8,false); 
+    }
+    else {
+        oilpaint(2,15,false)
+    }
     
 
     imageData_original2 = ctx.getImageData(0, 0, image.width, image.height); //update image (to oil paint filtered image)
@@ -74,21 +74,21 @@ function edge_custom() {
 
     ////// 
     ////// GUI
-    let customBGcolor_R = 244; //0-255
-    let customBGcolor_G = 222; //0-255
-    let customBGcolor_B = 211; //0-255
+    let customBGcolor_R = 201; //0-255
+    let customBGcolor_G = 208; //0-255
+    let customBGcolor_B = 208; //0-255
     let customBGcolor_A = 255; // only 255 or 0 / on or off
 
     let hard_spot_reducer = 200; //intensity of white/black lines // 84-255
-    let customlineshadowcolor_R_m = 0; //0-limit
-    let customlineshadowcolor_G_m = 0; //0-limit
+    let customlineshadowcolor_R_m = 85; //0-limit
+    let customlineshadowcolor_G_m = 14; //0-limit
     let customlineshadowcolor_B_m = 0; //0-limit
 
     let use_blackline = false;
     let cutoff = 25; //10-20% of 255 recommended 20-50 //20 for oilpainted //25 for normal?
     let use_linecolorcorrection = true;
-    let add_lighting = false;
-    let add_shading = false;
+    let add_lighting = true;
+    let add_shading = true;
     ////// GUI
     //////
 
@@ -400,6 +400,6 @@ function edge_custom() {
     ctx.putImageData(imageData, 0, 0);
 
 
-    showprocessing = false;
-    ftn_showprocessing();
+    // showprocessing = false;
+    // ftn_showprocessing();
 }

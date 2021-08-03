@@ -1,52 +1,23 @@
 
 html {
-  background-image: linear-gradient(rgb(0,0,0), rgb(71, 71, 65));
+  /* background-image: linear-gradient(rgb(0,0,0), rgb(71, 71, 65)); */
+  background-color: rgb(255,255,255);
+  color: rgb(0,0,0);
 }
 
-body {
-  /* background-color: #000000; */
-  color: rgb(255,255,255);
-
-
-  /* color: rgb(0,0,0);
-  background: url("http://images6.alphacoders.com/571/571919.jpg");
-  background-position: 0px 900px; */
-
-
-  height: 150vh;
-  width: 100vw;
-
-}
-
-.textshadow1 {
-  text-shadow: 1px 1px 2px rgb(0,0,0,1);
-}
 
 .center1 {
-    margin: auto;
     text-align: center;
     letter-spacing: 48px;
-    text-shadow: 0px;
-
-
     padding-top: 48px;
     padding-left: 48px;
-
-    
-    
-  }
+}
   
-  .center2 {
-    margin: auto;
-    width: 50vw;
-    border: 2px solid darkcyan;
-    padding: 20px;
-    font-size: 20px;
-    text-align: center;
-  }
+.center2 {
+  margin: auto;
+  width: 240px;
+  border: 1px solid darkcyan;
+  padding: 20px;
+  text-align: center;
+}
   
-/* 
-  @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-    /* CSS overrides for mobile here */
-    
- /* }  */
