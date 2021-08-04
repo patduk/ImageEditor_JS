@@ -17,21 +17,19 @@
   <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
   <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css">
 
-
-  
   <script>
-
     function opendropdownmenu() {
-      if (document.getElementById("n1").style.display === "block")
-        document.getElementById("n1").style.display="none";
-      else {
-        document.getElementById("n1").style.display="block";
-      }
+      document.getElementById("id_btn1").focus();
+
+      
+
+      //document.getElementsByClassName("navbar1_dropdownbutton1").focus();
+
+      console.log("focused");
     }
-
-
-
+ 
   </script>
+  
 
 <!-- </head> -->
 
@@ -77,8 +75,8 @@
 
     <li class="navbar1_button1"><a>Home</a></li>
 
-    <!-- onclick="this.focus()" -->
-    <button  class="navbar1_dropdownbutton1" onclick="opendropdownmenu()" >Dropdown</button>
+    <!-- onclick="opendropdownmenu()" -->
+    <button class="navbar1_dropdownbutton1" onclick="opendropdownmenu()" id="id_btn1">Dropdown</button>
 
     <!-- id="n1" -->
     <div class="navbar1_dropdown_menu1" id="n1">

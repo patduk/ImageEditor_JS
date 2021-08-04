@@ -55,6 +55,8 @@ let GreenV_redo = [];
 let BlueV_redo = [];
 
 
+
+
 function ftn_showprocessing() {
     let imagestatus = document.getElementById('imagestatus');
     
