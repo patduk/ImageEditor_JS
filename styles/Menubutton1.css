@@ -43,7 +43,7 @@
 
   }
   
-  .menubutton:focus .dropdown_x1, .btn:active .dropdown {
+  .menubutton:focus .dropdown_x1, .btn {
     transform: translate(0, 20px);
     opacity: 0.5;
     visibility: visible;
@@ -67,7 +67,6 @@
 
     
     list-style-type: none;
-    position: absolute; 
     right: 0px;  
 }   
 
