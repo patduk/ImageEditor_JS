@@ -46,7 +46,7 @@
   .menubutton:focus .dropdown_x1, .btn {
     transform: translate(0, 20px);
     opacity: 0.5;
-    
+
     /* visibility: visible; */
     display: block;
   }
@@ -68,7 +68,7 @@
     transition: 0.15s ease;
 
     padding: 0px;
-
+    z-index: 999;
     
     list-style-type: none;
     right: 0px;  

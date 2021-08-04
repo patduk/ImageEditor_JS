@@ -40,7 +40,7 @@
 .navbar1_dropdownbutton1
 {
   display: inline;
-  background-color: rgb(153, 218, 198);
+  background-color: rgb(211, 193, 115);
   padding: 16px 16px;
 
   text-decoration: none;
@@ -79,6 +79,9 @@
 
     transition: 0.15s ease;
 
+
+    /* z-index: 999; */
+
 }
 
 
@@ -89,10 +92,9 @@
 }
 
 .navbar1_dropdown_menu1 li a{
-    
   
-  background-color: #adadad;
-  padding: 16px 16px;
+  background-color: #e0b8b8;
+  padding: 14px 14px;
   
 
 }
