@@ -1,6 +1,7 @@
 .navbar1 {
     /* position: relative; */
-    /*display: flex; flex = have breaklines after*/
+    /* flex = have breaklines after */
+    /* display: flex;  */
     /* justify-content: center; */
 
     width: 100%; /*keep it centered exactly within viewport width 100% or 100vw (ignores scrollbar displracement?)*/
@@ -73,8 +74,8 @@
     background-color: #adadad;
     list-style-type: none;
 
-    visibility: hidden;
-    /* display: none; */
+    /* visibility: hidden; */
+    display: none;
 
     transition: 0.15s ease;
 
@@ -99,8 +100,8 @@
 
 .navbar1_dropdown_menu1:active, 
 .navbar1_dropdownbutton1:focus + .navbar1_dropdown_menu1 {
-  visibility: visible;
-  /* display: block; */
+  /* visibility: visible; */
+  display: block;
 
 }
  

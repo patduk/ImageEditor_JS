@@ -46,12 +46,14 @@
   .menubutton:focus .dropdown_x1, .btn {
     transform: translate(0, 20px);
     opacity: 0.5;
-    visibility: visible;
+    
+    /* visibility: visible; */
+    display: block;
   }
   
   
 .dropdown_x1 {
-    display: block;
+    
     position: absolute;
     top: 100%;
     background: #ffffff;
@@ -60,7 +62,9 @@
     /* text-align: left; */
     opacity: 0;
     
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
+
     transition: 0.15s ease;
 
     padding: 0px;
