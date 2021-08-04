@@ -98,17 +98,26 @@
   
 
 }
+ 
 
+.navbar1_dropdown_menu1, 
+.navbar1_dropdownbutton1 + .navbar1_dropdown_menu1 {
+  /* visibility: hidden; */
+  display: none;
 
-.navbar1_dropdown_menu1:active, 
+}
+
+/* .navbar1_dropdownbutton1:active,  */
 .navbar1_dropdownbutton1:focus + .navbar1_dropdown_menu1 {
   /* visibility: visible; */
   display: block;
 
 }
  
-
-
+.navbar1_dropdownbutton1:focus{
+  background-color: rgb(0,127,0);
+}
+ 
 /*asdfasdf*/
 /*asdfasdf*/
 
