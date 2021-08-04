@@ -16,10 +16,29 @@
 
   <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
   <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script>
+
+    function opendropdownmenu() {
+      if (document.getElementById("n1").style.display === "block")
+        document.getElementById("n1").style.display="none";
+      else {
+        document.getElementById("n1").style.display="block";
+      }
+    }
+
+
+
+  </script>
+
 <!-- </head> -->
 
 
-<body >
+
+
+<body>
 <!-- 
   <ul class="navbar1">
     <li><a href="index.html">Home</a></li>
@@ -52,13 +71,17 @@
     </label>
 
   </ul> -->
+
+ 
   <div class="navbar1">
 
     <li class="navbar1_button1"><a>Home</a></li>
-    <button class="navbar1_dropdownbutton1" >Dropdown</button>
 
+    <!-- onclick="this.focus()" -->
+    <button  class="navbar1_dropdownbutton1" onclick="opendropdownmenu()" >Dropdown</button>
 
-    <div class="navbar1_dropdown_menu1">
+    <!-- id="n1" -->
+    <div class="navbar1_dropdown_menu1" id="n1">
       <li><a href="imageedit1.html">Image Edit</a></li>  
       <li><a href="index.html">Link 2</a></li>
       <li><a href="#">Link 3</a></li>
