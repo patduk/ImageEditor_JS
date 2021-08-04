@@ -18,16 +18,20 @@
   <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css">
 
   <script>
-    function opendropdownmenu() {
+    function focus_on_id_btn1() {
+      //// WAY 1 - better
       document.getElementById("id_btn1").focus();
 
-      
+      //// WAY 2 - ?
+      // if (document.getElementById("n1").style.display != "block")
+      //   document.getElementById("n1").style.display = "block";
+      // else {
+      //   document.getElementById("n1").style.display = "none";
+      // }
 
-      //document.getElementsByClassName("navbar1_dropdownbutton1").focus();
-
-      console.log("focused");
+      //// log print
+      //console.log("successfully focused on id btn1");
     }
- 
   </script>
   
 
@@ -73,18 +77,23 @@
  
   <div class="navbar1">
 
-    <li class="navbar1_button1"><a>Home</a></li>
+    <li class="navbar1_button1 "><a href="index.html">Home</a></li>
 
-    <!-- onclick="opendropdownmenu()" -->
-    <button class="navbar1_dropdownbutton1" onclick="opendropdownmenu()" id="id_btn1">Dropdown</button>
+    <!-- <div class="navbar1_parent_dropdown">  -->
+      <!-- onclick="opendropdownmenu()" --> 
 
-    <!-- id="n1" -->
-    <div class="navbar1_dropdown_menu1" id="n1">
-      <li><a href="imageedit1.html">Image Edit</a></li>  
-      <li><a href="index.html">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
-    </div>
+      <button class="navbar1_dropdownbutton1 " onclick="focus_on_id_btn1()" id="id_btn1">Dropdown
+      
+      </button>
+
+      <!-- id="n1" -->
+      <div class="navbar1_dropdown_menu1" id="n1">
+        <li><a href="imageedit1.html">Image Edit</a></li>  
+        <li><a href="index.html">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+      </div>
     
+      <!-- </div> -->
 
     <!-- <div class="dropdown">
       <ul class="dd-menu">
