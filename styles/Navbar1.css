@@ -45,16 +45,22 @@
   border-radius: 12px;
   text-decoration: none;
 
-  background-color: rgb(216, 179, 196);
+  /* background-color: rgb(216, 179, 196); */
+  
   color: black;
   border: 2px solid black;
-  border-color: rgb(163, 129, 194);
+  border-color: rgb(64, 129, 64);
 
+
+  background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 0px 4px rgba(0,0,0,0.5);
+  /* transition: 0.5s; */
 }
 .navbar1_button1 a:hover {
-  background-color: rgb(84,32,64);
+  /* background-color: rgb(84,32,64); */
   color: rgb(255,127,127);
-  
+  background-position: right center;
 }
 
 
@@ -69,20 +75,29 @@
   border-radius: 12px;
   text-decoration: none;
   
-  background-color: rgb(216, 179, 196);
+  /* background-color: rgb(216, 179, 196);
   color: black;
   border: 2px solid black;
-  border-color: rgb(163, 129, 194);
+  border-color: rgb(163, 129, 194); */
+
+  color: black;
+  border: 2px solid black;
+  border-color: rgb(64, 129, 64);
+  background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 0px 4px rgba(0,0,0,0.5);
+
 
 }
 .navbar1_dropdownbutton1:hover {
-  background-color: rgb(84,32,64);
+  /* background-color: rgb(84,32,64); */
   color: rgb(255,127,127);
-
+  background-position: right center;
 }
 .navbar1_dropdownbutton1:focus{
   background-color: rgb(84,32,64);
   color: rgb(255,127,127);
+  
 }
 
 
@@ -118,7 +133,7 @@
     visibility: hidden;
     /* display: none; */
 
-    
+    /* transition: all 0.5s cubic-bezier(.25,.8,.25,1); */
 
 }
 
