@@ -27,6 +27,24 @@
 
     <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
     <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css">
+
+
+    <script>
+        function focus_on_id_btn1() {
+        //// WAY 1 - better
+        document.getElementById("id_btn1").focus();
+
+        //// WAY 2 - ?
+        // if (document.getElementById("n1").style.display != "block")
+        //   document.getElementById("n1").style.display = "block";
+        // else {
+        //   document.getElementById("n1").style.display = "none";
+        // }
+
+        //// log print
+        //console.log("successfully focused on id btn1");
+        }
+    </script>
 <!-- </head> -->
 
 
@@ -47,7 +65,7 @@
     </button>
 
     <!-- id="n1" -->
-    <div class="navbar1_dropdown_menu1" id="n1">
+    <div class="navbar1_dropdown_menu1" id="n1" style="transform: translateX(42%)">
         <li><a href="imageedit1.html">Image Edit</a></li>  
         <li><a href="index.html">Link 2</a></li>
         <li><a href="#">Link 3</a></li>
@@ -96,6 +114,13 @@
 
     <div>
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' onchange="" /> 
+        <!-- 
+        <button onclick="undo()" >undo</button>
+        <button onclick="redo()" >redo</button> -->
+        <button onclick="undo2()" >undo2</button>
+        <button onclick="redo2()" >redo2</button>
+        
+
         </br>
         </br>
         <!-- <button onclick="filter1()" >filter 1</button>
@@ -117,10 +142,7 @@
         </br>
         </br>
         
-        <!-- <button onclick="undo()" >undo</button>
-        <button onclick="redo()" >redo</button> -->
-        <button onclick="undo2()" >undo2</button>
-        <button onclick="redo2()" >redo2</button>
+        
         <button onclick="reset()" >reset</button>
         <button onclick="flatten()" >flatten</button>
         <button onclick="download()" >download</button>
