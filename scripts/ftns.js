@@ -143,14 +143,14 @@ window.addEventListener('load', function()
                 //new canvas dimensions
                 canvas.height = image.height;
                 canvas.width = image.width;
-                            
-                //adjust canvas (and image) dimensions proportionally based on window resize
-                if (window.innerWidth > image.width) {
-                    canvas.style.width = image.width;
-                }
-                else {
-                    canvas.style.width = "100%";
-                }
+                        
+                // //adjust canvas (and image) dimensions proportionally based on window resize
+                // if (window.innerWidth > image.width) {
+                //     canvas.style.width = image.width;
+                // }
+                // else {
+                //     canvas.style.width = "100%";
+                // }
 
 
                 //put an image and its left, top location
@@ -194,12 +194,13 @@ window.addEventListener('load', function() {
         canvas.width = image.width;
                     
         //adjust canvas (and image) dimensions proportionally based on window resize
-        if (window.innerWidth > image.width) {
-            canvas.style.width = image.width;
+        if (window.innerWidth > 700) {
+            canvas.style.width = "700px";
         }
         else {
             canvas.style.width = "100%";
         }
+        console.log(window.innerWidth);
         
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
@@ -226,12 +227,21 @@ function resizeCanvas() {
     //ctx.drawImage(image, 0, 0);
     
    //adjust canvas (and image) dimensions proportionally based on window resize
-    if (window.innerWidth > image.width) {
-    canvas.style.width = image.width;
+    if (window.innerWidth > 1000) {
+        canvas.style.width = "1000px";
+
     }
     else {
         canvas.style.width = "100%";
     }
+
+    //adjust if canvas height exceeds canvas-container's height - wip
+    if (canvas.style.height > document.getElementById("container_canvas_id").style.height) {
+        canvas.style.height = document.getElementById("container_canvas_id").style.height;
+    }
+
+
+    console.log( canvas.style.height);
     //ctx.putImageData(0, 0, 0, canvas.width, canvas.height);
 }
 

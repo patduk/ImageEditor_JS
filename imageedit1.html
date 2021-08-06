@@ -30,20 +30,27 @@
 
 
     <script>
+        //onclick function for id_btn1, focus on the id_btn1
         function focus_on_id_btn1() {
-        //// WAY 1 - better
-        document.getElementById("id_btn1").focus();
-
-        //// WAY 2 - ?
-        // if (document.getElementById("n1").style.display != "block")
-        //   document.getElementById("n1").style.display = "block";
-        // else {
-        //   document.getElementById("n1").style.display = "none";
-        // }
-
-        //// log print
-        //console.log("successfully focused on id btn1");
+            document.getElementById("id_btn1").focus();
         }
+        
+ 
+
+        //detect click outside of a button, unfocus.. FOR SAFARI
+        let specifiedelement1 = document.getElementById('id_btn1');
+        document.addEventListener('click', function(event) 
+        {
+            // if (!specifiedelement1.contains(event.target)) 
+            // {
+            //     // Do something when user clicked outside of wrapper element
+                
+            // }
+        }
+        );
+
+
+        
     </script>
 <!-- </head> -->
 
@@ -55,7 +62,7 @@
     
   <div class="navbar1">
 
-    <li class="navbar1_button1 "><a href="index.html">Home</a></li>
+    <li class="navbar1_button1"><a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');">Home</a></li>
 
     <!-- <div class="navbar1_parent_dropdown">  -->
     <!-- onclick="opendropdownmenu()" --> 
@@ -65,12 +72,12 @@
     </button>
 
     <!-- id="n1" -->
-    <div class="navbar1_dropdown_menu1" id="n1" style="transform: translateX(42%)">
+    <div class="navbar1_dropdown_menu1" id="id_menu1" style="transform: translateX(42%)" onclick="focus_on_id_btn1()">
         <li><a href="imageedit1.html">Image Edit</a></li>  
         <li><a href="index.html">Link 2</a></li>
         <li><a href="#">Link 3</a></li>
     </div>
-    </div>
+  </div>
 <!--     
     <div class="navbar1">
         <li class="titlenavbar1">Image Editor</li>
@@ -96,97 +103,95 @@
 
 
 
+    
+    
 
-
-
-
-    <div class="image_display">
-        <canvas style="background-color: rgb(255, 255, 255);" id="cv2" >
+    <div class='container_canvas' id="container_canvas_id">
+        <canvas style="background-color: rgb(127, 127, 127);" id="cv2" >
+        </canvas>
     </div>
-        
-    </canvas>
+
+    <div class="bar1">
+        <button class="button_style1" onclick="undo2()" >undo</button>
+        <button class="button_style1" onclick="redo2()" >redo</button>
+        <button class="button_style1" onclick="reset()" >reset</button>
+
+        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
+        <label for="diamondx1" class="button_style1_label";
+        font-size: 3.5vw;">upload</label>
+
+        <button class="button_style1" onclick="download()" >save</button>
+
+    </div>
+
+    <div class="bar1" >
+        <!-- <button onclick="filter1()" >filter 1</button>
+    <button onclick="filter2()" >filter 2</button>-->
+    <button class="button_style1" onclick="invert()" >invert</button> 
+    <button class="button_style1" onclick="lighten()" >lighten</button>
+    <button class="button_style1" onclick="grayscale()" >grayscale</button>
+    <button class="button_style1" onclick="oilpaint(1,10,true)" >oil paint</button>
+    <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button>
+    </br>
     </br>
 
-    <div id="imagestatus">
-        <p>Ready</p>
+    <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
+    <button class="button_style1" onclick="edge_custom()" >line (custom)</button>
+    </br>
+    </br>
     </div>
 
 
-    <div>
-        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' onchange="" /> 
-        <!-- 
-        <button onclick="undo()" >undo</button>
-        <button onclick="redo()" >redo</button> -->
-        <button onclick="undo2()" >undo2</button>
-        <button onclick="redo2()" >redo2</button>
-        
+    
 
-        </br>
-        </br>
-        <!-- <button onclick="filter1()" >filter 1</button>
-        <button onclick="filter2()" >filter 2</button>-->
-        <button onclick="invert()" >invert</button> 
-        <button onclick="lighten()" >lighten</button>
-        <button onclick="grayscale()" >grayscale</button>
-        <button onclick="oilpaint(1,10,true)" >oil paint</button>
-        <button onclick="gaussianblur()" >Gaussian Blur</button>
-        </br>
-        </br>
-
-        <button onclick="edge_normal()" >line (normal)</button>
-        <button onclick="edge_custom()" >line (custom)</button>
-        </br>
-        </br>
-
-        <button onclick="ellipse_test1()" >ellipse</button>
-        </br>
-        </br>
-        
-        
-        <button onclick="reset()" >reset</button>
-        <button onclick="flatten()" >flatten</button>
-        <button onclick="download()" >download</button>
-        </br></br>
+    <button onclick="ellipse_test1()" >ellipse</button>
+    </br>
+    </br>
+    
+    
+    
+    <button onclick="flatten()" >flatten</button>
+    
+    </br></br>
 
 
-        <div class="slidecontainer disable-dbl-tap-zoom">
-            Contrast<br />
-            <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
-            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
-            <br />
+    <div class="slidecontainer disable-dbl-tap-zoom">
+        Contrast<br />
+        <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
+        <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
+        <br />
 
-            Brightness<br />
-            <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
-            <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
-            <br />
+        Brightness<br />
+        <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
+        <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
+        <br />
 
-            Opacity<br />
-            <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
-            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
-            <br />
+        Opacity<br />
+        <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
+        <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
+        <br />
 
-            Red<br />
-            <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
-            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
-            <br />
+        Red<br />
+        <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
+        <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
+        <br />
 
-            Green<br />
-            <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
-            <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
-            <br />
+        Green<br />
+        <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
+        <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
+        <br />
 
-            Blue<br />
-            <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
-            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
-            <br />
+        Blue<br />
+        <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
+        <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
+        <br />
 
-        </div> 
+    </div> 
 
 
 
 
 
-    </div>
     <div id="pow1">baka1</div>
     <div id="pow2">baka2</div>
     <div id="pow3">baka3</div>

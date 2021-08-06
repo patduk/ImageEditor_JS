@@ -31,6 +31,23 @@
 
       //// log print
       //console.log("successfully focused on id btn1");
+
+
+
+
+      //detect click outside of a button, unfocus.. FOR SAFARI
+      let specifiedelement1 = document.getElementById('id_btn1');
+      document.addEventListener('click', function(event) 
+      {
+          if ( !specifiedelement1.contains(event.target)) 
+          {
+              // Do something when user clicked outside of wrapper element
+              
+          }
+      }
+      );
+
+
     }
   </script>
   
@@ -87,7 +104,7 @@
       </button>
 
       <!-- id="n1" -->
-      <div class="navbar1_dropdown_menu1" id="n1" style="transform: translateX(80%)">
+      <div class="navbar1_dropdown_menu1" id="id_menu1" style="transform: translateX(80%)" onclick="focus_on_id_btn1()">
         <li><a href="imageedit1.html">Image Edit</a></li>  
         <li><a href="index.html">Link 2</a></li>
         <li><a href="#">Link 3</a></li>
