@@ -1,6 +1,6 @@
 .navbar1 {
     width: 100%; /*keep it centered exactly within viewport width 100% or 100vw (100vw extends thru scrollbar?)*/
-    
+    height: 60px;
     margin: 0px;
     padding: 0px;
         
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 54px;
+    
 }
 
 
@@ -31,22 +31,25 @@
 
 
 
-
-
-.navbar1_button1 {
-  /*border: none; hide border thats usually shows in buttons*/
+.navbar1_button1{
   list-style-type: none;
-
 }
 .navbar1_button1 a{
-  padding: 16px 16px;
-  margin-left: 4px;
-  margin-right: 4px;
-  border-radius: 12px;
+  margin: 1px;
+  /*border: none; hide border thats usually shows in buttons*/
+  list-style-type: none;
   text-decoration: none;
+  
+
+  display: inline-block;
+  width: 100px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+
+  border-radius: 12px;
 
   /* background-color: rgb(216, 179, 196); */
-  
   color: black;
   border: 2px solid black;
   border-color: rgb(64, 129, 64);
@@ -65,26 +68,27 @@
 
 .navbar1_dropdownbutton1
 {
+  margin: 1px;
   /*border: none; hide border thats usually shows in buttons*/
   list-style-type: none;
-  
-  padding: 16px 16px;
-  margin-left: 4px;
-  margin-right: 4px;
-  border-radius: 12px;
   text-decoration: none;
   
-  /* background-color: rgb(216, 179, 196);
-  color: black;
-  border: 2px solid black;
-  border-color: rgb(163, 129, 194); */
 
+  display: inline-block;
+  width: 100px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+
+  border-radius: 12px;
+
+  /* background-color: rgb(216, 179, 196); */
   color: black;
   border: 2px solid black;
   border-color: rgb(64, 129, 64);
+
+
   background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
-
-
 
 }
 .navbar1_dropdownbutton1:hover {
@@ -97,8 +101,7 @@
   background-color: rgb(84,32,64);
   background-image: none;
   color: rgb(255,127,127);
-  border: 2px solid rgb(255,127,127);
-  
+  border: 2px solid rgb(255,127,127); 
 }
 
 
@@ -116,7 +119,7 @@
 
 .navbar1_dropdown_menu1 {
     position: absolute;
-    top: 54.5px;
+    top: 60px;
     /*or*/
     /* position: relative; 
     top: 0%; */
@@ -133,9 +136,6 @@
 
     visibility: hidden;
     /* display: none; */
-
-    /* transition: all 0.5s cubic-bezier(.25,.8,.25,1); */
-
 }
 
 
@@ -244,5 +244,5 @@ input:active+.button_style1_label
   display: flex;
     justify-content: center;
     align-items: center;
-    
+    max-width: 100%;
 }

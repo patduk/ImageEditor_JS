@@ -78,48 +78,92 @@ document.addEventListener("touchstart", event => {
 
 function logprint() {
     
-    let pow1 = document.getElementById('pow1');
-    pow1.innerHTML = 
-    "undo/redo lists:" + "</br>" +
-    "Image_undo " + Image_undo + "</br>" +
-    IncV_undo + "</br>" +
-    ContrastV_undo + "</br>" +
-    BrightnessV_undo + "</br>" +
-    OpacityV_undo + "</br>" +
-    RedV_undo + "</br>" +
-    GreenV_undo + "</br>" +
-    BlueV_undo + "</br>" + 
-    "Image_redo " + Image_redo + "</br>" +
-    IncV_redo + "</br>" +
-    ContrastV_redo + "</br>" +
-    BrightnessV_redo + "</br>" +
-    OpacityV_redo + "</br>" +
-    RedV_redo + "</br>" +
-    GreenV_redo + "</br>" +
-    BlueV_redo + "</br>" +
-    "DictV: </br>" +
-    DictV["IncV"] + "</br>" +
-    DictV["ContrastV"] + "</br>" +
-    DictV["BrightnessV"] + "</br>" +
-    DictV["OpacityV"] + "</br>" +
-    DictV["RedV"] + "</br>" +
-    DictV["GreenV"] + "</br>" +
-    DictV["BlueV"] + "</br>";
+    // let pow1 = document.getElementById('pow1');
+    // pow1.innerHTML = 
+    // "undo/redo lists:" + "</br>" +
+    // "Image_undo " + Image_undo + "</br>" +
+    // IncV_undo + "</br>" +
+    // ContrastV_undo + "</br>" +
+    // BrightnessV_undo + "</br>" +
+    // OpacityV_undo + "</br>" +
+    // RedV_undo + "</br>" +
+    // GreenV_undo + "</br>" +
+    // BlueV_undo + "</br>" + 
+    // "Image_redo " + Image_redo + "</br>" +
+    // IncV_redo + "</br>" +
+    // ContrastV_redo + "</br>" +
+    // BrightnessV_redo + "</br>" +
+    // OpacityV_redo + "</br>" +
+    // RedV_redo + "</br>" +
+    // GreenV_redo + "</br>" +
+    // BlueV_redo + "</br>" +
+    // "DictV: </br>" +
+    // DictV["IncV"] + "</br>" +
+    // DictV["ContrastV"] + "</br>" +
+    // DictV["BrightnessV"] + "</br>" +
+    // DictV["OpacityV"] + "</br>" +
+    // DictV["RedV"] + "</br>" +
+    // DictV["GreenV"] + "</br>" +
+    // DictV["BlueV"] + "</br>";
 
 
-    let pow2 = document.getElementById('pow2');
-    pow2.innerHTML = 
-    imageData.data.length/4 + "*4 (data.length) </br> " + 
-    image.width*image.height +  " (w*h) </br> " + image.width + " (width) </br> " + 
-    image.height + " (height) </br>";
+    // let pow2 = document.getElementById('pow2');
+    // pow2.innerHTML = 
+    // imageData.data.length/4 + "*4 (data.length) </br> " + 
+    // image.width*image.height +  " (w*h) </br> " + image.width + " (width) </br> " + 
+    // image.height + " (height) </br>";
 
-    let pow3 = document.getElementById('pow3');
-    pow3.innerHTML = "Baka";
+    // let pow3 = document.getElementById('pow3');
+    // pow3.innerHTML = "Baka";
 
 }
 
+//load sample image
+window.addEventListener('load', function() {
+    //function loadsampleimage() {
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d');        
+    image = new Image();
+    
+    // set src to blob e
+    image.src = 'images/wlop2.jpg';
+    
+    ResetAllAttributes();
+
+    // canvas.style.height = image.height.ToString + "%";
+    // canvas.style.width = image.width.ToString + "%";
+    // OR
+    canvas.style.height = "";
+    canvas.style.width = "";
+    
+
+    image.onload = () => {
+        URL.revokeObjectURL(image.src);
+
+        //new canvas dimensions
+        canvas.height = image.height;
+        canvas.width = image.width;
+
+        resizeCanvas();
+
+        //put an image and its left, top location
+        ctx.drawImage(image, 0, 0);
+
+        //draw a box over the top (useful for 2d spheres?)
+        //
+
+        // //get imageData
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
+        logprint();
+    }   
+});
 
 
+
+//upload file
 window.addEventListener('load', function() 
 {
     // document.querySelector('input[type="file"]').addEventListener('change', function()
@@ -136,21 +180,25 @@ window.addEventListener('load', function()
             
             //reset
             ResetAllAttributes();
+
+            // canvas.style.height = image.height.ToString + "%";
+            // canvas.style.width = image.width.ToString + "%";
+            // OR
+            canvas.style.height = "";
+            canvas.style.width = "";
+
             
             image.onload = () => {
                 URL.revokeObjectURL(image.src);
 
+                
                 //new canvas dimensions
                 canvas.height = image.height;
                 canvas.width = image.width;
-                        
-                // //adjust canvas (and image) dimensions proportionally based on window resize
-                // if (window.innerWidth > image.width) {
-                //     canvas.style.width = image.width;
-                // }
-                // else {
-                //     canvas.style.width = "100%";
-                // }
+
+              
+
+                resizeCanvas();
 
 
                 //put an image and its left, top location
@@ -175,74 +223,165 @@ window.addEventListener('load', function()
 
 
 
-window.addEventListener('load', function() {
-    //function loadsampleimage() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');        
-    image = new Image();
-    
-    // set src to blob e
-    image.src = 'images/wlop2.jpg';
-    
-    ResetAllAttributes();
-    
-    image.onload = () => {
-        URL.revokeObjectURL(image.src);
-
-        //new canvas dimensions
-        canvas.height = image.height;
-        canvas.width = image.width;
-                    
-        //adjust canvas (and image) dimensions proportionally based on window resize
-        if (window.innerWidth > 700) {
-            canvas.style.width = "700px";
-        }
-        else {
-            canvas.style.width = "100%";
-        }
-        console.log(window.innerWidth);
-        
-        //put an image and its left, top location
-        ctx.drawImage(image, 0, 0);
-
-        //draw a box over the top (useful for 2d spheres?)
-        //
-
-        // //get imageData
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        
-        logprint();
-    }   
-});
-
 window.addEventListener("resize", resizeCanvas);
 function resizeCanvas() {
     let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d'); 
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    // let ctx = canvas.getContext('2d'); 
+    // imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
-    //ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    //ctx.drawImage(image, 0, 0);
+    // "nickname" variables
+    let container_canvas_w = document.getElementById("container_canvas_id").clientWidth;
+    let container_canvas_h = document.getElementById("container_canvas_id").clientHeight;    
+
+    // reset 
+    canvas.style.height = "";
+    canvas.style.width = "";
+
+    // log print
+    console.log("cw: " + canvas.width, "\nch: " + canvas.height);
+    console.log("stylew: " + canvas.style.width, "\nstyleh: " + canvas.style.height);
+    console.log("containerw: " + container_canvas_w, "\ncontainerh: " + container_canvas_h);
+
+
     
-   //adjust canvas (and image) dimensions proportionally based on window resize
-    if (window.innerWidth > 1000) {
-        canvas.style.width = "1000px";
+    //// if image is portrait
+    if (canvas.height > canvas.width) {
+
+        //if image is bigger than container in both width and height
+        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
+        {
+            //if container is landscape
+            if (container_canvas_w > container_canvas_h) {
+                canvas.style.height = "100%";
+                console.log("portrait, 1.1");
+            }
+
+            //if container is portrait
+            else if (container_canvas_h > container_canvas_w) {
+                //ratio comparison between container & image:
+                //if container is more landscape than image
+                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height)
+                    canvas.style.height = "100%";
+                //if container is more portrait than image
+                else if (container_canvas_w/container_canvas_h < canvas.width/canvas.height)
+                    canvas.style.width = "100%";
+
+                console.log("portrait, 1.2");
+            }
+
+            // if container is perfect square
+            else if (container_canvas_w === container_canvas_h) {
+                canvas.style.width = "100%";
+                console.log("portrait, 1.3");
+            }
+        }
+
+        // if image is bigger than container in width only
+        else if (canvas.width > container_canvas_w) 
+        {
+            canvas.style.width = "100%";
+            console.log("landscape, 2");
+        }
+
+        //if image is bigger than container in height only
+        else if (canvas.height > container_canvas_h) 
+        {
+            canvas.style.height = "100%";
+            console.log("landscape, 3");
+        }
+
+        //if image is same width/height as container - not needed?
+        // else if {
+        // }
+
 
     }
-    else {
-        canvas.style.width = "100%";
+
+
+    //// if image is landscape
+    else if (canvas.width > canvas.height) {
+
+        //if image is bigger than container in both width and height
+        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
+        {
+            //if container is landscape
+            if (container_canvas_w > container_canvas_h) {
+                //ratio comparison between container & image:
+                //if container is more landscape than image
+                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height)
+                    canvas.style.height = "100%";
+                //if container is more portrait than image
+                if (container_canvas_w/container_canvas_h < canvas.width/canvas.height)
+                    canvas.style.width = "100%";
+
+                console.log("landscape, 1.1");
+            }
+
+            //if container is portrait
+            else if (container_canvas_h > container_canvas_w) {
+                canvas.style.width = "100%";
+                console.log("landscape, 1.2");
+            }
+
+            // if container is perfect square
+            else if (container_canvas_w === container_canvas_h) {
+                canvas.style.width = "100%";
+                console.log("landscape, 1.3");
+            }
+        }
+
+        // if image is bigger than container in width only
+        else if (canvas.width > container_canvas_w) 
+        {
+            canvas.style.width = "100%";
+            console.log("landscape, 2");
+        }
+
+        //if image is bigger than container in height only
+        else if (canvas.height > container_canvas_h) 
+        {
+            canvas.style.height = "100%";
+            console.log("landscape, 3");
+        }
+
+        //if image is same width/height as container - not needed?
+        // else if {
+        // }
+       
     }
 
-    //adjust if canvas height exceeds canvas-container's height - wip
-    if (canvas.style.height > document.getElementById("container_canvas_id").style.height) {
-        canvas.style.height = document.getElementById("container_canvas_id").style.height;
+    //// if image is perfect square
+    else if (canvas.height === canvas.width) {
+
+        // if image is bigger than container in both width and height
+        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) {
+            //if container is landscape
+            if (container_canvas_w > container_canvas_h) {
+                canvas.style.height = "100%";
+                console.log("image: square, 1.1");
+            }
+            //if container is portrait
+            else if (container_canvas_w < container_canvas_h) {
+                canvas.style.width = "100%";
+                console.log("image: square, 1.2");
+            }
+        }
+
+        // if image is bigger than container in width only
+        else if (canvas.width > container_canvas_w) 
+        {
+            canvas.style.width = "100%";
+            console.log("image: square, 2");
+        }
+
+        //if image is bigger than container in height only
+        else if (canvas.height > container_canvas_h) 
+        {
+            canvas.style.height = "100%";
+            console.log("image: square, 3");
+        }
+
     }
-
-
-    console.log( canvas.style.height);
-    //ctx.putImageData(0, 0, 0, canvas.width, canvas.height);
 }
 
 
