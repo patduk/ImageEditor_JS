@@ -221,12 +221,30 @@ window.addEventListener('load', function()
     
 });
 
+canvas.addEventListener('click', lighten, false);
+
+var zoom = function(clicks){
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d');
+
+
+    var pt = ctx.transformedPoint(lastX,lastY);
+    ctx.translate(pt.x,pt.y);
+    var factor = Math.pow(scaleFactor,clicks);
+    ctx.scale(factor,factor);
+    ctx.translate(-pt.x,-pt.y);
+    redraw();
+}
 
 
 window.addEventListener("resize", resizeCanvas);
 function resizeCanvas() {
     let canvas = document.getElementById('cv2');
-    // let ctx = canvas.getContext('2d'); 
+    let ctx = canvas.getContext('2d');
+    
+    // ctx.translate(pt.x,pt.y);
+    // ctx.scale(factor,factor);
+    // ctx.translate(-pt.x,-pt.y);
     // imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
     // "nickname" variables
@@ -246,6 +264,7 @@ function resizeCanvas() {
     
     //// if image is portrait
     if (canvas.height > canvas.width) {
+        
 
         //if image is bigger than container in both width and height
         if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
@@ -266,12 +285,12 @@ function resizeCanvas() {
                 else if (container_canvas_w/container_canvas_h < canvas.width/canvas.height)
                     canvas.style.width = "100%";
 
-                console.log("portrait, 1.2");
+                    console.log("portrait, 1.2");
             }
 
             // if container is perfect square
             else if (container_canvas_w === container_canvas_h) {
-                canvas.style.width = "100%";
+                canvas.style.height = "100%";
                 console.log("portrait, 1.3");
             }
         }
@@ -300,6 +319,7 @@ function resizeCanvas() {
 
     //// if image is landscape
     else if (canvas.width > canvas.height) {
+        
 
         //if image is bigger than container in both width and height
         if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
@@ -344,6 +364,7 @@ function resizeCanvas() {
             console.log("landscape, 3");
         }
 
+       
         //if image is same width/height as container - not needed?
         // else if {
         // }
