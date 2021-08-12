@@ -66,14 +66,40 @@ function ftn_showprocessing() {
 }
 
 
-// document.addEventListener("click", event => {});
-document.addEventListener("touchstart", event => {
-    if(event.touches.length > 1) {
-        console.log("zoom plz stahp");
-        event.preventDefault();
-        event.stopPropagation(); // maybe useless
+
+
+
+
+window.onload = () => {
+
+    // Get the container element
+    let btnContainer = document.getElementById("myDIV");
+
+    // Get all buttons with class="btn" inside the container
+    let btns = btnContainer.getElementsByClassName("btn");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        // If there's no active class
+        if (current.length > 0) {
+        current[0].className = current[0].className.replace(" active", "");
+        }
+
+        // Add the active class to the current/clicked button
+        this.className += " active";
+    });
     }
-}, {passive: false});
+
+}
+
+
+
+
+
+
 
 
 function logprint() {
@@ -218,25 +244,11 @@ window.addEventListener('load', function()
     });
 
     
-    
 });
 
-canvas.addEventListener('click', lighten, false);
-
-var zoom = function(clicks){
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');
 
 
-    var pt = ctx.transformedPoint(lastX,lastY);
-    ctx.translate(pt.x,pt.y);
-    var factor = Math.pow(scaleFactor,clicks);
-    ctx.scale(factor,factor);
-    ctx.translate(-pt.x,-pt.y);
-    redraw();
-}
-
-
+//resize canvas
 window.addEventListener("resize", resizeCanvas);
 function resizeCanvas() {
     let canvas = document.getElementById('cv2');
@@ -403,10 +415,48 @@ function resizeCanvas() {
         }
 
     }
+
+
+
+
+    ///scrollbar detection, modify center/left justification within
+
+    ///scrollbar detection, modify center/left justification within
+    let container_id1 = document.getElementById("container_id1");
+    console.log(container_id1.clientWidth , container_id1.scrollWidth);
+
+    if (container_id1.clientWidth < container_id1.scrollWidth)
+    {
+        container_id1.style.justifyContent = "left";
+        console.log("left");
+    }
+    else 
+    {
+        container_id1.style.justifyContent = "center";
+        console.log("center");
+    }
+
+
+    let container_id2 = document.getElementById("container_id2");
+    console.log(container_id2.clientWidth , container_id2.scrollWidth);
+
+    if (container_id2.clientWidth < container_id2.scrollWidth)
+    {
+        container_id2.style.justifyContent = "left";
+        console.log("left");
+    }
+    else 
+    {
+        container_id2.style.justifyContent = "center";
+        console.log("center");
+    }
+
+
+
 }
 
 
-
+//ellipse filter add
 function ellipse_test1() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d'); 
@@ -447,11 +497,6 @@ function ellipse_test1() {
     ctx.putImageData(imageData, 0, 0);
 }
 
-
-
-//normal edge detection function here - moved to separate js file
-//custom edge detection function here - moved
-//oil paint function here - moved
 
 
 

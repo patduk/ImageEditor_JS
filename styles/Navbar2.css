@@ -1,0 +1,110 @@
+.button_style1 {
+    width: 80px;
+    height: 48px;
+    text-align: center;
+    margin: 0%;
+  
+    color: black;
+    border: 2px solid black;
+    border-color: rgb(64, 129, 64);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
+  
+   
+
+    
+}
+
+
+
+
+
+.button_style1_label {
+    width: 80px;
+    line-height: 44px; /*line-height for label, not normal button*/
+    max-height: 44px;
+    text-align: center;
+    margin: 0%;
+
+    color: black;
+    border: 2px solid black;
+    border-color: rgb(64, 129, 64);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
+}
+
+
+.button_style1:hover, 
+.button_style1:active,
+
+.button_style1_label:hover, 
+.button_style1_label:active, 
+input:hover+.button_style1_label, 
+input:active+.button_style1_label 
+{
+    background-color: rgb(84,32,64);
+    background-image: none;
+    color: rgb(255,127,127);
+    border: 2px solid rgb(255,127,127);
+}
+
+
+    
+
+
+.bar1 {
+    border: 1px solid black;
+    display: inline-flex;
+    width: 100%;
+    height: 75px;
+
+    
+    margin: 16px;
+
+
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+}
+
+.container_leftorcenterautoalign{
+    border: 1px solid black;
+    display: inline-flex;
+    width: 100%;
+    height: 75px;
+
+
+    justify-content: center; /*if javascript function used*/
+    align-items: center;
+    text-align: center;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+    /* white-space: nowrap;
+    text-overflow: ellipsis; */
+}
+
+
+
+
+
+/* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+  
+/* Style the active class (and buttons on mouse-over) */
+.active, .btn:hover {
+    background-color: #666;
+    color: white;
+}
