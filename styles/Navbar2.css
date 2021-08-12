@@ -1,8 +1,9 @@
 .button_style1 {
-    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
     height: 48px;
     text-align: center;
-    margin: 0%;
+    margin: 3px;
   
     color: black;
     border: 2px solid black;
@@ -20,11 +21,12 @@
 
 
 .button_style1_label {
-    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
     line-height: 44px; /*line-height for label, not normal button*/
     max-height: 44px;
     text-align: center;
-    margin: 0%;
+    margin: 3px;
 
     color: black;
     border: 2px solid black;
@@ -49,34 +51,13 @@ input:active+.button_style1_label
 }
 
 
-    
 
-
-.bar1 {
-    border: 1px solid black;
-    display: inline-flex;
-    width: 100%;
-    height: 75px;
-
-    
-    margin: 16px;
-
-
-
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-    
-}
 
 .container_leftorcenterautoalign{
-    border: 1px solid black;
+    border: 1px solid rgb(0,0,0,0.5);
     display: inline-flex;
     width: 100%;
-    height: 75px;
+    height: 15%;
 
 
     justify-content: center; /*if javascript function used*/
@@ -92,19 +73,17 @@ input:active+.button_style1_label
 
 
 
-
-
 /* Style the buttons */
-.btn {
+.button_style2 {
     border: none;
     outline: none;
     padding: 10px 16px;
-    background-color: #f1f1f1;
+    background-color: #9a9aff;
     cursor: pointer;
 }
   
 /* Style the active class (and buttons on mouse-over) */
-.active, .btn:hover {
+.button_style2_active, .button_style2:hover {
     background-color: #666;
     color: white;
 }
