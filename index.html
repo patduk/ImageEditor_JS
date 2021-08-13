@@ -13,7 +13,6 @@
     
 
   <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
-  <!-- <link href="styles/Menubutton1.css" rel="stylesheet" type="text/css"> -->
 
   <script>
     function focus_on_id_btn1() {
@@ -27,11 +26,6 @@
       //   document.getElementById("n1").style.display = "none";
       // }
 
-      //// log print
-      //console.log("successfully focused on id btn1");
-
-
-
 
       //detect click outside of a button, unfocus.. FOR SAFARI
       let specifiedelement1 = document.getElementById('id_btn1');
@@ -40,23 +34,19 @@
           if ( !specifiedelement1.contains(event.target)) 
           {
               // Do something when user clicked outside of wrapper element
-              
           }
       }
       );
 
-
     }
   </script>
-
 
 <!-- </head> -->
 
 
 
-
 <body>
-<!-- 
+  <!-- 
   <ul class="navbar1">
     <li><a href="index.html">Home</a></li>
     
@@ -92,26 +82,29 @@
  
   <div class="navbar1">
 
-    <div class="navbar1_button1"><li ><a href="index.html">Home</a></li></div>
-    <li class="navbar1_button1 "><a href="#">Button 1</a></li>
-    
-    <!-- <div class="navbar1_parent_dropdown">  -->
-      <!-- onclick="opendropdownmenu()" --> 
+    <div class="navbar1_button1">
+      <li ><a href="index.html">Home</a></li>
+    </div>
 
-      <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >Dropdown
-      
-      </button>
 
-      <!-- id="n1" -->
-      <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
-        <li><a href="imageedit1.html">Image Edit</a></li>  
-        <li><a href="index.html">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </div>
-    
-      <!-- </div> -->
+    <li class="navbar1_button1 ">
+      <a href="#">Button 1</a>
+    </li>
 
-    <!-- <div class="dropdown">
+
+    <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+      Dropdown
+    </button>
+
+    <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
+      <li><a href="imageedit1.html">Image Edit</a></li>  
+      <li><a href="index.html">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </div>
+  
+
+    <!-- 
+    <div class="dropdown">
       <ul class="dd-menu">
         <li>Apps</li>
         <li class="divider"></li>
@@ -130,29 +123,16 @@
   </div>
   
 
-  
-
-  <!--  
-
-  <div id="myDropdown" class="dropdown-content">
-    <a href="imageedit.html">Image Edit</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>-->
-
-
-
   <div class="center1">
     <h1>Hi, </br><i>I'm Patrick De La Rosa.</i><h1>
   </div>
+
   
   <div class="center2">
     <p>Welcome to my website, a potential portfolio of apps (for artists).</p>
   </div>
-
-  </br>
-    
+  
+  
 </body>
-
 
 <!-- </html> -->

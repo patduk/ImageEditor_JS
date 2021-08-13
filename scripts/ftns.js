@@ -73,7 +73,7 @@ function ftn_showprocessing() {
 window.onload = () => {
 
     // Get the container element
-    let btnContainer = document.getElementById("myDIV");
+    let btnContainer = document.getElementById("container_categorybuttons_id");
 
     // Get all buttons with class="btn" inside the container
     let btns = btnContainer.getElementsByClassName("button_style2");
@@ -88,17 +88,31 @@ window.onload = () => {
         current[0].className = current[0].className.replace(" button_style2_active", "");
         }
 
+
+        document.getElementById("container_id2").style.display = "none";
+        document.getElementById("container_id3").style.display = "none";
+        document.getElementById("container_id4").style.display = "none";
+
         // Add the active class to the current/clicked button
         this.className += " button_style2_active";
+
+
+        console.log(this.innerHTML);
+        
+        if (this.innerHTML === "filters") {
+            document.getElementById("container_id2").style.display = "inline-flex";
+        }
+        else if (this.innerHTML === "inc filters") {
+            document.getElementById("container_id3").style.display = "inline-flex";
+        }
+        else if (this.innerHTML === "shapes/crops/scales") {
+            document.getElementById("container_id4").style.display = "inline-flex";
+        }
+
     });
     }
 
 }
-
-
-
-
-
 
 
 
@@ -146,6 +160,7 @@ function logprint() {
 
 //load sample image
 window.addEventListener('load', function() {
+    
     //function loadsampleimage() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');        
@@ -420,38 +435,30 @@ function resizeCanvas() {
 
 
     ///scrollbar detection, modify center/left justification within
-
     ///scrollbar detection, modify center/left justification within
     let container_id1 = document.getElementById("container_id1");
-    console.log(container_id1.clientWidth , container_id1.scrollWidth);
-
-    if (container_id1.clientWidth < container_id1.scrollWidth)
-    {
-        container_id1.style.justifyContent = "left";
-        console.log("left");
-    }
-    else 
-    {
-        container_id1.style.justifyContent = "center";
-        console.log("center");
-    }
-
-
     let container_id2 = document.getElementById("container_id2");
-    console.log(container_id2.clientWidth , container_id2.scrollWidth);
+    let container_id3 = document.getElementById("container_id3");
+    
+    if (container_id1.clientWidth < container_id1.scrollWidth) {
+        container_id1.style.justifyContent = "left"; 
+    }
+    else { container_id1.style.justifyContent = "center"; }
 
-    if (container_id2.clientWidth < container_id2.scrollWidth)
-    {
+    if (container_id2.clientWidth < container_id2.scrollWidth) {
         container_id2.style.justifyContent = "left";
-        console.log("left");
     }
-    else 
-    {
-        container_id2.style.justifyContent = "center";
-        console.log("center");
+    else { container_id2.style.justifyContent = "center"; }
+
+    if (container_id3.clientWidth < container_id3.scrollWidth) {
+        container_id3.style.justifyContent = "left";
     }
+    else { container_id3.style.justifyContent = "center"; }
 
-
+    if (container_id4.clientWidth < container_id4.scrollWidth) {
+        container_id4.style.justifyContent = "left";
+    }
+    else { container_id4.style.justifyContent = "center"; }
 
 }
 
@@ -1054,7 +1061,8 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
     //     }
     // }
-    ////WAY1.1
+    ////OR
+    ////WAY1.1 (faster)
     for (var i = 0; i < imageData.data.length; i += 4) {
             imageData.data[i+0] = imageData_original2.data[i+0];
             imageData.data[i+1] = imageData_original2.data[i+1];

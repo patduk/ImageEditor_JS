@@ -23,7 +23,7 @@
     <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
     <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
 
-    <!-- <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css"> -->
+    <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
 
 
     <script>
@@ -105,6 +105,7 @@
 
 
 
+
     <div class="container_leftorcenterautoalign" id="container_id1" >
         <button class="button_style1" onclick="undo2()" >undo</button>
         <button class="button_style1" onclick="redo2()" >redo</button>
@@ -120,7 +121,7 @@
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_id2">
+    <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px">
             <!-- <button onclick="filter1()" >filter 1</button>
         <button onclick="filter2()" >filter 2</button>-->
 
@@ -132,61 +133,81 @@
 
                 <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
                 <button class="button_style1" onclick="edge_custom()" >line (custom)</button>
+                
+                <button  class="button_style1" onclick="ellipse_test1()" >ellipse</button>   
     </div>
 
-    <!-- 
-    <script>
-        // document.getElementsByClassName("filter_container").style.display = "none";
-    </script> -->
 
 
+    <div class="container_leftorcenterautoalign" id="container_id3" style="height:90px">
+        <!-- <button onclick="filter1()" >filter 1</button>
+        <button onclick="filter2()" >filter 2</button>-->
+  
+        <button class="button_style1" onclick="flatten()" >flatten</button>
 
 
+        <div class="center3">
+            Contrast</br>
+            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
+            </br>
+            <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
+        </div>
 
-    <div id="myDIV">
-        <button class="button_style2 button_style2_active">filter</button>
-        <button class="button_style2">inc filter</button>
-        <button class="button_style2">shapes/crops/scales</button>
+        <div class="center3">
+            Brightness</br>
+            <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
+            </br>
+            <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
+        </div>
+
+        <div class="center3">
+            Opacity</br>
+            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
+            </br>
+            <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
+        </div>
+
+        <div class="center3">
+            Red</br>
+            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
+            </br>
+            <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
+        </div>
+
+        <div class="center3">
+            Green</br>
+            <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
+            </br>
+            <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
+        </div>
+
+        <div class="center3">
+            Blue</br>
+            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
+            </br>
+            <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
+        </div>
     </div>
-    
 
 
-    <button onclick="ellipse_test1()" >ellipse</button>     
-    <button onclick="flatten()" >flatten</button>
+    <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px">
+        <div>Coming soon</div>
+    </div> 
+
+
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" >
+        <button class="button_style2 button_style2_active" id="categorybutton1">filters</button>
+        <button class="button_style2" id="categorybutton2">inc filters</button>
+        <button class="button_style2" id="categorybutton3">shapes/crops/scales</button>
+    </div>
+
+
     
     </br></br>
 
 
     <div class="slidecontainer disable-dbl-tap-zoom">
-        Contrast<br />
-        <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
-        <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
-        <br />
-
-        Brightness<br />
-        <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
-        <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
-        <br />
-
-        Opacity<br />
-        <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
-        <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
-        <br />
-
-        Red<br />
-        <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
-        <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
-        <br />
-
-        Green<br />
-        <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
-        <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
-        <br />
-
-        Blue<br />
-        <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
-        <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
-        <br />
+        
 
     </div> 
 

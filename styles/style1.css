@@ -1,3 +1,12 @@
+body, html {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+  
+  /*removes empty space in chrome mobile (iphone)*/
+  margin: 0px;
+  padding: 0px;
+   overflow-x: hidden;
+}
 
 html {
   /* background-image: linear-gradient(rgb(0,0,0), rgb(71, 71, 65)); */
@@ -5,12 +14,14 @@ html {
   color: rgb(0,0,0);
   font-size: 1em;
   font-family: 'Segoe UI';
-  
+
+  height: 100%;
+  overflow-y: hidden;
 }
 
 body {
   background-color: rgb(180,180,180);
- 
+  height: 100%;
 }
 
 
@@ -31,6 +42,10 @@ body {
 }
   
 
+.center3 {
+
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -41,30 +56,16 @@ body {
   supported by Chrome, Edge, Opera and Firefox */
 }
 
-body, html {
-  touch-action: manipulation;
-  -ms-touch-action: manipulation;
-  width: 100%;
-  height: 100%;
-
-  /*removes empty space in chrome mobile (iphone)*/
-  margin: 0px;
-  padding: 0px;
-  
-  
-
-   overflow-x: hidden;
-}
 
 
 .container_canvas {
   height: 50vh;
   width: 99%;
   
-  margin: 0px auto;
-  border: 1px solid rgb(255,0,0,0.5);
+  border: 1px solid rgb(0,0,0);
   
   display: flex;
+  margin: 0px auto;
   align-items: center;
   justify-content: center;
 }
