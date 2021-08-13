@@ -105,9 +105,10 @@ window.onload = () => {
         else if (this.innerHTML === "inc filters") {
             document.getElementById("container_id3").style.display = "inline-flex";
         }
-        else if (this.innerHTML === "shapes/crops/scales") {
+        else if (this.innerHTML === "shapes/transform") {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
+        resizeCanvas();
 
     });
     }

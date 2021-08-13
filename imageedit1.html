@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
-
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
@@ -17,7 +16,6 @@
     <script src="scripts/ftn5_green.js"></script>
     <script src="scripts/ftn6_blue.js"></script>
 
-
     <link href="styles/normalize.css" rel="stylesheet" type="text/css">
     <link href="styles/style1.css"  rel="stylesheet" type="text/css">
     <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
@@ -25,14 +23,12 @@
 
     <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
 
-
     <script>
         //onclick function for id_btn1, focus on the id_btn1
         function focus_on_id_btn1() {
             document.getElementById("id_btn1").focus();
         }
         
-
 
         //detect click outside of a button, unfocus.. FOR SAFARI
         let specifiedelement1 = document.getElementById('id_btn1');
@@ -46,8 +42,6 @@
         }
         );
 
-
-        
     </script>
 <!-- </head> -->
 
@@ -62,8 +56,8 @@
 
     <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
         <li><a href="imageedit1.html">Image Edit</a></li>  
-        <li><a href="index.html">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Blank</a></li>
+        <li><a href="#">Blank</a></li>
     </div>
 
 
@@ -96,7 +90,18 @@
 
 
     
-    
+    <div class="container_leftorcenterautoalign" id="container_id1" >
+        <button class="button_style1" onclick="undo2()" >undo</button>
+        <button class="button_style1" onclick="redo2()" >redo</button>
+        <button class="button_style1" onclick="reset()" >reset</button>
+
+        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
+        <label for="diamondx1" class="button_style1_label">upload</label>
+
+        <button class="button_style1" onclick="download()" >save</button>
+
+    </div>
+
 
     <div class='container_canvas' id="container_canvas_id">
         <canvas style="background-color: rgb(127, 127, 127);" id="cv2" >
@@ -104,37 +109,20 @@
     </div>
 
 
-
-
-    <div class="container_leftorcenterautoalign" id="container_id1" >
-        <button class="button_style1" onclick="undo2()" >undo</button>
-        <button class="button_style1" onclick="redo2()" >redo</button>
-        <button class="button_style1" onclick="reset()" >reset</button>
-
-        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
-        <label for="diamondx1" class="button_style1_label";
-        font-size: 3.5vw;">upload</label>
-
-        <button class="button_style1" onclick="download()" >save</button>
-
-    </div>
-
+  
 
 
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px">
-            <!-- <button onclick="filter1()" >filter 1</button>
-        <button onclick="filter2()" >filter 2</button>-->
+        <button class="button_style1" onclick="invert()" >invert</button> 
+        <!-- <button class="button_style1" onclick="lighten()" >lighten</button> -->
+        <button class="button_style1" onclick="grayscale()" >grayscale</button>
+        <button class="button_style1" onclick="oilpaint(1,10,true)" >oil paint</button>
+        <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
 
-                <button class="button_style1" onclick="invert()" >invert</button> 
-                <button class="button_style1" onclick="lighten()" >lighten</button>
-                <button class="button_style1" onclick="grayscale()" >grayscale</button>
-                <button class="button_style1" onclick="oilpaint(1,10,true)" >oil paint</button>
-                <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button>
-
-                <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
-                <button class="button_style1" onclick="edge_custom()" >line (custom)</button>
-                
-                <button  class="button_style1" onclick="ellipse_test1()" >ellipse</button>   
+        <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
+        <button class="button_style1" onclick="edge_custom()" >line (custom)</button>
+        
+        <button  class="button_style1" onclick="ellipse_test1()" >ellipse</button>   
     </div>
 
 
@@ -191,30 +179,25 @@
 
 
     <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px">
-        <div>Coming soon</div>
+        <div>Sorry, this feature is unavailable.</div>
     </div> 
 
 
     <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" >
         <button class="button_style2 button_style2_active" id="categorybutton1">filters</button>
         <button class="button_style2" id="categorybutton2">inc filters</button>
-        <button class="button_style2" id="categorybutton3">shapes/crops/scales</button>
+        <button class="button_style2" id="categorybutton3">shapes/transform</button>
+        
     </div>
 
 
     
-    </br></br>
 
-
-    <div class="slidecontainer disable-dbl-tap-zoom">
-        
-
-    </div> 
+    <!-- <div class="slidecontainer disable-dbl-tap-zoom"></div>  -->
 
 
 
-<!-- 
-
+    <!-- 
     <div id="pow1">baka1</div>
     <div id="pow2">baka2</div>
     <div id="pow3">baka3</div>

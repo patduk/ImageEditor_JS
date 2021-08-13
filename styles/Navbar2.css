@@ -7,10 +7,9 @@
   
     color: black;
     border: 2px solid black;
-    border-color: rgb(64, 129, 64);
+    border-color: rgb(120, 72, 100);
     background-color:rgb(144, 214, 203, 1);
-    background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
-
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%);
 
     
 }
@@ -29,9 +28,10 @@
 
     color: black;
     border: 2px solid black;
-    border-color: rgb(64, 129, 64);
+    border-color: rgb(120, 72, 100);
     background-color:rgb(144, 214, 203, 1);
-    background-image: linear-gradient(to right, rgb(138, 193, 202) 0%, rgb(138, 214, 191) 100%);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%);
+
 }
 
 
@@ -43,10 +43,13 @@
 input:hover+.button_style1_label, 
 input:active+.button_style1_label 
 {
-    background-color: rgb(84,32,64);
+    background-color: rgb(48,64,48);
     background-image: none;
-    color: rgb(255,127,127);
-    border: 2px solid rgb(255,127,127);
+    color: rgb(133,255, 133);
+    border: 2px solid rgb(133,255, 133);
+
+    /* background-image: linear-gradient(to top, rgb(97, 54, 95) 0%, rgb(37, 68, 94) 100%); */
+
 }
 
 
