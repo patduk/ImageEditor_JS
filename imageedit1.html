@@ -43,6 +43,18 @@
         );
 
     </script>
+
+
+    <script>
+        var isInstagram = navigator.userAgent.match(/instagram/i);
+        if (isInstagram) {
+        var head = document.querySelector('head');
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'your-file-with-instagram-fixes.css';
+        head.appendChild(link);
+        }
+    </script>
 <!-- </head> -->
 
 
@@ -64,28 +76,6 @@
   </div>
 
 
-    <!--     
-    <div class="navbar1">
-        <li class="titlenavbar1">Image Editor</li>
-        
-        <li><a href="index.html">Home</a></li>
-
-        <button class="menubutton">
-            <div class="menuiconbar"></div>
-            <div class="menuiconbar"></div>
-            <div class="menuiconbar"></div>
-
-            <ul class="dropdown_x1">
-                <li><a href="imageedit1.html">Image Edit</a></li>  
-                <li><a href="#">Upload Image</a></li>
-                <li><a href="#">Save Image</a></li>
-                <li><a href="#">Log Print</a></li>
-                <li><a href="#">Dark Mode</a></li>
-            </ul>
-
-
-        </button>
-    </div> -->
 
 
 
@@ -104,12 +94,13 @@
 
 
     <div class='container_canvas' id="container_canvas_id">
-        <canvas style="background-color: rgb(127, 127, 127);" id="cv2" >
+        <canvas id="cv2" >
         </canvas>
     </div>
 
+    <!-- <img class='container_canvas' id="container_img_id" src="">
 
-  
+        <img src="images/cherry.png"> -->
 
 
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px; border-top: none">
@@ -120,7 +111,8 @@
         <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
 
         <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
-        <button class="button_style1" onclick="edge_custom()" >line (custom)</button>
+        <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
+        <button class="button_style1" id="edge_custom_button_enter_id" >line (custom)</button>
         
         <button  class="button_style1" onclick="ellipse_test1()" >ellipse</button>   
     </div>
@@ -178,9 +170,43 @@
     </div>
 
 
+    
+
+
+
     <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px; border-top: none">
-        <div>Sorry, this feature is not available.</div>
+        <div>Coming soon perhaps.</div>
     </div> 
+
+
+    <div class="container_leftorcenterautoalign" id="container_id5" style="height:90px; border-top: none">
+        <button class="button_style1" id="edge_custom_button_exit_id" >back</button>
+
+        <div>
+            Custom BG color</br>
+            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#ffffff" style="width:80px; height: 40px;">
+        </div>
+    
+        <div>
+            Custom line color</br>
+            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#ff0000" style="width:80px; height: 40px;">
+        </div>
+
+        <label class="switch">
+            transparent background?</br>
+            <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" id="id_transparent_mode_edge_custom">
+        </label>
+
+
+        <label class="switch">
+            force line color to contrast with background?</br>
+            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked>
+        </label>
+        
+
+        <button class="button_style1" onclick="edge_custom()" >apply</button>
+    </div>
+
 
 
     <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" >
@@ -189,6 +215,9 @@
         <button class="button_style2" id="categorybutton3">shapes/transform</button>
         
     </div>
+
+
+    
 
 
     

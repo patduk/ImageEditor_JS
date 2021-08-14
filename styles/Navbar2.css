@@ -83,6 +83,9 @@ input:active+.button_style1_label
 #container_id4 {
     display: none;
 }
+#container_id5 {
+    display: none;
+}
 
 
 
@@ -110,4 +113,16 @@ input:active+.button_style1_label
 
 input[type="range"] {
     margin: 4px;
+}
+
+
+#container_img_id {
+    background-image : "";
+}
+
+.switch {
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid rgb(0,0,0,0.5);
+    display: flex;
 }

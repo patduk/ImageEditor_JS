@@ -71,7 +71,14 @@ function ftn_showprocessing() {
 
 
 window.onload = () => {
+    //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
+    colorsfor_edge_custom_BG();
+    colorsfor_edge_custom_line();
+    ftn_transparent_mode_edge_custom();
 
+    //a group of buttons with one selection allowed
+    //a group of buttons with one selection allowed
+   
     // Get the container element
     let btnContainer = document.getElementById("container_categorybuttons_id");
 
@@ -85,17 +92,17 @@ window.onload = () => {
 
         // If there's no active class
         if (current.length > 0) {
-        current[0].className = current[0].className.replace(" button_style2_active", "");
+            current[0].className = current[0].className.replace(" button_style2_active", "");
         }
 
 
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
+        document.getElementById("container_id5").style.display = "none";
 
         // Add the active class to the current/clicked button
         this.className += " button_style2_active";
-
 
         console.log(this.innerHTML);
         
@@ -104,17 +111,40 @@ window.onload = () => {
         }
         else if (this.innerHTML === "inc filters") {
             document.getElementById("container_id3").style.display = "inline-flex";
+            console.log("asdfsadf");
         }
         else if (this.innerHTML === "shapes/transform") {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
+        
         resizeCanvas();
 
     });
     }
 
-}
+    //button to enter edge custom
+    //button to enter edge custom
+    let edge_custom_button_enter =  document.getElementById("edge_custom_button_enter_id");
+    edge_custom_button_enter.addEventListener("click", function() {
+        document.getElementById("container_id2").style.display = "none";
+        document.getElementById("container_id5").style.display = "inline-flex";
+        
+        resizeCanvas();
+    });
 
+    //button to exit edge custom
+    //button to exit edge custom
+    let edge_custom_button_exit =  document.getElementById("edge_custom_button_exit_id");
+    edge_custom_button_exit.addEventListener("click", function() {
+        document.getElementById("container_id2").style.display = "inline-flex";
+        document.getElementById("container_id5").style.display = "none";
+
+        resizeCanvas();
+    });
+
+
+
+}
 
 
 function logprint() {
@@ -460,6 +490,11 @@ function resizeCanvas() {
         container_id4.style.justifyContent = "left";
     }
     else { container_id4.style.justifyContent = "center"; }
+
+    if (container_id5.clientWidth < container_id5.scrollWidth) {
+        container_id5.style.justifyContent = "left";
+    }
+    else { container_id5.style.justifyContent = "center"; }
 
 }
 

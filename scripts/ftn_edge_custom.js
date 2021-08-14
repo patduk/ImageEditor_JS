@@ -1,4 +1,70 @@
+
+
+
+let customBGcolor_R;
+let customBGcolor_G;
+let customBGcolor_B;
+let customBGcolor_A = 255;
+let customlineshadowcolor_R_m;
+let customlineshadowcolor_G_m;
+let customlineshadowcolor_B_m;
+let add_lighting = true;
+let add_shading = true;
+let use_linecolorcorrection = false;
+
+function colorsfor_edge_custom_BG() {
+    const color = document.getElementById("html5colorpicker_BG").value;
+    customBGcolor_R = parseInt(color.substr(1,2), 16)
+    customBGcolor_G = parseInt(color.substr(3,2), 16)
+    customBGcolor_B = parseInt(color.substr(5,2), 16)
+    console.log(`BG -- red: ${customBGcolor_R}, green: ${customBGcolor_G}, blue: ${customBGcolor_B}`);
+
+}
+
+function colorsfor_edge_custom_line() {
+    const color = document.getElementById("html5colorpicker_line").value;
+    customlineshadowcolor_R_m= parseInt(color.substr(1,2), 16)
+    customlineshadowcolor_G_m = parseInt(color.substr(3,2), 16)
+    customlineshadowcolor_B_m = parseInt(color.substr(5,2), 16)
+    console.log(`line -- red: ${customlineshadowcolor_R_m}, green: ${customlineshadowcolor_G_m}, blue: ${customlineshadowcolor_B_m}`);
+}
+
+function ftn_transparent_mode_edge_custom() {
+    //if now checked
+    if (document.getElementById("id_transparent_mode_edge_custom").checked) {
+        customBGcolor_A = 0;
+        add_lighting = false;
+        add_shading = false;
+    }
+    //if now unchecked
+    else {
+        customBGcolor_A = 255;
+        add_lighting = true;
+        add_shading = true;
+        
+    }
+
+}
+
+
+function ftn_linecolorcorrection_edge_custom() {
+    //if now checked
+    if (document.getElementById("id_linecolorcorrection_edge_custom").checked) {
+        use_linecolorcorrection = true;
+    }
+    //if now unchecked
+    else {
+        use_linecolorcorrection = false;
+        
+    }
+
+}
+
 function edge_custom() {
+    //maintain color picker (custom color values appear different after this function finishes, so need to maintain custom color values)
+    colorsfor_edge_custom_BG() ;
+    colorsfor_edge_custom_line() ;
+
 
     // showprocessing = true;
     // ftn_showprocessing();
@@ -74,21 +140,22 @@ function edge_custom() {
 
     ////// 
     ////// GUI
-    let customBGcolor_R = 201; //0-255
-    let customBGcolor_G = 208; //0-255
-    let customBGcolor_B = 208; //0-255
-    let customBGcolor_A = 255; // only 255 or 0 / on or off
+    // customBGcolor_R = 201; //0-255
+    // customBGcolor_G = 208; //0-255
+    // customBGcolor_B = 208; //0-255
+    // customBGcolor_A = 255; // only 255 or 0 / on or off
 
-    let hard_spot_reducer = 200; //intensity of white/black lines // 84-255
-    let customlineshadowcolor_R_m = 85; //0-limit
-    let customlineshadowcolor_G_m = 14; //0-limit
-    let customlineshadowcolor_B_m = 0; //0-limit
+    
+    // let customlineshadowcolor_R_m = 85; //0-limit
+    // let customlineshadowcolor_G_m = 14; //0-limit
+    // let customlineshadowcolor_B_m = 0; //0-limit
 
+    let hard_spot_reducer = 255; //intensity of white/black lines // 84-255
     let use_blackline = false;
     let cutoff = 25; //10-20% of 255 recommended 20-50 //20 for oilpainted //25 for normal?
-    let use_linecolorcorrection = true;
-    let add_lighting = true;
-    let add_shading = true;
+    // let use_linecolorcorrection =false; //makes line colors contrast well with the background color and removes black/white spots, sacrifices some desired line colors 
+    // let add_lighting = true;
+    // let add_shading = true;
     ////// GUI
     //////
 
@@ -109,8 +176,8 @@ function edge_custom() {
 
 
     // adjust customlineshadowcolor - limit excessive bright colors, rebalance other line colors:
-    //limit excessive bright colors
-    let max1 = 84;
+    //limit excessive bright colors (rec: 84?)
+    let max1 = 127;
     if (customlineshadowcolor_R_m > max1) {customlineshadowcolor_R_m = max1; }
     if (customlineshadowcolor_G_m > max1) {customlineshadowcolor_G_m = max1; }
     if (customlineshadowcolor_B_m > max1) {customlineshadowcolor_B_m = max1; }
@@ -399,6 +466,12 @@ function edge_custom() {
 
     ctx.putImageData(imageData, 0, 0);
 
+    let canvasdataurl = canvas.toDataURL();
+    let container_img = document.getElementById('container_img_id');
+    container_img.style.backgroundImage = 'url('+canvasdataurl+')';
+    container_img.style.width = image.width;
+    container_img.style.height = image.height;
+    
 
     // showprocessing = false;
     // ftn_showprocessing();
