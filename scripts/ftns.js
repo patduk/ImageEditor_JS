@@ -113,7 +113,7 @@ window.onload = () => {
             document.getElementById("container_id3").style.display = "inline-flex";
             console.log("asdfsadf");
         }
-        else if (this.innerHTML === "shapes/transform") {
+        else if (this.innerHTML === "transform") {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
         
