@@ -75,7 +75,9 @@ window.onload = () => {
     colorsfor_edge_custom_BG();
     colorsfor_edge_custom_line();
     ftn_transparent_mode_edge_custom();
+    ftn_linecolorcorrection_edge_custom();
 
+    
     //a group of buttons with one selection allowed
     //a group of buttons with one selection allowed
    

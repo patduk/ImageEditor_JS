@@ -44,7 +44,6 @@ function ftn_transparent_mode_edge_custom() {
         
     }
 
-}
 
 
 function ftn_linecolorcorrection_edge_custom() {
