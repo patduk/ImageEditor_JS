@@ -63,7 +63,7 @@
 <body>
   <div class="navbar1">
 
-    <li class="navbar1_button1"><a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');">Home</a></li>
+    <li class="navbar1_button1"><a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: -20px; margin-bottom: -7px;"></a></li>
 
 
     <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
@@ -79,8 +79,6 @@
 
 
 
-
-
     
  
 
@@ -92,29 +90,33 @@
 
 
     <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
-        <button class="button_style1" onclick="undo2()" >undo</button>
-        <button class="button_style1" onclick="redo2()" >redo</button>
-        <button class="button_style1" onclick="reset()" >reset</button>
+        <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png"/ style="width:24px; padding-top: 5px"></button>
+        <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png"/ style="width:24px; padding-top: 5px"></button>
+        <button class="button_style1" onclick="reset()" >Reset</button>
 
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
-        <label for="diamondx1" class="button_style1_label">upload</label>
+        <label for="diamondx1" class="button_style1_label">Upload</label>
 
         <!-- <button class="button_style1" onclick="download()" >save</button> -->
 
     </div>
 
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px; border-top: none">
-        <button class="button_style1" onclick="invert()" >invert</button> 
+        <button class="button_style1" onclick="invert()" >Invert</button> 
         <!-- <button class="button_style1" onclick="lighten()" >lighten</button> -->
-        <button class="button_style1" onclick="grayscale()" >grayscale</button>
-        <button class="button_style1" onclick="oilpaint(1,10,true)" >oil paint</button>
+        <button class="button_style1" onclick="grayscale()" >Grayscale</button>
+
+        <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
+        <button class="button_style1" onclick="oilpaint(3,20,true)" >Oil Paint</button>
+        
+        
         <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
 
-        <button class="button_style1" onclick="edge_normal()" >line (normal)</button>
+        <button class="button_style1" onclick="edge_normal()" >Line (Normal)</button>
         <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
-        <button class="button_style1" id="edge_custom_button_enter_id" >line (custom)</button>
+        <button class="button_style1" id="edge_custom_button_enter_id" >Line (Custom)</button>
         
-        <button  class="button_style1" onclick="ellipse_test1()" >ellipse</button>   
+        <button  class="button_style1" onclick="ellipse_test1()" >Ellipse</button>   
     </div>
 
 
@@ -123,7 +125,7 @@
         <!-- <button onclick="filter1()" >filter 1</button>
         <button onclick="filter2()" >filter 2</button>-->
   
-        <button class="button_style1" onclick="flatten()" >flatten</button>
+        <button class="button_style1" onclick="flatten()" >Flatten</button>
 
 
         <div class="center3">
@@ -188,18 +190,18 @@
         </div>
     
         <div class="margin1">
-            line color</br>
+            Line color</br>
             <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#007f7f" style="width:80px; height: 40px;">
         </div>
 
         <label class="border1 margin1">
-            hide background color?<br>
+            Hide background color?<br>
             <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" id="id_transparent_mode_edge_custom">
         </label>
 
 
         <label class="border1 margin1">
-            improve contrast between line and BG color?</br>
+            Auto-correct line color?</br>
             <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked>
         </label>
         
@@ -210,13 +212,13 @@
 
 
     <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none">
-        <button class="button_style2 button_style2_active" id="categorybutton1">filters</button>
-        <button class="button_style2" id="categorybutton2">inc filters</button>
-        <button class="button_style2" id="categorybutton3">transform</button>
+        <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
+        <button class="button_style2" id="categorybutton2">Inc. Filters</button>
+        <button class="button_style2" id="categorybutton3">Other</button>
         
     </div>
 
-
+    
     
 
 

@@ -14,9 +14,9 @@ html {
   background-color: rgb(200,200,200);
   color: rgb(0,0,0);
   font-size: 1em;
-  font-family: 'Segoe UI';
-
-  /* height: 100%; */
+  font-family: 'Arial';
+  
+  height: 100%;
   
 }
 
@@ -73,15 +73,17 @@ body {
 
 
 .container_canvas {
-  height: 500px;
-  width: 99%;
+  height: 480px;
+  width: 100%;
   
-  border: 1px solid rgb(0,0,0);
+  border: 1px solid rgba(0,0,0,0.5);
   
   display: flex;
   margin: 0px auto;
   align-items: center;
   justify-content: center;
+
+  background-color: rgb(84,84,84);
 }
 
 

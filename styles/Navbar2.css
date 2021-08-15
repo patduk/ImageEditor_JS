@@ -15,10 +15,10 @@
     background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
 
     border-radius: 6px;
-    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240) 100%); 
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
     box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
-    word-wrap: break-word;
-
+    
+    
 
 }
 
@@ -43,7 +43,7 @@
     background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
 
     border-radius: 6px;
-    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240) 100%); 
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
     box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
     word-wrap: break-word;
 }
@@ -53,16 +53,15 @@
 
 .button_style1_label:hover, 
 input:hover+.button_style1_label {
-    background-color:rgb(125, 200, 200);
-    background-image: none;
+    background-color: #006568;
 }
 
 .button_style1:active,
 
 .button_style1_label:active, 
 input:active+.button_style1_label {
-    background-color: rgba(20, 80, 80);
-    background-image: none;
+    background-image: linear-gradient(to top, rgba(158, 236, 255, 0.5) 0%, rgb(152, 214, 240, 0.5) 100%); 
+    background-color: #006568;
     color: rgb(255,255, 255);
 }
 

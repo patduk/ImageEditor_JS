@@ -108,14 +108,14 @@ window.onload = () => {
 
         console.log(this.innerHTML);
         
-        if (this.innerHTML === "filters") {
+        if (this.innerHTML === "Filters") {
             document.getElementById("container_id2").style.display = "inline-flex";
         }
-        else if (this.innerHTML === "inc filters") {
+        else if (this.innerHTML === "Inc. Filters") {
             document.getElementById("container_id3").style.display = "inline-flex";
             console.log("asdfsadf");
         }
-        else if (this.innerHTML === "transform") {
+        else if (this.innerHTML === "Other") {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
         
@@ -400,6 +400,11 @@ function resizeCanvas() {
             console.log("landscape, 3");
         }
 
+        else {
+            img_id1.width = image.width;
+            img_id1.height = image.height;
+        }
+
     }
 
     
@@ -467,7 +472,10 @@ function resizeCanvas() {
             console.log("landscape, 3");
         }
 
-       
+        else {
+            img_id1.width = image.width;
+            img_id1.height = image.height;
+        }
 
        
         //if image is same width/height as container - not needed?
@@ -515,6 +523,11 @@ function resizeCanvas() {
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
             console.log("image: square, 3");
+        }
+
+        else {
+            img_id1.width = image.width;
+            img_id1.height = image.height;
         }
 
     }
