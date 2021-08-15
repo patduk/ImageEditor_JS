@@ -56,11 +56,10 @@ input:active+.button_style1_label
 
 
 .container_leftorcenterautoalign{
-    border-top: 1px solid rgb(0,0,0,0.5);
+    border: 1px solid rgb(0,0,0,0.5);
     display: inline-flex;
     width: 100%;
     height: 60px;
-
 
     justify-content: center; /*if javascript function used*/
     align-items: center;

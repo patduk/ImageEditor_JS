@@ -232,7 +232,15 @@ window.addEventListener('load', function() {
         imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
         logprint();
+        document.getElementById('img_id1').src = canvas.toDataURL("image/png");
+    
+        
+        
     }   
+
+    
+    
+    
 });
 
 
@@ -271,7 +279,6 @@ window.addEventListener('load', function()
                 canvas.width = image.width;
 
               
-
                 resizeCanvas();
 
 
@@ -287,7 +294,12 @@ window.addEventListener('load', function()
                 imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
                 logprint();
+
+
+                document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
+                
             }
+
         }
     });
 
@@ -309,29 +321,33 @@ function resizeCanvas() {
 
     // "nickname" variables
     let container_canvas_w = document.getElementById("container_canvas_id").clientWidth;
-    let container_canvas_h = document.getElementById("container_canvas_id").clientHeight;    
+    let container_canvas_h = document.getElementById("container_canvas_id").clientHeight; 
+    
+    let img_id1 = document.getElementById("img_id1");
 
     // reset 
     canvas.style.height = "";
     canvas.style.width = "";
+    
 
     // log print
     console.log("cw: " + canvas.width, "\nch: " + canvas.height);
     console.log("stylew: " + canvas.style.width, "\nstyleh: " + canvas.style.height);
     console.log("containerw: " + container_canvas_w, "\ncontainerh: " + container_canvas_h);
 
-
+    console.log("img_idh w : " + img_id1.height + "  " + img_id1.width);
     
     //// if image is portrait
     if (canvas.height > canvas.width) {
-        
 
         //if image is bigger than container in both width and height
-        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
-        {
+        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) {
             //if container is landscape
             if (container_canvas_w > container_canvas_h) {
                 canvas.style.height = "100%";
+
+                img_id1.width = (container_canvas_h * image.width) / image.height;
+                img_id1.height = container_canvas_h;
                 console.log("portrait, 1.1");
             }
 
@@ -339,90 +355,119 @@ function resizeCanvas() {
             else if (container_canvas_h > container_canvas_w) {
                 //ratio comparison between container & image:
                 //if container is more landscape than image
-                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height)
+                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height) { 
                     canvas.style.height = "100%";
+
+                    img_id1.width = (container_canvas_h * image.width) / image.height;
+                    img_id1.height = container_canvas_h;
+                    console.log("portrait, 1.2.1");
+                }    
                 //if container is more portrait than image
-                else if (container_canvas_w/container_canvas_h < canvas.width/canvas.height)
+                else if (container_canvas_w/container_canvas_h < canvas.width/canvas.height) {
                     canvas.style.width = "100%";
 
-                    console.log("portrait, 1.2");
+                    img_id1.width = container_canvas_w;
+                    img_id1.height = (container_canvas_w * image.height) / image.width;
+                    console.log("portrait, 1.2.2");
+                }
             }
 
             // if container is perfect square
             else if (container_canvas_w === container_canvas_h) {
                 canvas.style.height = "100%";
+                
+                img_id1.width = (container_canvas_h * image.width) / image.height;
+                img_id1.height = container_canvas_h;
                 console.log("portrait, 1.3");
             }
         }
 
         // if image is bigger than container in width only
-        else if (canvas.width > container_canvas_w) 
-        {
+        else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
+            
+            img_id1.width = container_canvas_w;
+            img_id1.height = (container_canvas_w * image.height) / image.width;
             console.log("landscape, 2");
         }
 
         //if image is bigger than container in height only
-        else if (canvas.height > container_canvas_h) 
-        {
+        else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
+
+            img_id1.width = (container_canvas_h * image.width) / image.height;
+            img_id1.height = container_canvas_h;
             console.log("landscape, 3");
         }
 
-        //if image is same width/height as container - not needed?
-        // else if {
-        // }
-
-
     }
 
-
+    
     //// if image is landscape
     else if (canvas.width > canvas.height) {
         
-
         //if image is bigger than container in both width and height
-        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) 
-        {
+        if (canvas.height > container_canvas_h && canvas.width > container_canvas_w) {
+            
             //if container is landscape
             if (container_canvas_w > container_canvas_h) {
                 //ratio comparison between container & image:
                 //if container is more landscape than image
-                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height)
-                    canvas.style.height = "100%";
-                //if container is more portrait than image
-                if (container_canvas_w/container_canvas_h < canvas.width/canvas.height)
-                    canvas.style.width = "100%";
+                if (container_canvas_w/container_canvas_h > canvas.width/canvas.height) {
+                    canvas.style.height = "100%";  //update canvas height
 
+                    img_id1.width = (container_canvas_h * image.width) / image.height;
+                    img_id1.height = container_canvas_h; //update image height
+                }
+                //if container is more portrait than image
+                if (container_canvas_w/container_canvas_h < canvas.width/canvas.height) {
+                    canvas.style.width = "100%";
+                    
+                    img_id1.width = container_canvas_w;
+                    img_id1.height = (container_canvas_w * image.height) / image.width;
+                }
                 console.log("landscape, 1.1");
             }
 
             //if container is portrait
             else if (container_canvas_h > container_canvas_w) {
                 canvas.style.width = "100%";
+
+                img_id1.width = container_canvas_w;
+                img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("landscape, 1.2");
             }
 
             // if container is perfect square
             else if (container_canvas_w === container_canvas_h) {
                 canvas.style.width = "100%";
+
+                img_id1.width = container_canvas_w;
+                img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("landscape, 1.3");
             }
+           
         }
 
         // if image is bigger than container in width only
-        else if (canvas.width > container_canvas_w) 
-        {
+        else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
+
+            img_id1.width = container_canvas_w;
+            img_id1.height = (container_canvas_w * image.height) / image.width;
             console.log("landscape, 2");
         }
 
         //if image is bigger than container in height only
-        else if (canvas.height > container_canvas_h) 
-        {
+        else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
+
+            img_id1.width = (container_canvas_h * image.width) / image.height;
+            img_id1.height = container_canvas_h;
             console.log("landscape, 3");
         }
+
+       
 
        
         //if image is same width/height as container - not needed?
@@ -439,26 +484,36 @@ function resizeCanvas() {
             //if container is landscape
             if (container_canvas_w > container_canvas_h) {
                 canvas.style.height = "100%";
+                
+                img_id1.width = (container_canvas_h * image.width) / image.height;
+                img_id1.height = container_canvas_h;
                 console.log("image: square, 1.1");
             }
             //if container is portrait
             else if (container_canvas_w < container_canvas_h) {
                 canvas.style.width = "100%";
+                
+                img_id1.width = container_canvas_w;
+                img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("image: square, 1.2");
             }
         }
 
         // if image is bigger than container in width only
-        else if (canvas.width > container_canvas_w) 
-        {
+        else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
+
+            img_id1.width = container_canvas_w;
+            img_id1.height = (container_canvas_w * image.height) / image.width;
             console.log("image: square, 2");
         }
 
         //if image is bigger than container in height only
-        else if (canvas.height > container_canvas_h) 
-        {
+        else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
+
+            img_id1.width = (container_canvas_h * image.width) / image.height;
+            img_id1.height = container_canvas_h;
             console.log("image: square, 3");
         }
 
@@ -539,7 +594,10 @@ function ellipse_test1() {
     //imageData_original2 = imageData;
     Flatten_nosavingtoundo();
     
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
 
@@ -586,85 +644,13 @@ function lighten() {
     Flatten_nosavingtoundo();
     
     
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
 
-
-function invert() {
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    // image = new Image();
-    // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    
-    
-    ////1.0-1.4 store to undolist
-    ClearRedo();                   //0.8
-    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-    
-    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
-    for (key in DictV) { 
-        DictV[key] = 0;
-    }
-    
-    ////3.0
-    for (var i = 0; i < imageData.data.length; i += 4) {
-        imageData.data[i + 0] = 255-imageData.data[i+0];
-        imageData.data[i + 1] = 255-imageData.data[i+1];
-        imageData.data[i + 2] = 255-imageData.data[i+2];
-    }
-
-
-    ////4.0 affix
-    //imageData_original2 = imageData;
-    Flatten_nosavingtoundo();
-    
-    
-    ctx.putImageData(imageData, 0, 0);
-}
-
-
-function grayscale() {
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    // image = new Image();
-    // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    
-    
-    ////1.0-1.4 store to undolist
-    ClearRedo();                   //0.8
-    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-    
-    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
-    for (key in DictV) { 
-        DictV[key] = 0;
-    }
-    
-
-    ////3.0 edit
-    for (var i = 0; i < imageData.data.length; i += 4) {
-        let bw = (imageData.data[i+0] + imageData.data[i+1] + imageData.data[i+2]) / 3;
-        imageData.data[i + 0] = bw;
-        imageData.data[i + 1] = bw;
-        imageData.data[i + 2] = bw;
-    }
-
-
-    ////4.0 affix
-    //imageData_original2 = imageData;
-    Flatten_nosavingtoundo();
-    
-    
-    ctx.putImageData(imageData, 0, 0);
-}
 
 
 function gaussianblur() {
@@ -696,7 +682,10 @@ function gaussianblur() {
   };
   // data.data = px;
 
-  ctx.putImageData(imageData,0,0);
+  //canvas update
+  ctx.putImageData(imageData, 0, 0);
+  //image update
+  document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
   //delete tmpPx;
   //btnBlur.removeAttribute('disabled');
   //btnBlur.textContent = 'Blur'; 
@@ -759,8 +748,10 @@ function undo2() {
         // ////3
         ApplyBaseImageAndIncrementalFiltersToCurrentImage(); //make imageData => imageData_original2 + filters
         
-        ////update image display
+        //canvas update
         ctx.putImageData(imageData, 0, 0);
+        //image update
+        document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 
         ////5
         JS_changesliderpositionandtextvalue_Contrast(DictV["ContrastV"]);
@@ -810,8 +801,10 @@ function redo2() {
         / ////3
         ApplyBaseImageAndIncrementalFiltersToCurrentImage();
         
-        ////update image display
+        //canvas update
         ctx.putImageData(imageData, 0, 0);
+        //image update
+        document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
         
         ////5
         ////5
@@ -865,35 +858,38 @@ function reset() {
     Flatten_nosavingtoundo();
     
     
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
 //not perfect:
-function download() {
-    let canvas = document.getElementById("cv2");
-    let ctx = canvas.getContext('2d');
+// function download() {
+//     let canvas = document.getElementById("cv2");
+//     let ctx = canvas.getContext('2d');
 
-    ///?
-    // image = new Image();
-    // ctx.drawImage(image, 0, 0);
-    ////
-
-
-    let img    = canvas.toDataURL("image/png");
-    let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
-    // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
-    let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
-    let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
+//     ///?
+//     // image = new Image();
+//     // ctx.drawImage(image, 0, 0);
+//     ////
 
 
+//     let img    = canvas.toDataURL("image/png");
+//     let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
+//     // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
+//     let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
+//     let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
 
-    let element = document.createElement('a');
-    let filename = 'untitled.png';
-    element.setAttribute('href', img);
-    element.setAttribute('download', filename);
-    element.click();  
+
+
+//     let element = document.createElement('a');
+//     let filename = 'untitled.png';
+//     element.setAttribute('href', img);
+//     element.setAttribute('download', filename);
+//     element.click();  
                 
-}
+// }
 //////////
 //////////
 
@@ -1035,7 +1031,10 @@ function flatten() //need fix!
     JS_changesliderpositionandtextvalue_Blue(0);
 
 
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
 function Flatten_nosavingtoundo() //looks good

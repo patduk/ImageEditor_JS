@@ -1,5 +1,5 @@
 .navbar1 {
-    width: 100%; /*keep it centered exactly within viewport width 100% or 100vw (100vw extends thru scrollbar?)*/
+    width: 100vw; /*keep it centered exactly within viewport width 100% or 100vw (100vw extends thru scrollbar?)*/
     height: 60px;
     margin: 0px;
     padding: 0px;

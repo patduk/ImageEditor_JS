@@ -67,7 +67,7 @@
     <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
 
     <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
-        <li><a href="imageedit1.html">Image Edit</a></li>  
+        <li><a href="imageeditor.html">Image Edit</a></li>  
         <li><a href="#">Blank</a></li>
         <li><a href="#">Blank</a></li>
     </div>
@@ -80,7 +80,16 @@
 
 
     
-    <div class="container_leftorcenterautoalign" id="container_id1" >
+ 
+
+
+    <div class='container_canvas' id="container_canvas_id" >
+        <canvas id="cv2" style="display:none"></canvas>
+        <img id="img_id1" style="display:flex" src="">
+    </div>
+
+
+    <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
         <button class="button_style1" onclick="undo2()" >undo</button>
         <button class="button_style1" onclick="redo2()" >redo</button>
         <button class="button_style1" onclick="reset()" >reset</button>
@@ -88,20 +97,9 @@
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
         <label for="diamondx1" class="button_style1_label">upload</label>
 
-        <button class="button_style1" onclick="download()" >save</button>
+        <!-- <button class="button_style1" onclick="download()" >save</button> -->
 
     </div>
-
-
-    <div class='container_canvas' id="container_canvas_id">
-        <canvas id="cv2" >
-        </canvas>
-    </div>
-
-    <!-- <img class='container_canvas' id="container_img_id" src="">
-
-        <img src="images/cherry.png"> -->
-
 
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px; border-top: none">
         <button class="button_style1" onclick="invert()" >invert</button> 
@@ -183,12 +181,12 @@
         <button class="button_style1" id="edge_custom_button_exit_id" >back</button>
 
         <div>
-            Custom BG color</br>
+            BG color</br>
             <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#ffffff" style="width:80px; height: 40px;">
         </div>
     
         <div>
-            Custom line color</br>
+            line color</br>
             <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#ff0000" style="width:80px; height: 40px;">
         </div>
 
@@ -199,7 +197,7 @@
 
 
         <label class="switch">
-            line color to blend w/ background color?</br>
+            improve contrast between line and BG color?</br>
             <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked>
         </label>
         
@@ -209,7 +207,7 @@
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" >
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none">
         <button class="button_style2 button_style2_active" id="categorybutton1">filters</button>
         <button class="button_style2" id="categorybutton2">inc filters</button>
         <button class="button_style2" id="categorybutton3">transform</button>

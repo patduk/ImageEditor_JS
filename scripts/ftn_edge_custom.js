@@ -162,7 +162,7 @@ function edge_custom() {
 
     //auto mode for use_blackline (for better user experinece):
     let trio7 = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3;
-    if (trio7 >= 106) {use_blackline = true;} //.41 of 255 (106)
+    if (trio7 >= 127) {use_blackline = true;} //.41 of 255 (106)
     
     //if use_blackline === true, "pre-invert" custom BG and line colors:
     if (use_blackline === true) {  
@@ -177,7 +177,7 @@ function edge_custom() {
 
     // adjust customlineshadowcolor - limit excessive bright colors, rebalance other line colors:
     //limit excessive bright colors (rec: 84?)
-    let max1 = 127;
+    let max1 = 84;
     if (customlineshadowcolor_R_m > max1) {customlineshadowcolor_R_m = max1; }
     if (customlineshadowcolor_G_m > max1) {customlineshadowcolor_G_m = max1; }
     if (customlineshadowcolor_B_m > max1) {customlineshadowcolor_B_m = max1; }
@@ -464,14 +464,12 @@ function edge_custom() {
     Flatten_nosavingtoundo();
     
 
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 
-    let canvasdataurl = canvas.toDataURL();
-    let container_img = document.getElementById('container_img_id');
-    container_img.style.backgroundImage = 'url('+canvasdataurl+')';
-    container_img.style.width = image.width;
-    container_img.style.height = image.height;
-    
+
 
     // showprocessing = false;
     // ftn_showprocessing();

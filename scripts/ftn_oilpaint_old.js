@@ -111,5 +111,8 @@ function oilpaint(radius, intensity) {
     //OR
     //ctx.putImageData(destImageData, 0, 0);
 
-    
+//     //canvas update
+//     ctx.putImageData(imageData, 0, 0);
+//     //image update
+//     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }

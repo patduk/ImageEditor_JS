@@ -33,7 +33,10 @@ function Onchange_Slider_Opacity()
     ////3 edit image
     ApplyBaseImageAndIncrementalFiltersToCurrentImage();
     
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
 function Onchange_Text_Opacity() 
@@ -67,5 +70,8 @@ function Onchange_Text_Opacity()
     ////3 edit image
     ApplyBaseImageAndIncrementalFiltersToCurrentImage();
 
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
