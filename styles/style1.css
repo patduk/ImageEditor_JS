@@ -49,16 +49,27 @@ body {
 .center2 {
   margin: auto;
   width: 240px;
-  border: 1px solid darkcyan;
+  border: 2px solid darkcyan;
   padding: 20px;
   text-align: center;
   font-size: 20px;
 }
-  
-/* 
+/*   
+ 
 .center3 {
+  padding: 0px;
+  margin: 0px;
+}  */
 
-} */
+.inputtextstyle1 {
+  display: inline;
+  width: 40px;
+  height: 24px;
+  border-radius: 48px;
+  text-align: center;
+  border: none;
+}
+
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -73,7 +84,7 @@ body {
 
 
 .container_canvas {
-  height: 480px;
+  height: 440px;
   width: 100%;
   
   border: 1px solid rgba(0,0,0,0.5);
@@ -83,7 +94,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-color: rgb(84,84,84);
+  background-color: rgb(128,128,128);
 }
 
 

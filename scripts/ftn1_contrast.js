@@ -69,12 +69,12 @@ function Onchange_Text_Contrast()
 
     ////2
     let input_value = parseFloat(document.getElementById('text_Contrast').value);
-    if (input_value > 255) {
-        input_value = 255;
+    if (input_value > 1) {
+        input_value = 1;
         document.getElementById('text_Contrast').value = input_value;
     }
-    if (input_value < -255) {
-        input_value = -255;
+    if (input_value < -1) {
+        input_value = -1;
         document.getElementById('text_Contrast').value = input_value; 
     }
     document.getElementById('slider_Contrast').value = input_value;

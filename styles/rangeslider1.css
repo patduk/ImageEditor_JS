@@ -3,12 +3,19 @@ input[type="range"]{
     /* width:160px;
     height:20px; */
     /* margin:10px 50px; */
-    background: linear-gradient(to right, #9A2720 0%, #20829a 100%);
+
+    border-radius: 4px;
+
+    background: linear-gradient(to right, #ff7f78 0%, #57cf85 100%);
     background-size: 150px 48px;
     background-position:center;
     background-repeat:no-repeat;
+
+
+    /* background-color:rgba(255, 255, 255, 1); */
     overflow:hidden;
     /* outline: none; */
+    border: 1px solid black;
 }
 
 
@@ -18,9 +25,9 @@ margin-top:30px;
 
 input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance:none;
-    width:24px;
-    height:24px;
-    background: rgb(0,255,0,0.5);
+    width:16px;
+    height:32px;
+    background: rgba(0, 0, 0, 0.75);
     position:relative;
     /* z-index:3; */
     /* box-shadow:0 0 5px 0 rgba(0,0,0,0.3); */

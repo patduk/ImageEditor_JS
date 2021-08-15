@@ -23,7 +23,7 @@
     <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
     <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
 
-    <!-- <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css"> -->
+    <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
 
     <script>
         //onclick function for id_btn1, focus on the id_btn1
@@ -63,10 +63,12 @@
 <body>
   <div class="navbar1">
 
-    <li class="navbar1_button1"><a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: -20px; margin-bottom: -7px;"></a></li>
+    <li class="navbar1_button1">
+        <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+    </li>
 
 
-    <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
+    <button class="navbar1_dropdownbutton1 smallertext1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
 
     <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
         <li><a href="imageeditor.html">Image Edit</a></li>  
@@ -129,43 +131,43 @@
 
 
         <div class="center3">
-            Contrast</br>
-            <input type="text" id="text_Contrast" style="width: 100px;" value="0" onchange="Onchange_Text_Contrast()">
+            Contrast
+            <input class="inputtextstyle1" type="text" id="text_Contrast" value="0" onchange="Onchange_Text_Contrast()">
             </br>
             <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()">
         </div>
 
         <div class="center3">
-            Brightness</br>
-            <input type="text" id="text_Brightness" style="width: 100px;" value="0" onchange="Onchange_Text_Brightness()">
+            Brightness
+            <input class="inputtextstyle1" type="text" id="text_Brightness" value="0" onchange="Onchange_Text_Brightness()">
             </br>
             <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()">
         </div>
 
         <div class="center3">
-            Opacity</br>
-            <input type="text" id="text_Opacity" style="width: 100px;" value="0" onchange="Onchange_Text_Opacity()">
+            Opacity
+            <input class="inputtextstyle1" type="text" id="text_Opacity" value="0" onchange="Onchange_Text_Opacity()">
             </br>
             <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()">
         </div>
 
         <div class="center3">
-            Red</br>
-            <input type="text" id="text_Red" style="width: 100px;" value="0" onchange="Onchange_Text_Red()">
+            Red
+            <input class="inputtextstyle1" type="text" id="text_Red" value="0" onchange="Onchange_Text_Red()">
             </br>
             <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()">
         </div>
 
         <div class="center3">
-            Green</br>
-            <input type="text" id="text_Green" style="width: 100px;" value="0" onchange="Onchange_Text_Green()">
+            Green
+            <input class="inputtextstyle1" type="text" id="text_Green" value="0" onchange="Onchange_Text_Green()">
             </br>
             <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()">
         </div>
 
         <div class="center3">
-            Blue</br>
-            <input type="text" id="text_Blue" style="width: 100px;" value="0" onchange="Onchange_Text_Blue()">
+            Blue
+            <input class="inputtextstyle1" type="text" id="text_Blue" value="0" onchange="Onchange_Text_Blue()">
             </br>
             <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()">
         </div>
