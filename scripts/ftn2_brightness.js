@@ -90,3 +90,7 @@ function Onchange_Text_Brightness()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
+function Oninput_Slider_Brightness_LiveUpdate() {
+    document.getElementById("text_Brightness").value = document.getElementById("slider_Brightness").value;
+}

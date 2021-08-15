@@ -91,3 +91,7 @@ function Onchange_Text_Contrast()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
+function Oninput_Slider_Contrast_LiveUpdate() {
+    document.getElementById("text_Contrast").value = document.getElementById("slider_Contrast").value;
+}

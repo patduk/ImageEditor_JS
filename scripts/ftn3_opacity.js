@@ -75,3 +75,7 @@ function Onchange_Text_Opacity()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
+function Oninput_Slider_Opacity_LiveUpdate() {
+    document.getElementById("text_Opacity").value = document.getElementById("slider_Opacity").value;
+}

@@ -69,3 +69,7 @@ function Onchange_Text_Green()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
+function Oninput_Slider_Green_LiveUpdate() {
+    document.getElementById("text_Green").value = document.getElementById("slider_Green").value;
+}

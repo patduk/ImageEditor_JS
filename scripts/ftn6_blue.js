@@ -69,3 +69,7 @@ function Onchange_Text_Blue()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
+function Oninput_Slider_Blue_LiveUpdate() {
+    document.getElementById("text_Blue").value = document.getElementById("slider_Blue").value;
+}
