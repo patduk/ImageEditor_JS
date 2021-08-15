@@ -8,6 +8,8 @@
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
+    <script src="scripts/ftn_grayscale.js"></script>
+    <script src="scripts/ftn_invert.js"></script>
     <script src="scripts/ftn_oilpaint.js"></script>
     <script src="scripts/ftn1_contrast.js"></script>
     <script src="scripts/ftn2_brightness.js"></script>
@@ -178,25 +180,25 @@
 
 
     <div class="container_leftorcenterautoalign" id="container_id5" style="height:90px; border-top: none">
-        <button class="button_style1" id="edge_custom_button_exit_id" >back</button>
+        <button class="button_style1 margin1" id="edge_custom_button_exit_id" >back</button>
 
-        <div>
+        <div class="margin1">
             BG color</br>
             <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#ffffff" style="width:80px; height: 40px;">
         </div>
     
-        <div>
+        <div class="margin1">
             line color</br>
-            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#ff0000" style="width:80px; height: 40px;">
+            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#007f7f" style="width:80px; height: 40px;">
         </div>
 
-        <label class="switch">
-            transparent background?</br>
+        <label class="border1 margin1">
+            hide background color?<br>
             <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" id="id_transparent_mode_edge_custom">
         </label>
 
 
-        <label class="switch">
+        <label class="border1 margin1">
             improve contrast between line and BG color?</br>
             <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked>
         </label>

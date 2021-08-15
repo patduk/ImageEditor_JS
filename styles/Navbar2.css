@@ -1,17 +1,25 @@
 .button_style1 {
-    max-width: 80px;
-    min-width: 80px;
+    max-width: 95px;
+    min-width: 95px;
     height: 48px;
     text-align: center;
     margin: 3px;
-  
+
+
     color: black;
-    border: 2px solid black;
+    border:none;
+    /*
+    border: 1.5px solid;
     border-color: rgb(120, 72, 100);
     background-color:rgb(144, 214, 203, 1);
-    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
 
-    
+    border-radius: 6px;
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240) 100%); 
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
+    word-wrap: break-word;
+
+
 }
 
 
@@ -19,39 +27,44 @@
 
 
 .button_style1_label {
-    max-width: 80px;
-    min-width: 80px;
-    line-height: 44px; /*line-height for label, not normal button*/
-    max-height: 44px;
+    max-width: 95px;
+    min-width: 95px;
+    line-height: 48px; /*line-height for label, not normal button*/
+    max-height: 48px;
     text-align: center;
     margin: 3px;
 
-    color: black;
-    border: 2px solid black;
-    border-color: rgb(120, 72, 100);
-    background-color:rgb(144, 214, 203, 1);
-    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%);
 
+    color: black;
+    
+    /* border: 1.5px solid; */
+    /* border-color: rgb(120, 72, 100);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
+
+    border-radius: 6px;
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240) 100%); 
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
+    word-wrap: break-word;
 }
 
 
 .button_style1:hover, 
-.button_style1:active,
 
 .button_style1_label:hover, 
-.button_style1_label:active, 
-input:hover+.button_style1_label, 
-input:active+.button_style1_label 
-{
-    background-color: rgb(48,64,48);
+input:hover+.button_style1_label {
+    background-color:rgb(125, 200, 200);
     background-image: none;
-    color: rgb(133,255, 133);
-    border: 2px solid rgb(133,255, 133);
-
-    /* background-image: linear-gradient(to top, rgb(97, 54, 95) 0%, rgb(37, 68, 94) 100%); */
-
 }
 
+.button_style1:active,
+
+.button_style1_label:active, 
+input:active+.button_style1_label {
+    background-color: rgba(20, 80, 80);
+    background-image: none;
+    color: rgb(255,255, 255);
+}
 
 
 
@@ -92,22 +105,36 @@ input:active+.button_style1_label
 
 /* Style the buttons */
 .button_style2 {
-    /* border: none; */
-    margin: 1px;
-    outline: none;
-    padding: 10px 16px;
-    background-color: #9a9aff;
-    cursor: pointer;
+    min-width: 95px;
+    height: 48px;
+    text-align: center;
+    margin: 3px;
+
+
+    color: black;
+    border:none;
+    
+    /*
+    border: 1.5px solid;
+    border-color: rgb(120, 72, 100);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
+
+    /* border-radius: 6px; */
+    background-image: linear-gradient(to bottom, rgba(255, 158, 158, 0.8) 0%, rgba(240, 152, 152, 0.8) 100%); 
+    box-shadow: 0 2px 4px 0px rgba(0,0,0,0.5);
+    word-wrap: break-word;
 }
   
 /* Style the active class (and buttons on mouse-over) */
-.button_style2_active, .button_style2:hover {
-    background-color: #666;
-    color: white;
-        
-   
+.button_style2:hover {
+    background-color: #000000;
 }
 
+.button_style2_active {
+    background-color: #000000;
+    border-bottom: 3px solid rgb(125, 225, 225);
+}
 
 
 input[type="range"] {
@@ -119,16 +146,17 @@ input[type="range"] {
     background-image : "";
 }
 
-.switch {
-    padding: 0px;
-    margin: 0px;
+.border1 {
     border: 1px solid rgb(0,0,0,0.5);
-    display: flex;
     height: 50px;
     width: 80px;
-   
-    font-size: 11px;
+    display: flex;
+    font-size: 10px;
     
-    word-wrap: break-word;
+}
+
+.margin1 {
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
