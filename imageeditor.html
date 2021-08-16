@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
+
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+
+
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
@@ -61,7 +65,7 @@
 
 
 <body>
-  <div class="navbar1">
+  <div class="navbar1" id="navbar1_id">
 
     <li class="navbar1_button1">
         <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
@@ -81,14 +85,12 @@
 
 
 
-    
- 
-
-
     <div class='container_canvas' id="container_canvas_id" >
         <canvas id="cv2" style="display:none"></canvas>
         <img id="img_id1" style="display:flex" src="">
     </div>
+
+    
 
 
     <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
@@ -99,6 +101,8 @@
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
         <label for="diamondx1" class="button_style1_label">Upload</label>
 
+
+        <button class="button_style1" onclick="imagefullscreen(event)" >Go Full Screen</button>
         <!-- <button class="button_style1" onclick="download()" >save</button> -->
 
     </div>

@@ -145,7 +145,88 @@ window.onload = () => {
     });
 
 
+    //set up container_cnavas_id height variable ig
+    let object1 = document.getElementById("container_canvas_id");
+    let idealheight = (document.body.clientHeight * 0.60).toString() + "px";
+    object1.style.height = idealheight;
 
+
+
+    //add panzoom functionality to img
+    let img_id1 = document.getElementById("img_id1");
+    panzoom(img_id1);
+
+    
+}
+
+
+
+function resetzoomorigin( ){
+    let instance = panzoom(element, {
+        // now all zoom operations will happen based on the center of the screen
+        transformOrigin: {x: 0.5, y: 0.5}
+    });
+
+    let origin = instance.getTransformOrigin(); // {x: 0.5, y: 0.5}
+
+    instance.setTransformOrigin({x: 0, y: 0}); // now it is topLeft
+    instance.setTransformOrigin(null); // remove transform origin
+}
+
+
+function imagefullscreen(event) {
+
+    if (event.target.innerHTML === "Go Full Screen") {
+        event.target.innerHTML = "Exit Full Screen";
+    }
+    else if (event.target.innerHTML === "Exit Full Screen") {
+        event.target.innerHTML = "Go Full Screen";
+    }
+
+    let object1 = document.getElementById("container_canvas_id");
+
+
+    if (object1.style.height === "440px" || object1.style.height === null) {
+        object1.style.height = "77vh";
+        document.getElementById("navbar1_id").style.display = "none";
+        document.getElementById("container_id2").style.display = "none";
+        document.getElementById("container_id3").style.display = "none";
+        document.getElementById("container_id4").style.display = "none";
+        document.getElementById("container_id5").style.display = "none";
+        document.getElementById("container_categorybuttons_id").style.display = "none";
+
+        console.log("a1");
+    }
+    else {
+        object1.style.height = "440px";
+        document.getElementById("navbar1_id").style.display = "flex";
+        document.getElementById("container_id2").style.display = "inline-flex";
+        document.getElementById("container_id3").style.display = "none";
+        document.getElementById("container_id4").style.display = "none";
+        document.getElementById("container_id5").style.display = "none";
+        document.getElementById("container_categorybuttons_id").style.display = "inline-flex";
+        
+        console.log("a2");
+    }
+
+
+    let btnContainer = document.getElementById("container_categorybuttons_id");
+
+    // Get all buttons with class="btn" inside the container
+    let btns = btnContainer.getElementsByClassName("button_style2");
+
+    for (var i = 0; i < btns.length; i++) {
+        var current = document.getElementsByClassName("button_style2_active");
+
+        // If there's no active class
+        if (current.length > 0) {
+            current[0].className = current[0].className.replace(" button_style2_active", "");
+        }
+    }
+    resizeCanvas();
+
+
+    
 }
 
 
