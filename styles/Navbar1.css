@@ -102,6 +102,8 @@
 
     visibility: hidden;
     /* display: none; */
+
+    z-index: 99;
 }
 .navbar1_dropdownbutton1 + .navbar1_dropdown_menu1 {
   /* visibility: hidden; */
