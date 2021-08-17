@@ -49,8 +49,8 @@
         );
 
     </script>
-
-
+    
+    <!-- 
     <script>
         var isInstagram = navigator.userAgent.match(/instagram/i);
         if (isInstagram) {
@@ -60,7 +60,7 @@
         link.href = 'your-file-with-instagram-fixes.css';
         head.appendChild(link);
         }
-    </script>
+    </script> -->
 <!-- </head> -->
 
 
@@ -84,10 +84,14 @@
   </div>
 
 
+    <div class='container_canvas' id="container_imgsaveonly_id" style="display:none">
+        <img id="img_id2" style="display:flex" src="images/wlop1.jpg">
+    </div>
 
     <div class='container_canvas' id="container_canvas_id" >
         <canvas id="cv2" style="display:none"></canvas>
         <img id="img_id1" style="display:flex" src="">
+        
     </div>
 
     
@@ -96,14 +100,16 @@
     <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
         <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png"/ style="width:24px; padding-top: 5px"></button>
         <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png"/ style="width:24px; padding-top: 5px"></button>
-        <button class="button_style1" onclick="reset()" >Reset</button>
-
+        <button class="button_style1" onclick="reset()" >Reset (Filter)</button>
+        
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
         <label for="diamondx1" class="button_style1_label">Upload</label>
 
 
         <button class="button_style1" onclick="imagefullscreen(event)" >Go Full Screen</button>
-        <!-- <button class="button_style1" onclick="download()" >save</button> -->
+        <button class="button_style1" onclick="downloadmodetoggle()" >Download</button>
+        <button class="button_style1" onclick="hidetoggle()" >Hide</button>
+        <button class="button_style1" onclick="resetposition()" >Reset (Position)</button>
 
     </div>
 

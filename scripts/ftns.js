@@ -24,14 +24,6 @@ let imageData_original1;
 
 let DictV = {};
 DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0};
-// DictV["IncV"] = 0; //0 = false, 1 = true
-// DictV["ContrastV"] = 0;
-// DictV["BrightnessV"] = 0;
-// DictV["OpacityV"] = 0;
-// DictV["RedV"] = 0;
-// DictV["GreenV"] = 0;
-// DictV["BlueV"] = 0;
-console.log(DictV);
 
 
 //undo lists
@@ -57,13 +49,13 @@ let BlueV_redo = [];
 
 
 
-function ftn_showprocessing() {
-    let imagestatus = document.getElementById('imagestatus');
+// function ftn_showprocessing() {
+//     let imagestatus = document.getElementById('imagestatus');
     
-    if (showprocessing === true) {imagestatus.innerHTML = "Processing";}
-    else {imagestatus.innerHTML = "Ready";}
+//     if (showprocessing === true) {imagestatus.innerHTML = "Processing";}
+//     else {imagestatus.innerHTML = "Ready";}
         
-}
+// }
 
 
 
@@ -156,10 +148,73 @@ window.onload = () => {
     let img_id1 = document.getElementById("img_id1");
     panzoom(img_id1);
 
+
+    // img_id1.addEventListener('mousedown', function(event) { 
+    //     // simulating hold event
+    //     setTimeout(function() {
+    //         // // You are now in a hold state, you can do whatever you like!
+    //         // console.log("dsfa");
+    //         // 
+    //         let canvas = document.getElementById('cv2');
+    //         let ctx = canvas.getContext('2d'); 
+    //         document.getElementById("img_id1").src = canvas.toDataURL("image/png"); 
+    //         document.getElementById("container_canvas_id").style.backgroundColor = "black";
+
+    //     }, 500);
+    // });
+
     
 }
 
 
+function hidetoggle() {
+    if (document.getElementById("img_id1").style.display != "none") {
+        document.getElementById("img_id1").style.display = "none";
+
+    }
+    else {
+        document.getElementById("img_id1").style.display = "flex";
+    }
+}
+
+function downloadmodetoggle() {
+    // let canvas = document.getElementById('cv2');
+    // let ctx = canvas.getContext('2d');   
+    // let stringimage = '<img src="images\\' + canvas.toDataURL("image/png") + '\">';  
+    // let stringimage2 = "images\\" + canvas.toDataURL("image/png").toString();
+    
+    
+    
+    
+    if (document.getElementById("container_canvas_id").style.display != "none") {
+        document.getElementById("container_canvas_id").style.display = "none";
+
+        document.getElementById("container_imgsaveonly_id").style.display = "flex";
+    }
+    else {
+        document.getElementById("container_canvas_id").style.display = "flex";
+
+        document.getElementById("container_imgsaveonly_id").style.display = "none";
+    }
+
+
+
+    // let img_id1 = document.getElementById("img_id1");
+    // let instance = panzoom(img_id1);
+    // instance.remove();
+    // if (instance.isPaused() === false) {
+    //     instance.pause();
+    //     document.getElementById("container_canvas_id").style.backgroundColor = "rgba(255,128,128)";
+        
+    // }
+    // else if (instance.isPaused() === true) {
+    //     instance.resume();
+    //     document.getElementById("container_canvas_id").style.backgroundColor = "rgba(128,128,128)";
+    // }
+
+    
+}
+  
 
 function resetzoomorigin( ){
     let instance = panzoom(element, {
@@ -184,9 +239,10 @@ function imagefullscreen(event) {
     }
 
     let object1 = document.getElementById("container_canvas_id");
+    let idealheight = (document.body.clientHeight * 0.60).toString() + "px";
 
 
-    if (object1.style.height === "440px" || object1.style.height === null) {
+    if (object1.style.height != "77vh" || object1.style.height === null) {
         object1.style.height = "77vh";
         document.getElementById("navbar1_id").style.display = "none";
         document.getElementById("container_id2").style.display = "none";
@@ -198,7 +254,7 @@ function imagefullscreen(event) {
         console.log("a1");
     }
     else {
-        object1.style.height = "440px";
+        object1.style.height = idealheight;
         document.getElementById("navbar1_id").style.display = "flex";
         document.getElementById("container_id2").style.display = "inline-flex";
         document.getElementById("container_id3").style.display = "none";
