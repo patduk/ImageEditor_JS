@@ -43,6 +43,8 @@
     background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
 
     border-radius: 6px;
+    /*pair background-image with background-color (white) to match button_style1's background-image*/
+    background-color: white;
     background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
     box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
     word-wrap: break-word;
@@ -159,3 +161,6 @@ input[type="range"] {
     margin-right: 4px;
 }
 
+.zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly {
+    height:0; width:0px;
+}

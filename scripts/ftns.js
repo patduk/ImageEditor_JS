@@ -49,18 +49,11 @@ let BlueV_redo = [];
 
 
 
-// function ftn_showprocessing() {
-//     let imagestatus = document.getElementById('imagestatus');
-    
-//     if (showprocessing === true) {imagestatus.innerHTML = "Processing";}
-//     else {imagestatus.innerHTML = "Ready";}
-        
-// }
 
 
-
-
-
+let instance1_panzoom_global;
+let container_canvas_h_fullscreen_global;
+let container_canvas_h_normalscreen_global;
 
 window.onload = () => {
     //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
@@ -111,7 +104,7 @@ window.onload = () => {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
         
-        resizeCanvas();
+        resizeCanvas(); 
 
     });
     }
@@ -122,6 +115,7 @@ window.onload = () => {
     edge_custom_button_enter.addEventListener("click", function() {
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id5").style.display = "inline-flex";
+        
         
         resizeCanvas();
     });
@@ -137,59 +131,94 @@ window.onload = () => {
     });
 
 
-    //set up container_cnavas_id height variable ig
-    let object1 = document.getElementById("container_canvas_id");
-    let idealheight = (document.body.clientHeight * 0.60).toString() + "px";
-    object1.style.height = idealheight;
-
-
 
     //add panzoom functionality to img
-    let img_id1 = document.getElementById("img_id1");
-    panzoom(img_id1);
-
-
-    // img_id1.addEventListener('mousedown', function(event) { 
-    //     // simulating hold event
-    //     setTimeout(function() {
-    //         // // You are now in a hold state, you can do whatever you like!
-    //         // console.log("dsfa");
-    //         // 
-    //         let canvas = document.getElementById('cv2');
-    //         let ctx = canvas.getContext('2d'); 
-    //         document.getElementById("img_id1").src = canvas.toDataURL("image/png"); 
-    //         document.getElementById("container_canvas_id").style.backgroundColor = "black";
-
-    //     }, 500);
-    // });
+    let img_id1 = document.getElementById("img_id1") ;
+    instance1_panzoom_global =  panzoom(img_id1, {
+        zoomDoubleClickSpeed: 1, 
+        minZoom: 0.2
+    });
 
     
+
+    /* View in fullscreen */
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
+  
+  /* Close fullscreen */
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  }
+    //set up canvas container height global variables for normal/full screen modes
+    let object1 = document.getElementById("container_canvas_id");
+    let object2 = document.getElementById("container_imgsaveonly_id");
+    
+    container_canvas_h_fullscreen_global = window.innerHeight - 
+    (document.getElementById("navbar1_id").offsetHeight);
+
+    container_canvas_h_normalscreen_global = window.innerHeight - 
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
+
+
+
+    
+
+
+    console.log(window.innerHeight, '<- full. ',
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight), '=', 
+    document.getElementById("navbar1_id").offsetHeight, //60
+    document.getElementById("container_id1").offsetHeight, //61
+    document.getElementById("container_id2").offsetHeight, //91
+    document.getElementById("container_categorybuttons_id").offsetHeight); //61
+
+
+    object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+
 }
 
 
-function hidetoggle() {
-    if (document.getElementById("img_id1").style.display != "none") {
-        document.getElementById("img_id1").style.display = "none";
 
-    }
-    else {
-        document.getElementById("img_id1").style.display = "flex";
-    }
-}
+
 
 function downloadmodetoggle() {
-    // let canvas = document.getElementById('cv2');
-    // let ctx = canvas.getContext('2d');   
+    let canvas = document.getElementById('cv2');
+    let ctx = canvas.getContext('2d');   
     // let stringimage = '<img src="images\\' + canvas.toDataURL("image/png") + '\">';  
-    // let stringimage2 = "images\\" + canvas.toDataURL("image/png").toString();
-    
-    
+    let stringimage2 = "images\\" + canvas.toDataURL("image/png").toString();
+
+    let img_id1 = document.getElementById("img_id1");
+    let img_id2 = document.getElementById("img_id2");
+    let img_id1_h = img_id1.height;
+    let img_id1_w = img_id1.width;
     
     
     if (document.getElementById("container_canvas_id").style.display != "none") {
         document.getElementById("container_canvas_id").style.display = "none";
 
+        document.getElementById("img_id2").src = document.getElementById("img_id1").src;
         document.getElementById("container_imgsaveonly_id").style.display = "flex";
+        
+        //img_id2 & containe_imgsaveonly_id dimensions to equal img_id1 dimensions:
+        img_id2.width = img_id1_w; //must use helper variables idk why
+        img_id2.height = img_id1_h;
+        document.getElementById("container_imgsaveonly_id").style.width = document.getElementById("container_canvas_id").style.width;
+        document.getElementById("container_imgsaveonly_id").style.height = document.getElementById("container_canvas_id").style.height;
+
+        document.getElementById("container_imgsaveonly_id").style.backgroundColor = "rgb(0, 127,0)";
+        
     }
     else {
         document.getElementById("container_canvas_id").style.display = "flex";
@@ -197,93 +226,23 @@ function downloadmodetoggle() {
         document.getElementById("container_imgsaveonly_id").style.display = "none";
     }
 
-
-
-    // let img_id1 = document.getElementById("img_id1");
-    // let instance = panzoom(img_id1);
-    // instance.remove();
-    // if (instance.isPaused() === false) {
-    //     instance.pause();
-    //     document.getElementById("container_canvas_id").style.backgroundColor = "rgba(255,128,128)";
-        
-    // }
-    // else if (instance.isPaused() === true) {
-    //     instance.resume();
-    //     document.getElementById("container_canvas_id").style.backgroundColor = "rgba(128,128,128)";
-    // }
-
+    
     
 }
   
 
-function resetzoomorigin( ){
-    let instance = panzoom(element, {
-        // now all zoom operations will happen based on the center of the screen
-        transformOrigin: {x: 0.5, y: 0.5}
+
+function resetposition( ){
+    let img_id1 = document.getElementById("img_id1") ;
+    instance1_panzoom_global.pause(); //pause to stop any smooth scroll, and get to panzoom reset already
+    instance1_panzoom_global =  panzoom(img_id1, {
+        zoomDoubleClickSpeed: 1, 
+        minZoom: 0.2
     });
-
-    let origin = instance.getTransformOrigin(); // {x: 0.5, y: 0.5}
-
-    instance.setTransformOrigin({x: 0, y: 0}); // now it is topLeft
-    instance.setTransformOrigin(null); // remove transform origin
-}
-
-
-function imagefullscreen(event) {
-
-    if (event.target.innerHTML === "Go Full Screen") {
-        event.target.innerHTML = "Exit Full Screen";
-    }
-    else if (event.target.innerHTML === "Exit Full Screen") {
-        event.target.innerHTML = "Go Full Screen";
-    }
-
-    let object1 = document.getElementById("container_canvas_id");
-    let idealheight = (document.body.clientHeight * 0.60).toString() + "px";
-
-
-    if (object1.style.height != "77vh" || object1.style.height === null) {
-        object1.style.height = "77vh";
-        document.getElementById("navbar1_id").style.display = "none";
-        document.getElementById("container_id2").style.display = "none";
-        document.getElementById("container_id3").style.display = "none";
-        document.getElementById("container_id4").style.display = "none";
-        document.getElementById("container_id5").style.display = "none";
-        document.getElementById("container_categorybuttons_id").style.display = "none";
-
-        console.log("a1");
-    }
-    else {
-        object1.style.height = idealheight;
-        document.getElementById("navbar1_id").style.display = "flex";
-        document.getElementById("container_id2").style.display = "inline-flex";
-        document.getElementById("container_id3").style.display = "none";
-        document.getElementById("container_id4").style.display = "none";
-        document.getElementById("container_id5").style.display = "none";
-        document.getElementById("container_categorybuttons_id").style.display = "inline-flex";
-        
-        console.log("a2");
-    }
-
-
-    let btnContainer = document.getElementById("container_categorybuttons_id");
-
-    // Get all buttons with class="btn" inside the container
-    let btns = btnContainer.getElementsByClassName("button_style2");
-
-    for (var i = 0; i < btns.length; i++) {
-        var current = document.getElementsByClassName("button_style2_active");
-
-        // If there's no active class
-        if (current.length > 0) {
-            current[0].className = current[0].className.replace(" button_style2_active", "");
-        }
-    }
-    resizeCanvas();
-
-
     
 }
+
+
 
 
 function logprint() {
@@ -444,35 +403,42 @@ window.addEventListener('load', function()
 });
 
 
+//resize canvas (only when resizing windows)
+window.addEventListener("resize", resizeCanvas2);
+function resizeCanvas2() {
+    //resize canvas height to fit 100% in window along with navbars' heights
+
+    let object1 = document.getElementById("container_canvas_id");
+    let object2 = document.getElementById("container_imgsaveonly_id");
+
+    container_canvas_h_normalscreen_global = window.innerHeight - 
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
+
+
+    object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+    object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+
+}
 
 //resize canvas
 window.addEventListener("resize", resizeCanvas);
+
 function resizeCanvas() {
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d');
     
-    // ctx.translate(pt.x,pt.y);
-    // ctx.scale(factor,factor);
-    // ctx.translate(-pt.x,-pt.y);
-    // imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
     // "nickname" variables
     let container_canvas_w = document.getElementById("container_canvas_id").clientWidth;
     let container_canvas_h = document.getElementById("container_canvas_id").clientHeight; 
-    
     let img_id1 = document.getElementById("img_id1");
+    let container_img_id1 = document.getElementById("container_img_id1");
 
+    
     // reset 
     canvas.style.height = "";
     canvas.style.width = "";
     
-
-    // log print
-    console.log("cw: " + canvas.width, "\nch: " + canvas.height);
-    console.log("stylew: " + canvas.style.width, "\nstyleh: " + canvas.style.height);
-    console.log("containerw: " + container_canvas_w, "\ncontainerh: " + container_canvas_h);
-
-    console.log("img_idh w : " + img_id1.height + "  " + img_id1.width);
     
     //// if image is portrait
     if (canvas.height > canvas.width) {
@@ -667,9 +633,10 @@ function resizeCanvas() {
             img_id1.height = image.height;
         }
 
-    }
-
-
+    }    
+    ////reposition container (img_id1):
+    ////sample: container_img_id1.style.transform = "translateX(-20px) translateY(50px)"; 
+    container_img_id1.style.transform = "translateX(" + (-img_id1.width/2).toString() + "px) translateY(" + (-img_id1.height/2).toString() + "px)";
 
 
     ///scrollbar detection, modify center/left justification within
@@ -703,7 +670,12 @@ function resizeCanvas() {
     }
     else { container_id5.style.justifyContent = "center"; }
 
+
 }
+
+
+
+
 
 
 //ellipse filter add
@@ -1015,31 +987,28 @@ function reset() {
 }
 
 //not perfect:
-// function download() {
-//     let canvas = document.getElementById("cv2");
-//     let ctx = canvas.getContext('2d');
-
-//     ///?
-//     // image = new Image();
-//     // ctx.drawImage(image, 0, 0);
-//     ////
-
-
-//     let img    = canvas.toDataURL("image/png");
-//     let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
-//     // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
-//     let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
-//     let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
+function download() {
+    let canvas = document.getElementById("cv2");
+    let ctx = canvas.getContext('2d');
 
 
 
-//     let element = document.createElement('a');
-//     let filename = 'untitled.png';
-//     element.setAttribute('href', img);
-//     element.setAttribute('download', filename);
-//     element.click();  
+
+    let img    = canvas.toDataURL("image/png");
+    let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
+    // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
+    let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
+    let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
+
+
+
+    let element = document.createElement('a');
+    let filename = 'untitled.png';
+    element.setAttribute('href', img);
+    element.setAttribute('download', filename);
+    element.click();  
                 
-// }
+}
 //////////
 //////////
 

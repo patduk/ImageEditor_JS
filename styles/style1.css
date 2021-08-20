@@ -17,7 +17,7 @@ html {
   font-family: 'Arial';
   
   height: 100%;
-  
+  overflow-y: hidden;
 }
 
 body {

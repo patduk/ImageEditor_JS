@@ -8,6 +8,8 @@
 
     <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
 
+    <script src="scripts/ftn_fullscreen.js"></script>
+
 
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
@@ -21,6 +23,7 @@
     <script src="scripts/ftn4_red.js"></script>
     <script src="scripts/ftn5_green.js"></script>
     <script src="scripts/ftn6_blue.js"></script>
+    
 
     <link href="styles/normalize.css" rel="stylesheet" type="text/css">
     <link href="styles/style1.css"  rel="stylesheet" type="text/css">
@@ -43,73 +46,61 @@
             // if (!specifiedelement1.contains(event.target)) 
             // {
             //     // Do something when user clicked outside of wrapper element
-                
             // }
         }
         );
 
     </script>
     
-    <!-- 
-    <script>
-        var isInstagram = navigator.userAgent.match(/instagram/i);
-        if (isInstagram) {
-        var head = document.querySelector('head');
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'your-file-with-instagram-fixes.css';
-        head.appendChild(link);
-        }
-    </script> -->
+ 
 <!-- </head> -->
 
 
 <body>
-  <div class="navbar1" id="navbar1_id">
+   
+    <div class="navbar1" id="navbar1_id">
+        <li class="navbar1_button1">
+            <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+        </li>
 
-    <li class="navbar1_button1">
-        <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
-    </li>
+        <button class="navbar1_dropdownbutton1 smallertext1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
 
-
-    <button class="navbar1_dropdownbutton1 smallertext1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
-
-    <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
-        <li><a href="imageeditor.html">Image Edit</a></li>  
-        <li><a href="#">Blank</a></li>
-        <li><a href="#">Blank</a></li>
+        <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
+            <li><a href="imageeditor.html">Image Edit</a></li>  
+            <li><a href="#">Blank</a></li>
+            <li><a href="#">Blank</a></li>
+        </div>
     </div>
 
 
-  </div>
 
-
-    <div class='container_canvas' id="container_imgsaveonly_id" style="display:none">
-        <img id="img_id2" style="display:flex" src="images/wlop1.jpg">
+    <div class='container_canvas' id="container_imgsaveonly_id" style="display:none; ">
+        <img id="img_id2" style="display:flex" src="images/wlop1.jpg"></img>
     </div>
 
     <div class='container_canvas' id="container_canvas_id" >
         <canvas id="cv2" style="display:none"></canvas>
-        <img id="img_id1" style="display:flex" src="">
-        
+        <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
+            <img id="img_id1" style="display:flex" src="">
+        </div>
     </div>
 
     
 
 
     <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
-        <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png"/ style="width:24px; padding-top: 5px"></button>
-        <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png"/ style="width:24px; padding-top: 5px"></button>
+        <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
+        <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
         <button class="button_style1" onclick="reset()" >Reset (Filter)</button>
+        <button class="button_style1" onclick="resetposition()" >Reset (Position)</button>
+
         
         <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
         <label for="diamondx1" class="button_style1_label">Upload</label>
-
-
-        <button class="button_style1" onclick="imagefullscreen(event)" >Go Full Screen</button>
         <button class="button_style1" onclick="downloadmodetoggle()" >Download</button>
-        <button class="button_style1" onclick="hidetoggle()" >Hide</button>
-        <button class="button_style1" onclick="resetposition()" >Reset (Position)</button>
+
+        <button class="button_style1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
+                
 
     </div>
 
