@@ -5,12 +5,13 @@ function imagefullscreen() {
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
 
-    if (document.fullscreenElement) {
-        closeFullscreen(); }
-    else {
-        openFullscreen(); }
+    // if (document.fullscreenElement) {
+    //     closeFullscreen(); }
+    // else {
+    //     openFullscreen(); }
     
-    // if (object1.style.height === container_canvas_h_normalscreen_global.toString() + "px") // || object1.style.height === null) {
+
+    //if normal screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px")
     {
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
@@ -26,6 +27,7 @@ function imagefullscreen() {
         console.log("a1");
  
     }
+    //if full screen
     else {
 
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
@@ -56,8 +58,10 @@ function imagefullscreen() {
     //     }
     // }
 
-    //resizeCanvas();
-
+   
+    
+    resizeCanvas();
+    resizeCanvas2();
 }
 
 

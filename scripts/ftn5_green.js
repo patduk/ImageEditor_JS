@@ -73,3 +73,9 @@ function Onchange_Text_Green()
 function Oninput_Slider_Green_LiveUpdate() {
     document.getElementById("text_Green").value = document.getElementById("slider_Green").value;
 }
+
+function JS_changesliderpositionandtextvalue_Green(n) {
+    document.getElementById('slider_Green').value = n;
+	document.getElementById('text_Green').value = n;
+}
+

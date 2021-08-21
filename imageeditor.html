@@ -12,6 +12,8 @@
 
 
     <script src="scripts/ftns.js"></script>
+    <script src="scripts/ftn_ellipse.js"></script>
+    <script src="scripts/ftn_gaussianblur.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
     <script src="scripts/ftn_grayscale.js"></script>
@@ -78,6 +80,7 @@
         <img id="img_id2" style="display:flex" src="images/wlop1.jpg"></img>
     </div>
 
+    
     <div class='container_canvas' id="container_canvas_id" >
         <canvas id="cv2" style="display:none"></canvas>
         <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
@@ -105,31 +108,21 @@
     </div>
 
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px; border-top: none">
-        <button class="button_style1" onclick="invert()" >Invert</button> 
-        <!-- <button class="button_style1" onclick="lighten()" >lighten</button> -->
+        <button class="button_style1" onclick="invert()" >Invert</button>
         <button class="button_style1" onclick="grayscale()" >Grayscale</button>
-
         <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
         <button class="button_style1" onclick="oilpaint(3,20,true)" >Oil Paint</button>
-        
-        
         <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
-
         <button class="button_style1" onclick="edge_normal()" >Line (Normal)</button>
         <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
         <button class="button_style1" id="edge_custom_button_enter_id" >Line (Custom)</button>
-        
-        <button  class="button_style1" onclick="ellipse_test1()" >Ellipse</button>   
+        <button class="button_style1" onclick="ellipse_test1()" >Ellipse</button>   
     </div>
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_id3" style="height:90px; border-top: none">
-        <!-- <button onclick="filter1()" >filter 1</button>
-        <button onclick="filter2()" >filter 2</button>-->
-  
+    <div class="container_leftorcenterautoalign" id="container_id3" style="height:90px; border-top: none">  
         <button class="button_style1" onclick="flatten()" >Flatten</button>
-
 
         <div class="center3">
             Contrast
@@ -176,14 +169,6 @@
 
 
     
-
-
-
-    <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px; border-top: none">
-        <div>Coming soon perhaps.</div>
-    </div> 
-
-
     <div class="container_leftorcenterautoalign" id="container_id5" style="height:90px; border-top: none">
         <button class="button_style1 margin1" id="edge_custom_button_exit_id" >back</button>
 
@@ -214,20 +199,18 @@
 
 
 
+    <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px; border-top: none">
+        <div>Coming soon perhaps.</div>
+    </div> 
+
+  
+
     <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none">
         <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
         <button class="button_style2" id="categorybutton2">Inc. Filters</button>
         <button class="button_style2" id="categorybutton3">Other</button>
-        
+
     </div>
-
-    
-    
-
-
-    
-
-    <!-- <div class="slidecontainer disable-dbl-tap-zoom"></div>  -->
 
 
 

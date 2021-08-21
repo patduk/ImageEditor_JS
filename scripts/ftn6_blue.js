@@ -73,3 +73,8 @@ function Onchange_Text_Blue()
 function Oninput_Slider_Blue_LiveUpdate() {
     document.getElementById("text_Blue").value = document.getElementById("slider_Blue").value;
 }
+
+function JS_changesliderpositionandtextvalue_Blue(n) {
+    document.getElementById('slider_Blue').value = n;
+	document.getElementById('text_Blue').value = n;
+}

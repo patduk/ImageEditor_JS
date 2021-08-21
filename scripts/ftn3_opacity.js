@@ -79,3 +79,9 @@ function Onchange_Text_Opacity()
 function Oninput_Slider_Opacity_LiveUpdate() {
     document.getElementById("text_Opacity").value = document.getElementById("slider_Opacity").value;
 }
+
+function JS_changesliderpositionandtextvalue_Opacity(n) {
+    document.getElementById('slider_Opacity').value = n;
+	document.getElementById('text_Opacity').value = n;
+}
+

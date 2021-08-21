@@ -94,3 +94,9 @@ function Onchange_Text_Brightness()
 function Oninput_Slider_Brightness_LiveUpdate() {
     document.getElementById("text_Brightness").value = document.getElementById("slider_Brightness").value;
 }
+
+function JS_changesliderpositionandtextvalue_Brightness(n) {
+    document.getElementById('slider_Brightness').value = n;
+	document.getElementById('text_Brightness').value = n;
+}
+

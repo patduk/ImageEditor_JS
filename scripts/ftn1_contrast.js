@@ -95,3 +95,10 @@ function Onchange_Text_Contrast()
 function Oninput_Slider_Contrast_LiveUpdate() {
     document.getElementById("text_Contrast").value = document.getElementById("slider_Contrast").value;
 }
+
+
+function JS_changesliderpositionandtextvalue_Contrast(n) {
+    document.getElementById('slider_Contrast').value = n;
+	document.getElementById('text_Contrast').value = n;
+}
+

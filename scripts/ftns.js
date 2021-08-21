@@ -25,9 +25,8 @@ let imageData_original1;
 let DictV = {};
 DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0};
 
-
 //undo lists
-let Image_undo = []; //store imageData or imageData.data? imageData fornow
+let Image_undo = [];
 let IncV_undo = [];
 let ContrastV_undo = [];
 let BrightnessV_undo = [];
@@ -47,13 +46,12 @@ let GreenV_redo = [];
 let BlueV_redo = [];
 
 
-
-
-
-
+//global variables (may not be needed)
 let instance1_panzoom_global;
 let container_canvas_h_fullscreen_global;
 let container_canvas_h_normalscreen_global;
+
+
 
 window.onload = () => {
     //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
@@ -65,13 +63,11 @@ window.onload = () => {
     
     //a group of buttons with one selection allowed
     //a group of buttons with one selection allowed
-   
+
     // Get the container element
     let btnContainer = document.getElementById("container_categorybuttons_id");
-
     // Get all buttons with class="btn" inside the container
     let btns = btnContainer.getElementsByClassName("button_style2");
-
     // Loop through the buttons and add the active class to the current/clicked button
     for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
@@ -81,7 +77,6 @@ window.onload = () => {
         if (current.length > 0) {
             current[0].className = current[0].className.replace(" button_style2_active", "");
         }
-
 
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id3").style.display = "none";
@@ -104,10 +99,12 @@ window.onload = () => {
             document.getElementById("container_id4").style.display = "inline-flex";
         }
         
-        resizeCanvas(); 
-
+        resizeCanvas(); //to adjust the container_id2/3/4
     });
     }
+    //a group of buttons with one selection allowed
+    //a group of buttons with one selection allowed
+
 
     //button to enter edge custom
     //button to enter edge custom
@@ -115,8 +112,7 @@ window.onload = () => {
     edge_custom_button_enter.addEventListener("click", function() {
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id5").style.display = "inline-flex";
-        
-        
+
         resizeCanvas();
     });
 
@@ -131,7 +127,6 @@ window.onload = () => {
     });
 
 
-
     //add panzoom functionality to img
     let img_id1 = document.getElementById("img_id1") ;
     instance1_panzoom_global =  panzoom(img_id1, {
@@ -141,98 +136,86 @@ window.onload = () => {
 
     
 
-    /* View in fullscreen */
-function openFullscreen() {
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      elem.msRequestFullscreen();
-    }
-  }
-  
-  /* Close fullscreen */
-  function closeFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
-    }
-  }
     //set up canvas container height global variables for normal/full screen modes
-    let object1 = document.getElementById("container_canvas_id");
-    let object2 = document.getElementById("container_imgsaveonly_id");
-    
     container_canvas_h_fullscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight);
+    (document.getElementById("container_id1").offsetHeight);
 
     container_canvas_h_normalscreen_global = window.innerHeight - 
     (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
 
 
-
-    
-
-
-    console.log(window.innerHeight, '<- full. ',
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight), '=', 
-    document.getElementById("navbar1_id").offsetHeight, //60
-    document.getElementById("container_id1").offsetHeight, //61
-    document.getElementById("container_id2").offsetHeight, //91
-    document.getElementById("container_categorybuttons_id").offsetHeight); //61
+    // console.log(window.innerHeight, '<- full. ',
+    // (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight), '=', 
+    // document.getElementById("navbar1_id").offsetHeight, //60
+    // document.getElementById("container_id1").offsetHeight, //61
+    // document.getElementById("container_id2").offsetHeight, //91
+    // document.getElementById("container_categorybuttons_id").offsetHeight); //61
 
 
+    let object1 = document.getElementById("container_canvas_id");
+    let object2 = document.getElementById("container_imgsaveonly_id");
     object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+    // object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px"; //not needed unintentionally?
 
 }
 
 
 
 
-
+//ok
 function downloadmodetoggle() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');   
-    // let stringimage = '<img src="images\\' + canvas.toDataURL("image/png") + '\">';  
-    let stringimage2 = "images\\" + canvas.toDataURL("image/png").toString();
-
     let img_id1 = document.getElementById("img_id1");
     let img_id2 = document.getElementById("img_id2");
-    let img_id1_h = img_id1.height;
-    let img_id1_w = img_id1.width;
+    let img_id1_h = document.getElementById("img_id1").height;
+    let img_id1_w = document.getElementById("img_id1").width;
     
-    
-    if (document.getElementById("container_canvas_id").style.display != "none") {
-        document.getElementById("container_canvas_id").style.display = "none";
 
+    //if on canvas mode, go to download mode
+    if (document.getElementById("container_canvas_id").style.display != "none") {
+
+        ////copy-paste src image from canvas element to img element
         document.getElementById("img_id2").src = document.getElementById("img_id1").src;
+        
+        //hide the image element
+        document.getElementById("container_canvas_id").style.display = "none";
+        //show the image element
         document.getElementById("container_imgsaveonly_id").style.display = "flex";
         
-        //img_id2 & containe_imgsaveonly_id dimensions to equal img_id1 dimensions:
-        img_id2.width = img_id1_w; //must use helper variables idk why
-        img_id2.height = img_id1_h;
+
+        // //image element dimensions.. to match canvas element dimensions
+        img_id2.width = img_id1.width; //must use helper variables idk why
+        img_id2.height =img_id1.height; //..or not
+
+        // //container image element dimensions.. to match container canvas dimensions
         document.getElementById("container_imgsaveonly_id").style.width = document.getElementById("container_canvas_id").style.width;
+
         document.getElementById("container_imgsaveonly_id").style.height = document.getElementById("container_canvas_id").style.height;
 
-        document.getElementById("container_imgsaveonly_id").style.backgroundColor = "rgb(0, 127,0)";
+        // //container image element.. to show green color for aesthetic reason
+        document.getElementById("container_imgsaveonly_id").style.backgroundColor = "rgb(84,191,84)";
+
         
     }
+
+    //if on download mode, go to canvas mode
     else {
+
+        //show the image element
         document.getElementById("container_canvas_id").style.display = "flex";
-
+        //hide the image element
         document.getElementById("container_imgsaveonly_id").style.display = "none";
-    }
+        
 
-    
-    
+        //to ensure that canvas content adjusts to any new resized container canvas
+        resizeCanvas();       
+
+
+    }
 }
   
 
-
-function resetposition( ){
+//ok
+function resetposition() {
     let img_id1 = document.getElementById("img_id1") ;
     instance1_panzoom_global.pause(); //pause to stop any smooth scroll, and get to panzoom reset already
     instance1_panzoom_global =  panzoom(img_id1, {
@@ -243,10 +226,7 @@ function resetposition( ){
 }
 
 
-
-
-function logprint() {
-    
+function logprint() { 
     // let pow1 = document.getElementById('pow1');
     // pow1.innerHTML = 
     // "undo/redo lists:" + "</br>" +
@@ -284,8 +264,8 @@ function logprint() {
 
     // let pow3 = document.getElementById('pow3');
     // pow3.innerHTML = "Baka";
-
 }
+
 
 //load sample image
 window.addEventListener('load', function() {
@@ -405,35 +385,69 @@ window.addEventListener('load', function()
 
 //resize canvas (only when resizing windows)
 window.addEventListener("resize", resizeCanvas2);
-function resizeCanvas2() {
-    //resize canvas height to fit 100% in window along with navbars' heights
-
-    let object1 = document.getElementById("container_canvas_id");
-    let object2 = document.getElementById("container_imgsaveonly_id");
-
-    container_canvas_h_normalscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
-
-
-    object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
-    object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
-
-}
-
 //resize canvas
 window.addEventListener("resize", resizeCanvas);
 
+
+window.addEventListener("orientationchange", resizeCanvas);
+window.addEventListener("orientationchange", resizeCanvas2);
+
+
+
+
+function resizeCanvas2() {
+    
+    //resize canvas height to fit 100% in window along with navbars' heights
+    let object1 = document.getElementById("container_canvas_id");
+    let object2 = document.getElementById("container_imgsaveonly_id");
+
+
+    //if normal screen
+    if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px") {
+        //container_canvas_h_fullscreen_global = window.innerHeight - 
+        //(document.getElementById("container_id1").offsetHeight);
+    
+        container_canvas_h_normalscreen_global = window.innerHeight - 
+        (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
+        
+        
+        object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+        object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+    }
+
+    //if full screen
+    else {
+        container_canvas_h_fullscreen_global = window.innerHeight - 
+        (document.getElementById("container_id1").offsetHeight);
+
+        // container_canvas_h_normalscreen_global = window.innerHeight - 
+        // (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
+    
+
+        object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
+        object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
+    }
+
+
+    
+}
+
+
+
+
+
 function resizeCanvas() {
     let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');
-    
+    // let ctx = canvas.getContext('2d');
 
     // "nickname" variables
     let container_canvas_w = document.getElementById("container_canvas_id").clientWidth;
     let container_canvas_h = document.getElementById("container_canvas_id").clientHeight; 
-    let img_id1 = document.getElementById("img_id1");
-    let container_img_id1 = document.getElementById("container_img_id1");
 
+    let img_id1 = document.getElementById("img_id1");
+    let img_id2 = document.getElementById("img_id2");
+    let container_img_id1 = document.getElementById("container_img_id1");
+    let container_img_id2 = document.getElementById("container_img_id2");
     
     // reset 
     canvas.style.height = "";
@@ -448,7 +462,6 @@ function resizeCanvas() {
             //if container is landscape
             if (container_canvas_w > container_canvas_h) {
                 canvas.style.height = "100%";
-
                 img_id1.width = (container_canvas_h * image.width) / image.height;
                 img_id1.height = container_canvas_h;
                 console.log("portrait, 1.1");
@@ -460,7 +473,6 @@ function resizeCanvas() {
                 //if container is more landscape than image
                 if (container_canvas_w/container_canvas_h > canvas.width/canvas.height) { 
                     canvas.style.height = "100%";
-
                     img_id1.width = (container_canvas_h * image.width) / image.height;
                     img_id1.height = container_canvas_h;
                     console.log("portrait, 1.2.1");
@@ -468,7 +480,6 @@ function resizeCanvas() {
                 //if container is more portrait than image
                 else if (container_canvas_w/container_canvas_h < canvas.width/canvas.height) {
                     canvas.style.width = "100%";
-
                     img_id1.width = container_canvas_w;
                     img_id1.height = (container_canvas_w * image.height) / image.width;
                     console.log("portrait, 1.2.2");
@@ -478,7 +489,6 @@ function resizeCanvas() {
             // if container is perfect square
             else if (container_canvas_w === container_canvas_h) {
                 canvas.style.height = "100%";
-                
                 img_id1.width = (container_canvas_h * image.width) / image.height;
                 img_id1.height = container_canvas_h;
                 console.log("portrait, 1.3");
@@ -488,28 +498,26 @@ function resizeCanvas() {
         // if image is bigger than container in width only
         else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
-            
             img_id1.width = container_canvas_w;
             img_id1.height = (container_canvas_w * image.height) / image.width;
-            console.log("landscape, 2");
+            console.log("portrait, 1.4");
         }
 
         //if image is bigger than container in height only
         else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
-
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
-            console.log("landscape, 3");
+            console.log("portrait, 1.5");
         }
 
         else {
             img_id1.width = image.width;
             img_id1.height = image.height;
+            console.log("portrait, 1.6");
         }
 
     }
-
     
     //// if image is landscape
     else if (canvas.width > canvas.height) {
@@ -523,14 +531,12 @@ function resizeCanvas() {
                 //if container is more landscape than image
                 if (container_canvas_w/container_canvas_h > canvas.width/canvas.height) {
                     canvas.style.height = "100%";  //update canvas height
-
                     img_id1.width = (container_canvas_h * image.width) / image.height;
                     img_id1.height = container_canvas_h; //update image height
                 }
                 //if container is more portrait than image
                 if (container_canvas_w/container_canvas_h < canvas.width/canvas.height) {
                     canvas.style.width = "100%";
-                    
                     img_id1.width = container_canvas_w;
                     img_id1.height = (container_canvas_w * image.height) / image.width;
                 }
@@ -540,7 +546,6 @@ function resizeCanvas() {
             //if container is portrait
             else if (container_canvas_h > container_canvas_w) {
                 canvas.style.width = "100%";
-
                 img_id1.width = container_canvas_w;
                 img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("landscape, 1.2");
@@ -549,7 +554,6 @@ function resizeCanvas() {
             // if container is perfect square
             else if (container_canvas_w === container_canvas_h) {
                 canvas.style.width = "100%";
-
                 img_id1.width = container_canvas_w;
                 img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("landscape, 1.3");
@@ -560,30 +564,25 @@ function resizeCanvas() {
         // if image is bigger than container in width only
         else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
-
             img_id1.width = container_canvas_w;
             img_id1.height = (container_canvas_w * image.height) / image.width;
-            console.log("landscape, 2");
+            console.log("landscape, 2.1");
         }
 
         //if image is bigger than container in height only
         else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
-
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
-            console.log("landscape, 3");
+            console.log("landscape, 2.2");
         }
 
         else {
             img_id1.width = image.width;
             img_id1.height = image.height;
+            console.log("landscape, 2.3");
         }
 
-       
-        //if image is same width/height as container - not needed?
-        // else if {
-        // }
        
     }
 
@@ -595,7 +594,6 @@ function resizeCanvas() {
             //if container is landscape
             if (container_canvas_w > container_canvas_h) {
                 canvas.style.height = "100%";
-                
                 img_id1.width = (container_canvas_h * image.width) / image.height;
                 img_id1.height = container_canvas_h;
                 console.log("image: square, 1.1");
@@ -603,7 +601,6 @@ function resizeCanvas() {
             //if container is portrait
             else if (container_canvas_w < container_canvas_h) {
                 canvas.style.width = "100%";
-                
                 img_id1.width = container_canvas_w;
                 img_id1.height = (container_canvas_w * image.height) / image.width;
                 console.log("image: square, 1.2");
@@ -613,7 +610,6 @@ function resizeCanvas() {
         // if image is bigger than container in width only
         else if (canvas.width > container_canvas_w) {
             canvas.style.width = "100%";
-
             img_id1.width = container_canvas_w;
             img_id1.height = (container_canvas_w * image.height) / image.width;
             console.log("image: square, 2");
@@ -622,7 +618,6 @@ function resizeCanvas() {
         //if image is bigger than container in height only
         else if (canvas.height > container_canvas_h) {
             canvas.style.height = "100%";
-
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
             console.log("image: square, 3");
@@ -633,13 +628,20 @@ function resizeCanvas() {
             img_id1.height = image.height;
         }
 
+        
+
     }    
+    // img_id2.width = img_id1.width;
+    // img_id2.height = img_id1.height;
+
+
     ////reposition container (img_id1):
-    ////sample: container_img_id1.style.transform = "translateX(-20px) translateY(50px)"; 
+    ////sample: container_img_id1.style.transform = "translateX(-20px) translateY(50px)";
+    //translateX("(-w/2)px")
+    //translateY(+(-h/2)px") 
     container_img_id1.style.transform = "translateX(" + (-img_id1.width/2).toString() + "px) translateY(" + (-img_id1.height/2).toString() + "px)";
 
 
-    ///scrollbar detection, modify center/left justification within
     ///scrollbar detection, modify center/left justification within
     let container_id1 = document.getElementById("container_id1");
     let container_id2 = document.getElementById("container_id2");
@@ -670,7 +672,6 @@ function resizeCanvas() {
     }
     else { container_id5.style.justifyContent = "center"; }
 
-
 }
 
 
@@ -678,158 +679,10 @@ function resizeCanvas() {
 
 
 
-//ellipse filter add
-function ellipse_test1() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d'); 
-    
-
-    ////1.0-1.4 store to undolist
-    ClearRedo();                   //0.8
-    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-    
-    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
-    for (key in DictV) { 
-        DictV[key] = 0;
-    }
-
-    ////3.0 edit?
-    //ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
-    //draw stroke ellipse
-    ctx.strokeStyle = "rgb(127, 0, 0)";
-    ctx.beginPath();
-    ctx.ellipse(image.width/2, image.height/2, image.width/2, image.height/2, 0, 0, Math.PI*2);
-    ctx.stroke();
-
-    //draw filled ellipse
-    ctx.fillStyle = 'green';
-    ctx.beginPath();
-    ctx.ellipse(image.width/2, image.height/2, image.width/4, image.height/4, 0, 0, Math.PI*2);
-    ctx.fill(); 
-    
-    ////4.0 update imageData to hold new ellipse shapes 
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-
-    ////4.0 affix
-    //imageData_original2 = imageData;
-    Flatten_nosavingtoundo();
-    
-    //canvas update
-    ctx.putImageData(imageData, 0, 0);
-    //image update
-    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
-}
 
 
 
 
-//psuedo 2d array way - testing
-function lighten() {
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    // image = new Image();
-    // ctx.drawImage(image, 0, 0);
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    
-    
-    ////1.0-1.4 store to undolist
-    ClearRedo();                   //0.8
-    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    SaveAttributesToUndoLists();   //1-1.4
-    logprint();
-    
-    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
-    for (key in DictV) { 
-        DictV[key] = 0;
-    }
-
-    ////3.0 edit    
-    for (let y = 0; y < image.height; y ++) {
-        for (let x = 0; x < image.width; x ++) {
-            //use formula (y * image.width * 4) + x + 0/1/2 for data[i+0/1/2] to use double for-loops of x and y on imagedata 1d array
-            
-            ////logic example 1
-            let formula = (y*image.width*4)+x*4;
-            imageData.data[formula+0] += 0;
-            imageData.data[formula+1] += 25;
-            imageData.data[formula+2] += 0;
-            imageData.data[formula+3] += 0;
-        }
-    }
-    
-
-    ////4.0 affix
-    //imageData_original2 = imageData;
-    Flatten_nosavingtoundo();
-    
-    
-    //canvas update
-    ctx.putImageData(imageData, 0, 0);
-    //image update
-    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
-}
-
-
-
-
-function gaussianblur() {
-
-    ////999 prep canvas and ctx (idk why its needed)
-    let canvas = document.getElementById('cv2'); 
-    let ctx = canvas.getContext('2d');
-    // image = new Image();
-    // ctx.drawImage(image, 0, 0);
-  imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
-
-
-  var tmpPx = new Uint8ClampedArray(imageData.data.length);
-  tmpPx.set(imageData.data);
-
-  for (var i = 0, len= imageData.data.length; i < len; i++) {
-     if (i % 4 === 3) {continue;}
-
-     imageData.data[i] = ( tmpPx[i] 
-        + (tmpPx[i - 4] || tmpPx[i])
-        + (tmpPx[i + 4] || tmpPx[i]) 
-        + (tmpPx[i - 4 * imageData.data.width] || tmpPx[i])
-        + (tmpPx[i + 4 * imageData.data.width] || tmpPx[i]) 
-        + (tmpPx[i - 4 * imageData.data.width - 4] || tmpPx[i])
-        + (tmpPx[i + 4 * imageData.data.width + 4] || tmpPx[i])
-        + (tmpPx[i + 4 * imageData.data.width - 4] || tmpPx[i])
-        + (tmpPx[i - 4 * imageData.data.width + 4] || tmpPx[i])
-        )/9;
-  };
-  // data.data = px;
-
-  //canvas update
-  ctx.putImageData(imageData, 0, 0);
-  //image update
-  document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
-  //delete tmpPx;
-  //btnBlur.removeAttribute('disabled');
-  //btnBlur.textContent = 'Blur'; 
-}
-
-// source channel, target channel, width, height, radius
-function gaussBlur_1 (scl, tcl, w, h, r) {
-    var rs = Math.ceil(r * 2.57);     // significant radius
-    for(var i=0; i<h; i++)
-        for(var j=0; j<w; j++) {
-            var val = 0, wsum = 0;
-            for(var iy = i-rs; iy<i+rs+1; iy++)
-                for(var ix = j-rs; ix<j+rs+1; ix++) {
-                    var x = Math.min(w-1, Math.max(0, ix));
-                    var y = Math.min(h-1, Math.max(0, iy));
-                    var dsq = (ix-j)*(ix-j)+(iy-i)*(iy-i);
-                    var wght = Math.exp( -dsq / (2*r*r) ) / (Math.PI*2*r*r);
-                    val += scl[y*w+x] * wght;  wsum += wght;
-                }
-            tcl[i*w+j] = Math.round(val/wsum);            
-        }
-}
 
 
 ////////////
@@ -986,6 +839,7 @@ function reset() {
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
+
 //not perfect:
 function download() {
     let canvas = document.getElementById("cv2");
@@ -1011,6 +865,9 @@ function download() {
 }
 //////////
 //////////
+
+
+
 
 
 
@@ -1263,32 +1120,3 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
 
 
-function JS_changesliderpositionandtextvalue_Contrast(n) {
-    document.getElementById('slider_Contrast').value = n;
-	document.getElementById('text_Contrast').value = n;
-}
-
-function JS_changesliderpositionandtextvalue_Brightness(n) {
-    document.getElementById('slider_Brightness').value = n;
-	document.getElementById('text_Brightness').value = n;
-}
-
-function JS_changesliderpositionandtextvalue_Opacity(n) {
-    document.getElementById('slider_Opacity').value = n;
-	document.getElementById('text_Opacity').value = n;
-}
-
-function JS_changesliderpositionandtextvalue_Red(n) {
-    document.getElementById('slider_Red').value = n;
-	document.getElementById('text_Red').value = n;
-}
-
-function JS_changesliderpositionandtextvalue_Green(n) {
-    document.getElementById('slider_Green').value = n;
-	document.getElementById('text_Green').value = n;
-}
-
-function JS_changesliderpositionandtextvalue_Blue(n) {
-    document.getElementById('slider_Blue').value = n;
-	document.getElementById('text_Blue').value = n;
-}
