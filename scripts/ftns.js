@@ -324,7 +324,10 @@ window.addEventListener('load', function() {
 //upload file
 window.addEventListener('load', function() 
 {
-    // document.querySelector('input[type="file"]').addEventListener('change', function()
+
+    
+
+    // document.querySelector('input[type="file"]').addEventListener('change', function()f
     document.getElementById('diamondx1').addEventListener('change', function() 
     {
         if (this.files && this.files[0]) 
@@ -377,7 +380,21 @@ window.addEventListener('load', function()
             }
 
         }
+
+        //if on download mode, reset to canvas mode
+        if (document.getElementById("container_canvas_id").style.display === "none") {
+            //show the image element
+            document.getElementById("container_canvas_id").style.display = "flex";
+            //hide the image element
+            document.getElementById("container_imgsaveonly_id").style.display = "none";
+        
+            //to ensure that canvas content adjusts to any new resized container canvas
+            resizeCanvas(); //?
+        }
+        
+
     });
+
 
     
 });

@@ -8,8 +8,8 @@ let customBGcolor_A = 255;
 let customlineshadowcolor_R_m;
 let customlineshadowcolor_G_m;
 let customlineshadowcolor_B_m;
-let add_lighting = true;
-let add_shading = true;
+let add_lighting = false;
+let add_shading = false;
 let use_linecolorcorrection = false;
 
 function colorsfor_edge_custom_BG() {
@@ -29,21 +29,33 @@ function colorsfor_edge_custom_line() {
     console.log(`line -- red: ${customlineshadowcolor_R_m}, green: ${customlineshadowcolor_G_m}, blue: ${customlineshadowcolor_B_m}`);
 }
 
+
+
+
 function ftn_transparent_mode_edge_custom() {
     //if now checked
     if (document.getElementById("id_transparent_mode_edge_custom").checked) {
         customBGcolor_A = 0;
-        add_lighting = false;
-        add_shading = false;
+        // add_lighting = false;
+        // add_shading = false;
     }
     //if now unchecked
     else {
         customBGcolor_A = 255;
-        add_lighting = true;
-        add_shading = true;
         
     }
+}
 
+function ftn_lightingshading_mode_edge_custom () {
+    //if now checked
+    if (document.getElementById("id_lightingshading_mode_edge_custom").checked) {
+        add_lighting = true;
+        add_shading = true;
+    }
+    else {
+        add_lighting = false;
+        add_shading = false;
+    }
 }
 
 
@@ -162,7 +174,8 @@ function edge_custom() {
 
     //auto mode for use_blackline (for better user experinece):
     let trio7 = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3;
-    if (trio7 >= 127) {use_blackline = true;} //.41 of 255 (106)
+        if (trio7 >= 106 ) {use_blackline = true;} //.41 of 255 (106)
+    
     
     //if use_blackline === true, "pre-invert" custom BG and line colors:
     if (use_blackline === true) {  
@@ -328,8 +341,9 @@ function edge_custom() {
 
                     ////////modifications for underlying white lines - modify overall boldness, soft spots, and hard spots of underying white lines
                     
+                    
                     ////step 1: replace underlying white lines' RGB colors of 0 with new number that can be easily manipulating by multiplication/division necessary for modifying overall boldness, soft spots, and hard spots
-                    let too_dark = 1;
+                    let too_dark = 5;
                     if (Gxy_sum_final_Red <= too_dark) 
                     {Gxy_sum_final_Red = too_dark; }
                     if (Gxy_sum_final_Green <= too_dark) 
@@ -339,7 +353,7 @@ function edge_custom() {
                     
 
                     // ////step 3: increase soft spots
-                    let soft_spot_increaser = .28*255; //slider (0-128) //.275
+                    let soft_spot_increaser = .33*255; //slider (0-128) //.275
                     // if (soft_spot_increaser < (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4) {
                     //    soft_spot_increaser = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3 * .4;
                     //    console.log("used1")
@@ -369,20 +383,25 @@ function edge_custom() {
 
                     // // ////////corrections for custom RGB BG and shadow line colors submitted by users, then apply custom RGB shadow line colors, including black line mode, to underlying white lines
 
+                    if (use_linecolorcorrection === true) {
                     // // ////step 1: increase low [custom RGB line colors] to match brightness level as [custom RGB background colors]
                     //toggle on/off (background color matching: on/off)
-                    if (use_linecolorcorrection === true) {
-                        customlineshadowcolor_R += customBGcolor_R; 
-                        customlineshadowcolor_G += customBGcolor_G; 
-                        customlineshadowcolor_B += customBGcolor_B;
-                    }
                     
+                        customlineshadowcolor_R += customBGcolor_R;
+                        customlineshadowcolor_G += customBGcolor_G;
+                        customlineshadowcolor_B += customBGcolor_B;
+                        // customlineshadowcolor_R += customBGcolor_R * (customBGcolor_A/255); 
+                        // customlineshadowcolor_G += customBGcolor_G * (customBGcolor_A/255);  
+                        // customlineshadowcolor_B += customBGcolor_B * (customBGcolor_A/255); 
+                    
+                    }
                     
 
                     // ////step 3: prepare variables that modify white (or soon-to-be black) underlying lines' original shadow colors, so they'll blend in with the [custom RGB background colors]
                     let linecolor_tomatch_bgcolor_Red;
                     let linecolor_tomatch_bgcolor_Green;
                     let linecolor_tomatch_bgcolor_Blue;
+                    
                     if (customlineshadowcolor_R >= 255) {customlineshadowcolor_R = 254;}
                     if (customlineshadowcolor_G >= 255) {customlineshadowcolor_G = 254;}
                     if (customlineshadowcolor_B >= 255) {customlineshadowcolor_B = 254;}    
@@ -394,6 +413,7 @@ function edge_custom() {
                     Gxy_sum_final_Red *= linecolor_tomatch_bgcolor_Red; 
                     Gxy_sum_final_Green *= linecolor_tomatch_bgcolor_Green; 
                     Gxy_sum_final_Blue *= linecolor_tomatch_bgcolor_Blue;
+                    
                     
                     ////step 4.1: "0-255" correction - ncessary
                     if (Gxy_sum_final_Blue > max) { Gxy_sum_final_Blue = 255; }
