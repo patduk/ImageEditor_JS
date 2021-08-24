@@ -11,7 +11,7 @@ function imagefullscreen() {
     //     openFullscreen(); }
     
 
-    //if normal screen
+    //if normal screen, go to full screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px")
     {
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
@@ -22,12 +22,13 @@ function imagefullscreen() {
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
+        document.getElementById("container_id6").style.display = "none";
         document.getElementById("container_categorybuttons_id").style.display = "none";
 
         console.log("a1");
  
     }
-    //if full screen
+    //if full screen, go to normal screen
     else {
 
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
@@ -38,25 +39,42 @@ function imagefullscreen() {
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
+        document.getElementById("container_id6").style.display = "none";
         document.getElementById("container_categorybuttons_id").style.display = "inline-flex";
         
         console.log("a2");
     }
 
 
-    // let btnContainer = document.getElementById("container_categorybuttons_id");
 
-    // // Get all buttons with class="btn" inside the container
-    // let btns = btnContainer.getElementsByClassName("button_style2");
+    //IF ON DOWNLOAD mode, go to canvas mode
+    if (document.getElementById("container_canvas_id").style.display === "none") {
 
-    // for (var i = 0; i < btns.length; i++) {
-    //     var current = document.getElementsByClassName("button_style2_active");
+        //show the image element
+        document.getElementById("container_canvas_id").style.display = "flex";
+        //hide the image element
+        document.getElementById("container_imgsaveonly_id").style.display = "none";
+        
 
-    //     // If there's no active class
-    //     if (current.length > 0) {
-    //         current[0].className = current[0].className.replace(" button_style2_active", "");
-    //     }
-    // }
+        //to ensure that canvas content adjusts to any new resized container canvas
+        // resizeCanvas();       
+
+    }
+
+    //reset cateogry button selected
+    let btnContainer = document.getElementById("container_categorybuttons_id");
+
+    // Get all buttons with class="btn" inside the container
+    let btns = btnContainer.getElementsByClassName("button_style2");
+
+    for (var i = 0; i < btns.length; i++) {
+        var current = document.getElementsByClassName("button_style2_active");
+
+        // If there's no active class
+        if (current.length > 0) {
+            current[0].className = current[0].className.replace(" button_style2_active", "");
+        }
+    }
 
    
     

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 
-<!-- <head> -->
-  <title>Image Edit</title>
+<head>
+  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-
 
   <link href="styles/normalize.css" rel="stylesheet" type="text/css">
   <link href="styles/style1.css"  rel="stylesheet" type="text/css">
@@ -12,131 +11,134 @@
   <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
     
 
-  <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
-
   <script>
     function focus_on_id_btn1() {
-      //// WAY 1 - better
-      document.getElementById("id_btn1").focus();
+        //// WAY 1 - better
+        document.getElementById("id_btn1").focus();
+        //// WAY 2 - ?
+        // if (document.getElementById("n1").style.display != "block")
+        //   document.getElementById("n1").style.display = "block";
+        // else {
+        //   document.getElementById("n1").style.display = "none";
+        // }
 
-      //// WAY 2 - ?
-      // if (document.getElementById("n1").style.display != "block")
-      //   document.getElementById("n1").style.display = "block";
-      // else {
-      //   document.getElementById("n1").style.display = "none";
-      // }
-
-
-      //detect click outside of a button, unfocus.. FOR SAFARI
-      let specifiedelement1 = document.getElementById('id_btn1');
-      document.addEventListener('click', function(event) 
-      {
-          if ( !specifiedelement1.contains(event.target)) 
-          {
-              // Do something when user clicked outside of wrapper element
-          }
-      }
-      );
-
+        //detect click outside of a button, unfocus.. FOR SAFARI
+        let specifiedelement1 = document.getElementById('id_btn1');
+        document.addEventListener('click', function(event) 
+        {
+            if ( !specifiedelement1.contains(event.target)) 
+            {
+                // Do something when user clicked outside of wrapper element
+            }
+        }
+        );
     }
   </script>
 
-<!-- </head> -->
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body, html {
+        height: 100%;
+        font-family: "Inconsolata", sans-serif;
+        }
+        
+        .bgimg {
+        background-position: center;
+        background-size: cover;
+        background-image: url("images/bluepond2.jpg"); 
+        min-height: 75%;
+        }
+        
+        .menu {
+        display: none;
+        }
+    </style>
+
+</head>
 
 
 
 <body>
-  <!-- 
-  <ul class="navbar1">
-    <li><a href="index.html">Home</a></li>
-    
-    
 
-    <label class="dropdown">
-      
-      <div class="dropbtn noselect">
-        Dropdown
-      </div>
-      <input type="checkbox" class="dd-input">
+    <div class="navbar1" id="id_navbar1">
+        <li class="navbar1_button1">
+            <a href="index.html" style="line-height: 48px;">Home
+            </a>
+        </li>
 
+        <!-- 
+        <li class="navbar1_button1">
+        <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+        </li> -->
 
+        <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+            <img src="images/icons8-menu-96.png" style="width:24px; margin-top: -20px; margin-bottom: -16px;">
+        </button>
 
-      <ul class="dd-menu">
-        <li>Apps</li>
-        <li class="divider"></li>
-        <li><a href="imageedit1.html">Image Edit</a></li>
-        <li><a href="#">Blank App</a></li>
-        
-        <li>Art</li>
-        <li class="divider"></li>
-        <li><a href="#">None</a></li>
-        
-        <li>Other</li>
-        <li class="divider"></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </label>
+        <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
+            <li><a href="imageeditor.html">Image Edit</a></li>  
+            <li><a href="#">Blank</a></li>
+            <li><a href="#">Blank</a></li>
+        </div>
 
-  </ul> -->
-
- 
-  <div class="navbar1">
-
-    <li class="navbar1_button1">
-      <a href="index.html" style="line-height: 48px;">Home
-      </a>
-    </li>
-    
-    <!-- 
-    <li class="navbar1_button1">
-      <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
-    </li> -->
-
-
-
-    <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
-      <img src="images/icons8-menu-96.png" style="width:24px; margin-top: -20px; margin-bottom: -7px;">
-    </button>
-
-    <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
-      <li><a href="imageeditor.html">Image Edit</a></li>  
-      <li><a href="#">Blank</a></li>
-      <li><a href="#">Blank</a></li>
     </div>
   
 
-    <!-- 
-    <div class="dropdown">
-      <ul class="dd-menu">
-        <li>Apps</li>
-        <li class="divider"></li>
-        <li><a href="imageedit1.html">Image Edit</a></li>
+    <!-- Header with image -->
+    <header class="bgimg w3-display-container w3-grayscale-min" id="home">
+        <!-- <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+            <span class="w3-tag">Open from 6am to 5pm</span>
+        </div> -->
+        <div class="w3-display-middle w3-center" style="width: 80%; background-color: rgba(0,0,0,0); top:50%">
+            <span style="font-size:36px; color: white; background-color:rgba(0,0,0,0.33); color:white; padding: 3px 4px 3px 4px">Hello!<br><i><b>I'm Patrick De La Rosa</b></i>.</span>
+            <br>
+            <span style="font-size:24px; background-color:rgba(0,0,0,0.33); color:white; padding: 3px 4px 3px 4px">Welcome to my website, a potential portfolio of apps (for artists).</span>
+        </div>
         
         
-        <li>Art</li>
-        <li class="divider"></li>
-        <li><a href="#">None</a></li>
+        <div class="w3-display-bottomright w3-center w3-padding-large" style="color: black;">
+            <span >Shirogane Blue Pond</span>
+        </div>
+    </header>
+
+    <!-- About Container -->
+    <div class="w3-container" id="about">
+        <div class="w3-content" style="max-width:700px">
+        <h5 class="w3-center" style="padding-top:16px; padding-bottom: 16px"><span class="w3-tag w3-wide">ABOUT ME</span></h5>
+
+        <ul >
+            <li class="center3_1">Lazy and inclined to do things the easy ways.</li>
+            <li class="center3_1">Learner/generalist for life.</li>
+            <!-- <li class="center3_1">Truth finder.</li> -->
+            <li class="center3_1">A big fan of painting, character art, and any other hobby I might need.</li>
+            
+        </ul>
+
+        <div class="w3-panel w3-leftbar w3-light-grey center3_1">
+            <p><i>"Before software can be reusable it first has to be usable."</i></p>
+            <p> - Ralph Johnson.</p>
+        </div>
+        </div>
+    </div>
+    
+
+    <!-- Contact/Area Container -->
+    <!-- <div class="w3-container" id="where" style="padding-bottom:32px;">
+        <div class="w3-content" style="max-width:700px">
+        <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">CONTACT ME</span></h5>
         
-        <li>Other</li>
-        <li class="divider"></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+        <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+        <form action="/action_page.php" target="_blank">
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+            <p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
+        </form>
+        </div>
     </div> -->
-  </div>
   
-
-  <div class="center1">
-    <h1>Hi, </br><i>I'm Patrick De La Rosa.</i><h1>
-  </div>
-
-  
-  <div class="center2">
-    <p>Welcome to my website, a potential portfolio of apps (for artists).</p>
-  </div>
-  
-  <!-- <div class=container_redtopbar>
-    <div class="redtopbar">This website is under construction and may have bugs.</div>
-  </div> -->
   
 </body>
 

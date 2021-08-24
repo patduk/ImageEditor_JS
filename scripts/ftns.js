@@ -53,114 +53,6 @@ let container_canvas_h_normalscreen_global;
 
 
 
-window.onload = () => {
-    //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
-    colorsfor_edge_custom_BG();
-    colorsfor_edge_custom_line();
-    ftn_transparent_mode_edge_custom();
-    ftn_linecolorcorrection_edge_custom();
-
-    
-    //a group of buttons with one selection allowed
-    //a group of buttons with one selection allowed
-
-    // Get the container element
-    let btnContainer = document.getElementById("container_categorybuttons_id");
-    // Get all buttons with class="btn" inside the container
-    let btns = btnContainer.getElementsByClassName("button_style2");
-    // Loop through the buttons and add the active class to the current/clicked button
-    for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-        var current = document.getElementsByClassName("button_style2_active");
-
-        // If there's no active class
-        if (current.length > 0) {
-            current[0].className = current[0].className.replace(" button_style2_active", "");
-        }
-
-        document.getElementById("container_id2").style.display = "none";
-        document.getElementById("container_id3").style.display = "none";
-        document.getElementById("container_id4").style.display = "none";
-        document.getElementById("container_id5").style.display = "none";
-
-        // Add the active class to the current/clicked button
-        this.className += " button_style2_active";
-
-        console.log(this.innerHTML);
-        
-        if (this.innerHTML === "Filters") {
-            document.getElementById("container_id2").style.display = "inline-flex";
-        }
-        else if (this.innerHTML === "Inc. Filters") {
-            document.getElementById("container_id3").style.display = "inline-flex";
-            console.log("asdfsadf");
-        }
-        else if (this.innerHTML === "Other") {
-            document.getElementById("container_id4").style.display = "inline-flex";
-        }
-        
-        resizeCanvas(); //to adjust the container_id2/3/4
-    });
-    }
-    //a group of buttons with one selection allowed
-    //a group of buttons with one selection allowed
-
-
-    //button to enter edge custom
-    //button to enter edge custom
-    let edge_custom_button_enter =  document.getElementById("edge_custom_button_enter_id");
-    edge_custom_button_enter.addEventListener("click", function() {
-        document.getElementById("container_id2").style.display = "none";
-        document.getElementById("container_id5").style.display = "inline-flex";
-
-        resizeCanvas();
-    });
-
-    //button to exit edge custom
-    //button to exit edge custom
-    let edge_custom_button_exit =  document.getElementById("edge_custom_button_exit_id");
-    edge_custom_button_exit.addEventListener("click", function() {
-        document.getElementById("container_id2").style.display = "inline-flex";
-        document.getElementById("container_id5").style.display = "none";
-
-        resizeCanvas();
-    });
-
-
-    //add panzoom functionality to img
-    let img_id1 = document.getElementById("img_id1") ;
-    instance1_panzoom_global =  panzoom(img_id1, {
-        zoomDoubleClickSpeed: 1, 
-        minZoom: 0.2
-    });
-
-    
-
-    //set up canvas container height global variables for normal/full screen modes
-    container_canvas_h_fullscreen_global = window.innerHeight - 
-    (document.getElementById("container_id1").offsetHeight);
-
-    container_canvas_h_normalscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
-
-
-    // console.log(window.innerHeight, '<- full. ',
-    // (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight), '=', 
-    // document.getElementById("navbar1_id").offsetHeight, //60
-    // document.getElementById("container_id1").offsetHeight, //61
-    // document.getElementById("container_id2").offsetHeight, //91
-    // document.getElementById("container_categorybuttons_id").offsetHeight); //61
-
-
-    let object1 = document.getElementById("container_canvas_id");
-    let object2 = document.getElementById("container_imgsaveonly_id");
-    object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
-    // object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px"; //not needed unintentionally?
-
-}
-
-
-
 
 //ok
 function downloadmodetoggle() {
@@ -182,14 +74,17 @@ function downloadmodetoggle() {
         document.getElementById("container_imgsaveonly_id").style.display = "flex";
         
 
-        // //image element dimensions.. to match canvas element dimensions
-        img_id2.width = img_id1.width; //must use helper variables idk why
-        img_id2.height =img_id1.height; //..or not
+       
 
         // //container image element dimensions.. to match container canvas dimensions
         document.getElementById("container_imgsaveonly_id").style.width = document.getElementById("container_canvas_id").style.width;
 
         document.getElementById("container_imgsaveonly_id").style.height = document.getElementById("container_canvas_id").style.height;
+
+         // //image element dimensions.. to match canvas element dimensions
+        img_id2.width = img_id1_w; //must use helper variables idk why
+        img_id2.height = img_id1_h; //..or not
+
 
         // //container image element.. to show green color for aesthetic reason
         document.getElementById("container_imgsaveonly_id").style.backgroundColor = "rgb(84,191,84)";
@@ -199,7 +94,7 @@ function downloadmodetoggle() {
 
     //if on download mode, go to canvas mode
     else {
-
+        
         //show the image element
         document.getElementById("container_canvas_id").style.display = "flex";
         //hide the image element
@@ -267,137 +162,7 @@ function logprint() {
 }
 
 
-//load sample image
-window.addEventListener('load', function() {
-    
-    //function loadsampleimage() {
-    let canvas = document.getElementById('cv2');
-    let ctx = canvas.getContext('2d');        
-    image = new Image();
-    
-    // set src to blob e
-    image.src = 'images/wlop2.jpg';
-    
-    ResetAllAttributes();
 
-    // canvas.style.height = image.height.ToString + "%";
-    // canvas.style.width = image.width.ToString + "%";
-    // OR
-    canvas.style.height = "";
-    canvas.style.width = "";
-    
-
-    image.onload = () => {
-        URL.revokeObjectURL(image.src);
-
-        //new canvas dimensions
-        canvas.height = image.height;
-        canvas.width = image.width;
-
-        resizeCanvas();
-
-        //put an image and its left, top location
-        ctx.drawImage(image, 0, 0);
-
-        //draw a box over the top (useful for 2d spheres?)
-        //
-
-        // //get imageData
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        
-        logprint();
-        document.getElementById('img_id1').src = canvas.toDataURL("image/png");
-    
-        
-        
-    }   
-
-    
-    
-    
-});
-
-
-
-//upload file
-window.addEventListener('load', function() 
-{
-
-    
-
-    // document.querySelector('input[type="file"]').addEventListener('change', function()f
-    document.getElementById('diamondx1').addEventListener('change', function() 
-    {
-        if (this.files && this.files[0]) 
-        {
-            let canvas = document.getElementById('cv2'); 
-            let ctx = canvas.getContext('2d');
-            image = new Image();
-
-            // set src to blob e
-            image.src = URL.createObjectURL(this.files[0]).toString(); 
-            
-            //reset
-            ResetAllAttributes();
-
-            // canvas.style.height = image.height.ToString + "%";
-            // canvas.style.width = image.width.ToString + "%";
-            // OR
-            canvas.style.height = "";
-            canvas.style.width = "";
-
-            
-            image.onload = () => {
-                URL.revokeObjectURL(image.src);
-
-                
-                //new canvas dimensions
-                canvas.height = image.height;
-                canvas.width = image.width;
-
-              
-                resizeCanvas();
-
-
-                //put an image and its left, top location
-                ctx.drawImage(image, 0, 0);
-                
-                //draw a box over the top (useful for 2d spheres?)
-                // 
-
-                // //get imageData
-                imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-                logprint();
-
-
-                document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
-                
-            }
-
-        }
-
-        //if on download mode, reset to canvas mode
-        if (document.getElementById("container_canvas_id").style.display === "none") {
-            //show the image element
-            document.getElementById("container_canvas_id").style.display = "flex";
-            //hide the image element
-            document.getElementById("container_imgsaveonly_id").style.display = "none";
-        
-            //to ensure that canvas content adjusts to any new resized container canvas
-            resizeCanvas(); //?
-        }
-        
-
-    });
-
-
-    
-});
 
 
 //resize canvas (only when resizing windows)
@@ -405,15 +170,41 @@ window.addEventListener("resize", resizeCanvas2);
 //resize canvas
 window.addEventListener("resize", resizeCanvas);
 
+window.addEventListener("resize", logprint1);
+window.addEventListener("resize", logprint2);
 
 window.addEventListener("orientationchange", resizeCanvas);
 window.addEventListener("orientationchange", resizeCanvas2);
 
+// window.addEventListener("orientationchange", logprint1);
+// window.addEventListener("orientationchange", logprint2);
 
+function logprint1() {
+    console.log('lgprnt1');
+}
+function logprint2() {
+    console.log('lgprnt2');
+}
 
 
 function resizeCanvas2() {
+
+    //IF ON DOWNLOAD mode, go to canvas mode
+    if (document.getElementById("container_canvas_id").style.display === "none") {
+
+        //show the image element
+        document.getElementById("container_canvas_id").style.display = "flex";
+        //hide the image element
+        document.getElementById("container_imgsaveonly_id").style.display = "none";
+        
+
+        //to ensure that canvas content adjusts to any new resized container canvas
+        // resizeCanvas();       
+
+    }
     
+
+
     //resize canvas height to fit 100% in window along with navbars' heights
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
@@ -430,6 +221,12 @@ function resizeCanvas2() {
         
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+
+        // let img_id1_h = document.getElementById("img_id1").height;
+        // let img_id1_w = document.getElementById("img_id1").width;
+
+        // img_id2.width = img_id1_w;
+        // img_id2.height = img_id1_h;
     }
 
     //if full screen
@@ -443,9 +240,11 @@ function resizeCanvas2() {
 
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
+
+
     }
 
-
+    
     
 }
 
@@ -659,11 +458,15 @@ function resizeCanvas() {
     container_img_id1.style.transform = "translateX(" + (-img_id1.width/2).toString() + "px) translateY(" + (-img_id1.height/2).toString() + "px)";
 
 
+    
+
+
+
     ///scrollbar detection, modify center/left justification within
     let container_id1 = document.getElementById("container_id1");
     let container_id2 = document.getElementById("container_id2");
     let container_id3 = document.getElementById("container_id3");
-    
+
     if (container_id1.clientWidth < container_id1.scrollWidth) {
         container_id1.style.justifyContent = "left"; 
     }
@@ -688,7 +491,11 @@ function resizeCanvas() {
         container_id5.style.justifyContent = "left";
     }
     else { container_id5.style.justifyContent = "center"; }
-
+    
+    if (container_id6.clientWidth < container_id6.scrollWidth) {
+        container_id6.style.justifyContent = "left";
+    }
+    else { container_id6.style.justifyContent = "center"; }
 }
 
 

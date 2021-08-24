@@ -1,7 +1,7 @@
-.button_style1 {
-    max-width: 95px;
-    min-width: 95px;
-    height: 48px;
+.button_style1{
+    max-width: 72px;
+    min-width: 72px;
+    height: 60px;
     text-align: center;
     margin: 3px;
 
@@ -19,20 +19,12 @@
     background-color: white;
     background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
     box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
-    
-    
-
 }
-
-
-
-
-
 .button_style1_label {
-    max-width: 95px;
-    min-width: 95px;
-    line-height: 48px; /*line-height for label, not normal button*/
-    max-height: 48px;
+    max-width: 72px;
+    min-width: 72px;
+    line-height: 60px; /*line-height for label, not normal button*/
+    max-height: 60px;
     text-align: center;
     margin: 3px;
 
@@ -51,17 +43,12 @@
     box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
     word-wrap: break-word;
 }
-
-
 .button_style1:hover, 
-
 .button_style1_label:hover, 
 input:hover+.button_style1_label {
     background-color: #006568;
 }
-
 .button_style1:active,
-
 .button_style1_label:active, 
 input:active+.button_style1_label {
     background-image: linear-gradient(to top, rgba(158, 236, 255, 0.5) 0%, rgb(152, 214, 240, 0.5) 100%); 
@@ -71,11 +58,74 @@ input:active+.button_style1_label {
 
 
 
+
+
+.button_style3{
+    max-width: 100px;
+    min-width: 100px;
+    height: 60px;
+    text-align: center;
+    margin: 3px;
+
+
+    color: black;
+    border:none;
+    /*
+    border: 1.5px solid;
+    border-color: rgb(120, 72, 100);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
+
+    border-radius: 6px;
+    /*pair background-image with background-color (white) to match button_style1's background-image*/
+    background-color: white;
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
+}
+.button_style3_label {
+    max-width: 100px;
+    min-width: 100px;
+    line-height: 60px; /*line-height for label, not normal button*/
+    max-height: 60px;
+    text-align: center;
+    margin: 3px;
+
+    color: black;
+    
+    /* border: 1.5px solid; */
+    /* border-color: rgb(120, 72, 100);
+    background-color:rgb(144, 214, 203, 1);
+    background-image: linear-gradient(to top, rgb(206, 154, 203) 0%, rgb(133, 187, 231) 100%); */
+
+    border-radius: 6px;
+    /*pair background-image with background-color (white) to match button_style1's background-image*/
+    background-color: white;
+    background-image: linear-gradient(to bottom, rgba(158, 236, 255, 0.75) 0%, rgb(152, 214, 240, 0.75) 100%); 
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.5);
+    word-wrap: break-word;
+}
+.button_style3:hover,
+.button_style3_label:hover, 
+input:hover+.button_style3_label {
+    background-color: #006568;
+}
+.button_style3:active,
+.button_style3_label:active, 
+input:active+.button_style3_label {
+    background-image: linear-gradient(to top, rgba(158, 236, 255, 0.5) 0%, rgb(152, 214, 240, 0.5) 100%); 
+    background-color: #006568;
+    color: rgb(255,255, 255);
+}
+
+
+
+
+
 .container_leftorcenterautoalign{
     border: 1px solid rgb(0,0,0,0.5);
     display: inline-flex;
     width: 100%;
-    height: 60px;
+    height: 70px;
 
     justify-content: center; /*if javascript function used*/
     align-items: center;
@@ -86,7 +136,7 @@ input:active+.button_style1_label {
     
     /* white-space: nowrap;
     text-overflow: ellipsis; */
-    scroll-snap-type: x mandatory;
+    /* scroll-snap-type: x mandatory; */
 }
 
 #container_id2 {
@@ -101,7 +151,9 @@ input:active+.button_style1_label {
 #container_id5 {
     display: none;
 }
-
+#container_id6 {
+    display: none;
+}
 
 
 
@@ -152,7 +204,8 @@ input[type="range"] {
 .border1 {
     border: 1px solid rgb(0,0,0,0.5);
     height: 50px;
-    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
     display: flex;
     font-size: 10px;
     
@@ -162,6 +215,8 @@ input[type="range"] {
     margin-left: 4px;
     margin-right: 4px;
 }
+
+
 
 .zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly {
     height:0; width:0px;
