@@ -71,7 +71,7 @@
 
         <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
             <li><a href="imageeditor.html">Image Edit</a></li>  
-            <li><a href="#">Blank</a></li>
+            <li><a href="js_canny_edge_detector_new/cannyedge.html">Testing</a></li>
             <li><a href="#">Blank</a></li>
         </div>
     </div>
@@ -112,60 +112,73 @@
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_id2" style="height:90px; border-top: none">
-        <button class="button_style3 center3" onclick="invert()" >Invert</button>
-        <button class="button_style3 center3" onclick="grayscale()" >Grayscale</button>
-        <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
-        <button class="button_style3 center3" onclick="oilpaint(3,20,true)" >Oil Paint</button>
-        <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
-        <button class="button_style3 center3" onclick="edge_normal()" >Line (Normal)</button>
-        <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
-        <button class="button_style3 center3" id="edge_custom_button_enter_id" >Line (Custom)</button>
-        <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse</button>
+    <div class="container_leftorcenterautoalign container_filter" id="container_id2" style="height:110px; border-top: none; ">
+
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3" onclick="invert()" >Invert</button>
+        </div>
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3" onclick="grayscale()" >Grayscale</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
+            <button class="button_style3 center3" onclick="oilpaint(3,20,true)" >Oil Paint</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
+            <button class="button_style3 center3" onclick="edge_normal()" >Line (Normal)</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
+            <button class="button_style3 center3" id="edge_custom_button_enter_id" >Line (Custom)</button>
+        </div>
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse</button>
+        </div>
         
     </div>
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_id3" style="height:90px; border-top: none">  
+    <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px; border-top: none; ">  
         <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Contrast
             <input class="inputtextstyle1" type="text" id="text_Contrast" value="0" onchange="Onchange_Text_Contrast()">
             </br>
             <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()" oninput="Oninput_Slider_Contrast_LiveUpdate()">
         </div>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Brightness
             <input class="inputtextstyle1" type="text" id="text_Brightness" value="0" onchange="Onchange_Text_Brightness()">
             </br>
             <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()" oninput="Oninput_Slider_Brightness_LiveUpdate()">
         </div>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Opacity
             <input class="inputtextstyle1" type="text" id="text_Opacity" value="0" onchange="Onchange_Text_Opacity()">
             </br>
             <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()" oninput="Oninput_Slider_Opacity_LiveUpdate()">
         </div>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Red
             <input class="inputtextstyle1" type="text" id="text_Red" value="0" onchange="Onchange_Text_Red()">
             </br>
             <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()" oninput="Oninput_Slider_Red_LiveUpdate()">
         </div>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Green
             <input class="inputtextstyle1" type="text" id="text_Green" value="0" onchange="Onchange_Text_Green()">
             </br>
             <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()" oninput="Oninput_Slider_Green_LiveUpdate()">
         </div>
 
-        <div class="center4">
+        <div class="center4" style="font-size: 18px">
             Blue
             <input class="inputtextstyle1" type="text" id="text_Blue" value="0" onchange="Onchange_Text_Blue()">
             </br>
@@ -175,7 +188,7 @@
 
 
     
-    <div class="container_leftorcenterautoalign" id="container_id5" style="height:90px; border-top: none">
+    <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px; border-top: none">
         <button class="button_style1 margin1" id="edge_custom_button_exit_id" >back</button>
 
         <div class="margin1">
@@ -215,21 +228,27 @@
 
 
     
-    <div class="container_leftorcenterautoalign" id="container_id6" style="height:90px; border-top: none">
-        <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
-        <label for="diamondx1" class="button_style3_label center3">Upload</label>
-        <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
+    <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px; border-top: none">
+
+        <div class="center7">
+            <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
+            <label for="diamondx1" class="button_style3_label center3">Upload</label>
+        </div>
+
+        <div class="center7">
+            <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
+        </div>
     </div> 
 
 
     
-    <div class="container_leftorcenterautoalign" id="container_id4" style="height:90px; border-top: none">
+    <div class="container_leftorcenterautoalign" id="container_id4" style="height:110px; border-top: none">
         <div>Coming soon perhaps.</div>
     </div> 
 
   
    
-    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none">
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none; height: 60px;">
         <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
         <button class="button_style2" id="categorybutton2">Inc. Filters</button>
         <button class="button_style2" id="categorybutton3">Other</button>

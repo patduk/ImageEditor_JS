@@ -31,16 +31,19 @@ window.onload = () => {
             current[0].className = current[0].className.replace(" button_style2_active", "");
         }
 
-        document.getElementById("container_id2").style.display = "none";
-        document.getElementById("container_id3").style.display = "none";
-        document.getElementById("container_id4").style.display = "none";
-        document.getElementById("container_id5").style.display = "none";
-        document.getElementById("container_id6").style.display = "none";
-
+        
         // Add the active class to the current/clicked button
         this.className += " button_style2_active";
 
         // console.log(this.innerHTML);
+        document.getElementById("container_id2").style.display = "none";
+        document.getElementById("container_id3").style.display = "none";
+        document.getElementById("container_id4").style.display = "none";
+        document.getElementById("container_id5").style.display = "none";
+        document.getElementById("container_id7").style.display = "none";
+
+        
+
         
         if (this.innerHTML === "Filters") {
             document.getElementById("container_id2").style.display = "inline-flex";
@@ -49,10 +52,11 @@ window.onload = () => {
             document.getElementById("container_id3").style.display = "inline-flex";
         }
         else if (this.innerHTML === "Other") {
-            document.getElementById("container_id6").style.display = "inline-flex";
+            document.getElementById("container_id7").style.display = "inline-flex";
         }
         
-        resizeCanvas(); //to adjust the container_id2/3/4
+        resizeCanvas(); //to adjust the container_id2/3/4 (prevents cut off centered element, make it left)
+
     });
     }
     //a group of buttons with one selection allowed
@@ -84,7 +88,8 @@ window.onload = () => {
     let img_id1 = document.getElementById("img_id1") ;
     instance1_panzoom_global =  panzoom(img_id1, {
         zoomDoubleClickSpeed: 1, 
-        minZoom: 0.2
+        minZoom: 0.2,
+        smoothScroll: false
     });
 
     

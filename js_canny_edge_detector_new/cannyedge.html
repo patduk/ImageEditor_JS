@@ -2,11 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css"> -->
+        <link href="../styles/normalize.css" rel="stylesheet" type="text/css">
+        <link href="../styles/style1.css"  rel="stylesheet" type="text/css">
+        <link href="../styles/Navbar1.css" rel="stylesheet" type="text/css">
+        <link href="../styles/Navbar2.css" rel="stylesheet" type="text/css">
 
-        <style>
+        
+        <!-- <style>
           * {
             box-sizing: border-box;
           }
@@ -131,13 +136,39 @@
           .result .image--active {
             display: inline-block;
           }
-        </style>
+        </style> -->
     </head>
     <body>
+
+      <div class="navbar1" id="id_navbar1">
+        <li class="navbar1_button1">
+            <a href="../index.html" style="line-height: 48px;">Home
+            </a>
+        </li>
+
+        <!-- 
+        <li class="navbar1_button1">
+        <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+        </li> -->
+
+        <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+            <img src="../images/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
+        </button>
+
+        <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
+            <li><a href="../imageeditor.html">Image Edit</a></li>  
+            <li><a href="cannyedge.html">Testing</a></li>
+            <li><a href="#">Blank</a></li>
+        </div>
+
+    </div>
+
+
+
       <div class="container">
         <div class="row">
           <div class="column ta-c">
-            <a href="https://github.com/petarjs/js-canny-edge-detector">Back to GitHub</a>
+            <!-- <a href="https://github.com/petarjs/js-canny-edge-detector">Back to GitHub</a> -->
             <h1 class="ta-c pb-md">Canny Edge Detector</h1>
           </div>
         </div>

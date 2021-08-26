@@ -115,7 +115,8 @@ function resetposition() {
     instance1_panzoom_global.pause(); //pause to stop any smooth scroll, and get to panzoom reset already
     instance1_panzoom_global =  panzoom(img_id1, {
         zoomDoubleClickSpeed: 1, 
-        minZoom: 0.2
+        minZoom: 0.2,
+        smoothScroll: false
     });
     
 }
@@ -492,10 +493,10 @@ function resizeCanvas() {
     }
     else { container_id5.style.justifyContent = "center"; }
     
-    if (container_id6.clientWidth < container_id6.scrollWidth) {
-        container_id6.style.justifyContent = "left";
+    if (container_id7.clientWidth < container_id7.scrollWidth) {
+        container_id7.style.justifyContent = "left";
     }
-    else { container_id6.style.justifyContent = "center"; }
+    else { container_id7.style.justifyContent = "center"; }
 }
 
 

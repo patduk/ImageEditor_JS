@@ -22,7 +22,7 @@ function imagefullscreen() {
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
-        document.getElementById("container_id6").style.display = "none";
+        document.getElementById("container_id7").style.display = "none";
         document.getElementById("container_categorybuttons_id").style.display = "none";
 
         console.log("a1");
@@ -39,7 +39,7 @@ function imagefullscreen() {
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
-        document.getElementById("container_id6").style.display = "none";
+        document.getElementById("container_id7").style.display = "none";
         document.getElementById("container_categorybuttons_id").style.display = "inline-flex";
         
         console.log("a2");
