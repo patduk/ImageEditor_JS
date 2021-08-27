@@ -132,12 +132,14 @@ input:active+.button_style3_label {
     height: 70px;
     
     
-    justify-content: center; /*if javascript function used*/
+    justify-content: center; /*if javascript functiomargin1n used*/
     align-items: center;
     text-align: center;
 
     overflow-x: auto;
     overflow-y: hidden;
+
+    border-top: none;
     
     /* white-space: nowrap;
     text-overflow: ellipsis; */
@@ -146,10 +148,6 @@ input:active+.button_style3_label {
     /* overflow-x: visible; */
 }
 
-.container_filter {
-    /* background-color: black; */
-    /* padding: 20px; */
-}
 
 #container_id2 {
     display: inline-flex;
@@ -214,15 +212,62 @@ input[type="range"] {
     background-image : "";
 }
 
+.container_canvas {
+    /* height: 50%; */
+    width: 100%;
+    
+    border: 1px solid rgba(0,0,0,0.5);
+    
+    display: flex;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+  
+    /* background-color: rgb(0,0,0,0.33); */
+    background-image: linear-gradient(to bottom, rgb(0, 48, 64, 0.4) 0%, rgb(0, 48, 64, 0.2) 100%); 
+    overflow: hidden;
+  }
+
+  
+
 .border1 {
     border: 1px solid rgb(0,0,0,0.5);
-    height: 50px;
+    height: 80px;
     max-width: 100px;
     min-width: 100px;
     display: flex;
-    font-size: 10px;
+    font-size: 12px;
+
+    align-items: center;
+    /* justify-content: center; */
+    border-radius: 4px;
+    
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2);
+}
+
+/* hide default checkbox*/
+/* .hide_default_checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+
+
+/* Create a custom checkbox */
+.checkbox_style1 {
+    /* position: relative;
+    top: -30px;
+    left: -30px; 
+    height: 25px;
+    width: 25px;
+    background-color: #eee; */
     
 }
+
+
+
 
 .margin1 {
     margin-left: 4px;

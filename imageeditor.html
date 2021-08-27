@@ -27,6 +27,9 @@
     <script src="scripts/ftn4_red.js"></script>
     <script src="scripts/ftn5_green.js"></script>
     <script src="scripts/ftn6_blue.js"></script>
+    <script src="scripts/ftn7_gblur.js"></script>
+    <script src="scripts/gblur_regular.js"></script>
+    <script src="scripts/gblur_mono16.js"></script>
     
 
     <link href="styles/normalize.css" rel="stylesheet" type="text/css">
@@ -64,14 +67,19 @@
    
     <div class="navbar1" id="navbar1_id">
         <li class="navbar1_button1">
-            <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+            <a href="index.html" onclick="return confirm('Are you sure? Data can be lost.');">
+                <img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
+            </a>
         </li>
 
-        <button class="navbar1_dropdownbutton1 smallertext1" onclick="focus_on_id_btn1()" id="id_btn1">Dropdown</button>
+
+        <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+            <img src="images/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
+        </button>
 
         <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
             <li><a href="imageeditor.html">Image Edit</a></li>  
-            <li><a href="js_canny_edge_detector_new/cannyedge.html">Testing</a></li>
+            <li><a href="js_canny_edge_detector_new/cannyedge.html" >Testing</a></li>
             <li><a href="#">Blank</a></li>
         </div>
     </div>
@@ -92,27 +100,31 @@
 
     
 
-    <div class="container_leftorcenterautoalign" id="container_id1" style="border-top: none">
-        <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
-        <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
-        
-        <button class="button_style1" onclick="reset()">
-            <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Filter)</div>
-        </button>
-        <button class="button_style1" onclick="resetposition()">
-            <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Zoom)</div>
-        </button>
-
-        <!-- <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
-        <label for="diamondx1" class="button_style1_label">Upload</label>
-        <button class="button_style1" onclick="downloadmodetoggle()" >Download</button> -->
-
-        <button class="button_style1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
+    <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
+        <div>
+            <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
+        </div>
+        <div>
+            <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
+        </div>
+        <div>
+            <button class="button_style1" onclick="reset()">
+                <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Filter)</div>
+            </button>
+        </div>
+        <div>
+            <button class="button_style1" onclick="resetposition()">
+                <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Zoom)</div>
+            </button>
+        </div>
+        <div>
+            <button class="button_style1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
+        </div>
     </div>
 
 
 
-    <div class="container_leftorcenterautoalign container_filter" id="container_id2" style="height:110px; border-top: none; ">
+    <div class="container_leftorcenterautoalign" id="container_id2" style="height:110px;">
 
         <div class="container_individualbutton1">
             <button class="button_style3 center3" onclick="invert()" >Invert</button>
@@ -133,14 +145,14 @@
             <button class="button_style3 center3" id="edge_custom_button_enter_id" >Line (Custom)</button>
         </div>
         <div class="container_individualbutton1">
-            <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse</button>
+            <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse (Test)</button>
         </div>
         
     </div>
 
 
 
-    <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px; border-top: none; ">  
+    <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px;">  
         <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
 
         <div class="center4" style="font-size: 18px">
@@ -155,6 +167,13 @@
             <input class="inputtextstyle1" type="text" id="text_Brightness" value="0" onchange="Onchange_Text_Brightness()">
             </br>
             <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()" oninput="Oninput_Slider_Brightness_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Guass. Blur
+            <input class="inputtextstyle1" type="text" id="text_Gblur" value="0" onchange="Onchange_Text_Gblur()">
+            </br>
+            <input type="range" class="slider" id="slider_Gblur" min="0" max="10" value="0" onchange="Onchange_Slider_Gblur()" oninput="Oninput_Slider_Gblur_LiveUpdate()">
         </div>
 
         <div class="center4" style="font-size: 18px">
@@ -184,16 +203,20 @@
             </br>
             <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()" oninput="Oninput_Slider_Blue_LiveUpdate()">
         </div>
+
+        
     </div>
 
 
-    
-    <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px; border-top: none">
-        <button class="button_style1 margin1" id="edge_custom_button_exit_id" >back</button>
+
+    <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px;">
+        <div class="container_individualbutton1">
+            <button class="button_style3 margin1" id="edge_custom_button_exit_id" >Back</button>
+        </div>
 
         <div class="margin1">
             BG color</br>
-            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#ffffff" style="width:80px; height: 40px;">
+            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#242424" style="width:80px; height: 40px;">
         </div>
     
         <div class="margin1">
@@ -201,19 +224,22 @@
             <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#007f7f" style="width:80px; height: 40px;">
         </div>
 
-        <label class="border1 margin1">
-            Omit background color?<br>
-            <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" id="id_transparent_mode_edge_custom">
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox1">
+            Transparent background?<br>
+            <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" class="hide_default_checkbox" id="id_transparent_mode_edge_custom">
+            <span class="checkbox_style1"></span>
         </label>
         
-        <label class="border1 margin1">
-            Add lighting and shading?</br>
-            <input type="checkbox" onchange="ftn_lightingshading_mode_edge_custom()" id="id_lightingshading_mode_edge_custom">
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox2">
+            Lighting and shading?</br>
+            <input type="checkbox" onchange="ftn_lightingshading_mode_edge_custom()" class="hide_default_checkbox" id="id_lightingshading_mode_edge_custom">
+            <span class="checkbox_style1"></span>
         </label>
 
-        <label class="border1 margin1">
-            Fix line color? *adds more contrast & BG color to line color*</br>
-            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked>
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox3">
+            Fix line color? *Increases contrast, thickness, & BG color tone</br>
+            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" class="hide_default_checkbox" id="id_linecolorcorrection_edge_custom" checked>
+            <span class="checkbox_style1"></span>
         </label>
         
         <!-- <label class="border1 margin1">
@@ -222,39 +248,38 @@
             Dark line color?
             <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked></input>
         </label> -->
-
-        <button class="button_style1" onclick="edge_custom()" >apply</button>
+        <div class="container_individualbutton1">
+            <button class="button_style3" onclick="edge_custom()" >Apply</button>
+        </div>
     </div>
 
 
-    
-    <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px; border-top: none">
+    <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px;">
+
+        <div class="center7">
+            <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
+        </div>
 
         <div class="center7">
             <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
             <label for="diamondx1" class="button_style3_label center3">Upload</label>
         </div>
 
-        <div class="center7">
-            <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
-        </div>
+        
     </div> 
 
 
-    
-    <div class="container_leftorcenterautoalign" id="container_id4" style="height:110px; border-top: none">
+    <div class="container_leftorcenterautoalign" id="container_id4" style="height:110px;">
         <div>Coming soon perhaps.</div>
     </div> 
-
-  
    
-    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="border-top: none; height: 60px;">
+
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="height: 60px;">
         <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
         <button class="button_style2" id="categorybutton2">Inc. Filters</button>
         <button class="button_style2" id="categorybutton3">Other</button>
 
     </div>
-
 
 
     <!-- 

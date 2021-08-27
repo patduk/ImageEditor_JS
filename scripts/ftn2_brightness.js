@@ -56,6 +56,9 @@ function Onchange_Slider_Brightness()
 
 function Onchange_Text_Brightness() 
 {
+    
+
+
     ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
@@ -98,5 +101,6 @@ function Oninput_Slider_Brightness_LiveUpdate() {
 function JS_changesliderpositionandtextvalue_Brightness(n) {
     document.getElementById('slider_Brightness').value = n;
 	document.getElementById('text_Brightness').value = n;
+    
 }
 

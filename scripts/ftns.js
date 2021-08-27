@@ -23,7 +23,7 @@ let imageData_original1;
 // let imageData_original1_data_2d = [];
 
 let DictV = {};
-DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0};
+DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0, "GblurV":0};
 
 //undo lists
 let Image_undo = [];
@@ -34,6 +34,7 @@ let OpacityV_undo = [];
 let RedV_undo = [];
 let GreenV_undo = [];
 let BlueV_undo = [];
+let GblurV_undo = [];
 
 //redo lists
 let Image_redo = [];
@@ -44,12 +45,13 @@ let OpacityV_redo = [];
 let RedV_redo = [];
 let GreenV_redo = [];
 let BlueV_redo = [];
-
+let GblurV_redo = [];
 
 //global variables (may not be needed)
 let instance1_panzoom_global;
 let container_canvas_h_fullscreen_global;
 let container_canvas_h_normalscreen_global;
+
 
 
 
@@ -73,8 +75,6 @@ function downloadmodetoggle() {
         //show the image element
         document.getElementById("container_imgsaveonly_id").style.display = "flex";
         
-
-       
 
         // //container image element dimensions.. to match container canvas dimensions
         document.getElementById("container_imgsaveonly_id").style.width = document.getElementById("container_canvas_id").style.width;
@@ -166,30 +166,30 @@ function logprint() {
 
 
 
+// window.addEventListener("orientationchange", logprint1);
+// window.addEventListener("orientationchange", logprint2);
+// window.addEventListener("resize", logprint1);
+// window.addEventListener("resize", logprint2);
+// function logprint1() {
+//     console.log('lgprnt1');
+// }
+// function logprint2() {
+//     console.log('lgprnt2');
+// }
+
+
 //resize canvas (only when resizing windows)
 window.addEventListener("resize", resizeCanvas2);
 //resize canvas
 window.addEventListener("resize", resizeCanvas);
 
-window.addEventListener("resize", logprint1);
-window.addEventListener("resize", logprint2);
 
-window.addEventListener("orientationchange", resizeCanvas);
+
 window.addEventListener("orientationchange", resizeCanvas2);
-
-// window.addEventListener("orientationchange", logprint1);
-// window.addEventListener("orientationchange", logprint2);
-
-function logprint1() {
-    console.log('lgprnt1');
-}
-function logprint2() {
-    console.log('lgprnt2');
-}
+window.addEventListener("orientationchange", resizeCanvas);
 
 
-function resizeCanvas2() {
-
+function exit_downloadmodetoggle_ifneeded() {
     //IF ON DOWNLOAD mode, go to canvas mode
     if (document.getElementById("container_canvas_id").style.display === "none") {
 
@@ -198,18 +198,21 @@ function resizeCanvas2() {
         //hide the image element
         document.getElementById("container_imgsaveonly_id").style.display = "none";
         
-
         //to ensure that canvas content adjusts to any new resized container canvas
-        // resizeCanvas();       
+        //resizeCanvas(); //not needed?
 
     }
+}
+
+
+function resizeCanvas2() {
+
+
     
-
-
     //resize canvas height to fit 100% in window along with navbars' heights
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
-
+   
 
     //if normal screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px") {
@@ -217,7 +220,7 @@ function resizeCanvas2() {
         //(document.getElementById("container_id1").offsetHeight);
     
         container_canvas_h_normalscreen_global = window.innerHeight - 
-        (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
+        (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 4;
         
         
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
@@ -233,7 +236,7 @@ function resizeCanvas2() {
     //if full screen
     else {
         container_canvas_h_fullscreen_global = window.innerHeight - 
-        (document.getElementById("container_id1").offsetHeight);
+        (document.getElementById("container_id1").offsetHeight) - 4;
 
         // container_canvas_h_normalscreen_global = window.innerHeight - 
         // (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
@@ -245,6 +248,8 @@ function resizeCanvas2() {
 
     }
 
+
+    
     
     
 }
@@ -444,10 +449,8 @@ function resizeCanvas() {
             img_id1.width = image.width;
             img_id1.height = image.height;
         }
-
-        
-
     }    
+
     // img_id2.width = img_id1.width;
     // img_id2.height = img_id1.height;
 
@@ -460,13 +463,13 @@ function resizeCanvas() {
 
 
     
-
-
-
     ///scrollbar detection, modify center/left justification within
     let container_id1 = document.getElementById("container_id1");
     let container_id2 = document.getElementById("container_id2");
     let container_id3 = document.getElementById("container_id3");
+    let container_id4 = document.getElementById("container_id4");
+    let container_id5 = document.getElementById("container_id5");
+    let container_id7 = document.getElementById("container_id7");
 
     if (container_id1.clientWidth < container_id1.scrollWidth) {
         container_id1.style.justifyContent = "left"; 
@@ -497,6 +500,9 @@ function resizeCanvas() {
         container_id7.style.justifyContent = "left";
     }
     else { container_id7.style.justifyContent = "center"; }
+
+
+
 }
 
 
@@ -531,6 +537,7 @@ function undo2() {
         RedV_redo.push(DictV["RedV"]);
         GreenV_redo.push(DictV["GreenV"]);
         BlueV_redo.push(DictV["BlueV"]);
+        GblurV_redo.push(DictV["GblurV"]);
 
         ////pull and delete from undo lists
         
@@ -542,7 +549,7 @@ function undo2() {
         DictV["RedV"] = RedV_undo.pop();
         DictV["GreenV"] = GreenV_undo.pop();
         DictV["BlueV"] = BlueV_undo.pop();
-
+        DictV["GblurV"] = GblurV_undo.pop();
         
         
         // ////3
@@ -560,7 +567,7 @@ function undo2() {
         JS_changesliderpositionandtextvalue_Red(DictV["RedV"]);
         JS_changesliderpositionandtextvalue_Green(DictV["GreenV"]);
         JS_changesliderpositionandtextvalue_Blue(DictV["BlueV"]);
-        
+        JS_changesliderpositionandtextvalue_Gblur(DictV["GblurV"]);
 
 
         logprint();
@@ -577,7 +584,6 @@ function redo2() {
 
 
         ////push to undo lists
-
         Image_undo.push(imageData_original2); //ff
         IncV_undo.push(DictV["IncV"]);
         ContrastV_undo.push(DictV["ContrastV"]);
@@ -586,7 +592,8 @@ function redo2() {
         RedV_undo.push(DictV["RedV"]);
         GreenV_undo.push(DictV["GreenV"]);
         BlueV_undo.push(DictV["BlueV"]);
-        
+        GblurV_undo.push(DictV["GblurV"]);
+
         ////pull and delete from undo lists
         //.pop() = delete last element + set as new variable
         imageData_original2 = Image_redo.pop(); //ff       
@@ -597,6 +604,7 @@ function redo2() {
         DictV["RedV"] = RedV_redo.pop();
         DictV["GreenV"] = GreenV_redo.pop();
         DictV["BlueV"] = BlueV_redo.pop();
+        DictV["GblurV"] = GblurV_redo.pop();
 
         / ////3
         ApplyBaseImageAndIncrementalFiltersToCurrentImage();
@@ -614,7 +622,7 @@ function redo2() {
         JS_changesliderpositionandtextvalue_Red(DictV["RedV"]);
         JS_changesliderpositionandtextvalue_Green(DictV["GreenV"]);
         JS_changesliderpositionandtextvalue_Blue(DictV["BlueV"]);
-        
+        JS_changesliderpositionandtextvalue_Gblur(DictV["GblurV"]);
 
 
         logprint();
@@ -666,28 +674,23 @@ function reset() {
 
 
 //not perfect:
-function download() {
-    let canvas = document.getElementById("cv2");
-    let ctx = canvas.getContext('2d');
+// function download() {
+//     let canvas = document.getElementById("cv2");
+//     let ctx = canvas.getContext('2d');
 
+//     let img    = canvas.toDataURL("image/png");
+//     let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
+//     // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
+//     let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
+//     let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
 
-
-
-    let img    = canvas.toDataURL("image/png");
-    let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
-    // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
-    let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
-    let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
-
-
-
-    let element = document.createElement('a');
-    let filename = 'untitled.png';
-    element.setAttribute('href', img);
-    element.setAttribute('download', filename);
-    element.click();  
+//     let element = document.createElement('a');
+//     let filename = 'untitled.png';
+//     element.setAttribute('href', img);
+//     element.setAttribute('download', filename);
+//     element.click();  
                 
-}
+// }
 //////////
 //////////
 
@@ -726,6 +729,7 @@ function SaveAttributesToUndoLists() //1-1.4
     RedV_undo.push(DictV["RedV"]);
     GreenV_undo.push(DictV["GreenV"]);
     BlueV_undo.push(DictV["BlueV"]);
+    GblurV_undo.push(DictV["GblurV"]);
 
     ////1.3 (limit undo lists' count to num_limit) (unique code block)
     let num_limit = 8;
@@ -737,6 +741,7 @@ function SaveAttributesToUndoLists() //1-1.4
     if (RedV_undo.length > num_limit) { RedV_undo.shift(); }
     if (GreenV_undo.length > num_limit) { GreenV_undo.shift(); }
     if (BlueV_undo.length > num_limit) { BlueV_undo.shift(); }
+    if (GblurV_undo.length > num_limit) { GblurV_undo.shift(); }
 
     ////1.4 (put this on undo/redo? no)
 
@@ -757,6 +762,7 @@ function ClearRedo() //ok
     RedV_redo = [];
     GreenV_redo = [];
     BlueV_redo = [];
+    GblurV_redo = [];
 }
 
 function ResetAllAttributes() //ok
@@ -769,6 +775,7 @@ function ResetAllAttributes() //ok
     RedV_undo = [];
     GreenV_undo = [];
     BlueV_undo = [];
+    GblurV_undo = [];
 
     Image_redo = [];
     IncV_redo = [];
@@ -778,6 +785,7 @@ function ResetAllAttributes() //ok
     RedV_redo = [];
     GreenV_redo = [];
     BlueV_redo = [];
+    GblurV_redo = [];
 
     for (key in DictV) {
         DictV[key] = 0;
@@ -830,7 +838,7 @@ function flatten() //need fix!
     JS_changesliderpositionandtextvalue_Red(0);
     JS_changesliderpositionandtextvalue_Green(0);
     JS_changesliderpositionandtextvalue_Blue(0);
-
+    JS_changesliderpositionandtextvalue_Gblur(0);
 
     //canvas update
     ctx.putImageData(imageData, 0, 0);
@@ -871,7 +879,7 @@ function Flatten_nosavingtoundo() //looks good
     JS_changesliderpositionandtextvalue_Red(0);
     JS_changesliderpositionandtextvalue_Green(0);
     JS_changesliderpositionandtextvalue_Blue(0);
-    
+    JS_changesliderpositionandtextvalue_Gblur(0);
 
 }
 
@@ -937,9 +945,16 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
         {
             Blue(DictV[key]);
         }
+        if (key == "GblurV")
+        {
+            Gblur(DictV[key]);
+        }
     }
     //3 edit image
     //3 edit image   
+
+
+    // exit_downloadmodetoggle_ifneeded();
 }
 
 

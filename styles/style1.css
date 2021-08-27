@@ -168,21 +168,6 @@ body {
 
 
 
-.container_canvas {
-  /* height: 50%; */
-  width: 100%;
-  
-  border: 1px solid rgba(0,0,0,0.5);
-  
-  display: flex;
-  margin: 0px auto;
-  align-items: center;
-  justify-content: center;
-
-  background-color: rgb(128,128,128);
-
-  overflow: hidden;
-}
 
 
 

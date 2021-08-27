@@ -9,8 +9,7 @@ function edge_normal() {
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
     imageData = ctx.getImageData(0, 0, image.width, image.height);
-    //imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    let imageData_copy = ctx.getImageData(0, 0, image.width, image.height);
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
 
 
     let counter = 0;

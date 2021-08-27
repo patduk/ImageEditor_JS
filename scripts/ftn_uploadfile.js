@@ -8,6 +8,9 @@ window.addEventListener('load', function() {
     
     // set src to blob e
     image.src = 'images/wlop2.jpg';
+
+    
+    console.log(image.src.replace(/^.*[\\\/]/, ''));
     
     ResetAllAttributes();
 
@@ -21,6 +24,8 @@ window.addEventListener('load', function() {
     image.onload = () => {
         URL.revokeObjectURL(image.src);
 
+        
+        
         //new canvas dimensions
         canvas.height = image.height;
         canvas.width = image.width;
@@ -40,7 +45,12 @@ window.addEventListener('load', function() {
         
         logprint();
         document.getElementById('img_id1').src = canvas.toDataURL("image/png");
+
+
+        
     }   
+
+    
 
 });
 

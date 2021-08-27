@@ -12,6 +12,8 @@ let add_lighting = false;
 let add_shading = false;
 let use_linecolorcorrection = false;
 
+
+
 function colorsfor_edge_custom_BG() {
     const color = document.getElementById("html5colorpicker_BG").value;
     customBGcolor_R = parseInt(color.substr(1,2), 16)
@@ -33,17 +35,24 @@ function colorsfor_edge_custom_line() {
 
 
 function ftn_transparent_mode_edge_custom() {
+
     //if now checked
     if (document.getElementById("id_transparent_mode_edge_custom").checked) {
         customBGcolor_A = 0;
-        // add_lighting = false;
-        // add_shading = false;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox1").style.backgroundColor = "rgba(0,200,0,0.5)";
     }
     //if now unchecked
     else {
         customBGcolor_A = 255;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox1").style.backgroundColor = "";
         
     }
+
+    
 }
 
 function ftn_lightingshading_mode_edge_custom () {
@@ -51,11 +60,18 @@ function ftn_lightingshading_mode_edge_custom () {
     if (document.getElementById("id_lightingshading_mode_edge_custom").checked) {
         add_lighting = true;
         add_shading = true;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
     }
     else {
         add_lighting = false;
         add_shading = false;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "";
     }
+
 }
 
 
@@ -63,12 +79,19 @@ function ftn_linecolorcorrection_edge_custom() {
     //if now checked
     if (document.getElementById("id_linecolorcorrection_edge_custom").checked) {
         use_linecolorcorrection = true;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox3").style.backgroundColor = "rgba(0,200,0,0.5)";
     }
     //if now unchecked
     else {
         use_linecolorcorrection = false;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox3").style.backgroundColor = "";
         
     }
+
 
 }
 
