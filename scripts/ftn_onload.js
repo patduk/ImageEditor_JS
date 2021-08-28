@@ -8,8 +8,9 @@ window.onload = () => {
     colorsfor_edge_custom_line();
     ftn_transparent_mode_edge_custom();
     ftn_linecolorcorrection_edge_custom();
-
+    Onchange_Slider_Whiteblackintensity();
     
+
     //a group of buttons with one selection allowed
     //a group of buttons with one selection allowed
     // Get the container element
@@ -53,7 +54,7 @@ window.onload = () => {
 
     //button to enter edge custom
     //button to enter edge custom
-    let edge_custom_button_enter =  document.getElementById("edge_custom_button_enter_id");
+    let edge_custom_button_enter =  document.getElementById("id_edge_custom_button_enter");
     edge_custom_button_enter.addEventListener("click", function() {
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id5").style.display = "inline-flex";
@@ -61,10 +62,18 @@ window.onload = () => {
         resizeCanvas();
     });
 
+
     //button to exit edge custom
     //button to exit edge custom
-    let edge_custom_button_exit =  document.getElementById("edge_custom_button_exit_id");
-    edge_custom_button_exit.addEventListener("click", function() {
+    let edge_custom_button_exit1 =  document.getElementById("id1_edge_custom_button_exit");
+    edge_custom_button_exit1.addEventListener("click", function() {
+        document.getElementById("container_id2").style.display = "inline-flex";
+        document.getElementById("container_id5").style.display = "none";
+
+        resizeCanvas();
+    });
+    let edge_custom_button_exit2 =  document.getElementById("id2_edge_custom_button_exit");
+    edge_custom_button_exit2.addEventListener("click", function() {
         document.getElementById("container_id2").style.display = "inline-flex";
         document.getElementById("container_id5").style.display = "none";
 
@@ -94,4 +103,58 @@ window.onload = () => {
     object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
     object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px"; //not needed unintentionally?
 
+
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+
+    //zoom prevention (example)
+    // document.addEventListener("touchmove", function(e)
+    // {e.preventDefault();},  
+    // {passive: false}
+    // );
+    //element exception from zoom prevention
+    // document.getElementById('container_id2').addEventListener('touchmove', function(e){e.stopPropagation()}, false);
+
+    
+    //zoom prevention (targets element by id)
+    // document.getElementById('id_undobutton').addEventListener("touchstart", function(e)
+    // {e.preventDefault();},  
+    // {passive: false}
+    // );
+    
+    //zoom prevention (targets elements by classname)
+    let list_button_style1 = document.getElementsByClassName('button_style1');
+    let list_button_style2 = document.getElementsByClassName('button_style2');
+    let list_button_style3 = document.getElementsByClassName('button_style3');
+
+    for (var i = 0; i < list_button_style1.length; i++) {
+        list_button_style1[i].addEventListener("click", function(e) 
+        {e.preventDefault();},  
+        {passive: false}
+        );
+    }
+
+    for (var i = 0; i < list_button_style2.length; i++) {
+        list_button_style2[i].addEventListener("click", function(e) 
+        {e.preventDefault();},  
+        {passive: false}
+        );
+    }
+
+    for (var i = 0; i < list_button_style3.length; i++) {
+        list_button_style3[i].addEventListener("click", function(e) 
+        {e.preventDefault();},  
+        {passive: false}
+        );
+    }
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+    
+
 }
+
+

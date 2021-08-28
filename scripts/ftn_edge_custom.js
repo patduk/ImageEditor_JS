@@ -9,7 +9,7 @@ let customlineshadowcolor_B_m;
 let add_lighting = false;
 let add_shading = false;
 let use_linecolorcorrection = false;
-
+let hard_spot_reducer;
 
 //UI option
 function colorsfor_edge_custom_BG() {
@@ -49,6 +49,15 @@ function ftn_transparent_mode_edge_custom() {
         
     }
 
+    //if transparent background = on & lighting/shading = on, disable lighting/shading
+    if (document.getElementById("id_lightingshading_mode_edge_custom").checked && document.getElementById("id_transparent_mode_edge_custom").checked)
+    {
+        add_lighting = false;
+        add_shading = false;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
+    }
     
 }
 
@@ -68,6 +77,16 @@ function ftn_lightingshading_mode_edge_custom () {
 
         //change checkbox container color
         document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "";
+    }
+
+    //if transparent background = on & lighting/shading = on, disable lighting/shading
+    if (document.getElementById("id_lightingshading_mode_edge_custom").checked && document.getElementById("id_transparent_mode_edge_custom").checked)
+    {
+        add_lighting = false;
+        add_shading = false;
+
+        //change checkbox container color
+        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
     }
 
 }
@@ -179,7 +198,7 @@ function edge_custom() {
     // let customlineshadowcolor_G_m = 14; //0-limit
     // let customlineshadowcolor_B_m = 0; //0-limit
 
-    let hard_spot_reducer = 106; //intensity of white/black lines // 84-255
+    // let hard_spot_reducer = 106; //intensity of white/black lines // 84-255
     let use_blackline = false;
     let cutoff = 25; //10-20% of 255 recommended 20-50 //20 for oilpainted //25 for normal?
     // let use_linecolorcorrection =false; //makes line colors contrast well with the background color and removes black/white spots, sacrifices some desired line colors 
@@ -512,4 +531,64 @@ function edge_custom() {
 
     // showprocessing = false;
     // ftn_showprocessing();
+}
+
+
+
+
+
+
+//onchange slider (for whiteblackintensity)
+function Onchange_Slider_Whiteblackintensity()
+{
+    //get int value
+    let input_value = parseInt(document.getElementById('slider_Whiteblackintensity').value);
+
+    //update other element's value (text field)
+    document.getElementById('text_Whiteblackintensity').value = input_value;
+
+    //translate input_value (user-friendly number to RGB number)
+    input_value *= 1.55;
+    input_value += 100;
+
+    //update hard_spot_reducer value (to be used in edge custom edit function)
+    hard_spot_reducer = input_value;
+}
+
+// (for whiteblackintensity)
+function Onchange_Text_Whiteblackintensity() 
+{
+    //get int value
+    let input_value = parseInt(document.getElementById('text_Whiteblackintensity').value);
+
+    //range limit 
+    if (input_value > 100) {
+        input_value = 100;
+        document.getElementById('text_Whiteblackintensity').value = input_value;
+    }
+    if (input_value < 0) {
+        input_value = 0;
+        document.getElementById('text_Whiteblackintensity').value = input_value; 
+    }
+
+    //update other element's value (slider)
+    document.getElementById('slider_Whiteblackintensity').value = input_value;
+
+    //translate input_value (user-friendly number to RGB number)
+    input_value *= 1.55;
+    input_value += 100;
+
+    //update hard_spot_reducer value (to be used in edge custom edit function)
+    hard_spot_reducer = input_value;
+    
+}
+
+
+function Oninput_Slider_Whiteblackintensity_LiveUpdate() {
+    document.getElementById("text_Whiteblackintensity").value = document.getElementById("slider_Whiteblackintensity").value;
+}
+
+function JS_changesliderpositionandtextvalue_Whiteblackintensity(n) {
+    document.getElementById('slider_Whiteblackintensity').value = n;
+	document.getElementById('text_Whiteblackintensity').value = n;
 }

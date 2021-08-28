@@ -1,11 +1,16 @@
 body, html {
-  touch-action: manipulation;
-  -ms-touch-action: manipulation;
+  /* touch-action: pan-x, pan-y; */
+  /* -ms-touch-action: none; */
+
+  /* -webkit-text-size-adjust: none; */
+  /* touch-action: pan-y;  */
   
   /*removes empty space in chrome mobile (iphone)*/
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+
+  
   
 }
 
@@ -125,7 +130,7 @@ body {
   margin-right: 2px;
   border-radius: 4px;
   position:relative; 
-    display:block;
+  display:block;
 
     
 }

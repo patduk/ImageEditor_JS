@@ -43,7 +43,12 @@ let container_canvas_h_fullscreen_global;
 let container_canvas_h_normalscreen_global;
 
 
-
+// function stopzoom(even) {
+//     // console.log('stopzoom(e)1');
+//     // even.preventDefault();
+//     // console.log('stopzoom(e)2');
+//     return false;
+// };
 
 
 //ok
@@ -193,7 +198,8 @@ function exit_downloadmodetoggle_ifneeded() {
 
 //culprit
 function resizeCanvas2() {
-    
+
+
     //resize canvas height to fit 100% in window along with navbars' heights
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");

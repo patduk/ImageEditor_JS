@@ -10,7 +10,6 @@ window.addEventListener('load', function() {
     image.src = 'images/wlop2.jpg';
 
 
-
     // var getPixels = require('get-pixels');
     // var savePixels = require('save-pixels');
     // var fs = require('fs');
@@ -21,7 +20,6 @@ window.addEventListener('load', function() {
     //   var poster = posterize(pixels, 3);
     //   savePixels(poster, 'jpg').pipe(fs.createWriteStream('images/wlop2x.jpg'));
     // });
-
     
         
     console.log(image.src.replace(/^.*[\\\/]/, ''));

@@ -3,7 +3,12 @@
 <!-- <head> -->
     <title>Image Edit</title>
     <meta charset="utf-8">
+
+    <!-- A website that is zoomable by pinching: -->
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <!-- A website that is not zoomable by pinching: -->
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
 
 
     <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
@@ -104,7 +109,7 @@
     <!--undo,redo,reset-->
     <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
         <div>
-            <button class="button_style1" onclick="undo()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
+            <button class="button_style1" id="id_undobutton" onclick="undo();" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px" ></button>
         </div>
         <div>
             <button class="button_style1" onclick="redo()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
@@ -144,7 +149,7 @@
         </div>
         <div class="container_individualbutton1">
             <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
-            <button class="button_style3 center3" id="edge_custom_button_enter_id" >Line (Custom)</button>
+            <button class="button_style3 center3" id="id_edge_custom_button_enter" >Line (Custom)</button>
         </div>
         <div class="container_individualbutton1">
             <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse (Test)</button>
@@ -155,7 +160,10 @@
 
     <!--incremental filters-->
     <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px;">  
-        <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
+
+        <div class="margin1">
+            <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
+        </div>
 
         <div class="center4" style="font-size: 18px">
             Contrast
@@ -206,18 +214,24 @@
             <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()" oninput="Oninput_Slider_Blue_LiveUpdate()">
         </div>
 
+        <div class="margin1">
+            <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
+        </div>
         
     </div>
 
 
     <!--edge custom filter-->
     <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px;">
+
         <div class="container_individualbutton1">
-            <button class="button_style3 margin1" id="edge_custom_button_exit_id" >Back</button>
+            <button class="button_style1 margin1" id="id1_edge_custom_button_exit" >
+                <img src="images/icons/icons8-left-100.png" style="width:36px; padding-top: 5px">
+            </button>
         </div>
 
         <div class="container_individualbutton1">
-            <button class="button_style3" onclick="edge_custom()" >Apply</button>
+            <button class="button_style1" onclick="edge_custom()" >Apply</button>
         </div>
 
         <div class="margin1">
@@ -257,15 +271,26 @@
 
 
         
-        <div class="center4" style="font-size: 18px">
-            White/black spot intensity
-            <input class="inputtextstyle1" type="text" id="text_Whiteblackintensity" value="255" onchange="Onchange_Text_Whiteblackintensity()">
+        <div class="margin1" style="font-size: 16px;">
+            Black/white line intensity
             </br>
-            <input type="range" class="slider" id="slider_Whiteblackintensity" min="105" max="255" value="255" onchange="Onchange_Slider_Whiteblackintensity()" oninput="Oninput_Slider_Whiteblackintensity_LiveUpdate()">
+            <input class="inputtextstyle1" type="text" id="text_Whiteblackintensity" value="50" onchange="Onchange_Text_Whiteblackintensity()">
+            </br>
+            <input type="range" class="slider" id="slider_Whiteblackintensity" min="0" max="100" value="50" onchange="Onchange_Slider_Whiteblackintensity()" oninput="Oninput_Slider_Whiteblackintensity_LiveUpdate()">
         </div>
 
 
+    
+        <div class="container_individualbutton1">
+            <button class="button_style1" onclick="edge_custom()" >Apply</button>
+        </div>
 
+
+        <div class="container_individualbutton1">
+            <button class="button_style1 margin1" id="id2_edge_custom_button_exit" >
+                <img src="images/icons/icons8-left-100.png" style="width:36px; padding-top: 5px">
+            </button>
+        </div>
         
     </div>
 
