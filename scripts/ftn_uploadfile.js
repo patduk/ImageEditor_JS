@@ -9,6 +9,12 @@ window.addEventListener('load', function() {
     // set src to blob e
     image.src = 'images/wlop2.jpg';
 
+
+    let i = g.import('images/wlop2.jpg').posterize(i, 4);
+
+    
+
+    image.src = g;
     
     console.log(image.src.replace(/^.*[\\\/]/, ''));
     
