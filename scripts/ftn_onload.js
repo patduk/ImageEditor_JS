@@ -91,10 +91,10 @@ window.onload = () => {
 
     //set up canvas container height global variables for normal/full screen modes
     container_canvas_h_fullscreen_global = window.innerHeight - 
-    (document.getElementById("container_id1").offsetHeight) - 3;
+    (document.getElementById("container_id1").offsetHeight) - 1;
 
     container_canvas_h_normalscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;// - 110;
 
 
     //modify container cdanvas/img height using normalscreen global variable
@@ -154,6 +154,24 @@ window.onload = () => {
     //zoom prevention
     //zoom prevention
     
+
+    //// image change on button hover
+    document.getElementById("id_homebutton1_a").addEventListener("mouseover", homebutton1_changeimg_toinvert, false);
+
+    function homebutton1_changeimg_toinvert()
+    {
+        if (true)
+            document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100-inverted.png";
+        
+    }
+
+    document.getElementById("id_homebutton1_a").addEventListener("mouseout", homebutton1_changeimg_tooriginal, false);
+
+    function homebutton1_changeimg_tooriginal()
+    {
+        document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100.png";
+        
+    }
 
 }
 

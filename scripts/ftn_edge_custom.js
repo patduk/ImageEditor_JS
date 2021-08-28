@@ -49,16 +49,29 @@ function ftn_transparent_mode_edge_custom() {
         
     }
 
-    //if transparent background = on & lighting/shading = on, disable lighting/shading
-    if (document.getElementById("id_lightingshading_mode_edge_custom").checked && document.getElementById("id_transparent_mode_edge_custom").checked)
+    //if transparent background = on, disable lighting/shading. else, leave lighting/shading = on or off depending on lighting/shading mode toggle
+    if (document.getElementById("id_transparent_mode_edge_custom").checked)
     {
         add_lighting = false;
         add_shading = false;
-
-        //change checkbox container color
-        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
     }
-    
+    else {
+        if (document.getElementById("id_lightingshading_mode_edge_custom").checked)
+        {
+            add_lighting = true;
+            add_shading = true;
+            // //change checkbox container color
+            document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
+        }
+        else {
+            add_lighting = false;
+            add_shading = false;
+            //change checkbox container color
+            document.getElementById("id_edge_custom_checkbox1").style.backgroundColor = "";
+        }
+        
+        
+    }
 }
 
 //UI option
@@ -79,14 +92,29 @@ function ftn_lightingshading_mode_edge_custom () {
         document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "";
     }
 
-    //if transparent background = on & lighting/shading = on, disable lighting/shading
-    if (document.getElementById("id_lightingshading_mode_edge_custom").checked && document.getElementById("id_transparent_mode_edge_custom").checked)
+
+    //if transparent background = on, disable lighting/shading. else, leave lighting/shading = on or off depending on lighting/shading mode toggle
+    if (document.getElementById("id_transparent_mode_edge_custom").checked)
     {
         add_lighting = false;
         add_shading = false;
-
-        //change checkbox container color
-        document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
+    }
+    else {
+        if (document.getElementById("id_lightingshading_mode_edge_custom").checked)
+        {
+            add_lighting = true;
+            add_shading = true;
+            // //change checkbox container color
+            document.getElementById("id_edge_custom_checkbox2").style.backgroundColor = "rgba(0,200,0,0.5)";
+        }
+        else {
+            add_lighting = false;
+            add_shading = false;
+            //change checkbox container color
+            document.getElementById("id_edge_custom_checkbox1").style.backgroundColor = "";
+        }
+        
+        
     }
 
 }

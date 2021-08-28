@@ -73,15 +73,15 @@
 <body>
    
     <div class="navbar1" id="navbar1_id">
-        <li class="navbar1_button1">
-            <a href="index.html" onclick="return confirm('Are you sure? Data can be lost.');">
-                <img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
+        <li class="navbar1_button1" >
+            <a id="id_homebutton1_a" href="index.html" onclick="return confirm('Are you sure? Data can be lost.');">
+                <img id="id_homebutton1_img" src="images/icons/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
             </a>
         </li>
 
 
         <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
-            <img src="images/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
+            <img src="images/icons/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
         </button>
 
         <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
@@ -109,23 +109,23 @@
     <!--undo,redo,reset-->
     <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
         <div>
-            <button class="button_style1" id="id_undobutton" onclick="undo();" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px" ></button>
+            <button class="button_style1 btn_appearance1" id="id_undobutton" onclick="undo();" ><img src="images/icons/undoicon2.png" style="width:24px; padding-top: 5px" ></button>
         </div>
         <div>
-            <button class="button_style1" onclick="redo()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
+            <button class="button_style1 btn_appearance1" onclick="redo()" ><img src="images/icons/redoicon2.png" style="width:24px; padding-top: 5px"></button>
         </div>
         <div>
-            <button class="button_style1" onclick="reset()">
+            <button class="button_style1 btn_appearance1" onclick="reset()">
                 <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Filter)</div>
             </button>
         </div>
         <div>
-            <button class="button_style1" onclick="resetposition()">
+            <button class="button_style1 btn_appearance1" onclick="resetposition()">
                 <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Zoom)</div>
             </button>
         </div>
         <div>
-            <button class="button_style1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
+            <button class="button_style1 btn_appearance1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
         </div>
     </div>
 
@@ -134,25 +134,25 @@
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:110px;">
 
         <div class="container_individualbutton1">
-            <button class="button_style3 center3" onclick="invert()" >Invert</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="invert()" >Invert</button>
         </div>
         <div class="container_individualbutton1">
-            <button class="button_style3 center3" onclick="grayscale()" >Grayscale</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="grayscale()" >Grayscale</button>
         </div>
         <div class="container_individualbutton1">
             <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
-            <button class="button_style3 center3" onclick="oilpaint(3,20,true)" >Oil Paint</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="oilpaint(3,20,true)" >Oil Paint</button>
         </div>
         <div class="container_individualbutton1">
             <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
-            <button class="button_style3 center3" onclick="edge_normal()" >Line (Normal)</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="edge_normal()" >Line (Normal)</button>
         </div>
         <div class="container_individualbutton1">
             <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
-            <button class="button_style3 center3" id="id_edge_custom_button_enter" >Line (Custom)</button>
+            <button class="button_style3 center3 btn_appearance1" id="id_edge_custom_button_enter" >Line (Custom)</button>
         </div>
         <div class="container_individualbutton1">
-            <button class="button_style3 center3" onclick="ellipse_test1()" >Ellipse (Test)</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="ellipse_test1()" >Ellipse (Test)</button>
         </div>
         
     </div>
@@ -162,7 +162,7 @@
     <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px;">  
 
         <div class="margin1">
-            <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="flatten()" >Flatten</button>
         </div>
 
         <div class="center4" style="font-size: 18px">
@@ -183,7 +183,7 @@
             Guass. Blur
             <input class="inputtextstyle1" type="text" id="text_Gblur" value="0" onchange="Onchange_Text_Gblur()">
             </br>
-            <input type="range" class="slider" id="slider_Gblur" min="0" max="10" value="0" onchange="Onchange_Slider_Gblur()" oninput="Oninput_Slider_Gblur_LiveUpdate()">
+            <input type="range" class="slider" id="slider_Gblur" min="0" max="5" value="0" onchange="Onchange_Slider_Gblur()" oninput="Oninput_Slider_Gblur_LiveUpdate()">
         </div>
 
         <div class="center4" style="font-size: 18px">
@@ -215,7 +215,7 @@
         </div>
 
         <div class="margin1">
-            <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="flatten()" >Flatten</button>
         </div>
         
     </div>
@@ -225,13 +225,13 @@
     <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px;">
 
         <div class="container_individualbutton1">
-            <button class="button_style1 margin1" id="id1_edge_custom_button_exit" >
+            <button class="button_style1 margin1 btn_appearance1" id="id1_edge_custom_button_exit" >
                 <img src="images/icons/icons8-left-100.png" style="width:36px; padding-top: 5px">
             </button>
         </div>
 
         <div class="container_individualbutton1">
-            <button class="button_style1" onclick="edge_custom()" >Apply</button>
+            <button class="button_style1 btn_appearance1" onclick="edge_custom()" >Apply</button>
         </div>
 
         <div class="margin1">
@@ -282,12 +282,12 @@
 
     
         <div class="container_individualbutton1">
-            <button class="button_style1" onclick="edge_custom()" >Apply</button>
+            <button class="button_style1 btn_appearance1" onclick="edge_custom()" >Apply</button>
         </div>
 
 
         <div class="container_individualbutton1">
-            <button class="button_style1 margin1" id="id2_edge_custom_button_exit" >
+            <button class="button_style1 margin1 btn_appearance1" id="id2_edge_custom_button_exit" >
                 <img src="images/icons/icons8-left-100.png" style="width:36px; padding-top: 5px">
             </button>
         </div>
@@ -298,12 +298,12 @@
     <!--download,upload-->
     <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px;">
         <div class="center7">
-            <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="downloadmodetoggle()" >Download</button>
         </div>
 
-        <div class="center7">
+        <div class="center7 ">
             <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
-            <label for="diamondx1" class="button_style3_label center3">Upload</label>
+            <label for="diamondx1" class="button_style3_label center3 btn_appearance1">Upload</label>
         </div>
 
     </div> 
@@ -315,16 +315,16 @@
    
 
     <!--category buttons-->
-    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="height: 60px;">
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="height: 60px; border-bottom: none">
 
         <div class="center7">
-            <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
+            <button class="button_style2 button_style2_active btn_appearance2" id="categorybutton1">Filters</button>
         </div>
         <div class="center7">
-            <button class="button_style2" id="categorybutton2">Inc. Filters</button>
+            <button class="button_style2 btn_appearance2" id="categorybutton2 ">Inc. Filters</button>
         </div>
         <div class="center7">
-            <button class="button_style2" id="categorybutton3">Other</button>
+            <button class="button_style2 btn_appearance2" id="categorybutton3">Other</button>
         </div>
 
     </div>

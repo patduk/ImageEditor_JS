@@ -51,8 +51,8 @@ function Onchange_Text_Gblur()
 
     ////2
     let input_value = parseInt(document.getElementById('text_Gblur').value);
-    if (input_value > 10) {
-        input_value = 10;
+    if (input_value > 5) {
+        input_value = 5;
         document.getElementById('text_Gblur').value = input_value;
     }
     if (input_value < 0) {

@@ -43,12 +43,9 @@ let container_canvas_h_fullscreen_global;
 let container_canvas_h_normalscreen_global;
 
 
-// function stopzoom(even) {
-//     // console.log('stopzoom(e)1');
-//     // even.preventDefault();
-//     // console.log('stopzoom(e)2');
-//     return false;
-// };
+
+
+
 
 
 //ok
@@ -235,10 +232,8 @@ function resizeCanvas2() {
     //if full screen
     else {
         container_canvas_h_fullscreen_global = window.innerHeight - 
-        (document.getElementById("container_id1").offsetHeight) - 4;
+        (document.getElementById("container_id1").offsetHeight) - 1;
     
-
-
 
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
