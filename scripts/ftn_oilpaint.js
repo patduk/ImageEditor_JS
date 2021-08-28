@@ -1,6 +1,10 @@
 
 //took from stackoverflow https://stackoverflow.com/questions/24222556/apply-a-oil-paint-sketch-effect-to-a-photo-using-javascript 
+
+//edit the image
 function oilpaint(radius, intensity, is_standalone_filter) {
+    exit_downloadmodetoggle_ifneeded();
+
 
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 

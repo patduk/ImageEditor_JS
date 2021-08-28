@@ -1,6 +1,4 @@
 
-
-
 let customBGcolor_R;
 let customBGcolor_G;
 let customBGcolor_B;
@@ -13,27 +11,26 @@ let add_shading = false;
 let use_linecolorcorrection = false;
 
 
-
+//UI option
 function colorsfor_edge_custom_BG() {
     const color = document.getElementById("html5colorpicker_BG").value;
     customBGcolor_R = parseInt(color.substr(1,2), 16)
     customBGcolor_G = parseInt(color.substr(3,2), 16)
     customBGcolor_B = parseInt(color.substr(5,2), 16)
-    console.log(`BG -- red: ${customBGcolor_R}, green: ${customBGcolor_G}, blue: ${customBGcolor_B}`);
+    // console.log(`BG -- red: ${customBGcolor_R}, green: ${customBGcolor_G}, blue: ${customBGcolor_B}`);
 
 }
 
+//UI option
 function colorsfor_edge_custom_line() {
     const color = document.getElementById("html5colorpicker_line").value;
     customlineshadowcolor_R_m= parseInt(color.substr(1,2), 16)
     customlineshadowcolor_G_m = parseInt(color.substr(3,2), 16)
     customlineshadowcolor_B_m = parseInt(color.substr(5,2), 16)
-    console.log(`line -- red: ${customlineshadowcolor_R_m}, green: ${customlineshadowcolor_G_m}, blue: ${customlineshadowcolor_B_m}`);
+    // console.log(`line -- red: ${customlineshadowcolor_R_m}, green: ${customlineshadowcolor_G_m}, blue: ${customlineshadowcolor_B_m}`);
 }
 
-
-
-
+//UI option
 function ftn_transparent_mode_edge_custom() {
 
     //if now checked
@@ -55,6 +52,7 @@ function ftn_transparent_mode_edge_custom() {
     
 }
 
+//UI option
 function ftn_lightingshading_mode_edge_custom () {
     //if now checked
     if (document.getElementById("id_lightingshading_mode_edge_custom").checked) {
@@ -74,7 +72,7 @@ function ftn_lightingshading_mode_edge_custom () {
 
 }
 
-
+//UI option
 function ftn_linecolorcorrection_edge_custom() {
     //if now checked
     if (document.getElementById("id_linecolorcorrection_edge_custom").checked) {
@@ -91,18 +89,17 @@ function ftn_linecolorcorrection_edge_custom() {
         document.getElementById("id_edge_custom_checkbox3").style.backgroundColor = "";
         
     }
-
-
 }
 
+
+//edit the image
 function edge_custom() {
+    exit_downloadmodetoggle_ifneeded();
+
     //maintain color picker (custom color values appear different after this function finishes, so need to maintain custom color values)
     colorsfor_edge_custom_BG() ;
     colorsfor_edge_custom_line() ;
 
-
-    // showprocessing = true;
-    // ftn_showprocessing();
 
 
     //prep canvas and ctx (idk why its needed)
@@ -110,13 +107,10 @@ function edge_custom() {
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
+
+
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     
-
-    let counter = 0;
-    let counter1 = 0;
-    let counter2 = 0;
-
 
     ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
@@ -185,7 +179,7 @@ function edge_custom() {
     // let customlineshadowcolor_G_m = 14; //0-limit
     // let customlineshadowcolor_B_m = 0; //0-limit
 
-    let hard_spot_reducer = 255; //intensity of white/black lines // 84-255
+    let hard_spot_reducer = 106; //intensity of white/black lines // 84-255
     let use_blackline = false;
     let cutoff = 25; //10-20% of 255 recommended 20-50 //20 for oilpainted //25 for normal?
     // let use_linecolorcorrection =false; //makes line colors contrast well with the background color and removes black/white spots, sacrifices some desired line colors 
@@ -197,8 +191,10 @@ function edge_custom() {
 
     //auto mode for use_blackline (for better user experinece):
     let trio7 = (customBGcolor_R + customBGcolor_G + customBGcolor_B)/3;
-        if (trio7 >= 106 ) {use_blackline = true;} //.41 of 255 (106)
-    
+    // if (document.getElementById("id_linecolorcorrection_edge_custom").checked) {
+    if (trio7 >= 106 ) {use_blackline = true;} //.41 of 255 (106)
+    //}
+    else { use_blackline = false;};
     
     //if use_blackline === true, "pre-invert" custom BG and line colors:
     if (use_blackline === true) {  
@@ -458,8 +454,8 @@ function edge_custom() {
                 
                 if (add_shading === true) {
                     // //Restore black lines = not perfect, need to get rid of leftover light spots while keeping visible edges
-                    let highestlimit2 = 64;
-                    let darkshadeintensity = 0.33; //0-2
+                    let highestlimit2 = 128;
+                    let darkshadeintensity = .66; //0-2
                     
                     if (bw_avg_1 <= highestlimit2 && bw_avg_1 >= 0)// && bw_avg_1 > bw_avg_2 && ) 
                     {

@@ -1,12 +1,7 @@
-
+//edit the image
 function Gblur(input_value) {
-    if (true) //displayimage
-    {           
-        // for (let i = 0; i < imageData.data.length; i+=4) {
-        //     imageData.data[i+0] += input_value;
-        // }
-        blurRGBA(imageData.data, image.width, image.height, input_value);
-    }
+    
+    blurRGBA(imageData.data, image.width, image.height, input_value);
     
 }
 

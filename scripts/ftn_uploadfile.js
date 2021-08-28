@@ -10,12 +10,20 @@ window.addEventListener('load', function() {
     image.src = 'images/wlop2.jpg';
 
 
-    let i = g.import('images/wlop2.jpg').posterize(i, 4);
+
+    // var getPixels = require('get-pixels');
+    // var savePixels = require('save-pixels');
+    // var fs = require('fs');
+    
+    // var posterize = require('posterize');
+    
+    // getPixels('images/wlop2.jpg', function(err, pixels) {
+    //   var poster = posterize(pixels, 3);
+    //   savePixels(poster, 'jpg').pipe(fs.createWriteStream('images/wlop2x.jpg'));
+    // });
 
     
-
-    image.src = g;
-    
+        
     console.log(image.src.replace(/^.*[\\\/]/, ''));
     
     ResetAllAttributes();

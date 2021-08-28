@@ -1,29 +1,29 @@
+//edit the image
 function Contrast(input_value) {
-    if (true) //displayimage
-    {           
-        input_value += 1;
-        for (let y = 0; y < image.height; y++) {
-            for (let x = 0; x < image.width; x++) {
-                let formula = (y*image.width*4)+x*4
-                ;
-                let brightness_adjustment = (1 - input_value) * 128;
-                let red = input_value * imageData.data[formula+0] + brightness_adjustment;
-                let green = input_value * imageData.data[formula+1] + brightness_adjustment;
-                let blue = input_value * imageData.data[formula+2] + brightness_adjustment;
-                
-                if (red > 255) { red = 255; }
-                else if (red < 0) { red = 0; }
-                if (green > 255) { green = 255; }
-                else if (green < 0) { green = 0; }
-                if (blue > 255) { blue = 255; }
-                else if (blue < 0) { blue = 0; }
 
-                imageData.data[formula+0] = red;
-                imageData.data[formula+1] = green;
-                imageData.data[formula+2] = blue;   
-            }
+    input_value += 1;
+    for (let y = 0; y < image.height; y++) {
+        for (let x = 0; x < image.width; x++) {
+            let formula = (y*image.width*4)+x*4
+            ;
+            let brightness_adjustment = (1 - input_value) * 128;
+            let red = input_value * imageData.data[formula+0] + brightness_adjustment;
+            let green = input_value * imageData.data[formula+1] + brightness_adjustment;
+            let blue = input_value * imageData.data[formula+2] + brightness_adjustment;
+            
+            if (red > 255) { red = 255; }
+            else if (red < 0) { red = 0; }
+            if (green > 255) { green = 255; }
+            else if (green < 0) { green = 0; }
+            if (blue > 255) { blue = 255; }
+            else if (blue < 0) { blue = 0; }
+
+            imageData.data[formula+0] = red;
+            imageData.data[formula+1] = green;
+            imageData.data[formula+2] = blue;   
         }
     }
+    
 }
 
 //onchange slider

@@ -1,4 +1,6 @@
+//edit the image
 function Blue(input_value) {
+
     for (let i = 0; i < imageData.data.length; i+=4) {
         imageData.data[i+2] += input_value;
     }

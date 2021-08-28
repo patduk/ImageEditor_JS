@@ -12,16 +12,6 @@ let imageData;
 let imageData_original2;
 let imageData_original1;
 
-//1d array - working data
-// let imageData_data_1d = [];
-// let imageData_original2_data_1d = [];
-// let imageData_original1_data_1d = []; 
-
-//2d array
-// let imageData_data_2d = [];
-// let imageData_original2_data_2d = [];
-// let imageData_original1_data_2d = [];
-
 let DictV = {};
 DictV = {"IncV":0, "ContrastV":0, "BrightnessV":0, "OpacityV":0, "RedV":0, "GreenV":0, "BlueV":0, "GblurV":0};
 
@@ -189,25 +179,20 @@ window.addEventListener("orientationchange", resizeCanvas2);
 window.addEventListener("orientationchange", resizeCanvas);
 
 
-function exit_downloadmodetoggle_ifneeded() {
-    //IF ON DOWNLOAD mode, go to canvas mode
-    if (document.getElementById("container_canvas_id").style.display === "none") {
 
+function exit_downloadmodetoggle_ifneeded() {
         //show the image element
         document.getElementById("container_canvas_id").style.display = "flex";
         //hide the image element
         document.getElementById("container_imgsaveonly_id").style.display = "none";
-        
-        //to ensure that canvas content adjusts to any new resized container canvas
-        //resizeCanvas(); //not needed?
 
-    }
+        resizeCanvas();
+    
 }
 
 
+//culprit
 function resizeCanvas2() {
-
-
     
     //resize canvas height to fit 100% in window along with navbars' heights
     let object1 = document.getElementById("container_canvas_id");
@@ -216,36 +201,41 @@ function resizeCanvas2() {
 
     //if normal screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px") {
-        //container_canvas_h_fullscreen_global = window.innerHeight - 
-        //(document.getElementById("container_id1").offsetHeight);
-    
-        container_canvas_h_normalscreen_global = window.innerHeight - 
-        (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 4;
+        //make container_id2 visible to get the height, invisible container_id2 yields 0 height..
+        //if container_id2 is not used:
+        if (document.getElementById("container_id2").style.display === "none") {
+            document.getElementById("container_id2").style.display = "inline-flex";
+
+            // console.log(document.getElementById("container_id2").style.height, document.getElementById("container_id2").offsetHeight, 'pancake');
+
+            container_canvas_h_normalscreen_global = window.innerHeight - 
+            (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;
+            
+            document.getElementById("container_id2").style.display = "none";
+        }
+        //if container_id2 is used:
+        else {
+            container_canvas_h_normalscreen_global = window.innerHeight - 
+            (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;
+        }
         
-        
+
+
+
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
-
-        // let img_id1_h = document.getElementById("img_id1").height;
-        // let img_id1_w = document.getElementById("img_id1").width;
-
-        // img_id2.width = img_id1_w;
-        // img_id2.height = img_id1_h;
     }
 
     //if full screen
     else {
         container_canvas_h_fullscreen_global = window.innerHeight - 
         (document.getElementById("container_id1").offsetHeight) - 4;
-
-        // container_canvas_h_normalscreen_global = window.innerHeight - 
-        // (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight);
     
+
+
 
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
-
-
     }
 
 
@@ -266,10 +256,12 @@ function resizeCanvas() {
     let container_canvas_w = document.getElementById("container_canvas_id").clientWidth;
     let container_canvas_h = document.getElementById("container_canvas_id").clientHeight; 
 
+    
     let img_id1 = document.getElementById("img_id1");
     let img_id2 = document.getElementById("img_id2");
     let container_img_id1 = document.getElementById("container_img_id1");
     let container_img_id2 = document.getElementById("container_img_id2");
+    
     
     // reset 
     canvas.style.height = "";
@@ -322,7 +314,7 @@ function resizeCanvas() {
             canvas.style.width = "100%";
             img_id1.width = container_canvas_w;
             img_id1.height = (container_canvas_w * image.height) / image.width;
-            console.log("portrait, 1.4");
+            console.log("portrait, 2");
         }
 
         //if image is bigger than container in height only
@@ -330,13 +322,13 @@ function resizeCanvas() {
             canvas.style.height = "100%";
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
-            console.log("portrait, 1.5");
+            console.log("portrait, 3");
         }
 
         else {
             img_id1.width = image.width;
             img_id1.height = image.height;
-            console.log("portrait, 1.6");
+            console.log("portrait, 4");
         }
 
     }
@@ -355,14 +347,16 @@ function resizeCanvas() {
                     canvas.style.height = "100%";  //update canvas height
                     img_id1.width = (container_canvas_h * image.width) / image.height;
                     img_id1.height = container_canvas_h; //update image height
+                    console.log("landscape, 1.1.1");
                 }
                 //if container is more portrait than image
                 if (container_canvas_w/container_canvas_h < canvas.width/canvas.height) {
                     canvas.style.width = "100%";
                     img_id1.width = container_canvas_w;
                     img_id1.height = (container_canvas_w * image.height) / image.width;
+                    console.log("landscape, 1.1.2");
                 }
-                console.log("landscape, 1.1");
+                
             }
 
             //if container is portrait
@@ -388,7 +382,7 @@ function resizeCanvas() {
             canvas.style.width = "100%";
             img_id1.width = container_canvas_w;
             img_id1.height = (container_canvas_w * image.height) / image.width;
-            console.log("landscape, 2.1");
+            console.log("landscape, 2");
         }
 
         //if image is bigger than container in height only
@@ -396,13 +390,13 @@ function resizeCanvas() {
             canvas.style.height = "100%";
             img_id1.width = (container_canvas_h * image.width) / image.height;
             img_id1.height = container_canvas_h;
-            console.log("landscape, 2.2");
+            console.log("landscape, 3");
         }
 
         else {
             img_id1.width = image.width;
             img_id1.height = image.height;
-            console.log("landscape, 2.3");
+            console.log("landscape, 4");
         }
 
        
@@ -448,9 +442,11 @@ function resizeCanvas() {
         else {
             img_id1.width = image.width;
             img_id1.height = image.height;
+            console.log("image: square, 4");
         }
     }    
 
+    
     // img_id2.width = img_id1.width;
     // img_id2.height = img_id1.height;
 
@@ -474,53 +470,54 @@ function resizeCanvas() {
     if (container_id1.clientWidth < container_id1.scrollWidth) {
         container_id1.style.justifyContent = "left"; 
     }
-    else { container_id1.style.justifyContent = "center"; }
+    else { 
+        container_id1.style.justifyContent = "center"; 
+    }
 
     if (container_id2.clientWidth < container_id2.scrollWidth) {
         container_id2.style.justifyContent = "left";
     }
-    else { container_id2.style.justifyContent = "center"; }
+    else { 
+        container_id2.style.justifyContent = "center"; 
+    }
 
     if (container_id3.clientWidth < container_id3.scrollWidth) {
         container_id3.style.justifyContent = "left";
     }
-    else { container_id3.style.justifyContent = "center"; }
+    else { 
+        container_id3.style.justifyContent = "center"; 
+    }
 
     if (container_id4.clientWidth < container_id4.scrollWidth) {
         container_id4.style.justifyContent = "left";
     }
-    else { container_id4.style.justifyContent = "center"; }
+    else { 
+        container_id4.style.justifyContent = "center"; 
+    }
 
     if (container_id5.clientWidth < container_id5.scrollWidth) {
         container_id5.style.justifyContent = "left";
     }
-    else { container_id5.style.justifyContent = "center"; }
+    else { 
+        container_id5.style.justifyContent = "center"; 
+    }
     
     if (container_id7.clientWidth < container_id7.scrollWidth) {
         container_id7.style.justifyContent = "left";
     }
-    else { container_id7.style.justifyContent = "center"; }
+    else { 
+        container_id7.style.justifyContent = "center"; 
+    }
 
 
 
 }
 
 
+function undo() {
+    exit_downloadmodetoggle_ifneeded();
 
 
-
-
-
-
-
-
-
-
-////////////
-///////////
-
-
-function undo2() {
     if (Image_undo.length > 0) {
 
         let canvas = document.getElementById('cv2'); 
@@ -575,7 +572,10 @@ function undo2() {
 
 }
 
-function redo2() {
+function redo() {
+    exit_downloadmodetoggle_ifneeded();
+
+
     if (Image_redo.length > 0) {
         
         let canvas = document.getElementById('cv2'); 
@@ -634,6 +634,9 @@ function redo2() {
 
 
 function reset() {
+    exit_downloadmodetoggle_ifneeded();
+
+
     ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
@@ -673,26 +676,6 @@ function reset() {
 }
 
 
-//not perfect:
-// function download() {
-//     let canvas = document.getElementById("cv2");
-//     let ctx = canvas.getContext('2d');
-
-//     let img    = canvas.toDataURL("image/png");
-//     let fullQuality = canvas.toDataURL('image/jpeg', 1.0);
-//     // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"
-//     let mediumQuality = canvas.toDataURL('image/jpeg', 0.5);
-//     let lowQuality = canvas.toDataURL('image/jpeg', 0.1);
-
-//     let element = document.createElement('a');
-//     let filename = 'untitled.png';
-//     element.setAttribute('href', img);
-//     element.setAttribute('download', filename);
-//     element.click();  
-                
-// }
-//////////
-//////////
 
 
 
@@ -703,7 +686,6 @@ function SaveAttributesToUndoLists() //1-1.4
 {
 
     //1-1.2 store old imageData/attributes to redolist
-    
 
     ////way1
     // let imageData_temporary = ctx.getImageData(0, 0, image.width, image.height);
@@ -717,7 +699,7 @@ function SaveAttributesToUndoLists() //1-1.4
     //     }
     // }
     // Image_undo.push(imageData_temporary);
-    ////way2
+    ////OR ////way2
     Image_undo.push(imageData_original2);
 
     ////1.2
@@ -796,6 +778,9 @@ function ResetAllAttributes() //ok
 
 function flatten() //need fix!
 {
+    exit_downloadmodetoggle_ifneeded();
+
+
     //prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');
@@ -890,11 +875,14 @@ function Flatten_nosavingtoundo() //looks good
 
 function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 {
-    
+    exit_downloadmodetoggle_ifneeded();
+
     ////3 edit image
     ////3 edit image
-    
-    ////make imgSharp = imgSharp_original2 (base image) prior to adding incremental filters
+    ////3 edit image
+    ////3 edit image
+
+    ////WAY1.0 ////make imgSharp = imgSharp_original2 (base image) prior to adding incremental filters
     ////WAY1 - works
     // for (let y = 0; y < image.height; y++)
     // {
@@ -907,54 +895,49 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
 
     //     }
     // }
-    ////OR
-    ////WAY1.1 (faster)
+    ////OR ////WAY1.1 (faster)
     for (var i = 0; i < imageData.data.length; i += 4) {
             imageData.data[i+0] = imageData_original2.data[i+0];
             imageData.data[i+1] = imageData_original2.data[i+1];
             imageData.data[i+2] = imageData_original2.data[i+2];  
-            imageData.data[i+3] = imageData_original2.data[i+3];  //remove this and use opacity 20 to 255 to "posterize the image"
+            imageData.data[i+3] = imageData_original2.data[i+3];  //remove this and use opacity 20 to 255 to "posterize the image" (bs)
     }
-    ////WAY2 - not working
+    ////OR  ////WAY2 - not working
     //imageData = imageData_original2;
+
 
     ////adding incremental filters - try to make the codes shorter
     for (key in DictV)
     {
-        if (key == "ContrastV")
-        {
-            Contrast(DictV[key]); //0.0-3.0
+        if (key == "ContrastV") {
+            //0.0-1.0
+            Contrast(DictV[key]); 
         }
-        if (key == "BrightnessV")
-        {
+        if (key == "BrightnessV") {
             Brightness(DictV[key]);  
         }
-        if (key == "OpacityV")
-        {
+        if (key == "OpacityV") {
             Opacity(DictV[key]);
         }
-        if (key == "RedV")
-        {
+        if (key == "RedV") {
             Red(DictV[key]);
         }
-        if (key == "GreenV")
-        {
+        if (key == "GreenV") {
             Green(DictV[key]);
         }
-        if (key == "BlueV")
-        {
+        if (key == "BlueV") {
             Blue(DictV[key]);
         }
-        if (key == "GblurV")
-        {
+        if (key == "GblurV") {
+            //0-10
             Gblur(DictV[key]);
         }
     }
+    
     //3 edit image
     //3 edit image   
-
-
-    // exit_downloadmodetoggle_ifneeded();
+    //3 edit image
+    //3 edit image   
 }
 
 

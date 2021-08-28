@@ -1,3 +1,26 @@
+// let elem = document.documentElement;
+
+// /* View in fullscreen */
+// function openFullscreen() {
+//   if (elem.requestFullscreen) {
+//     elem.requestFullscreen();
+//   } else if (elem.webkitRequestFullscreen) { /* Safari */
+//     elem.webkitRequestFullscreen();
+//   } else if (elem.msRequestFullscreen) { /* IE11 */
+//     elem.msRequestFullscreen();
+//   }
+// }
+
+// /* Close fullscreen */
+// function closeFullscreen() {
+//   if (document.exitFullscreen) {
+//     document.exitFullscreen();
+//   } else if (document.webkitExitFullscreen) { /* Safari */
+//     document.webkitExitFullscreen();
+//   } else if (document.msExitFullscreen) { /* IE11 */
+//     document.msExitFullscreen();
+//   }
+// }
 
 
 function imagefullscreen() {
@@ -5,11 +28,11 @@ function imagefullscreen() {
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
 
+    // if on computer, try go to real full screen mode
     // if (document.fullscreenElement) {
     //     closeFullscreen(); }
     // else {
     //     openFullscreen(); }
-    
 
     //if normal screen, go to full screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px")
@@ -18,16 +41,15 @@ function imagefullscreen() {
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         
         document.getElementById("navbar1_id").style.display = "none";
+        document.getElementById("container_id1").style.display = "inline-flex";
         document.getElementById("container_id2").style.display = "none";
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
         document.getElementById("container_id7").style.display = "none";
-        document.getElementById("container_categorybuttons_id").style.display = "none";
-
-        console.log("a1");
- 
+        document.getElementById("container_categorybuttons_id").style.display = "none"; 
     }
+    
     //if full screen, go to normal screen
     else {
 
@@ -35,32 +57,29 @@ function imagefullscreen() {
         object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
 
         document.getElementById("navbar1_id").style.display = "flex";
+        document.getElementById("container_id1").style.display = "inline-flex";
         document.getElementById("container_id2").style.display = "inline-flex";
         document.getElementById("container_id3").style.display = "none";
         document.getElementById("container_id4").style.display = "none";
         document.getElementById("container_id5").style.display = "none";
         document.getElementById("container_id7").style.display = "none";
         document.getElementById("container_categorybuttons_id").style.display = "inline-flex";
-        
-        console.log("a2");
     }
 
 
 
-    //IF ON DOWNLOAD mode, go to canvas mode
+    ////IF ON DOWNLOAD mode, go to canvas mode
     if (document.getElementById("container_canvas_id").style.display === "none") {
 
         //show the image element
         document.getElementById("container_canvas_id").style.display = "flex";
         //hide the image element
         document.getElementById("container_imgsaveonly_id").style.display = "none";
-        
-
-        //to ensure that canvas content adjusts to any new resized container canvas
-        // resizeCanvas();       
-
+     
     }
 
+
+    //TO-DO -- must save selected category button ig
     //reset cateogry button selected
     let btnContainer = document.getElementById("container_categorybuttons_id");
 
@@ -76,34 +95,10 @@ function imagefullscreen() {
         }
     }
 
-   
-    
+  
+
     resizeCanvas();
     resizeCanvas2();
 }
 
-
-let elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) { /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE11 */
-    document.msExitFullscreen();
-  }
-}
 

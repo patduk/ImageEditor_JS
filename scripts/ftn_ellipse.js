@@ -1,5 +1,8 @@
-//ellipse filter add
+//edit the image
 function ellipse_test1() {
+    exit_downloadmodetoggle_ifneeded();
+    
+
     let canvas = document.getElementById('cv2');
     let ctx = canvas.getContext('2d'); 
     
@@ -18,16 +21,26 @@ function ellipse_test1() {
     ////3.0 edit?
     //ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
     //draw stroke ellipse
-    ctx.strokeStyle = "rgb(127, 0, 0)";
+    ctx.strokeStyle = "rgba(127, 0, 0, 0.5)";
     ctx.beginPath();
     ctx.ellipse(image.width/2, image.height/2, image.width/2, image.height/2, 0, 0, Math.PI*2);
     ctx.stroke();
 
-    //draw filled ellipse
-    ctx.fillStyle = 'green';
+    ctx.strokeStyle = "rgba(0, 127, 0, 0.5)";
     ctx.beginPath();
-    ctx.ellipse(image.width/2, image.height/2, image.width/4, image.height/4, 0, 0, Math.PI*2);
-    ctx.fill(); 
+    ctx.ellipse(image.width/2, image.height/2, image.width/2.05, image.height/2.05, 0, 0, Math.PI*2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(0, 0, 127, 0.5)";
+    ctx.beginPath();
+    ctx.ellipse(image.width/2, image.height/2, image.width/2.1, image.height/2.1, 0, 0, Math.PI*2);
+    ctx.stroke();
+
+    //draw filled ellipse
+    // ctx.fillStyle = 'green';
+    // ctx.beginPath();
+    // ctx.ellipse(image.width/2, image.height/2, image.width/4, image.height/4, 0, 0, Math.PI*2);
+    // ctx.fill(); 
     
     ////4.0 update imageData to hold new ellipse shapes 
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)

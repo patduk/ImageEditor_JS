@@ -1,6 +1,8 @@
 
-// uses image original 1
+//edit the image
 function edge_normal() {
+    exit_downloadmodetoggle_ifneeded();
+
     ///////////////////////////////////////////
 
     //prep canvas and ctx (idk why its needed)
@@ -8,17 +10,14 @@ function edge_normal() {
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
+
+
     imageData = ctx.getImageData(0, 0, image.width, image.height);
-    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-
-
-    let counter = 0;
-    let counter1 = 0;
-    let counter2 = 0;    
+    
 
     ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
-    is_FilterIncremental = true;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
     logprint();
 
@@ -26,6 +25,9 @@ function edge_normal() {
     for (key in DictV) {
         DictV[key] = 0;
     }
+
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+
 
     ////3.0 edit
 

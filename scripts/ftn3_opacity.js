@@ -1,13 +1,11 @@
-function Opacity(input_value)
-{
-    if (true) //displayimage
-    {           
-        for (let i = 0; i < imageData.data.length; i+=4) {
+//edit the image
+function Opacity(input_value) {    
+    for (let i = 0; i < imageData.data.length; i+=4) {
 
-            //must use imageData_original2's alpha values
-            imageData.data[i+3] = imageData_original2.data[i+3] + input_value;
-        }
+        //must use imageData_original2's alpha values
+        imageData.data[i+3] = imageData_original2.data[i+3] + input_value;
     }
+    
 }
 
 //onchange slider

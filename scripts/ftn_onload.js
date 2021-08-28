@@ -82,13 +82,13 @@ window.onload = () => {
 
     //set up canvas container height global variables for normal/full screen modes
     container_canvas_h_fullscreen_global = window.innerHeight - 
-    (document.getElementById("container_id1").offsetHeight) - 4;
+    (document.getElementById("container_id1").offsetHeight) - 3;
 
     container_canvas_h_normalscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 4;
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;
 
 
-    //modify ctaoneinr cdanvas/img height using normalscreen global variable
+    //modify container cdanvas/img height using normalscreen global variable
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
     object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";

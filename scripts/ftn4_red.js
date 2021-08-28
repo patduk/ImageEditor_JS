@@ -1,5 +1,6 @@
-
+//edit the image
 function Red(input_value) {
+
     if (true) //displayimage
     {           
         for (let i = 0; i < imageData.data.length; i+=4) {

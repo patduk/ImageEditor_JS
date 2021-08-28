@@ -1,5 +1,8 @@
-
+//edit the image
 function grayscale() {
+    exit_downloadmodetoggle_ifneeded();
+
+
     ////999 prep canvas and ctx (idk why its needed)
     let canvas = document.getElementById('cv2'); 
     let ctx = canvas.getContext('2d');

@@ -8,9 +8,9 @@
 
     <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
 
-    
-    <script src="https://cdn.rawgit.com/nodebox/g.js/master/dist/g.min.js"></script>
-    
+    <script src="/scripts/posterize/index.js"></script>
+
+
 
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_fullscreen.js"></script>
@@ -101,13 +101,13 @@
     </div>
 
     
-
+    <!--undo,redo,reset-->
     <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
         <div>
-            <button class="button_style1" onclick="undo2()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
+            <button class="button_style1" onclick="undo()" ><img src="images/undoicon2.png" style="width:24px; padding-top: 5px"></button>
         </div>
         <div>
-            <button class="button_style1" onclick="redo2()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
+            <button class="button_style1" onclick="redo()" ><img src="images/redoicon2.png" style="width:24px; padding-top: 5px"></button>
         </div>
         <div>
             <button class="button_style1" onclick="reset()">
@@ -125,7 +125,7 @@
     </div>
 
 
-
+    <!--filters-->
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:110px;">
 
         <div class="container_individualbutton1">
@@ -153,7 +153,7 @@
     </div>
 
 
-
+    <!--incremental filters-->
     <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px;">  
         <button class="button_style3 center3" onclick="flatten()" >Flatten</button>
 
@@ -210,30 +210,34 @@
     </div>
 
 
-
+    <!--edge custom filter-->
     <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px;">
         <div class="container_individualbutton1">
             <button class="button_style3 margin1" id="edge_custom_button_exit_id" >Back</button>
         </div>
 
+        <div class="container_individualbutton1">
+            <button class="button_style3" onclick="edge_custom()" >Apply</button>
+        </div>
+
         <div class="margin1">
             BG color</br>
-            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#242424" style="width:80px; height: 40px;">
+            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#AAEDEE" style="width:80px; height: 40px;">
         </div>
     
         <div class="margin1">
             Line color</br>
-            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#007f7f" style="width:80px; height: 40px;">
+            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#F08990" style="width:80px; height: 40px;">
         </div>
 
         <label class="border1 margin1 noselect" id="id_edge_custom_checkbox1">
-            Transparent background?<br>
+            Remove background?<br>
             <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" class="hide_default_checkbox" id="id_transparent_mode_edge_custom">
             <span class="checkbox_style1"></span>
         </label>
         
         <label class="border1 margin1 noselect" id="id_edge_custom_checkbox2">
-            Lighting and shading?</br>
+            Add lighting and shading?</br>
             <input type="checkbox" onchange="ftn_lightingshading_mode_edge_custom()" class="hide_default_checkbox" id="id_lightingshading_mode_edge_custom">
             <span class="checkbox_style1"></span>
         </label>
@@ -250,14 +254,24 @@
             Dark line color?
             <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked></input>
         </label> -->
-        <div class="container_individualbutton1">
-            <button class="button_style3" onclick="edge_custom()" >Apply</button>
+
+
+        
+        <div class="center4" style="font-size: 18px">
+            White/black spot intensity
+            <input class="inputtextstyle1" type="text" id="text_Whiteblackintensity" value="255" onchange="Onchange_Text_Whiteblackintensity()">
+            </br>
+            <input type="range" class="slider" id="slider_Whiteblackintensity" min="105" max="255" value="255" onchange="Onchange_Slider_Whiteblackintensity()" oninput="Oninput_Slider_Whiteblackintensity_LiveUpdate()">
         </div>
+
+
+
+        
     </div>
 
 
+    <!--download,upload-->
     <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px;">
-
         <div class="center7">
             <button class="button_style3 center3" onclick="downloadmodetoggle()" >Download</button>
         </div>
@@ -267,19 +281,26 @@
             <label for="diamondx1" class="button_style3_label center3">Upload</label>
         </div>
 
-        
     </div> 
 
-
+    <!--random message-->
     <div class="container_leftorcenterautoalign" id="container_id4" style="height:110px;">
         <div>Coming soon perhaps.</div>
     </div> 
    
 
+    <!--category buttons-->
     <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="height: 60px;">
-        <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
-        <button class="button_style2" id="categorybutton2">Inc. Filters</button>
-        <button class="button_style2" id="categorybutton3">Other</button>
+
+        <div class="center7">
+            <button class="button_style2 button_style2_active" id="categorybutton1">Filters</button>
+        </div>
+        <div class="center7">
+            <button class="button_style2" id="categorybutton2">Inc. Filters</button>
+        </div>
+        <div class="center7">
+            <button class="button_style2" id="categorybutton3">Other</button>
+        </div>
 
     </div>
 
