@@ -64,6 +64,7 @@
         }
         );
 
+
     </script>
     
  
@@ -96,15 +97,26 @@
     <div class='container_canvas' id="container_imgsaveonly_id" style="display:none; position:relative ">
         <div style="position: absolute; left: 0px; top: 0px; background-color: lightgreen; font-size: 24px; padding: 4px;">Right-click/hold on image to save</div>
         <img id="img_id2" style="display:flex" src="images/wlop1.jpg"></img>
+
+       
     </div>
 
     <!--container: canvas-->
     <div class='container_canvas' id="container_canvas_id" >
+        
+
+
         <canvas id="cv2" style="display:none"></canvas>
         <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
         <img id="img_id1" style="display:flex" src=""></div>
+
+        
+        <div id="id_log1">Stats</div>
     </div>
 
+
+
+    
     
     <!--undo,redo,reset-->
     <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
@@ -298,6 +310,11 @@
     <!--download,upload-->
     <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px;">
         <div class="center7">
+            <button class="button_style3 center3 btn_appearance1" onclick="toggleonoff_stats()" >Stats</button>
+        </div>
+
+        
+        <div class="center7">
             <button class="button_style3 center3 btn_appearance1" onclick="downloadmodetoggle()" >Download</button>
         </div>
 
@@ -305,6 +322,8 @@
             <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
             <label for="diamondx1" class="button_style3_label center3 btn_appearance1">Upload</label>
         </div>
+
+        
 
     </div> 
 

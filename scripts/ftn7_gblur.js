@@ -18,7 +18,6 @@ function Onchange_Slider_Gblur()
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
     
     ////2
     let input_value = parseInt(document.getElementById('slider_Gblur').value);
@@ -47,7 +46,6 @@ function Onchange_Text_Gblur()
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
 
     ////2
     let input_value = parseInt(document.getElementById('text_Gblur').value);

@@ -114,7 +114,7 @@ function resetposition() {
 }
 
 
-function logprint() { 
+function update_stats() { 
     // let pow1 = document.getElementById('pow1');
     // pow1.innerHTML = 
     // "undo/redo lists:" + "</br>" +
@@ -152,9 +152,63 @@ function logprint() {
 
     // let pow3 = document.getElementById('pow3');
     // pow3.innerHTML = "Baka";
+
+    let id_log1 = document.getElementById("id_log1");
+    id_log1.innerHTML =
+    "Image file name: " + image.src.replace(/^.*[\\\/]/, '') + " </br> " + 
+    "Image dimensions: " + image.width + "w, " + image.height + "h </br> " + 
+    "------------------------</br>" +
+    "- Undo lists -" + "</br>" +
+    "Image: " + Image_undo.length + "</br>" +
+    "isIncremental: " + IncV_undo.length + "</br>" +
+    "Contrast: " + ContrastV_undo.length + "</br>" +
+    "Brightness: " + BrightnessV_undo.length + "</br>" +
+    "Opacity: " + OpacityV_undo.length + "</br>" +
+    "Red: " + RedV_undo.length + "</br>" +
+    "Green: " + GreenV_undo.length + "</br>" +
+    "Blue: " + BlueV_undo.length + "</br>" +
+    "Gblur: " + GblurV_undo.length + "</br>" +
+    "------------------------</br>" + 
+    "- Redo lists -" + "</br>" +
+    "Image: " + Image_redo.length + "</br>" +
+    "isIncremental: " + IncV_redo.length + "</br>" +
+    "Contrast: " + ContrastV_redo.length + "</br>" +
+    "Brightness: " + BrightnessV_redo.length + "</br>" +
+    "Opacity: " + OpacityV_redo.length + "</br>" +
+    "Red: " + RedV_redo.length + "</br>" +
+    "Green: " + GreenV_redo.length + "</br>" +
+    "Blue: " + BlueV_redo.length + "</br>" +
+    "Gblur: " + GblurV_redo.length + "</br>" +
+    "------------------------</br>" + 
+    "- Inc. filter live info - </br>" +
+    DictV["IncV"] + "</br>" +
+    DictV["ContrastV"] + "</br>" +
+    DictV["BrightnessV"] + "</br>" +
+    DictV["OpacityV"] + "</br>" +
+    DictV["RedV"] + "</br>" +
+    DictV["GreenV"] + "</br>" +
+    DictV["BlueV"] + "</br>" + 
+    DictV["GblurV"] + "</br>";
 }
 
 
+
+
+function toggleonoff_stats() {
+    if (document.getElementById("id_log1").style.display === "none")
+    {
+        document.getElementById("id_log1").style.display = "flex";
+    }
+    else {
+        document.getElementById("id_log1").style.display = "none";
+    }
+
+
+    // document.getElementById("container_id4").style.display = 
+
+
+    console.log("abakd");
+}
 
 
 
@@ -238,7 +292,6 @@ function resizeCanvas2() {
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
     }
-
 
     
     
@@ -459,6 +512,9 @@ function resizeCanvas() {
     container_img_id1.style.transform = "translateX(" + (-img_id1.width/2).toString() + "px) translateY(" + (-img_id1.height/2).toString() + "px)";
 
 
+    // document.getElementById("id_log1").left = (-img_id1.width/2).toString() + "px";
+    // document.getElementById("id_log1").top = (-img_id1.height/2).toString() + "px";
+
     
     ///scrollbar detection, modify center/left justification within
     let container_id1 = document.getElementById("container_id1");
@@ -568,7 +624,7 @@ function undo() {
         JS_changesliderpositionandtextvalue_Gblur(DictV["GblurV"]);
 
 
-        logprint();
+        update_stats();
     }
 
 }
@@ -626,7 +682,7 @@ function redo() {
         JS_changesliderpositionandtextvalue_Gblur(DictV["GblurV"]);
 
 
-        logprint();
+        update_stats();
     }
 
 }
@@ -650,7 +706,7 @@ function reset() {
     ClearRedo();                   //0.8
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
-    logprint();
+    update_stats();
     
     ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
     for (key in DictV) { 
@@ -715,7 +771,7 @@ function SaveAttributesToUndoLists() //1-1.4
     GblurV_undo.push(DictV["GblurV"]);
 
     ////1.3 (limit undo lists' count to num_limit) (unique code block)
-    let num_limit = 8;
+    let num_limit = 20;
     if (Image_undo.length > num_limit) { Image_undo.shift(); }
     if (IncV_undo.length > num_limit) { IncV_undo.shift(); }
     if (ContrastV_undo.length > num_limit) { ContrastV_undo.shift(); }
@@ -791,7 +847,7 @@ function flatten() //need fix!
     ClearRedo();                   //0.8
     is_FilterIncremental = true;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
-    logprint();
+    update_stats();
 
     ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
     for (key in DictV) {
@@ -939,6 +995,9 @@ function ApplyBaseImageAndIncrementalFiltersToCurrentImage()
     //3 edit image   
     //3 edit image
     //3 edit image   
+
+
+    update_stats();
 }
 
 

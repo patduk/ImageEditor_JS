@@ -52,6 +52,8 @@ window.onload = () => {
     //a group of buttons with one selection allowed
 
 
+
+    
     //button to enter edge custom
     //button to enter edge custom
     let edge_custom_button_enter =  document.getElementById("id_edge_custom_button_enter");
@@ -156,23 +158,29 @@ window.onload = () => {
     
 
     //// image change on button hover
-    document.getElementById("id_homebutton1_a").addEventListener("mouseover", homebutton1_changeimg_toinvert, false);
+    // document.getElementById("id_homebutton1_a").addEventListener("mouseover", homebutton1_changeimg_toinvert, false);
 
-    function homebutton1_changeimg_toinvert()
-    {
-        if (true)
-            document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100-inverted.png";
+    // function homebutton1_changeimg_toinvert()
+    // {
+    //     if (true)
+    //         document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100-inverted.png";
         
-    }
+    // }
 
-    document.getElementById("id_homebutton1_a").addEventListener("mouseout", homebutton1_changeimg_tooriginal, false);
+    // document.getElementById("id_homebutton1_a").addEventListener("mouseout", homebutton1_changeimg_tooriginal, false);
 
-    function homebutton1_changeimg_tooriginal()
-    {
-        document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100.png";
-        
-    }
+    // function homebutton1_changeimg_tooriginal()
+    // {
+    //     document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100.png";  
+    //}
 
+
+
+    //INITALIZE
+    document.getElementById("id_log1").style.display = "none";
+
+
+    
 }
 
 

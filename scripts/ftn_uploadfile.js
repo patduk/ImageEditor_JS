@@ -24,6 +24,8 @@ window.addEventListener('load', function() {
         
     console.log(image.src.replace(/^.*[\\\/]/, ''));
     
+
+
     ResetAllAttributes();
 
     // canvas.style.height = image.height.ToString + "%";
@@ -55,13 +57,12 @@ window.addEventListener('load', function() {
         imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         imageData_original1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
-        logprint();
-        document.getElementById('img_id1').src = canvas.toDataURL("image/png");
 
+        document.getElementById('img_id1').src = canvas.toDataURL("image/png", 0.1);
 
+        update_stats();
         
     }   
-
     
 
 });
@@ -71,9 +72,6 @@ window.addEventListener('load', function() {
 //upload file
 window.addEventListener('load', function() 
 {
-
-    
-
     // document.querySelector('input[type="file"]').addEventListener('change', function()f
     document.getElementById('diamondx1').addEventListener('change', function() 
     {
@@ -85,6 +83,9 @@ window.addEventListener('load', function()
 
             // set src to blob e
             image.src = URL.createObjectURL(this.files[0]).toString(); 
+
+
+            
             
             //reset
             ResetAllAttributes();
@@ -126,6 +127,8 @@ window.addEventListener('load', function()
                 
                 resetposition();
                 
+
+                update_stats();
             }
 
         }
@@ -142,10 +145,8 @@ window.addEventListener('load', function()
         }
 
         
-        
 
     });
 
 
-    
 });

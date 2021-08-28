@@ -11,6 +11,13 @@
         <link href="../styles/Navbar2.css" rel="stylesheet" type="text/css">
 
         
+        <!-- A website that is zoomable by pinching: -->
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+        <!-- A website that is not zoomable by pinching: -->
+        <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+
+
         <!-- <style>
           * {
             box-sizing: border-box;
@@ -137,12 +144,37 @@
             display: inline-block;
           }
         </style> -->
+
+        <script>
+          function focus_on_id_btn1() {
+              //// WAY 1 - better
+              document.getElementById("id_btn1").focus();
+              //// WAY 2 - ?
+              // if (document.getElementById("n1").style.display != "block")
+              //   document.getElementById("n1").style.display = "block";
+              // else {
+              //   document.getElementById("n1").style.display = "none";
+              // }
+      
+              //detect click outside of a button, unfocus.. FOR SAFARI
+              let specifiedelement1 = document.getElementById('id_btn1');
+              document.addEventListener('click', function(event) 
+              {
+                  if ( !specifiedelement1.contains(event.target)) 
+                  {
+                      // Do something when user clicked outside of wrapper element
+                  }
+              }
+              );
+          }
+        </script>
+        
     </head>
     <body>
 
       <div class="navbar1" id="id_navbar1">
         <li class="navbar1_button1">
-            <a href="../index.html" style="line-height: 48px;">Home
+            <a href="../index.html" style="line-height: 48px;"> <img id="id_homebutton1_img" src="../images/icons/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
             </a>
         </li>
 
@@ -152,7 +184,7 @@
         </li> -->
 
         <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
-            <img src="../images/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
+            <img src="../images/icons/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
         </button>
 
         <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
@@ -162,6 +194,8 @@
         </div>
 
     </div>
+
+
 
 
 
@@ -176,7 +210,9 @@
         <div class="row">
           <div class="column">
             <div class="upload-image ta-c pb-md">
+              
               <input type="file" id="image" class="input--file js_image">
+              </br>
               <label for="image">Choose Image</label>
             </div>
           </div>

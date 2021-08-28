@@ -37,7 +37,6 @@ function Onchange_Slider_Contrast()
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
     
     ////2
     let input_value = parseFloat(document.getElementById('slider_Contrast').value);
@@ -65,7 +64,6 @@ function Onchange_Text_Contrast()
     ClearRedo();                   //0.8
 	is_FilterIncremental = true;   //0.9
 	SaveAttributesToUndoLists();   //1-1.4
-    logprint();
 
     ////2
     let input_value = parseFloat(document.getElementById('text_Contrast').value);

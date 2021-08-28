@@ -163,7 +163,7 @@ function edge_custom() {
     ClearRedo();                   //0.8
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
-    logprint();
+    update_stats();
     
     ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
     for (key in DictV) { 
