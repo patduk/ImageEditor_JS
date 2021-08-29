@@ -37,8 +37,6 @@ window.addEventListener('load', function() {
 
     image.onload = () => {
         URL.revokeObjectURL(image.src);
-
-        
         
         //new canvas dimensions
         canvas.height = image.height;
@@ -46,8 +44,6 @@ window.addEventListener('load', function() {
 
         resizeCanvas();
 
-
-        
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
 

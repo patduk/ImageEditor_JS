@@ -183,7 +183,6 @@ window.onload = () => {
     document.getElementById("id_log1").style.display = "none";
 
     
-
     
     
 }

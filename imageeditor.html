@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 
 <!-- <head> -->
-    <title>Image Edit</title>
+    <title>Image Editor</title>
     <meta charset="utf-8">
 
     <!-- A website that is zoomable by pinching: -->
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-
     <!-- A website that is not zoomable by pinching: -->
     <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
 
-
-    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
-    
-    <!-- <script src="posterize/index.js"></script> -->
-
-
+    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/style1.css"  rel="stylesheet" type="text/css">
+    <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+    <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
+    <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
 
     <script src="scripts/ftns.js"></script>
     <script src="scripts/ftn_fullscreen.js"></script>
     <script src="scripts/ftn_onload.js"></script>
     <script src="scripts/ftn_uploadfile.js"></script>
     <script src="scripts/ftn_ellipse.js"></script>
-    <script src="scripts/ftn_gaussianblur.js"></script>
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
     <script src="scripts/ftn_grayscale.js"></script>
@@ -38,35 +35,32 @@
     <script src="scripts/gblur_regular.js"></script>
     <script src="scripts/gblur_mono16.js"></script>
     
-
-    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
-    <link href="styles/style1.css"  rel="stylesheet" type="text/css">
-    <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
-    <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
-
-    <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
-
-    <script>
-        //onclick function for id_btn1, focus on the id_btn1
-        function focus_on_id_btn1() {
-            document.getElementById("id_btn1").focus();
-        }
-        
-
-        //detect click outside of a button, unfocus.. FOR SAFARI
-        let specifiedelement1 = document.getElementById('id_btn1');
-        document.addEventListener('click', function(event) 
-        {
-            // if (!specifiedelement1.contains(event.target)) 
-            // {
-            //     // Do something when user clicked outside of wrapper element
-            // }
-        }
-        );
-
-
-    </script>
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
     
+    <script>
+        //FOCUS ON id_btn1 for IOS
+        function focus_on_id_btn1() {
+            //// WAY 1 - better
+            document.getElementById("id_btn1").focus();
+            //// WAY 2 - ?
+            // if (document.getElementById("n1").style.display != "block")
+            //   document.getElementById("n1").style.display = "block";
+            // else {
+            //   document.getElementById("n1").style.display = "none";
+            // }
+
+            //detect click outside of a button, unfocus.. FOR SAFARI
+            let specifiedelement1 = document.getElementById('id_btn1');
+            document.addEventListener('click', function(event) 
+            {
+                if ( !specifiedelement1.contains(event.target)) 
+                {
+                    // Do something when user clicked outside of wrapper element
+                }
+            }
+            );
+        }
+    </script>
  
 <!-- </head> -->
 
@@ -86,8 +80,8 @@
         </button>
 
         <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
-            <li><a href="imageeditor.html">Image Edit</a></li>  
-            <li><a href="js_canny_edge_detector_new/cannyedge.html" >Testing</a></li>
+            <li><a href="imageeditor.html">Image Editor</a></li>  
+            <li><a href="js_canny_edge_detector_new/cannyedge.html" >Test</a></li>
             <li><a href="#">Blank</a></li>
         </div>
     </div>
@@ -98,19 +92,14 @@
         <div style="position: absolute; left: 0px; top: 0px; background-color: lightgreen; font-size: 24px; padding: 4px;">Right-click/hold on image to save</div>
         <img id="img_id2" style="display:flex" src="images/wlop1.jpg"></img>
 
-       
     </div>
 
     <!--container: canvas-->
     <div class='container_canvas' id="container_canvas_id" >
-        
-
-
         <canvas id="cv2" style="display:none"></canvas>
         <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
         <img id="img_id1" style="display:flex" src=""></div>
 
-        
         <div id="id_log1">Stats</div>
     </div>
 

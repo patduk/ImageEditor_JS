@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 
 <head>
-  <title>Home</title>
-  <meta charset="utf-8">
+    <title>Home</title>
+    <meta charset="utf-8">
 
-  
+    <!-- A website that is zoomable by pinching: -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <!-- A website that is not zoomable by pinching: -->
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
 
-  <!-- A website that is zoomable by pinching: -->
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-
-  <!-- A website that is not zoomable by pinching: -->
-  <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
-
-
-  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
-  <link href="styles/style1.css"  rel="stylesheet" type="text/css">
-  <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
-  <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
+    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/style1.css"  rel="stylesheet" type="text/css">
+    <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+    <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
     
+    <script>
+        //FOCUS ON id_btn1 for IOS
+        function focus_on_id_btn1() {
+            //// WAY 1 - better
+            document.getElementById("id_btn1").focus();
+            //// WAY 2 - ?
+            // if (document.getElementById("n1").style.display != "block")
+            //   document.getElementById("n1").style.display = "block";
+            // else {
+            //   document.getElementById("n1").style.display = "none";
+            // }
 
-  <script>
-    function focus_on_id_btn1() {
-        //// WAY 1 - better
-        document.getElementById("id_btn1").focus();
-        //// WAY 2 - ?
-        // if (document.getElementById("n1").style.display != "block")
-        //   document.getElementById("n1").style.display = "block";
-        // else {
-        //   document.getElementById("n1").style.display = "none";
-        // }
-
-        //detect click outside of a button, unfocus.. FOR SAFARI
-        let specifiedelement1 = document.getElementById('id_btn1');
-        document.addEventListener('click', function(event) 
-        {
-            if ( !specifiedelement1.contains(event.target)) 
+            //detect click outside of a button, unfocus.. FOR SAFARI
+            let specifiedelement1 = document.getElementById('id_btn1');
+            document.addEventListener('click', function(event) 
             {
-                // Do something when user clicked outside of wrapper element
+                if ( !specifiedelement1.contains(event.target)) 
+                {
+                    // Do something when user clicked outside of wrapper element
+                }
             }
+            );
         }
-        );
-    }
-  </script>
+    </script>
 
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -74,8 +70,6 @@
             <a href="index.html" style="line-height: 48px;">Home
             </a>
         </li> -->
-
-        
         <li class="navbar1_button1">
             <a href="index.html">
                 <img src="images/icons/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
@@ -88,8 +82,8 @@
         
 
         <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
-            <li><a href="imageeditor.html">Image Edit</a></li>  
-            <li><a href="js_canny_edge_detector_new/cannyedge.html">Testing</a></li>
+            <li><a href="imageeditor.html">Image Editor</a></li>  
+            <li><a href="js_canny_edge_detector_new/cannyedge.html">Test</a></li>
             <li><a href="#">Blank</a></li>
         </div>
 
