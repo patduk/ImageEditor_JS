@@ -187,7 +187,8 @@ input:active+.button_style3_label
     left: 0px; 
     background-color: rgba(0,0,0,0.5); 
     color:white; 
-    padding: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
     /* border-radius: 8px; */
 
     overflow-y: auto;

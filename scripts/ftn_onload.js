@@ -74,13 +74,13 @@ window.onload = () => {
 
         resizeCanvas();
     });
-    let edge_custom_button_exit2 =  document.getElementById("id2_edge_custom_button_exit");
-    edge_custom_button_exit2.addEventListener("click", function() {
-        document.getElementById("container_id2").style.display = "inline-flex";
-        document.getElementById("container_id5").style.display = "none";
+    // let edge_custom_button_exit2 =  document.getElementById("id2_edge_custom_button_exit");
+    // edge_custom_button_exit2.addEventListener("click", function() {
+    //     document.getElementById("container_id2").style.display = "inline-flex";
+    //     document.getElementById("container_id5").style.display = "none";
 
-        resizeCanvas();
-    });
+    //     resizeCanvas();
+    // });
 
 
     //add panzoom functionality to img
@@ -104,14 +104,17 @@ window.onload = () => {
     let object2 = document.getElementById("container_imgsaveonly_id");
     object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
     object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px"; //not needed unintentionally?
+    document.getElementById("id_log1").style.height =  (container_canvas_h_normalscreen_global).toString() + "px";
 
 
-    //zoom prevention
-    //zoom prevention
-    //zoom prevention
-    //zoom prevention
 
-    //zoom prevention (example)
+
+
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+    //zoom prevention
+    //(example)
     // document.addEventListener("touchmove", function(e)
     // {e.preventDefault();},  
     // {passive: false}
@@ -179,7 +182,9 @@ window.onload = () => {
     //INITALIZE
     document.getElementById("id_log1").style.display = "none";
 
+    
 
+    
     
 }
 

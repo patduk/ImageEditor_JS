@@ -115,80 +115,63 @@ function resetposition() {
 
 
 function update_stats() { 
-    // let pow1 = document.getElementById('pow1');
-    // pow1.innerHTML = 
-    // "undo/redo lists:" + "</br>" +
-    // "Image_undo " + Image_undo + "</br>" +
-    // IncV_undo + "</br>" +
-    // ContrastV_undo + "</br>" +
-    // BrightnessV_undo + "</br>" +
-    // OpacityV_undo + "</br>" +
-    // RedV_undo + "</br>" +
-    // GreenV_undo + "</br>" +
-    // BlueV_undo + "</br>" + 
-    // "Image_redo " + Image_redo + "</br>" +
-    // IncV_redo + "</br>" +
-    // ContrastV_redo + "</br>" +
-    // BrightnessV_redo + "</br>" +
-    // OpacityV_redo + "</br>" +
-    // RedV_redo + "</br>" +
-    // GreenV_redo + "</br>" +
-    // BlueV_redo + "</br>" +
-    // "DictV: </br>" +
+
+    // let id_log1 = document.getElementById("id_log1");
+    // id_log1.innerHTML =
+    // "Image file name: " + image.src.replace(/^.*[\\\/]/, '') + " </br> " + 
+    // "Image dimensions: " + image.width + "w, " + image.height + "h </br> " + 
+    // "------------------------</br>" +
+    // "- Undo lists -" + "</br>" +
+    // "Image: " + Image_undo.length + "</br>" +
+    // "isIncremental: " + IncV_undo.length + "</br>" +
+    // "Contrast: " + ContrastV_undo.length + "</br>" +
+    // "Brightness: " + BrightnessV_undo.length + "</br>" +
+    // "Opacity: " + OpacityV_undo.length + "</br>" +
+    // "Red: " + RedV_undo.length + "</br>" +
+    // "Green: " + GreenV_undo.length + "</br>" +
+    // "Blue: " + BlueV_undo.length + "</br>" +
+    // "Gblur: " + GblurV_undo.length + "</br>" +
+    // "------------------------</br>" + 
+    // "- Redo lists -" + "</br>" +
+    // "Image: " + Image_redo.length + "</br>" +
+    // "isIncremental: " + IncV_redo.length + "</br>" +
+    // "Contrast: " + ContrastV_redo.length + "</br>" +
+    // "Brightness: " + BrightnessV_redo.length + "</br>" +
+    // "Opacity: " + OpacityV_redo.length + "</br>" +
+    // "Red: " + RedV_redo.length + "</br>" +
+    // "Green: " + GreenV_redo.length + "</br>" +
+    // "Blue: " + BlueV_redo.length + "</br>" +
+    // "Gblur: " + GblurV_redo.length + "</br>" +
+    // "------------------------</br>" + 
+    // "- Inc. filter live info - </br>" +
     // DictV["IncV"] + "</br>" +
     // DictV["ContrastV"] + "</br>" +
     // DictV["BrightnessV"] + "</br>" +
     // DictV["OpacityV"] + "</br>" +
     // DictV["RedV"] + "</br>" +
     // DictV["GreenV"] + "</br>" +
-    // DictV["BlueV"] + "</br>";
+    // DictV["BlueV"] + "</br>" + 
+    // DictV["GblurV"] + "</br>";
 
 
-    // let pow2 = document.getElementById('pow2');
-    // pow2.innerHTML = 
-    // imageData.data.length/4 + "*4 (data.length) </br> " + 
-    // image.width*image.height +  " (w*h) </br> " + image.width + " (width) </br> " + 
-    // image.height + " (height) </br>";
-
-    // let pow3 = document.getElementById('pow3');
-    // pow3.innerHTML = "Baka";
 
     let id_log1 = document.getElementById("id_log1");
     id_log1.innerHTML =
     "Image file name: " + image.src.replace(/^.*[\\\/]/, '') + " </br> " + 
-    "Image dimensions: " + image.width + "w, " + image.height + "h </br> " + 
+    "Image dimensions: " + image.width + "w * " + image.height + "h</br> " + 
     "------------------------</br>" +
-    "- Undo lists -" + "</br>" +
-    "Image: " + Image_undo.length + "</br>" +
-    "isIncremental: " + IncV_undo.length + "</br>" +
-    "Contrast: " + ContrastV_undo.length + "</br>" +
-    "Brightness: " + BrightnessV_undo.length + "</br>" +
-    "Opacity: " + OpacityV_undo.length + "</br>" +
-    "Red: " + RedV_undo.length + "</br>" +
-    "Green: " + GreenV_undo.length + "</br>" +
-    "Blue: " + BlueV_undo.length + "</br>" +
-    "Gblur: " + GblurV_undo.length + "</br>" +
+    "Undo data count: " + Image_undo.length + "</br>" +
+    "Redo data count: " + Image_redo.length + "</br>" +
     "------------------------</br>" + 
-    "- Redo lists -" + "</br>" +
-    "Image: " + Image_redo.length + "</br>" +
-    "isIncremental: " + IncV_redo.length + "</br>" +
-    "Contrast: " + ContrastV_redo.length + "</br>" +
-    "Brightness: " + BrightnessV_redo.length + "</br>" +
-    "Opacity: " + OpacityV_redo.length + "</br>" +
-    "Red: " + RedV_redo.length + "</br>" +
-    "Green: " + GreenV_redo.length + "</br>" +
-    "Blue: " + BlueV_redo.length + "</br>" +
-    "Gblur: " + GblurV_redo.length + "</br>" +
-    "------------------------</br>" + 
-    "- Inc. filter live info - </br>" +
-    DictV["IncV"] + "</br>" +
-    DictV["ContrastV"] + "</br>" +
-    DictV["BrightnessV"] + "</br>" +
-    DictV["OpacityV"] + "</br>" +
-    DictV["RedV"] + "</br>" +
-    DictV["GreenV"] + "</br>" +
-    DictV["BlueV"] + "</br>" + 
-    DictV["GblurV"] + "</br>";
+    "- Incremental filters' current configurations - </br>" +
+    "isIncremental: " + DictV["IncV"] + "</br>" +
+    "Contrast: " + DictV["ContrastV"] + "</br>" +
+    "Brightness: " + DictV["BrightnessV"] + "</br>" +
+    "Opacity: " + DictV["OpacityV"] + "</br>" +
+    "Red: " + DictV["RedV"] + "</br>" +
+    "Green: " + DictV["GreenV"] + "</br>" +
+    "Blue: " + DictV["BlueV"] + "</br>" + 
+    "Gaussian Blur: " + DictV["GblurV"] + "</br>";
 }
 
 
@@ -254,7 +237,7 @@ function resizeCanvas2() {
     //resize canvas height to fit 100% in window along with navbars' heights
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
-   
+    let id_log1 = document.getElementById("id_log1");
 
     //if normal screen
     if (object1.style.height != (container_canvas_h_fullscreen_global).toString() + "px") {
@@ -281,6 +264,7 @@ function resizeCanvas2() {
 
         object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
+        id_log1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
     }
 
     //if full screen
@@ -291,6 +275,7 @@ function resizeCanvas2() {
 
         object1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
         object2.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
+        id_log1.style.height = (container_canvas_h_fullscreen_global).toString() + "px";
     }
 
     

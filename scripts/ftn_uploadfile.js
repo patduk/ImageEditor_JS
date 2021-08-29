@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
     
     // set src to blob e
     image.src = 'images/wlop2.jpg';
-
+    
 
     // var getPixels = require('get-pixels');
     // var savePixels = require('save-pixels');
@@ -46,6 +46,8 @@ window.addEventListener('load', function() {
 
         resizeCanvas();
 
+
+        
         //put an image and its left, top location
         ctx.drawImage(image, 0, 0);
 
@@ -61,10 +63,13 @@ window.addEventListener('load', function() {
         document.getElementById('img_id1').src = canvas.toDataURL("image/png", 0.1);
 
         update_stats();
+
+        
+        
         
     }   
     
-
+    
 });
 
 

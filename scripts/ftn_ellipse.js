@@ -42,6 +42,12 @@ function ellipse_test1() {
     // ctx.ellipse(image.width/2, image.height/2, image.width/4, image.height/4, 0, 0, Math.PI*2);
     // ctx.fill(); 
     
+
+
+    // posterize(imageData.data, 4, false);
+
+
+
     ////4.0 update imageData to hold new ellipse shapes 
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
@@ -53,5 +59,7 @@ function ellipse_test1() {
     ctx.putImageData(imageData, 0, 0);
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
+
+
 }
 
