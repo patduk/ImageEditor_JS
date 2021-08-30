@@ -46,8 +46,6 @@ let container_canvas_h_normalscreen_global;
 
 
 
-
-
 //ok
 function downloadmodetoggle() {
     let img_id1 = document.getElementById("img_id1");

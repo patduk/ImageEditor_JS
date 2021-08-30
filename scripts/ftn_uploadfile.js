@@ -7,24 +7,10 @@ window.addEventListener('load', function() {
     image = new Image();
     
     // set src to blob e
-    image.src = 'images/wlop2.jpg';
+    image.src = 'images/demonslayer_fade.png';
     
 
-    // var getPixels = require('get-pixels');
-    // var savePixels = require('save-pixels');
-    // var fs = require('fs');
     
-    // var posterize = require('posterize');
-    
-    // getPixels('images/wlop2.jpg', function(err, pixels) {
-    //   var poster = posterize(pixels, 3);
-    //   savePixels(poster, 'jpg').pipe(fs.createWriteStream('images/wlop2x.jpg'));
-    // });
-    
-        
-    console.log(image.src.replace(/^.*[\\\/]/, ''));
-    
-
 
     ResetAllAttributes();
 
@@ -50,6 +36,7 @@ window.addEventListener('load', function() {
         //draw a box over the top (useful for 2d spheres?)
         //
 
+        
         // //get imageData
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         imageData_original2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -59,9 +46,6 @@ window.addEventListener('load', function() {
         document.getElementById('img_id1').src = canvas.toDataURL("image/png", 0.1);
 
         update_stats();
-
-        
-        
         
     }   
     
@@ -85,8 +69,6 @@ window.addEventListener('load', function()
             // set src to blob e
             image.src = URL.createObjectURL(this.files[0]).toString(); 
 
-
-            
             
             //reset
             ResetAllAttributes();
@@ -127,7 +109,6 @@ window.addEventListener('load', function()
 
                 
                 resetposition();
-                
 
                 update_stats();
             }
@@ -144,8 +125,6 @@ window.addEventListener('load', function()
             //to ensure that canvas content adjusts to any new resized container canvas
             resizeCanvas(); //?
         }
-
-        
 
     });
 

@@ -96,15 +96,16 @@ window.onload = () => {
     (document.getElementById("container_id1").offsetHeight) - 1;
 
     container_canvas_h_normalscreen_global = window.innerHeight - 
-    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3;// - 110;
+    (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3 - 110;// - 110;
 
 
     //modify container cdanvas/img height using normalscreen global variable
     let object1 = document.getElementById("container_canvas_id");
     let object2 = document.getElementById("container_imgsaveonly_id");
+    let id_log1 = document.getElementById("id_log1");
     object1.style.height = (container_canvas_h_normalscreen_global).toString() + "px";
     object2.style.height = (container_canvas_h_normalscreen_global).toString() + "px"; //not needed unintentionally?
-    document.getElementById("id_log1").style.height =  (container_canvas_h_normalscreen_global).toString() + "px";
+    id_log1.style.height =  (container_canvas_h_normalscreen_global).toString() + "px";
 
 
 
@@ -180,10 +181,10 @@ window.onload = () => {
 
 
     //INITALIZE
-    document.getElementById("id_log1").style.display = "none";
+    id_log1.style.display = "none";
 
-    
-    
+
+
     
 }
 

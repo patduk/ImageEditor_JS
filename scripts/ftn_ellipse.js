@@ -43,9 +43,7 @@ function ellipse_test1() {
     // ctx.fill(); 
     
 
-
-    // posterize(imageData.data, 4, false);
-
+    
 
 
     ////4.0 update imageData to hold new ellipse shapes 

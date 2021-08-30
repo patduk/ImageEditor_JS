@@ -193,11 +193,12 @@ input:active+.button_style3_label
 
     overflow-y: auto;
 }
-#id_log1::-webkit-scrollbar {
+#id_log1::-webkit-scrollbar
+{
     width: 4px;    
   }
 /* Track */
-#id_log1::-webkit-scrollbar-track {
+#id_log1::-webkit-scrollbar-track{
     background: #f1f1f1;
   }
   

@@ -35,8 +35,20 @@
     <script src="scripts/gblur_regular.js"></script>
     <script src="scripts/gblur_mono16.js"></script>
     
-    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+    <!-- <script src="scripts/main2.js"></script> -->
     
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+
+
+    <!-- https://github.com/ibezkrovnyi/image-quantization -->
+    <!-- <script src="<path-to image-q/dist/umd/image-q.js>" type="text/javascript" charset="utf-8"></script> -->
+
+    
+
+    <!-- https://github.com/jhuckaby/canvas-plus#modes -->
+    <!-- <script src="https://raw.githubusercontent.com/jhuckaby/canvas-plus/master/canvas-plus.js"></script> -->
+
+
     <script>
         //FOCUS ON id_btn1 for IOS
         function focus_on_id_btn1() {
@@ -60,7 +72,40 @@
             }
             );
         }
+
+
+        // var canvasplus1 = new CanvasPlus();
+	
+	    // canvasplus1.load( 'wlop1.jpg', function(err) {
+        //     if (err) throw err;
+            
+        //     canvasplus1.resize({
+        //         "width": 640,
+        //         "height": 480,
+        //         "mode": "fit"
+        //     });
+            
+        //     canvasplus1.adjust({
+        //         "brightness": -20,
+        //         "contrast": 20
+        //     });
+            
+        //     canvasplus1.write({"format":"jpeg","quality":90}, function(err, buf) {
+        //         if (err) throw err;
+                
+        //         // 'buf' will be a binary buffer containing final image...
+        //         var blob = new Blob( [ buf ], { type: "image/jpeg" } );
+        //         var object_url = URL.createObjectURL( blob );
+                
+        //         // insert new image into DOM
+        //         var img = new Image();
+        //         img.src = object_url;
+        //         document.body.appendChild( img );
+        //     });
+            
+        // });
     </script>
+    
  
 <!-- </head> -->
 
@@ -97,8 +142,10 @@
     <!--container: canvas-->
     <div class='container_canvas' id="container_canvas_id" >
         <canvas id="cv2" style="display:none"></canvas>
+
         <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
-        <img id="img_id1" style="display:flex" src=""></div>
+            <img id="img_id1" style="display:flex" src="">
+        </div>
 
         <div id="id_log1">Stats</div>
     </div>
