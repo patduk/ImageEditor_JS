@@ -3,3 +3,8 @@ open folder in visual code (containing images, scripts, styles, index)
 go to terminal on visual code
 get commands from github that pushes existing repo to github
 done
+
+
+
+To do:
+fix github imageeditor_Js to only show "part of the website"
