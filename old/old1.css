@@ -1,0 +1,473 @@
+
+html {
+  background-color: #741e1e;
+   /* margin: 0;
+  padding: 0; */
+  height: 100%
+  
+}
+
+body {
+  font-family: Helvetica;
+  font-size: 16px;
+  color: #ffffff;
+  text-shadow: 3px 3px 5px rgba(0,0,0);
+  
+  margin: 0;
+  padding: 0;
+  /*padding: 22*/ 
+  /* does nothing if using HTML declaration tag*/
+
+
+  background-color: #3a3a3a;
+}
+
+img[src]{    
+  /**/
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* @media (max-width: 500px) {
+    
+} */
+
+/* @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) { */
+    /* CSS overrides for mobile here */
+    /* li a {
+        display: block;
+        color: black;
+        padding: 16px 16px ; /*h w 
+        background-color: #6ad6ad;
+    } */
+ /* }  */
+
+ @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+  li a {
+      background-color: #e97878;
+  }
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
+  li a {
+      background-color: #e978e0;
+  }
+}
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+  li a {
+      background-color: #787ae9;
+  }
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  li a {
+      background-color: #78c0e9;
+  }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
+
+
+
+
+/*asdfasdf*/
+/*asdfasdf*/
+
+
+
+
+.navbar1 > li { 
+  /*display: inline; removes line breaks on li elements*/
+  /*OR*/
+   /*Use float to get block elements to float next to each other*/
+   /* float: left; */
+   
+}
+
+ 
+/* .navbar1 > li a {
+  display: block;
+  background-color: rgb(153, 218, 198);
+  padding: 16px 16px;
+
+  color: #000000;
+  text-decoration: none;
+}
+
+
+.navbar1 > li a:hover {
+  background-color: rgb(64,0,0);
+  color: rgb(255,0,0);
+} */
+
+
+
+
+.rightmenubutton1{
+  /* border: none; hide border thats usually shows in buttons*/
+  
+  cursor: pointer;
+
+  color: black;
+  padding: 16px 24px; /*h w*/
+  background-color: #78c5e9;
+  
+
+
+  /*put button to right?*/
+  position: absolute;
+  right: 0px; 
+}
+
+/*media custom background here*/
+
+
+/* Dropdown Button */
+.dropbtn {
+  border: none; /*hide border thats usually shows in buttons*/
+  
+  cursor: pointer;
+
+  
+  color: black;
+  padding: 16px 16px; /*h w*/
+  background-color: #78c5e9;
+
+  
+  /*put button to right?*/
+  /* position: absolute;
+  right: 0px; */
+  
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover {
+  background-color: rgb(64,0,0);
+  color: rgb(255,0,0);
+}
+
+
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: relative;
+  /* width: 50vw;  */
+  
+  margin: 0;
+  padding: 0;
+
+  /* margin: 50px; */
+  background-color: #eedcdc;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+/* Dropdown */
+
+
+
+
+
+
+.dd-menu {
+position: absolute;
+top: 100%;
+/*or*/
+/* position: relative;
+top: 0%; */
+
+
+border-radius: 12px; /* round corner? */
+
+padding-top: 12px;
+padding-bottom: 12px;
+padding-left: 0px;
+padding-right: 0px;
+
+
+box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+background-color: #ffffff;
+list-style-type: none;
+
+display: none;
+
+}
+
+
+.dd-input {
+display: none; /*hide input box */
+}
+
+
+.dd-input + .dd-menu {
+display: none;
+} 
+
+.dd-input:checked + .dd-menu {
+display: block;
+} 
+
+ 
+
+
+.dd-menu li {
+  color: #000000;
+
+  margin-top: 8px;
+  margin-bottom: 4px;
+  margin-left: 12px;
+  margin-right: 4px;
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  cursor: pointer; 
+  /* white-space: nowrap; */ /*nowrap = prevent text wrapping*/
+
+  /* background-color:rgb(200,120,120); */
+
+}
+
+.dd-menu > li a {
+  display: block;
+
+  /* -8 px to make selection box bigger*/
+  /* margin: -8px -4px -8px; */
+  /* padding: 16px 48px; */
+  
+
+  margin-top: -9px;
+  margin-bottom: 0px;
+  margin-left: -12px;
+  margin-right: -4px; 
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 48px;
+  padding-right: 48px; 
+
+
+  text-align: center;
+
+
+  color: #000000;
+  text-decoration: none;
+}
+
+.dd-menu li a:hover {
+  /*border-radius: 12px; round corner?*/
+  background-color:rgb(64,0,0);
+  color: rgb(255,0,0);
+}
+
+
+
+.dd-menu li.divider{
+  padding: 0px;
+  margin: 0px 12px;
+  border-bottom: 1px solid rgba(124, 124, 124, 0.5);
+}
+
+
+
+
+/*old*/
+.navbar1_buttonforlabel1 {
+  
+  background-color: rgba(255, 0, 0, 0.5);
+  width: 50px;
+
+
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 0px;
+  
+  border-radius: 12px;
+  border: 1px solid black;
+
+
+  margin-top: -3px;
+}
+
+.navbar1_buttonforlabel1 label {
+  background-color:rgb(144, 214, 203, 0.5);
+  width: 50px;
+
+
+  padding-top: 16px; 
+  padding-right: 19px;
+  padding-bottom: 16px;
+  padding-left:16px;
+  
+  
+  border-radius: 12px;
+  border: 1px solid rgb(117, 32, 32);
+  margin-left: -1px; /*adjust for border*/
+
+}
+
+.navbar1_buttonforlabel1 label:hover {
+  background-color: rgb(84,32,64);
+  color: rgb(255,127,127);
+  border: 1px solid rgb(255,127,127);
+  
+}
+
+
+
+
+/*menu button for imageeditor*/
+/*menu button for imageeditor*/
+/*menu button for imageeditor*/
+
+.menuiconbar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  border-radius: 2px;
+  margin: 4px 0px;
+}
+
+.menubutton {
+  /*hide border thats usually shows in buttons*/
+  /* border: none;  */
+  /*change mouse pointer icon upon hovering*/
+  cursor: pointer; 
+  
+  background-color: #365a08;
+  padding: 9px 16px 9.4px 16px;
+  
+  /*display: block;    
+  /* border-radius: 12px; */
+  
+  /* box-sizing: border-box; */
+  
+  
+  /* overflow: hidden; */
+
+
+  /*put button to right?*/
+  /* position: absolute;
+  right: 0px;  */
+
+  /* align-items: right; */
+  /* justify-content: space-between; */
+
+  /*put button to right?*/
+  position: absolute; 
+  right: 0px;  
+
+
+}
+
+.menubutton:focus .dropdown_x1, .btn {
+  transform: translate(0, 20px);
+  opacity: 0.5;
+
+  /* visibility: visible; */
+  display: block;
+}
+
+
+.dropdown_x1 {
+  
+  position: absolute;
+  top: 100%;
+  background: #ffffff;
+  /* min-width: 80px; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  /* text-align: left; */
+  opacity: 0;
+  
+  /* visibility: hidden; */
+  display: none;
+
+  transition: 0.15s ease;
+
+  padding: 0px;
+  z-index: 999;
+  
+  list-style-type: none;
+  right: 0px;  
+}   
+
+
+/* position: absolute;
+top: 100%;
+/*or*/
+/* position: relative;
+top: 0;*/
+
+
+
+
+/*arrow*/
+dropdown_x1::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  box-shadow: 2px -2px 6px rgba(0, 0, 0, 0.05);
+  border-top: 6px solid #FFFFFF;
+  border-right: 6px solid #FFFFFF;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  transform: rotate(-45deg);
+  mix-blend-mode: multiple;
+}
+
+
+.dropdown_x1 li {
+  position: relative;
+  background: #FF0000;
+  min-width: 200px;
+}
+
+/* .dropdown_x1 li.active {
+  color: #5380F7;
+} */
+
+/* .dropdown_x1 li:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.dropdown_x1 li:last-child {
+  border-radius: 0 0 4px 4px;
+} */
+
+/* .dropdown_x1 li:last-child a {
+  border-bottom: 0;
+} */
+
+.dropdown_x1 a {
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  
+  color:inherit;
+  text-decoration: none;
+
+  padding: 16px;
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<!-- <head> -->
+    <title>Image Editor</title>
+    <meta charset="utf-8">
+
+    <!-- A website that is zoomable by pinching: -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <!-- A website that is not zoomable by pinching: -->
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+
+    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/style1.css"  rel="stylesheet" type="text/css">
+    <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+    <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
+    <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
+
+    <script src="scripts/ftns.js"></script>
+    <script src="scripts/ftn_fullscreen.js"></script>
+    <script src="scripts/ftn_onload.js"></script>
+    <script src="scripts/ftn_uploadfile.js"></script>
+    <script src="scripts/ftn_ellipse.js"></script>
+    <script src="scripts/ftn_edge_normal.js"></script>
+    <script src="scripts/ftn_edge_custom.js"></script>
+    <script src="scripts/ftn_grayscale.js"></script>
+    <script src="scripts/ftn_invert.js"></script>
+    <script src="scripts/ftn_oilpaint.js"></script>
+    <script src="scripts/ftn1_contrast.js"></script>
+    <script src="scripts/ftn2_brightness.js"></script>
+    <script src="scripts/ftn3_opacity.js"></script>
+    <script src="scripts/ftn4_red.js"></script>
+    <script src="scripts/ftn5_green.js"></script>
+    <script src="scripts/ftn6_blue.js"></script>
+    <script src="scripts/ftn7_gblur.js"></script>
+    <script src="scripts/gblur_regular.js"></script>
+    <script src="scripts/gblur_mono16.js"></script>
+    
+    <!-- <script src="scripts/main2.js"></script> -->
+    
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+
+
+    <!-- https://github.com/ibezkrovnyi/image-quantization -->
+    <!-- <script src="<path-to image-q/dist/umd/image-q.js>" type="text/javascript" charset="utf-8"></script> -->
+
+    
+
+    <!-- https://github.com/jhuckaby/canvas-plus#modes -->
+    <!-- <script src="https://raw.githubusercontent.com/jhuckaby/canvas-plus/master/canvas-plus.js"></script> -->
+
+
+    <script>
+        //FOCUS ON id_btn1 for IOS
+        function focus_on_id_btn1() {
+            //// WAY 1 - better
+            document.getElementById("id_btn1").focus();
+            //// WAY 2 - ?
+            // if (document.getElementById("n1").style.display != "block")
+            //   document.getElementById("n1").style.display = "block";
+            // else {
+            //   document.getElementById("n1").style.display = "none";
+            // }
+
+            //detect click outside of a button, unfocus.. FOR SAFARI
+            let specifiedelement1 = document.getElementById('id_btn1');
+            document.addEventListener('click', function(event) 
+            {
+                if ( !specifiedelement1.contains(event.target)) 
+                {
+                    // Do something when user clicked outside of wrapper element
+                }
+            }
+            );
+        }
+
+    </script>
+    
+ 
+<!-- </head> -->
+
+
+<body>
+   
+    <div class="navbar1" id="navbar1_id">
+        <li class="navbar1_button1" >
+            <a id="id_homebutton1_a" href="index.html" onclick="return confirm('Are you sure? Data can be lost.');">
+                <img id="id_homebutton1_img" src="images/icons/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;">
+            </a>
+        </li>
+
+
+        <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+            <img src="images/icons/icons8-menu-96.png" style="width:24px; margin-top: 4px; margin-bottom: 0px;">
+        </button>
+
+        <div class="navbar1_dropdown_menu1 transformX_IE" id="id_menu1"  onclick="focus_on_id_btn1()">
+            <li><a href="imageeditor.html">Image Editor</a></li>  
+            <li><a href="js_canny_edge_detector_new/cannyedge.html" >Test</a></li>
+            <li><a href="#">Blank</a></li>
+        </div>
+    </div>
+
+
+    <!--container: img-->
+    <div class='container_canvas' id="container_imgsaveonly_id" style="display:none; position:relative ">
+        <div style="position: absolute; left: 0px; top: 0px; background-color: lightgreen; font-size: 24px; padding: 4px;">Right-click/hold on image to save</div>
+        <img id="img_id2" style="display:flex" src="images/wlop1.jpg"></img>
+
+    </div>
+
+    <!--container: canvas-->
+    <div class='container_canvas' id="container_canvas_id" >
+        <canvas id="cv2" style="display:none"></canvas>
+
+        <div id="container_img_id1" class="zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly" >
+            <img id="img_id1" style="display:flex" src="">
+        </div>
+
+        <div id="id_log1">Stats</div>
+    </div>
+
+
+
+    
+    
+    <!--undo,redo,reset-->
+    <div class="container_leftorcenterautoalign" id="container_id1" style="height:70px;">
+        <div>
+            <button class="button_style1 btn_appearance1" id="id_undobutton" onclick="undo();" ><img src="images/icons/undoicon2.png" style="width:24px; padding-top: 5px" ></button>
+        </div>
+        <div>
+            <button class="button_style1 btn_appearance1" onclick="redo()" ><img src="images/icons/redoicon2.png" style="width:24px; padding-top: 5px"></button>
+        </div>
+        <div>
+            <button class="button_style1 btn_appearance1" onclick="reset()">
+                <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Filter)</div>
+            </button>
+        </div>
+        <div>
+            <button class="button_style1 btn_appearance1" onclick="resetposition()">
+                <img src="images/icons/icons8-reset-96.png" style="width:24px; padding-top: 5px"><div class="center3">(Zoom)</div>
+            </button>
+        </div>
+        <div>
+            <button class="button_style1 btn_appearance1" onclick="imagefullscreen()" ><img src="images/icons/icons8-toggle-full-screen-100.png" style="height: 24px"></button>
+        </div>
+    </div>
+
+
+    <!--filters-->
+    <div class="container_leftorcenterautoalign" id="container_id2" style="height:110px;">
+
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3 btn_appearance1" onclick="invert()" >Invert</button>
+        </div>
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3 btn_appearance1" onclick="grayscale()" >Grayscale</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="oilpaint(1,10,true)" >Oil Paint</button> -->
+            <button class="button_style3 center3 btn_appearance1" onclick="oilpaint(3,20,true)" >Oil Paint</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="gaussianblur()" >Gaussian Blur</button> -->
+            <button class="button_style3 center3 btn_appearance1" onclick="edge_normal()" >Line (Normal)</button>
+        </div>
+        <div class="container_individualbutton1">
+            <!-- <button class="button_style1" onclick="edge_custom()" >line (custom)</button> -->
+            <button class="button_style3 center3 btn_appearance1" id="id_edge_custom_button_enter" >Line (Custom)</button>
+        </div>
+        <div class="container_individualbutton1">
+            <button class="button_style3 center3 btn_appearance1" onclick="ellipse_test1()" >Ellipse (Test)</button>
+        </div>
+        
+    </div>
+
+
+    <!--incremental filters-->
+    <div class="container_leftorcenterautoalign" id="container_id3" style="height:110px;">  
+
+        <div class="margin1">
+            <button class="button_style3 center3 btn_appearance1" onclick="flatten()" >Flatten</button>
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Contrast
+            <input class="inputtextstyle1" type="text" id="text_Contrast" value="0" onchange="Onchange_Text_Contrast()">
+            </br>
+            <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()" oninput="Oninput_Slider_Contrast_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Brightness
+            <input class="inputtextstyle1" type="text" id="text_Brightness" value="0" onchange="Onchange_Text_Brightness()">
+            </br>
+            <input type="range" class="slider" id="slider_Brightness" min="-255" max="255" value="0" onchange="Onchange_Slider_Brightness()" oninput="Oninput_Slider_Brightness_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Guass. Blur
+            <input class="inputtextstyle1" type="text" id="text_Gblur" value="0" onchange="Onchange_Text_Gblur()">
+            </br>
+            <input type="range" class="slider" id="slider_Gblur" min="0" max="5" value="0" onchange="Onchange_Slider_Gblur()" oninput="Oninput_Slider_Gblur_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Opacity
+            <input class="inputtextstyle1" type="text" id="text_Opacity" value="0" onchange="Onchange_Text_Opacity()">
+            </br>
+            <input type="range" class="slider" id="slider_Opacity" min="-255" max="255" value="0" onchange="Onchange_Slider_Opacity()" oninput="Oninput_Slider_Opacity_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Red
+            <input class="inputtextstyle1" type="text" id="text_Red" value="0" onchange="Onchange_Text_Red()">
+            </br>
+            <input type="range" class="slider" id="slider_Red" min="-255" max="255" value="0" onchange="Onchange_Slider_Red()" oninput="Oninput_Slider_Red_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Green
+            <input class="inputtextstyle1" type="text" id="text_Green" value="0" onchange="Onchange_Text_Green()">
+            </br>
+            <input type="range" class="slider" id="slider_Green" min="-255" max="255" value="0" onchange="Onchange_Slider_Green()" oninput="Oninput_Slider_Green_LiveUpdate()">
+        </div>
+
+        <div class="center4" style="font-size: 18px">
+            Blue
+            <input class="inputtextstyle1" type="text" id="text_Blue" value="0" onchange="Onchange_Text_Blue()">
+            </br>
+            <input type="range" class="slider" id="slider_Blue" min="-255" max="255" value="0" onchange="Onchange_Slider_Blue()" oninput="Oninput_Slider_Blue_LiveUpdate()">
+        </div>
+
+        <div class="margin1">
+            <button class="button_style3 center3 btn_appearance1" onclick="flatten()" >Flatten</button>
+        </div>
+        
+    </div>
+
+
+    <!--edge custom filter-->
+    <div class="container_leftorcenterautoalign" id="container_id5" style="height:110px;">
+
+        <div class="container_individualbutton1">
+            <button class="button_style1 margin1 btn_appearance1" id="id1_edge_custom_button_exit" >
+                Back
+            </button>
+        </div>
+
+        <div class="container_individualbutton1">
+            <button class="button_style1 btn_appearance1" onclick="edge_custom()" >Apply</button>
+        </div>
+
+        <div class="margin1">
+            BG color</br>
+            <input type="color" id="html5colorpicker_BG" onchange="colorsfor_edge_custom_BG()" value="#AAEDEE" style="width:80px; height: 40px;">
+        </div>
+    
+        <div class="margin1">
+            Line color</br>
+            <input type="color" id="html5colorpicker_line" onchange="colorsfor_edge_custom_line()" value="#F08990" style="width:80px; height: 40px;">
+        </div>
+
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox1">
+            Remove background?<br>
+            <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" class="hide_default_checkbox" id="id_transparent_mode_edge_custom">
+            <span class="checkbox_style1"></span>
+        </label>
+        
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox2">
+            Add lighting and shading?</br>
+            <input type="checkbox" onchange="ftn_lightingshading_mode_edge_custom()" class="hide_default_checkbox" id="id_lightingshading_mode_edge_custom">
+            <span class="checkbox_style1"></span>
+        </label>
+
+        <label class="border1 margin1 noselect" id="id_edge_custom_checkbox3">
+            Fix line color? *Increases contrast, thickness, & BG color tone</br>
+            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" class="hide_default_checkbox" id="id_linecolorcorrection_edge_custom" checked>
+            <span class="checkbox_style1"></span>
+        </label>
+        
+        <!-- <label class="border1 margin1">
+            Light line color?
+            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked></input>
+            Dark line color?
+            <input type="checkbox" onchange="ftn_linecolorcorrection_edge_custom()" id="id_linecolorcorrection_edge_custom" checked></input>
+        </label> -->
+
+
+        
+        <div class="margin1" style="font-size: 16px;">
+            Blackest/whitest spot intensity
+            </br>
+            <input class="inputtextstyle1" type="text" id="text_Whiteblackintensity" value="50" onchange="Onchange_Text_Whiteblackintensity()">
+            </br>
+            <input type="range" class="slider" id="slider_Whiteblackintensity" min="0" max="100" value="50" onchange="Onchange_Slider_Whiteblackintensity()" oninput="Oninput_Slider_Whiteblackintensity_LiveUpdate()">
+        </div>
+
+
+    
+        <!-- <div class="container_individualbutton1">
+            <button class="button_style1 btn_appearance1" onclick="edge_custom()" >Apply</button>
+        </div>
+
+        
+        <div class="container_individualbutton1">
+            <button class="button_style1 margin1 btn_appearance1" id="id2_edge_custom_button_exit" >
+                Back
+            </button>
+        </div> -->
+        <!-- <img src="images/icons/icons8-left-100.png" style="width:36px; padding-top: 5px"> -->
+        
+    </div>
+
+
+    <!--download,upload-->
+    <div class="container_leftorcenterautoalign" id="container_id7" style="height:110px;">
+        <div class="center7">
+            <button class="button_style3 center3 btn_appearance1" onclick="toggleonoff_stats()" >Stats</button>
+        </div>
+
+        
+        <div class="center7">
+            <button class="button_style3 center3 btn_appearance1" onclick="downloadmodetoggle()" >Download</button>
+        </div>
+
+        <div class="center7 ">
+            <input type='file' id='diamondx1' accept='image/png, image/jpeg, image/jpg, image/bmp, image/jfif' style="display:none;" /> 
+            <label for="diamondx1" class="button_style3_label center3 btn_appearance1">Upload</label>
+        </div>
+
+        
+
+    </div> 
+
+    <!--random message-->
+    <div class="container_leftorcenterautoalign" id="container_id4" style="height:110px;">
+        <div>Coming soon perhaps.</div>
+    </div> 
+   
+
+    <!--category buttons-->
+    <div class="container_leftorcenterautoalign" id="container_categorybuttons_id" style="height: 60px; border-bottom: none">
+
+        <div class="center7">
+            <button class="button_style2 button_style2_active btn_appearance2" id="categorybutton1">Filters</button>
+        </div>
+        <div class="center7">
+            <button class="button_style2 btn_appearance2" id="categorybutton2 ">Inc. Filters</button>
+        </div>
+        <div class="center7">
+            <button class="button_style2 btn_appearance2" id="categorybutton3">Other</button>
+        </div>
+
+    </div>
+
+
+    <!-- 
+    <div id="pow1">baka1</div>
+    <div id="pow2">baka2</div>
+    <div id="pow3">baka3</div>
+     -->
+    
+
+</body>

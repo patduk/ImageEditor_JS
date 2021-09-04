@@ -1,0 +1,70 @@
+input[type="range"]{
+    -webkit-appearance:none;
+
+    margin-top: 8px;
+    height:8px;
+    width: 160px;
+    /* margin:10px 50px; */
+
+    border-radius: 2px;
+
+    background: linear-gradient(to right, #fc8787 0%, #97cf57 100%);
+    /* background-color:rgba(0, 0, 0, 0.1); */
+    background-size: 180px 48px;
+    background-position:center;
+    background-repeat:no-repeat;
+
+
+    
+
+    /*remove this to avoid the misaligned thumbs?*/
+    /* overflow:hidden; */ 
+
+    /* outline: none; */
+    border: 1px solid black;
+}
+
+
+/* input[type="range"]:first-of-type{
+margin-top:30px;
+} */
+
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+
+    width:24px;
+    height:24px;
+    
+    background: rgba(240,240,240);
+    border-radius: 2px;
+    position:relative;
+
+
+    z-index:3;
+    box-shadow:0 0 4px 0 rgba(0,0,0,0.5);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: rgb(255, 255, 128);
+}
+
+/* input[type="range"]::-webkit-slider-thumb:after{
+content:" ";
+width:160px;
+height:10px;
+position:absolute;
+z-index:1;
+right:20px;
+top:5px;
+background: #ff5b32;
+background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
+}
+
+p{
+width:100%;
+text-align:center;
+color:white;
+font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
+font-size:32px;
+margin-top:30px;
+} */
+  

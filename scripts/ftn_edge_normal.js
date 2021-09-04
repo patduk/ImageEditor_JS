@@ -1,6 +1,8 @@
 
-// uses image original 1
+//edit the image
 function edge_normal() {
+    exit_downloadmodetoggle_ifneeded();
+
     ///////////////////////////////////////////
 
     //prep canvas and ctx (idk why its needed)
@@ -9,33 +11,25 @@ function edge_normal() {
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
 
-    let counter = 0;
-    let counter1 = 0;
-    let counter2 = 0;
 
+    imageData = ctx.getImageData(0, 0, image.width, image.height);
+    
 
-    // //1-1.4 store to undolist
+    ////1.0-1.4 store to undolist
     ClearRedo();                   //0.8
-    is_FilterIncremental = true;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
     SaveAttributesToUndoLists();   //1-1.4
-    logprint();
+    update_stats();
 
-
-    ////2.0 reset DictV
+    ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
     for (key in DictV) {
         DictV[key] = 0;
     }
 
+    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
+
 
     ////3.0 edit
-    
-    //"update" imageData
-    //ctx.getImageData(starting left, starting top, capture w, capture h)
-    imageData = ctx.getImageData(0, 0, image.width, image.height);
-    imageData_original2 = ctx.getImageData(0, 0, image.width, image.height);
-    //let data = imageData.data;
-
-    ///////////////////////////////////////////
 
     let height = image.height -1;
     let width = image.width -1;
@@ -63,7 +57,6 @@ function edge_normal() {
     let Gxy_sum_final_Red = 0;
     let Gxy_sum_final_Green = 0;
     let Gxy_sum_final_Blue = 0;
-
     
     for (let y = 0; y < image.height; y ++)
     {
@@ -161,28 +154,14 @@ function edge_normal() {
 
         }
     }
-    console.log("counter1: " + counter1);
+
+    ////4 affix
+    //imageData_original2 = imageData;
+    Flatten_nosavingtoundo();
+
+    
+    //canvas update
     ctx.putImageData(imageData, 0, 0);
-
-
-
-
-    ////4.0 affix
-
-    ////2.5 (imgSharp_original2 = imgSharp)
-    for (let y = 0; y < image.height; y++)
-    {
-        for (let x = 0; x < image.idth; x++)
-        {
-            let formula = (y*image.width*4)+x*4;
-            imageData_original2.data[formula+0] = imageData.data[formula+0];
-            imageData_original2.data[formula+1] = imageData.data[formula+1];
-            imageData_original2.data[formula+2] = imageData.data[formula+2];  
-        }
-    }
-
-    ////3 no action needed (imgSharp = imgSharp_original2
-
-    ////way1 - call javascript function invokevoidasync, reset slider position and text value
-    JS_resetsliderpositionandtextvalue_Brightness();
+    //image update
+    document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }

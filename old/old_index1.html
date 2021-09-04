@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<!-- <head> -->
+  <title>Image Edit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+
+  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+  <link href="styles/style1.css"  rel="stylesheet" type="text/css">
+  <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+  <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
+    
+
+  <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
+
+  <script>
+    function focus_on_id_btn1() {
+      //// WAY 1 - better
+      document.getElementById("id_btn1").focus();
+
+      //// WAY 2 - ?
+      // if (document.getElementById("n1").style.display != "block")
+      //   document.getElementById("n1").style.display = "block";
+      // else {
+      //   document.getElementById("n1").style.display = "none";
+      // }
+
+
+      //detect click outside of a button, unfocus.. FOR SAFARI
+      let specifiedelement1 = document.getElementById('id_btn1');
+      document.addEventListener('click', function(event) 
+      {
+          if ( !specifiedelement1.contains(event.target)) 
+          {
+              // Do something when user clicked outside of wrapper element
+          }
+      }
+      );
+
+    }
+  </script>
+
+<!-- </head> -->
+
+
+
+<body>
+  <!-- 
+  <ul class="navbar1">
+    <li><a href="index.html">Home</a></li>
+    
+    
+
+    <label class="dropdown">
+      
+      <div class="dropbtn noselect">
+        Dropdown
+      </div>
+      <input type="checkbox" class="dd-input">
+
+
+
+      <ul class="dd-menu">
+        <li>Apps</li>
+        <li class="divider"></li>
+        <li><a href="imageedit1.html">Image Edit</a></li>
+        <li><a href="#">Blank App</a></li>
+        
+        <li>Art</li>
+        <li class="divider"></li>
+        <li><a href="#">None</a></li>
+        
+        <li>Other</li>
+        <li class="divider"></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </label>
+
+  </ul> -->
+
+ 
+  <div class="navbar1" id="id_navbar1">
+
+    <li class="navbar1_button1">
+      <a href="index.html" style="line-height: 48px;">Home
+      </a>
+    </li>
+    
+    <!-- 
+    <li class="navbar1_button1">
+      <a href="index.html" onclick="return confirm('Are you sure? Data will be lost.');"><img src="images/icons8-home-100.png" style="width:24px; margin-top: 12px; margin-bottom: 0px;"></a>
+    </li> -->
+
+
+
+    <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
+      <img src="images/icons8-menu-96.png" style="width:24px; margin-top: -20px; margin-bottom: -7px;">
+    </button>
+
+    <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
+      <li><a href="imageeditor.html">Image Edit</a></li>  
+      <li><a href="#">Blank</a></li>
+      <li><a href="#">Blank</a></li>
+    </div>
+  
+
+    <!-- 
+    <div class="dropdown">
+      <ul class="dd-menu">
+        <li>Apps</li>
+        <li class="divider"></li>
+        <li><a href="imageedit1.html">Image Edit</a></li>
+        
+        
+        <li>Art</li>
+        <li class="divider"></li>
+        <li><a href="#">None</a></li>
+        
+        <li>Other</li>
+        <li class="divider"></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div> -->
+  </div>
+  
+
+  <div id="center4_body_id" >
+    <script>
+      window.onload = () => {
+        
+        window.addEventListener("resize", resizeCanvas3);
+
+        function resizeCanvas3() {
+          let idealheight1 = window.innerHeight - 
+        (document.getElementById("id_navbar1").offsetHeight);
+
+          //makes center4_body_id height fit in to the browser window
+          document.getElementById("center4_body_id").style.height = idealheight1.toString() + "px";
+
+
+          if (window.innerHeight >= 600) {
+            console.log(">=600");
+            document.getElementById("id_center1_1").style.top = (.45 * idealheight1).toString() + 'px';
+            document.getElementById("id_center1_2").style.top = (.45 * idealheight1 + 60).toString() + 'px';
+          }
+          else if (window.innerHeight < 600) {
+            console.log("<600");
+            document.getElementById("id_center1_1").style.top = (.45 * 800).toString() + 'px';
+            document.getElementById("id_center1_2").style.top = (.45 * 900 + 60).toString() + 'px';
+
+          }
+        }
+
+
+      }
+
+    </script>
+
+    <div class="center1">
+      <h1>Hi, </br><i>I'm Patrick De La Rosa.</i><h1>
+    </div>
+    
+    <div class="center2">
+      <p>Welcome to my website, a potential portfolio of apps (for artists).</p>
+    </div>
+
+    <div class="class_center1_1" id="id_center1_1">infj</div>
+    <div class="class_center1_2" id="id_center1_2">infj</div>
+
+
+    
+  </div>
+
+  
+  
+  
+</body>
+
+<!-- </html> -->

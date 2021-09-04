@@ -1,0 +1,294 @@
+.btn_appearance1 {
+    /*pair background-image with background-color (white) to match button_style1's background-image*/
+    background-color: white;
+    background-image: linear-gradient(to bottom, rgba(180, 240, 255, 0.75) 0%, rgba(125, 225, 245, 0.75) 100%); 
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.4);
+    border:none;
+
+    margin: 3px;
+    /* margin-top: 1px; */
+    border-radius: 4px;
+
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+    -khtml-user-select: none;
+    -o-user-select: none;   
+}
+
+.btn_appearance2 {
+    /*pair background-image with background-color (white) to match button_style1's background-image*/
+    background-color: white;
+    /* background-image: linear-gradient(to bottom, rgba(182, 233, 226, 0.8) 0%, rgba(173, 238, 216, 0.8) 100%);  */
+    background-image: linear-gradient(to bottom, rgba(228, 216, 208, 0.9) 0%, rgba(241, 186, 160, 0.9) 100%); 
+    box-shadow: 0 2px 4px 0px rgba(0,0,0,0.4);
+    border:none;
+    
+
+    margin: 3px;
+    /* margin-top: 2px; */
+    border-radius: 0px;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+    -khtml-user-select: none;
+    -o-user-select: none;
+}
+
+
+.button_style1{
+    max-width: 72px;
+    min-width: 72px;
+    height: 60px;
+
+    text-align: center;
+
+}
+.button_style1_label {
+    max-width: 72px;
+    min-width: 72px;
+    line-height: 60px; /*line-height for label, not normal button*/
+    max-height: 60px;
+
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.button_style3{
+    max-width: 100px;
+    min-width: 100px;
+    height: 60px;
+
+    text-align: center;
+    overflow-x: visible;
+}
+.button_style3_label {
+    max-width: 100px;
+    min-width: 100px;
+    line-height: 60px; /*line-height for label, not normal button*/
+    max-height: 60px;
+
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.button_style1:hover, 
+.button_style1_label:hover, 
+input:hover+.button_style1_label,
+
+.button_style3:hover,
+.button_style3_label:hover, 
+input:hover+.button_style3_label
+{
+    background-color: rgb(0,128,128);
+}
+
+
+.button_style1:active,
+.button_style1_label:active, 
+input:active+.button_style1_label,
+
+.button_style3:active,
+.button_style3_label:active, 
+input:active+.button_style3_label
+{
+    background-color: rgb(0,0,0);
+    color: rgb(255,255, 255);
+}
+
+
+
+
+/* Style the buttons */
+.button_style2 {
+    min-width: 95px;
+    height: 48px;
+    
+    text-align: center;
+    word-wrap: break-word;
+}
+  
+/* Style the active class (and buttons on mouse-over) */
+.button_style2:hover {
+    background-color: #000000;
+}
+
+.button_style2_active {
+    background-color: #000000;
+    border-bottom: 3px solid rgb(125, 225, 225);
+}
+
+
+
+
+
+.container_leftorcenterautoalign{
+    
+    border-bottom: 1px groove rgb(0,0,0,0.5);
+    
+    display: flex;
+
+    width: 100%;
+    height: 70px;
+    
+    
+    justify-content: center; /*if javascript functiomargin1n used*/
+    align-items: center;
+    text-align: center;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    
+    
+    /* white-space: nowrap;
+    text-overflow: ellipsis; */
+    /* scroll-snap-type: x mandatory; */
+
+    /* overflow-x: visible; */
+}
+
+
+
+
+#container_id2 {
+    display: inline-flex;
+}
+#container_id3 {
+    display: none;
+}
+#container_id4 {
+    display: none;
+}
+#container_id5 {
+    display: none;
+}
+#container_id7 {
+    display: none;
+}
+
+#id_log1 {
+    display:none;
+    position: absolute; 
+    max-width: 240px;
+    height: 480px;
+    font-size: 14px;
+    top:0px; 
+    left: 0px; 
+    background-color: rgba(0,0,0,0.5); 
+    color:white; 
+    padding-left: 4px;
+    padding-right: 4px;
+    /* border-radius: 8px; */
+
+    overflow-y: auto;
+}
+#id_log1::-webkit-scrollbar
+{
+    width: 4px;    
+  }
+/* Track */
+#id_log1::-webkit-scrollbar-track{
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  #id_log1::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  #id_log1::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    
+  }
+
+input[type="range"] {
+    margin: 4px;
+}
+
+/* 
+#container_img_id {
+    background-image : "";
+} */
+
+
+
+.container_canvas {
+    /* height: 50%; */
+    position: relative;
+    width: 100%;
+    
+    border-top: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    
+    display: flex;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+  
+    /* background-color: rgb(0,0,0,0.33); */
+    background-image: linear-gradient(to bottom, rgb(0, 48, 64, 0.4) 0%, rgb(0, 48, 64, 0.2) 100%); 
+    overflow: hidden;
+  }
+
+  
+
+.border1 {
+    /* border: 1px solid rgb(0,0,0,0.5); */
+    height: 80px;
+    max-width: 100px;
+    min-width: 100px;
+    display: flex;
+    font-size: 12px;
+
+    align-items: center;
+    /* justify-content: center; */
+    border-radius: 4px;
+    
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%); 
+
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.4);
+}
+
+/* hide default checkbox*/
+/* .hide_default_checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+
+
+/* Create a custom checkbox */
+.checkbox_style1 {
+    /* position: relative;
+    top: -30px;
+    left: -30px; 
+    height: 25px;
+    width: 25px;
+    background-color: #eee; */
+    
+}
+
+
+.margin1 {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+
+.zeropixelinwidthandheightfordiv_to_limitpanzoomtoimageareaonly {
+    height:0; width:0px;
+}
