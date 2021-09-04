@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
     image = new Image();
     
     // set src to blob e
-    image.src = 'images/demonslayer_fade.png';
+    image.src = 'images/wlop2.jpg';
     
 
     
