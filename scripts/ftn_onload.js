@@ -1,6 +1,3 @@
-
-
-
 window.onload = () => {
     
     //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
@@ -184,6 +181,9 @@ window.onload = () => {
     id_log1.style.display = "none";
 
 
+    //resize onload..
+    resizeCanvas2();
+    resizeCanvas();
 
     
 }
