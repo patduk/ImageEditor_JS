@@ -9,9 +9,7 @@ window.addEventListener('load', function() {
     // set src to blob e
     image.src = 'images/wlop2.jpg';
     
-
     
-
     ResetAllAttributes();
 
     // canvas.style.height = image.height.ToString + "%";
