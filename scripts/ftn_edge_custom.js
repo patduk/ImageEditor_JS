@@ -160,8 +160,10 @@ function edge_custom() {
     
 
     ////1.0-1.4 store to undolist
-    ClearRedo();                   //0.8
+    
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
+    
+    ClearRedo();                   //0.8
     SaveAttributesToUndoLists();   //1-1.4
     update_stats();
     

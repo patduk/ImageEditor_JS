@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- <head> -->
+<head>
     <title>Image Editor</title>
     <meta charset="utf-8">
 
@@ -12,19 +12,26 @@
     <link href="styles/normalize.css" rel="stylesheet" type="text/css">
     <link href="styles/style1.css"  rel="stylesheet" type="text/css">
     <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
-    <link href="styles/Navbar2.css" rel="stylesheet" type="text/css">
+    <link href="styles/Content1.css" rel="stylesheet" type="text/css">
     <link href="styles/rangeslider1.css" rel="stylesheet" type="text/css">
 
-    <script src="scripts/ftns.js"></script>
-    <script src="scripts/ftn_fullscreen.js"></script>
-    <script src="scripts/ftn_onload.js"></script>
-    <script src="scripts/ftn_uploadfile.js"></script>
-    <script src="scripts/ftn_ellipse.js"></script>
+    
     <script src="scripts/ftn_edge_normal.js"></script>
     <script src="scripts/ftn_edge_custom.js"></script>
+    <script src="scripts/ftn_ellipse.js"></script>
+    <script src="scripts/ftn_flatten.js"></script>
+    <script src="scripts/ftn_fullscreen.js"></script>
     <script src="scripts/ftn_grayscale.js"></script>
     <script src="scripts/ftn_invert.js"></script>
     <script src="scripts/ftn_oilpaint.js"></script>
+    <script src="scripts/ftn_onload.js"></script>
+    <script src="scripts/ftn_resizecanvascontainer.js"></script>
+    <script src="scripts/ftn_step1.0_1.4_saveattributestoundolists.js"></script>
+    <script src="scripts/ftn_step2_resetallattributes.js"></script>
+    <script src="scripts/ftn_step3_applybaseimageandincfilters.js"></script>
+    <script src="scripts/ftn_toggle.js"></script>
+    <script src="scripts/ftn_undoredoreset.js"></script>
+    <script src="scripts/ftn_uploadfile.js"></script>
     <script src="scripts/ftn1_contrast.js"></script>
     <script src="scripts/ftn2_brightness.js"></script>
     <script src="scripts/ftn3_opacity.js"></script>
@@ -32,19 +39,17 @@
     <script src="scripts/ftn5_green.js"></script>
     <script src="scripts/ftn6_blue.js"></script>
     <script src="scripts/ftn7_gblur.js"></script>
+    <script src="scripts/ftns.js"></script>
     <script src="scripts/gblur_regular.js"></script>
     <script src="scripts/gblur_mono16.js"></script>
     
-    <!-- <script src="scripts/main2.js"></script> -->
     
     <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
-
 
     <!-- https://github.com/ibezkrovnyi/image-quantization -->
     <!-- <script src="<path-to image-q/dist/umd/image-q.js>" type="text/javascript" charset="utf-8"></script> -->
 
     
-
     <!-- https://github.com/jhuckaby/canvas-plus#modes -->
     <!-- <script src="https://raw.githubusercontent.com/jhuckaby/canvas-plus/master/canvas-plus.js"></script> -->
 
@@ -76,11 +81,12 @@
     </script>
     
  
-<!-- </head> -->
+</head>
 
 
 <body>
    
+    <!--top navigation bar-->
     <div class="navbar1" id="navbar1_id">
         <li class="navbar1_button1" >
             <a id="id_homebutton1_a" href="index.html" onclick="return confirm('Are you sure? Data can be lost.');">
