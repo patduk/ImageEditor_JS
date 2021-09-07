@@ -8,6 +8,9 @@ function Opacity(input_value) {
     
 }
 
+
+
+
 //onchange slider
 function Onchange_Slider_Opacity()
 {

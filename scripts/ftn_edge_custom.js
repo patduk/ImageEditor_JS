@@ -141,6 +141,7 @@ function ftn_linecolorcorrection_edge_custom() {
 
 //edit the image
 function edge_custom() {
+
     exit_downloadmodetoggle_ifneeded();
 
     //maintain color picker (custom color values appear different after this function finishes, so need to maintain custom color values)
@@ -154,23 +155,17 @@ function edge_custom() {
     let ctx = canvas.getContext('2d');
     //image = new Image();
     //ctx.drawImage(image, 0, 0);
-
-
     imageData = ctx.getImageData(0, 0, image.width, image.height);
     
 
     ////1.0-1.4 store to undolist
-    
     is_FilterIncremental = false;   //0.9 //might be true to avoid playing flatten() in infinite loop
-    
-    ClearRedo();                   //0.8
+    ClearRedo();                   //1.0
     SaveAttributesToUndoLists();   //1-1.4
-    update_stats();
     
     ////2.0 (reset incremental filter attributes when user uses non-incremental filter)
-    for (key in DictV) { 
-        DictV[key] = 0;
-    }
+    Reset_Step2_IncFiltersOnly();
+
 
     ////3.0 edit
     if (canvas.width <= 1200 && canvas.height <= 1800) {
@@ -559,8 +554,7 @@ function edge_custom() {
 
 
 
-    // showprocessing = false;
-    // ftn_showprocessing();
+    update_stats();
 }
 
 

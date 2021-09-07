@@ -1,3 +1,15 @@
+function ClearRedo() //ok
+{
+    Image_redo = [];
+    IncV_redo = [];
+    ContrastV_redo = [];
+    BrightnessV_redo = [];
+    OpacityV_redo = [];
+    RedV_redo = [];
+    GreenV_redo = [];
+    BlueV_redo = [];
+    GblurV_redo = [];
+}
 
 
 //1.0-1.4

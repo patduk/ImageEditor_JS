@@ -27,3 +27,10 @@ function ResetAllAttributes() //ok
     }
 }
 
+
+function Reset_Step2_IncFiltersOnly() //ok
+{
+    for (key in DictV) {
+        DictV[key] = 0;
+    }
+}

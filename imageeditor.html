@@ -27,8 +27,10 @@
     <script src="scripts/ftn_onload.js"></script>
     <script src="scripts/ftn_resizecanvascontainer.js"></script>
     <script src="scripts/ftn_step1.0_1.4_saveattributestoundolists.js"></script>
-    <script src="scripts/ftn_step2_resetallattributes.js"></script>
+    <script src="scripts/ftn_step2_resetattributes.js"></script>
     <script src="scripts/ftn_step3_applybaseimageandincfilters.js"></script>
+    <script src="scripts/ftn_step4_affix.js"></script>
+
     <script src="scripts/ftn_toggle.js"></script>
     <script src="scripts/ftn_undoredoreset.js"></script>
     <script src="scripts/ftn_uploadfile.js"></script>
@@ -190,9 +192,14 @@
 
         <div class="center4" style="font-size: 18px">
             Contrast
-            <input class="inputtextstyle1" type="text" id="text_Contrast" value="0" onchange="Onchange_Text_Contrast()">
+            <input class="inputtextstyle1 class_incfilter_contrast" type="text" id="text_Contrast" value="0" onchange="Onchange_Text_Contrast()">
             </br>
-            <input type="range" class="slider" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast()" oninput="Oninput_Slider_Contrast_LiveUpdate()">
+
+            <input type="range" class="slider class_incfilter_contrast" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider_Contrast(); " oninput="Oninput_Slider_Contrast_LiveUpdate()">
+
+            <!--slow for now-->
+            <!-- <input type="range" class="slider class_incfilter_contrast" id="slider_Contrast" min="-1" max="1" step="0.01" value="0" onchange="Onchange_Slider('class_incfilter_contrast');" oninput="Oninput_Slider_LiveUpdate('class_incfilter_contrast')"> -->
+            
         </div>
 
         <div class="center4" style="font-size: 18px">
@@ -360,12 +367,6 @@
 
     </div>
 
-
-    <!-- 
-    <div id="pow1">baka1</div>
-    <div id="pow2">baka2</div>
-    <div id="pow3">baka3</div>
-     -->
     
 
 </body>

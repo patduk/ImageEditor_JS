@@ -67,25 +67,63 @@ function update_stats() {
 
 
 
+function Oninput_Slider_LiveUpdate(a) {
+    //document.getElementById("text_Contrast").value = document.getElementById(id_extracted).value;
 
-
-
-function ClearRedo() //ok
-{
-    Image_redo = [];
-    IncV_redo = [];
-    ContrastV_redo = [];
-    BrightnessV_redo = [];
-    OpacityV_redo = [];
-    RedV_redo = [];
-    GreenV_redo = [];
-    BlueV_redo = [];
-    GblurV_redo = [];
+    let btns = document.getElementById("container_id3").getElementsByClassName(a);
+    btns[0].value = input_value;
 }
 
 
+////2
+function Onchange_Slider(a) {
+        
+    
+        ////999 prep canvas and ctx (idk why its needed)
+        let canvas = document.getElementById('cv2'); 
+        let ctx = canvas.getContext('2d');
+        imageData = ctx.getImageData(0,0,image.width,image.height);
+        
+
+        ClearRedo();                   //0.8
+        is_FilterIncremental = true;   //0.9
+        SaveAttributesToUndoLists();   //1-1.4
+
+        
+        ////2
+        // let input_value = parseFloat(document.getElementById('slider_Contrast').value);
+        // document.getElementById('text_Contrast').value = input_value;
+
+        // ////2
+      
+        let btns = document.getElementById("container_id3").
+        getElementsByClassName(a);
+        
+
+        let input_value = btns[1].value; //pulled from new slider value
+        btns[0].value = input_value;
 
 
+        // document.getElementById("container_id3").
+        // getElementsByClassName(a)[0].value = input_value;
+        // let btns = document.getElementById("container_id3").
+        // getElementsByClassName(a);
+        // for (let i = 0; i < btns.length; i++) {
+        //     btns[i].value = input_value;
+        // }
 
 
+        DictV["IncV"] = 1;
+        DictV["ContrastV"] = input_value;
 
+
+        ////3 edit image
+        ApplyBaseImageAndIncrementalFiltersToCurrentImage();
+        
+
+        //canvas update
+        ctx.putImageData(imageData, 0, 0);
+        //image update
+        document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
+
+}

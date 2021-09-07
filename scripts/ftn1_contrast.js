@@ -26,6 +26,9 @@ function Contrast(input_value) {
     
 }
 
+
+
+
 //onchange slider
 function Onchange_Slider_Contrast()
 {
@@ -53,6 +56,7 @@ function Onchange_Slider_Contrast()
     //image update
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
+
 
 function Onchange_Text_Contrast() 
 {
@@ -93,7 +97,6 @@ function Onchange_Text_Contrast()
 function Oninput_Slider_Contrast_LiveUpdate() {
     document.getElementById("text_Contrast").value = document.getElementById("slider_Contrast").value;
 }
-
 
 function JS_changesliderpositionandtextvalue_Contrast(n) {
     document.getElementById('slider_Contrast').value = n;

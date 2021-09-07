@@ -36,6 +36,7 @@ function Onchange_Slider_Gblur()
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
+//onchange text
 function Onchange_Text_Gblur() 
 {
     ////999 prep canvas and ctx (idk why its needed)
@@ -73,11 +74,12 @@ function Onchange_Text_Gblur()
     document.getElementById('img_id1').src = canvas.toDataURL("image/png"); 
 }
 
-
+//oninput slider *make live update*
 function Oninput_Slider_Gblur_LiveUpdate() {
     document.getElementById("text_Gblur").value = document.getElementById("slider_Gblur").value;
 }
 
+//reset or undo/redo values for slider and text
 function JS_changesliderpositionandtextvalue_Gblur(n) {
     document.getElementById('slider_Gblur').value = n;
 	document.getElementById('text_Gblur').value = n;
