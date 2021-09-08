@@ -158,9 +158,16 @@
     <!--filters-->
     <div class="container_leftorcenterautoalign" id="container_id2" style="height:110px;">
 
+        <!-- <div class="container_individualbutton1">
+            <button class="button_style3 center3 btn_appearance1" onclick="invert(); consolelog1(this.innerHTML); ftn1_notesforeach(notes);" >Invert</button>
+        </div> -->
+
         <div class="container_individualbutton1">
-            <button class="button_style3 center3 btn_appearance1" onclick="invert()" >Invert</button>
+            <button class="button_style3 center3 btn_appearance1" onclick="invert(); ftn2_notesforeach(notes);  myForEach(myArry, (item));" >Invert</button>
         </div>
+
+
+
         <div class="container_individualbutton1">
             <button class="button_style3 center3 btn_appearance1" onclick="grayscale()" >Grayscale</button>
         </div>
@@ -275,7 +282,7 @@
         </div>
 
         <label class="border1 margin1 noselect" id="id_edge_custom_checkbox1">
-            Remove background?<br>
+            Hide background?<br>
             <input type="checkbox" onchange="ftn_transparent_mode_edge_custom()" class="hide_default_checkbox" id="id_transparent_mode_edge_custom">
             <span class="checkbox_style1"></span>
         </label>

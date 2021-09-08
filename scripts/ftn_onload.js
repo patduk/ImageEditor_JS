@@ -1,12 +1,13 @@
-window.onload = () => {
-    
-    //FROM html5colorpicker, set up custom BG colors for custom edge detection filter 
+// window.onload = () => {
+window.onload = function() {
+
+    //FROM html5colorpicker, set up custom BG colors for custom edge detection filter
     colorsfor_edge_custom_BG();
     colorsfor_edge_custom_line();
     ftn_transparent_mode_edge_custom();
     ftn_linecolorcorrection_edge_custom();
     Onchange_Slider_Whiteblackintensity();
-    
+
 
     //a group of buttons with one selection allowed
     //a group of buttons with one selection allowed
@@ -23,7 +24,7 @@ window.onload = () => {
         if (current.length > 0) {
             current[0].className = current[0].className.replace(" button_style2_active", "");
         }
-        
+
         // Add the active class to the current/clicked button
         this.className += " button_style2_active";
 
@@ -50,7 +51,7 @@ window.onload = () => {
 
 
 
-    
+
     //button to enter edge custom
     //button to enter edge custom
     let edge_custom_button_enter =  document.getElementById("id_edge_custom_button_enter");
@@ -82,17 +83,17 @@ window.onload = () => {
 
     //add panzoom functionality to img
     instance1_panzoom_global = panzoom(document.getElementById("img_id1"), {
-        zoomDoubleClickSpeed: 1, 
+        zoomDoubleClickSpeed: 1,
         minZoom: 0.2,
         smoothScroll: false
     });
 
 
     //set up canvas container height global variables for normal/full screen modes
-    container_canvas_h_fullscreen_global = window.innerHeight - 
+    container_canvas_h_fullscreen_global = window.innerHeight -
     (document.getElementById("container_id1").offsetHeight) - 1;
 
-    container_canvas_h_normalscreen_global = window.innerHeight - 
+    container_canvas_h_normalscreen_global = window.innerHeight -
     (document.getElementById("navbar1_id").offsetHeight + document.getElementById("container_id1").offsetHeight + document.getElementById("container_id2").offsetHeight + document.getElementById("container_categorybuttons_id").offsetHeight) - 3 - 110;// - 110;
 
 
@@ -114,41 +115,41 @@ window.onload = () => {
     //zoom prevention
     //(example)
     // document.addEventListener("touchmove", function(e)
-    // {e.preventDefault();},  
+    // {e.preventDefault();},
     // {passive: false}
     // );
     //element exception from zoom prevention
     // document.getElementById('container_id2').addEventListener('touchmove', function(e){e.stopPropagation()}, false);
 
-    
+
     //zoom prevention (targets element by id)
     // document.getElementById('id_undobutton').addEventListener("touchstart", function(e)
-    // {e.preventDefault();},  
+    // {e.preventDefault();},
     // {passive: false}
     // );
-    
+
     //zoom prevention (targets elements by classname)
     let list_button_style1 = document.getElementsByClassName('button_style1');
     let list_button_style2 = document.getElementsByClassName('button_style2');
     let list_button_style3 = document.getElementsByClassName('button_style3');
 
     for (var i = 0; i < list_button_style1.length; i++) {
-        list_button_style1[i].addEventListener("click", function(e) 
-        {e.preventDefault();},  
+        list_button_style1[i].addEventListener("click", function(e)
+        {e.preventDefault();},
         {passive: false}
         );
     }
 
     for (var i = 0; i < list_button_style2.length; i++) {
-        list_button_style2[i].addEventListener("click", function(e) 
-        {e.preventDefault();},  
+        list_button_style2[i].addEventListener("click", function(e)
+        {e.preventDefault();},
         {passive: false}
         );
     }
 
     for (var i = 0; i < list_button_style3.length; i++) {
-        list_button_style3[i].addEventListener("click", function(e) 
-        {e.preventDefault();},  
+        list_button_style3[i].addEventListener("click", function(e)
+        {e.preventDefault();},
         {passive: false}
         );
     }
@@ -156,7 +157,7 @@ window.onload = () => {
     //zoom prevention
     //zoom prevention
     //zoom prevention
-    
+
 
     //// image change on button hover
     // document.getElementById("id_homebutton1_a").addEventListener("mouseover", homebutton1_changeimg_toinvert, false);
@@ -165,14 +166,14 @@ window.onload = () => {
     // {
     //     if (true)
     //         document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100-inverted.png";
-        
+
     // }
 
     // document.getElementById("id_homebutton1_a").addEventListener("mouseout", homebutton1_changeimg_tooriginal, false);
 
     // function homebutton1_changeimg_tooriginal()
     // {
-    //     document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100.png";  
+    //     document.getElementById("id_homebutton1_img").src = "images/icons/icons8-home-100.png";
     //}
 
 
@@ -185,7 +186,7 @@ window.onload = () => {
     resizeCanvas2();
     resizeCanvas();
 
-    
+
 }
 
 
