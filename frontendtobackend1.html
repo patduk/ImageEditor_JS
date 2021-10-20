@@ -37,6 +37,7 @@
             }
             );
         }
+
     </script>
 
 
@@ -106,6 +107,60 @@ g
      </form>     
 
 
+    <form action = "http://127.0.0.1:5000/result" method = "POST">
+        <p>Name <input type = "text" name = "Name" /></p>
+        <p>Physics <input type = "text" name = "Physics" /></p>
+        <p>Chemistry <input type = "text" name = "chemistry" /></p>
+        <p>Maths <input type ="text" name = "Mathematics" /></p>
+        <p><input type = "submit" value = "submit" /></p>
+     </form>
+     
+     
+     <form action = "http://192.168.1.11:5000/setcookie" method = "POST">
+     <!-- <form action = "http://127.0.0.1:5000/setcookie" method = "POST"> -->
+        <p><h3>Enter userID</h3></p>
+        <p><input type = 'text' name = 'nm'/></p>
+        <p><input type = 'submit' value = 'Login'/></p>
+     </form>
+
+
+
+
+     <div id="divtext1">sdf
+     </div>
+
+     <script>
+
+
+        function fetchy3() {
+            fetch('http://192.168.1.11:5000/fetchtest')
+                .then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
+                    console.log(data)
+                    console.log("obtained from backend: " + data)
+                });
+
+        }
+
+        function fetchy4() {
+            fetch('http://192.168.1.11:5000/fetchtest')
+                .then(response => response.json())
+                .then(function(data) {
+                    document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
+                    console.log(data)
+                    console.log("obtained from backend: " + typeof(data))
+                });
+        }
+            
+     </script>
+
+
+     
+
+     </div>
+    <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Apply</button>
   
 </body>
 
