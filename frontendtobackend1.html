@@ -145,10 +145,23 @@ g
         }
 
         function fetchy4() {
-            fetch('http://192.168.1.11:5000/fetchtest')
+            //fetch('http://192.168.1.11:5000/test_fetchcsvfile')
+            fetch('https://flask2.azurewebsites.net/test_fetchcsvfile')
                 .then(response => response.json())
                 .then(function(data) {
                     document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
+                    console.log(data)
+                    console.log("obtained from backend: " + typeof(data))
+                });
+        }
+
+
+        function fetchcsvfile() {
+            //fetch('http://192.168.1.11:5000/test_fetchcsvfile')
+            fetch('https://flask2.azurewebsites.net/test_fetchcsvfile')
+                .then(response => response.json())
+                .then(function(data) {
+                    document.getElementById("divtext1").innerHTML = data
                     console.log(data)
                     console.log("obtained from backend: " + typeof(data))
                 });
@@ -160,7 +173,9 @@ g
      
 
      </div>
-    <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Apply</button>
+    <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Fetchy</button>
+
+    <button class="button_style1 btn_appearance1" onclick="fetchcsvfile()" >Fetchcsvfile</button>
   
 </body>
 
