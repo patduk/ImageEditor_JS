@@ -13,7 +13,7 @@
     <link href="styles/style1.css"  rel="stylesheet" type="text/css">
     <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
     <link href="styles/Content1.css" rel="stylesheet" type="text/css">
-    
+
     <script>
         //FOCUS ON id_btn1 for IOS
         function focus_on_id_btn1() {
@@ -28,15 +28,17 @@
 
             //detect click outside of a button, unfocus.. FOR SAFARI
             let specifiedelement1 = document.getElementById('id_btn1');
-            document.addEventListener('click', function(event) 
+            document.addEventListener('click', function(event)
             {
-                if ( !specifiedelement1.contains(event.target)) 
+                if ( !specifiedelement1.contains(event.target))
                 {
                     // Do something when user clicked outside of wrapper element
                 }
             }
             );
         }
+
+        // var backend1 = "http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/"
 
     </script>
 
@@ -47,14 +49,14 @@
         height: 100%;
         font-family: "Inconsolata", sans-serif;
         }
-        
+
         .bgimg {
         background-position: center;
         background-size: cover;
-        background-image: url("images/bluepond2.jpg"); 
+        background-image: url("images/bluepond2.jpg");
         min-height: 75%;
         }
-        
+
         .menu {
         display: none;
         }
@@ -80,17 +82,17 @@
         <button class="navbar1_dropdownbutton1" onclick="focus_on_id_btn1()" id="id_btn1" >
             <img src="images/icons/icons8-menu-96.png" style="width:24px; margin-top: 0px; margin-bottom: 0px;">
         </button>
-        
+
 
         <div class="navbar1_dropdown_menu1 transformX_Index" id="id_menu1" onclick="focus_on_id_btn1()">
-            <li><a href="imageeditor.html">Image Editor</a></li>  
+            <li><a href="imageeditor.html">Image Editor</a></li>
             <li><a href="js_canny_edge_detector_new/cannyedge.html">Test1</a></li>
             <li><a href="frontendtobackend1.html">Test2</a></li>
             <li><a href="#">Blank</a></li>
         </div>
-        
+
     </div>
-  
+
 
     <p>
         Frontend to backend testing
@@ -98,26 +100,29 @@
 
 
     <!-- method='??' means what method to use-->
-    <form action = "http://127.0.0.1:5000/frontendtobackendtest3" method='POST'>
+    <!-- <form action = "http://127.0.0.1:5000/frontendtobackendtest3" method='POST'> -->
     <!-- <form action = "https://flask2.azurewebsites.net/frontendtobackendtest3" method = "POST"> -->
+    <form action = "http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/frontendtobackendtest3" method='POST'>
         <p>Enter Name:</p>
         <p><input type = "text" name = "inputa" /></p>
         <p><input type = "submit" value = "submit" /></p>
-     </form>     
+     </form>
 
 
-    <form action = "http://127.0.0.1:5000/result" method = "POST">
+    <!-- <form action = "http://127.0.0.1:5000/result" method = "POST"> -->
     <!-- <form action = "https://flask2.azurewebsites.net/result" method = "POST"></form> -->
+    <form action = "http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/result" method='POST'>
         <p>Name <input type = "text" name = "Name" /></p>
         <p>Physics <input type = "text" name = "Physics" /></p>
         <p>Chemistry <input type = "text" name = "chemistry" /></p>
         <p>Maths <input type ="text" name = "Mathematics" /></p>
         <p><input type = "submit" value = "submit" /></p>
      </form>
-     
-     
-     <form action = "http://192.168.1.11:5000/setcookie" method = "POST">
+
+
+     <!-- <form action = "http://192.168.1.10:5000/setcookie" method = "POST"> -->
      <!-- <form action = "https://flask2.azurewebsites.net/setcookie" method = "POST"> -->
+    <form action = "http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/setcookie" method='POST'>
         <p><h3>Enter userID</h3></p>
         <p><input type = 'text' name = 'nm'/></p>
         <p><input type = 'submit' value = 'Login'/></p>
@@ -145,8 +150,9 @@
         // }
 
         function fetchy4() {
-            fetch('http://192.168.1.11:5000/fetchtest')
+            // fetch('http://192.168.1.10:5000/fetchtest')
             // fetch('https://flask2.azurewebsites.net/fetchtest')
+            fetch('http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/fetchtest')
                 .then(response => response.json())
                 .then(function(data) {
                     document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
@@ -157,8 +163,9 @@
 
 
         function fetchcsvfile() {
-            fetch('http://192.168.1.11:5000/test_fetchcsvfile')
+            // fetch('http://192.168.1.10:5000/test_fetchcsvfile')
             // fetch('https://flask2.azurewebsites.net/test_fetchcsvfile')
+            fetch('http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/test_fetchcsvfile')
                 .then(response => response.json())
                 .then(function(data) {
                     document.getElementById("divtext1").innerHTML = data
@@ -166,17 +173,23 @@
                     console.log("obtained from backend: " + typeof(data))
                 });
         }
-            
+
      </script>
 
-
-     
 
      </div>
     <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Fetchy</button>
 
     <button class="button_style1 btn_appearance1" onclick="fetchcsvfile()" >Fetchcsvfile</button>
-  
+
+    
+
+    <form action = "http://example2-env.eba-fddda5uf.us-west-1.elasticbeanstalk.com/page3" method='GET'>
+        <p><h3>Go to index</h3></p>
+        <p><input type = 'submit' value = 'Goto'/></p>
+     </form>
+
+
 </body>
 
 <!-- </html> -->
