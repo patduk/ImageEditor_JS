@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <head>
     <title>Home</title>
     <meta charset="utf-8">
@@ -40,8 +41,6 @@
             }
             );
         }
-
-
     </script>
 
 
@@ -109,7 +108,7 @@
         <p>Enter Name:</p>
         <p><input type = "text" name = "inputa" /></p>
         <p><input type = "submit" value = "submit" /></p>
-     </form>
+    </form>
 
 
     <!-- <form action = "http://127.0.0.1:5000/result" method = "POST"> -->
@@ -121,27 +120,26 @@
         <p>Chemistry <input type = "text" name = "chemistry" /></p>
         <p>Maths <input type ="text" name = "Mathematics" /></p>
         <p><input type = "submit" value = "submit" /></p>
-     </form>
+    </form>
 
 
-     <!-- <form action = "http://192.168.1.10:5000/setcookie" method = "POST"> -->
-     <!-- <form action = "https://flask2.azurewebsites.net/setcookie" method = "POST"> -->
+    <!-- <form action = "http://192.168.1.10:5000/setcookie" method = "POST"> -->
+    <!-- <form action = "https://flask2.azurewebsites.net/setcookie" method = "POST"> -->
     <!-- <form action = "https://www.huesset.com/setcookie" method='POST'> -->
     <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/setcookie" method='POST'>
         <p><h3>Enter userID</h3></p>
         <p><input type = 'text' name = 'nm'/></p>
         <p><input type = 'submit' value = 'Login'/></p>
-     </form>
+    </form>
 
 
 
-
-     <div id="divtext1">sdf
-     </div>
-
-     <script>
+    <div id="divtext1">
+        divtext1<br>
+    </div>
 
 
+    <script>
         // function fetchy3() {
         //     fetch('http://192.168.1.11:5000/fetchtest')
         //         .then(function (response) {
@@ -158,7 +156,6 @@
             // fetch('http://192.168.1.10:5000/fetchtest')
             // fetch('https://flask2.azurewebsites.net/fetchtest')
             fetch('https://www.huesset.com/fetchtest')
-            //fetch('http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/fetchtest')
                 .then(response => response.json())
                 .then(function(data) {
                     document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
@@ -172,32 +169,108 @@
             // fetch('http://192.168.1.10:5000/test_fetchcsvfile')
             // fetch('https://flask2.azurewebsites.net/test_fetchcsvfile')
             fetch('https://www.huesset.com/test_fetchcsvfile')
-            // fetch('http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/test_fetchcsvfile')
                 .then(response => response.json())
                 .then(function(data) {
-                    document.getElementById("divtext1").innerHTML = data
+                    // document.getElementById("divtext1").innerHTML = data
+                    document.getElementById("divtext1").innerHTML = JSON.stringify(data)
                     console.log(data)
                     console.log("obtained from backend: " + typeof(data))
                 });
         }
 
-     </script>
+
+        function fetchsql() {
+            // fetch('http://127.0.0.1:5000/test_fetchsql')
+            fetch("http://huesset.com/test_fetchsql")
+                .then(response => response.json())
+                .then(function(data) {
+                    // document.getElementById("divtext1").innerHTML = data
+                    
+                    var str = JSON.stringify(data, null, 4)
+                    //var str = data
+                    // document.getElementById("divtext1").innerHTML = str
+                    console.log(data)
+                    console.log("obtained from backend: " + typeof(data))
+                    console.log(data.length)
 
 
-     </div>
+
+
+                    document.getElementById("tablediv1").innerHTML = '';
+
+                    var string_placeholder1 = ''
+                    string_placeholder1 += '<tr>'
+                    for (const key in data[0]) {
+                        console.log(key); 
+                        var string1 = `<th>${key}</th>`; //use ` instead of '
+                        string_placeholder1 += string1;
+
+                    }
+                    string_placeholder1 += '</tr>'
+
+
+                    for (var i = 0; i < data.length; i++) 
+                    { 
+                        string_placeholder1 += '<tr>'
+                        for (const key in data[i]) {
+                            var value1 = `<td>${data[i][key]}</td>`; //use ` instead of '
+                            string_placeholder1 += value1;
+                        }
+                        string_placeholder1 += '</tr>'
+                    }
+
+                    
+                    document.getElementById("tablediv1").innerHTML = string_placeholder1;
+
+                    
+                });
+        }
+
+    </script>
+
+
     <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Fetchy</button>
-
-    <button class="button_style1 btn_appearance1" onclick="fetchcsvfile()" >Fetchcsvfile</button>
-
+    <button class="button_style1 btn_appearance1" onclick="fetchcsvfile()" >fetchcsvfile</button>
+    <button class="button_style1 btn_appearance1" onclick="fetchsql()" >fetchsql</button>
     
 
     <form action = "https://www.huesset.com/sdfdf" method='GET'>
     <!-- <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/page3" method='GET'> -->
         <p><h3>Go to index</h3></p>
         <p><input type = 'submit' value = 'Goto'/></p>
-     </form>
+    </form>
 
+
+    <table id="tablediv1">
+        <tr>
+            <th>Number</th>
+            <th>Symbols</th>
+            <th>Mentions</th>
+            <th>marketCap</th>
+            <th>latestPric</th>
+            <th>changePerc</th>
+            <th>peRatio</th>
+            <th>companyNam</th>
+        </tr>
+        <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+        </tr>
+    </table>
 
 </body>
+
 
 <!-- </html> -->
