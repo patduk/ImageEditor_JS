@@ -8,10 +8,7 @@ body, html {
   /*removes empty space in chrome mobile (iphone)*/
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden;
-
-  
-  
+  overflow-x: hidden; 
 }
 
 html {
@@ -25,14 +22,148 @@ html {
   overflow-y: hidden;
 }
 
-body {
+/* body {
   background-color: rgb(200,200,200);
-  /* height: 100%; */
 
   height: 100%;
   
+} */
+
+/* .div_table {
+  overflow-x: auto;
+  background-color: rgba(125,125,125,0.5);
+  text-align: center;
+  width: 80%;
+  margin: auto;
 }
 
+
+table {
+  border-collapse: collapse;
+  border: 1px solid;
+  border-style: solid;
+}
+
+th, td {
+  border: 1px solid;
+  padding: 2px;
+  min-width: 100px;
+  max-width: 1500px;
+  white-space: nowrap;
+}
+
+th {
+  background-color: rgb(127,200,250);
+}
+td {
+  text-align:left;
+}
+
+
+th:first-child, td:first-child {
+  border: 1px solid;
+  padding: 2px;
+  background-color: grey;
+  left: 0px;
+  z-index: 1;
+  position: sticky;
+}
+
+*/
+
+
+/* .div_table1 {
+  overflow: auto;
+  background-color: rgba(125,125,125,0.5);
+  text-align: center;
+  width: 80%;
+  height: auto;
+  margin: auto;
+}
+
+.div_table2 {
+  overflow: auto;
+}
+th, td {
+  border: 1px solid;
+  padding: 2px;
+  min-width: 100px;
+  max-width: 1500px;
+  white-space: nowrap;
+} 
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+} 
+
+td:first-child, th:first-child {
+  position:sticky;
+  left:0;
+  z-index:1;
+  background-color:grey;
+}
+td:last-child, th:last-child {
+  position:sticky;
+  right:0;
+  z-index:1;
+  background-color:grey;
+}
+
+thead tr th {
+  position:sticky;
+  top:0;
+  z-index: 1;
+  background-color:cyan;
+}
+th:first-child, th:last-child {z-index:2;background-color:red;}  */
+
+
+div {
+  overflow-x: auto; /*should disable/change to none to allow header to be sticky like in Coinmarketcap.com*/ 
+  width: 80%;
+  margin: auto;
+  border: 1px solid black;
+}
+  
+table {
+  background: rgb(220,200,200);
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 4px;
+  border: 1px solid black;
+  min-width: 100px;
+  max-width: 1500px;
+  white-space: nowrap;
+}
+
+thead th:first-child, tbody td:first-child {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky; 
+  top: 0; left: 0; /*required by sticky*/
+  z-index: 1;
+  background: rgb(255, 180, 180);
+
+ 
+}
+
+thead tr:first-child, thead th:first-child{
+  position: -webkit-sticky; /* for Safari */
+  position: sticky; 
+  top:0; left: 0; /*required by sticky*/
+  z-index:2;
+  background-color:white;
+} 
+
+
+/* thead th:first-child, tbody td:first-child {
+  border-left: none;
+}
+thead th:last-child, tbody td:last-child {
+  border-right: none;
+} */
 
 
 

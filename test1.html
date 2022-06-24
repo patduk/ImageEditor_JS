@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+
+    <!-- A website that is zoomable by pinching: -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+
+    
+    <!-- A website that is not zoomable by pinching: -->
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+
+    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/test1style.css"  rel="stylesheet" type="text/css">
+    <link href="styles/Navbar1.css" rel="stylesheet" type="text/css">
+    <link href="styles/Content1.css" rel="stylesheet" type="text/css">
+
+    <script>
+        //FOCUS ON id_btn1 for IOS
+        function focus_on_id_btn1() {
+            //// WAY 1 - better
+            document.getElementById("id_btn1").focus();
+            //// WAY 2 - ?
+            // if (document.getElementById("n1").style.display != "block")
+            //   document.getElementById("n1").style.display = "block";
+            // else {
+            //   document.getElementById("n1").style.display = "none";
+            // }
+
+            //detect click outside of a button, unfocus.. FOR SAFARI
+            let specifiedelement1 = document.getElementById('id_btn1');
+            document.addEventListener('click', function(event)
+            {
+                if ( !specifiedelement1.contains(event.target))
+                {
+                    // Do something when user clicked outside of wrapper element
+                }
+            }
+            );
+        }
+    </script>
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body, html {
+        height: 100%;
+        font-family: "Inconsolata", sans-serif;
+        }
+
+        .bgimg {
+        background-position: center;
+        background-size: cover;
+        background-image: url("images/bluepond2.jpg");
+        min-height: 75%;
+        }
+
+        .menu {
+        display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    
+        
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th class="stickyTop">1</th>
+                    <th class="stickyTop">2</th>
+                    <th class="stickyTop">3</th>
+                    <th class="stickyTop">4</th>
+                    <th class="stickyTop">5</th>
+                    <th class="stickyTop">6</th>
+                    <th class="stickyTop">7</th>
+                    <th class="stickyTop">8</th>
+                    <th class="stickyTop">9</th>
+                    <th class="stickyTop">10</th> -->
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                    <th>1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+                <tr>
+                    <td>td_1</td>
+                    <td>td_2</td>
+                    <td>td_3</td>
+                    <td>td_4</td>
+                    <td>td_5</td>
+                    <td>td_6</td>
+                    <td>td_7</td>
+                    <td>td_8</td>
+                    <td>td_9</td>
+                    <td>td_10</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>   
+
+
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    
+</body>

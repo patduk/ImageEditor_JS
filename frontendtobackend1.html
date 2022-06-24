@@ -180,8 +180,8 @@
 
 
         function fetchsql() {
-            // fetch('http://127.0.0.1:5000/test_fetchsql')
-            fetch("http://huesset.com/test_fetchsql")
+            fetch('http://127.0.0.1:5000/test_fetchsql')
+            // fetch("http://huesset.com/test_fetchsql")
                 .then(response => response.json())
                 .then(function(data) {
                     // document.getElementById("divtext1").innerHTML = data
@@ -194,32 +194,29 @@
                     console.log(data.length)
 
 
-
-
                     document.getElementById("tablediv1").innerHTML = '';
 
                     var string_placeholder1 = ''
-                    string_placeholder1 += '<tr>'
+                    string_placeholder1 += '<thead><tr>'
                     for (const key in data[0]) {
                         console.log(key); 
                         var string1 = `<th>${key}</th>`; //use ` instead of '
                         string_placeholder1 += string1;
 
                     }
-                    string_placeholder1 += '</tr>'
+                    string_placeholder1 += '</tr></thead>'
 
 
                     for (var i = 0; i < data.length; i++) 
                     { 
-                        string_placeholder1 += '<tr>'
+                        string_placeholder1 += '<tbody><tr>'
                         for (const key in data[i]) {
                             var value1 = `<td>${data[i][key]}</td>`; //use ` instead of '
                             string_placeholder1 += value1;
                         }
-                        string_placeholder1 += '</tr>'
+                        string_placeholder1 += '</tr></tbody>'
                     }
 
-                    
                     document.getElementById("tablediv1").innerHTML = string_placeholder1;
 
                     
@@ -240,36 +237,45 @@
         <p><input type = 'submit' value = 'Goto'/></p>
     </form>
 
+    <div class="div_table1">
+            <table id="tablediv1">
+                <thead>
+                    <tr>
+                        <th>Numberss</th>
+                        <th>Symbols</th>
+                        <th>Mentions</th>
+                        <th>marketCap</th>
+                        <th>latestPric</th>
+                        <th>changePerc</th>
+                        <th>peRatio</th>
+                        <th>companyNam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                    </tr>
+                    <tr>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                        <td>Mexico</td>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                        <td>Mexico</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+<!-- 
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p>
+    <p>ff</p><p>ff</p><p>ff</p> -->
 
-    <table id="tablediv1">
-        <tr>
-            <th>Number</th>
-            <th>Symbols</th>
-            <th>Mentions</th>
-            <th>marketCap</th>
-            <th>latestPric</th>
-            <th>changePerc</th>
-            <th>peRatio</th>
-            <th>companyNam</th>
-        </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-        </tr>
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
-    </table>
-
+    
 </body>
 
 
