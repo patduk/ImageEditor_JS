@@ -45,23 +45,6 @@
 
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style>
-        body, html {
-        height: 100%;
-        font-family: "Inconsolata", sans-serif;
-        }
-
-        .bgimg {
-        background-position: center;
-        background-size: cover;
-        background-image: url("images/bluepond2.jpg");
-        min-height: 75%;
-        }
-
-        .menu {
-        display: none;
-        }
-    </style>
 
 </head>
 
@@ -95,62 +78,12 @@
     </div>
 
 
-    <p>
-        Frontend to backend testing
-    </p>
-
-
-    <!-- method='??' means what method to use-->
-    <!-- <form action = "http://127.0.0.1:5000/frontendtobackendtest3" method='POST'> -->
-    <!-- <form action = "https://flask2.azurewebsites.net/frontendtobackendtest3" method = "POST"> -->
-    <!-- <form action = "https://www.huesset.com/frontendtobackendtest3" method='POST'> -->
-    <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/frontendtobackendtest3" method='POST'>
-        <p>Enter Name:</p>
-        <p><input type = "text" name = "inputa" /></p>
-        <p><input type = "submit" value = "submit" /></p>
-    </form>
-
-
-    <!-- <form action = "http://127.0.0.1:5000/result" method = "POST"> -->
-    <!-- <form action = "https://flask2.azurewebsites.net/result" method = "POST"></form> -->
-    <!-- <form action = "https://www.huesset.com/result" method='POST'> -->
-    <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/result" method='POST'>
-        <p>Name <input type = "text" name = "Name" /></p>
-        <p>Physics <input type = "text" name = "Physics" /></p>
-        <p>Chemistry <input type = "text" name = "chemistry" /></p>
-        <p>Maths <input type ="text" name = "Mathematics" /></p>
-        <p><input type = "submit" value = "submit" /></p>
-    </form>
-
-
-    <!-- <form action = "http://192.168.1.10:5000/setcookie" method = "POST"> -->
-    <!-- <form action = "https://flask2.azurewebsites.net/setcookie" method = "POST"> -->
-    <!-- <form action = "https://www.huesset.com/setcookie" method='POST'> -->
-    <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/setcookie" method='POST'>
-        <p><h3>Enter userID</h3></p>
-        <p><input type = 'text' name = 'nm'/></p>
-        <p><input type = 'submit' value = 'Login'/></p>
-    </form>
-
-
-
-    <div id="divtext1">
-        divtext1<br>
+    <div class="div801">
+        RSA data chart
     </div>
 
 
     <script>
-        // function fetchy3() {
-        //     fetch('http://192.168.1.11:5000/fetchtest')
-        //         .then(function (response) {
-        //             return response.json();
-        //         }).then(function (data) {
-        //             document.getElementById("divtext1").innerHTML = data['key1'] + " " + data['key2']
-        //             console.log(data)
-        //             console.log("obtained from backend: " + data)
-        //         });
-
-        // }
 
         function fetchy4() {
             // fetch('http://192.168.1.10:5000/fetchtest')
@@ -178,10 +111,51 @@
                 });
         }
 
+        function fetchsql_parent() {
+            fetch('http://127.0.0.1:5000/test_fetchsql_parent')
+            // fetch("http://huesset.com/test_fetchsql")
+                .then(response => response.json())
+                .then(function(data) {
+                    // document.getElementById("divtext1").innerHTML = data
+                    
+                    var str = JSON.stringify(data, null, 4)
+                    //var str = data
+                    // document.getElementById("divtext1").innerHTML = str
+                    console.log(data)
+                    console.log("obtained from backend: " + typeof(data))
+                    console.log(data.length)
 
+
+                    document.getElementById("tablediv_parent").innerHTML = '';
+
+                    var string_placeholder1 = ''
+                    string_placeholder1 += '<thead><tr>'
+                    for (const key in data[0]) {
+                        console.log(key); 
+                        var string1 = `<th>${key}</th>`; //use ` instead of '
+                        string_placeholder1 += string1;
+
+                    }
+                    string_placeholder1 += '</tr></thead>'
+
+
+                    for (var i = 0; i < data.length; i++) 
+                    { 
+                        string_placeholder1 += '<tbody><tr>'
+                        for (const key in data[i]) {
+                            var value1 = `<td>${data[i][key]}</td>`; //use ` instead of '
+                            string_placeholder1 += value1;
+                        }
+                        string_placeholder1 += '</tr></tbody>'
+                    }
+
+                    document.getElementById("tablediv_parent").innerHTML = string_placeholder1; 
+                });        
+        }
         function fetchsql() {
             fetch('http://127.0.0.1:5000/test_fetchsql')
             // fetch("http://huesset.com/test_fetchsql")
+            // fetch('http://Example0-env.eba-ccrnhgmr.us-west-1.elasticbeanstalk.com/test_fetchsql')
                 .then(response => response.json())
                 .then(function(data) {
                     // document.getElementById("divtext1").innerHTML = data
@@ -217,26 +191,21 @@
                         string_placeholder1 += '</tr></tbody>'
                     }
 
-                    document.getElementById("tablediv1").innerHTML = string_placeholder1;
-
-                    
-                });
+                    document.getElementById("tablediv1").innerHTML = string_placeholder1; 
+                });        
         }
-
+    
+        // fetchsql_parent();
+        fetchsql();
     </script>
 
-
-    <button class="button_style1 btn_appearance1" onclick="fetchy4()" >Fetchy</button>
-    <button class="button_style1 btn_appearance1" onclick="fetchcsvfile()" >fetchcsvfile</button>
     <button class="button_style1 btn_appearance1" onclick="fetchsql()" >fetchsql</button>
     
-
-    <form action = "https://www.huesset.com/sdfdf" method='GET'>
-    <!-- <form action = "http://example1-env.eba-tezntysa.us-west-1.elasticbeanstalk.com/page3" method='GET'> -->
-        <p><h3>Go to index</h3></p>
-        <p><input type = 'submit' value = 'Goto'/></p>
-    </form>
-
+    <div>
+        <table id="tablediv_parent">
+            tablediv_parent
+        </table>
+    </div>
     
     <div class="div038">
         <table id="tablediv1">
